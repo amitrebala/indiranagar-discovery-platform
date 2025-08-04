@@ -52,13 +52,14 @@ export function FocusManager({
     return Array.from(containerRef.current.querySelectorAll(focusableSelectors))
       .filter((element) => {
         // Check if element is visible and not hidden
+        const htmlElement = element as HTMLElement
         const style = window.getComputedStyle(element)
         return (
           style.display !== 'none' &&
           style.visibility !== 'hidden' &&
           style.opacity !== '0' &&
-          element.offsetWidth > 0 &&
-          element.offsetHeight > 0
+          htmlElement.offsetWidth > 0 &&
+          htmlElement.offsetHeight > 0
         )
       }) as HTMLElement[]
   }, [])
