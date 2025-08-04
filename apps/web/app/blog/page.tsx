@@ -2,7 +2,7 @@ import { Suspense } from 'react'
 import Link from 'next/link'
 import { ArrowLeft, Search, Filter, Rss, Mail } from 'lucide-react'
 import BlogPost from '@/components/blog/BlogPost'
-import NewsletterSignup from '@/components/blog/NewsletterSignup'
+import NewsletterSignupWrapper from '@/components/blog/NewsletterSignupWrapper'
 import { BlogPost as BlogPostType, BlogCategory } from '@/lib/types/blog'
 
 // Mock data - in real app this would come from database/CMS
@@ -322,16 +322,7 @@ export default function BlogPage() {
 
         {/* Newsletter Signup */}
         <div className="mb-12">
-          <NewsletterSignup
-            variant="inline"
-            showPreferences={false}
-            onSubscribe={async (email, preferences) => {
-              console.log('Newsletter signup:', email, preferences)
-              // Simulate API call
-              await new Promise(resolve => setTimeout(resolve, 1000))
-              return true
-            }}
-          />
+          <NewsletterSignupWrapper />
         </div>
 
         {/* About the Blog */}

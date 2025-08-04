@@ -1,0 +1,785 @@
+[
+{"type":"stdout","created":1754311654950,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"Running build in Washington, D.C., USA (East) – iad1","id":"1754311654950656219807400000","date":1754311654950,"serial":"1754311654950656219807400000"}}
+,
+{"type":"stdout","created":1754311654951,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"Build machine configuration: 2 cores, 8 GB","id":"1754311654951656219807400000","date":1754311654951,"serial":"1754311654951656219807400000"}}
+,
+{"type":"stdout","created":1754311654972,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"Cloning github.com/amitrebala/indiranagar-discovery-platform (Branch: main, Commit: c5aaacb)","id":"1754311654972656219807400001","date":1754311654972,"serial":"1754311654972656219807400001"}}
+,
+{"type":"stdout","created":1754311656741,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"Cloning completed: 1.769s","id":"1754311656741656219807400000","date":1754311656741,"serial":"1754311656741656219807400000"}}
+,
+{"type":"stdout","created":1754311656972,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"Restored build cache from previous deployment (4ccHh9MY2FK4xhhgXcwX85B8wXJd)","id":"1754311656972656219807400000","date":1754311656972,"serial":"1754311656972656219807400000"}}
+,
+{"type":"stdout","created":1754311658799,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"Running \"vercel build\"","id":"1754311658799950527898100000","date":1754311658799,"serial":"1754311658799950527898100000"}}
+,
+{"type":"stderr","created":1754311659388,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"Vercel CLI 44.6.4","id":"1754311659388950527898100000","date":1754311659388,"serial":"1754311659388950527898100000"}}
+,
+{"type":"stdout","created":1754311660000,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"Running \"install\" command: `npm install && cd apps/web && npm install`...","id":"1754311660000950527898100000","date":1754311660000,"serial":"1754311660000950527898100000"}}
+,
+{"type":"stdout","created":1754311675758,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311675758950527898100000","date":1754311675758,"serial":"1754311675758950527898100000"}}
+,
+{"type":"stdout","created":1754311675758,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"added 156 packages, and audited 157 packages in 15s","id":"1754311675758950527898100001","date":1754311675758,"serial":"1754311675758950527898100001"}}
+,
+{"type":"stdout","created":1754311675759,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311675759950527898100000","date":1754311675759,"serial":"1754311675759950527898100000"}}
+,
+{"type":"stdout","created":1754311675759,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"27 packages are looking for funding","id":"1754311675759950527898100001","date":1754311675759,"serial":"1754311675759950527898100001"}}
+,
+{"type":"stdout","created":1754311675759,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"  run `npm fund` for details","id":"1754311675759950527898100002","date":1754311675759,"serial":"1754311675759950527898100002"}}
+,
+{"type":"stdout","created":1754311675759,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311675759950527898100003","date":1754311675759,"serial":"1754311675759950527898100003"}}
+,
+{"type":"stdout","created":1754311675760,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"found 0 vulnerabilities","id":"1754311675760950527898100000","date":1754311675760,"serial":"1754311675760950527898100000"}}
+,
+{"type":"stderr","created":1754311708342,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"npm warn deprecated @supabase/auth-helpers-shared@0.7.0: This package is now deprecated - please use the @supabase/ssr package instead.","id":"1754311708342950527898100000","date":1754311708342,"serial":"1754311708342950527898100000"}}
+,
+{"type":"stderr","created":1754311708575,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"npm warn deprecated @supabase/auth-helpers-nextjs@0.10.0: This package is now deprecated - please use the @supabase/ssr package instead.","id":"1754311708575950527898100000","date":1754311708575,"serial":"1754311708575950527898100000"}}
+,
+{"type":"stdout","created":1754311718656,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311718656950527898100000","date":1754311718656,"serial":"1754311718656950527898100000"}}
+,
+{"type":"stdout","created":1754311718656,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"added 485 packages, and audited 486 packages in 43s","id":"1754311718656950527898100001","date":1754311718656,"serial":"1754311718656950527898100001"}}
+,
+{"type":"stdout","created":1754311718657,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311718657950527898100000","date":1754311718657,"serial":"1754311718657950527898100000"}}
+,
+{"type":"stdout","created":1754311718657,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"165 packages are looking for funding","id":"1754311718657950527898100001","date":1754311718657,"serial":"1754311718657950527898100001"}}
+,
+{"type":"stdout","created":1754311718657,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"  run `npm fund` for details","id":"1754311718657950527898100002","date":1754311718657,"serial":"1754311718657950527898100002"}}
+,
+{"type":"stdout","created":1754311718659,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311718659950527898100000","date":1754311718659,"serial":"1754311718659950527898100000"}}
+,
+{"type":"stdout","created":1754311718659,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"found 0 vulnerabilities","id":"1754311718659950527898100001","date":1754311718659,"serial":"1754311718659950527898100001"}}
+,
+{"type":"stdout","created":1754311720008,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311720008950527898100000","date":1754311720008,"serial":"1754311720008950527898100000"}}
+,
+{"type":"stdout","created":1754311720008,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"> simple-todo-coordination@1.0.0 build","id":"1754311720008950527898100001","date":1754311720008,"serial":"1754311720008950527898100001"}}
+,
+{"type":"stdout","created":1754311720008,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"> cd apps/web && npm run build","id":"1754311720008950527898100002","date":1754311720008,"serial":"1754311720008950527898100002"}}
+,
+{"type":"stdout","created":1754311720008,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311720008950527898100003","date":1754311720008,"serial":"1754311720008950527898100003"}}
+,
+{"type":"stdout","created":1754311720152,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311720152950527898100000","date":1754311720152,"serial":"1754311720152950527898100000"}}
+,
+{"type":"stdout","created":1754311720152,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"> web@0.1.0 build","id":"1754311720152950527898100001","date":1754311720152,"serial":"1754311720152950527898100001"}}
+,
+{"type":"stdout","created":1754311720152,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"> next build","id":"1754311720152950527898100002","date":1754311720152,"serial":"1754311720152950527898100002"}}
+,
+{"type":"stdout","created":1754311720152,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311720152950527898100003","date":1754311720152,"serial":"1754311720152950527898100003"}}
+,
+{"type":"stderr","created":1754311721812,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":" ⚠ Warning: Found multiple lockfiles. Selecting /vercel/path0/package-lock.json.","id":"1754311721812950527898100000","date":1754311721812,"serial":"1754311721812950527898100000"}}
+,
+{"type":"stderr","created":1754311721813,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"   Consider removing the lockfiles at:","id":"1754311721813950527898100000","date":1754311721813,"serial":"1754311721813950527898100000"}}
+,
+{"type":"stderr","created":1754311721813,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"   * /vercel/path0/apps/web/package-lock.json","id":"1754311721813950527898100001","date":1754311721813,"serial":"1754311721813950527898100001"}}
+,
+{"type":"stderr","created":1754311721813,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311721813950527898100002","date":1754311721813,"serial":"1754311721813950527898100002"}}
+,
+{"type":"stdout","created":1754311721847,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"Attention: Next.js now collects completely anonymous telemetry regarding usage.","id":"1754311721847950527898100000","date":1754311721847,"serial":"1754311721847950527898100000"}}
+,
+{"type":"stdout","created":1754311721847,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"This information is used to shape Next.js' roadmap and prioritize features.","id":"1754311721847950527898100001","date":1754311721847,"serial":"1754311721847950527898100001"}}
+,
+{"type":"stdout","created":1754311721848,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:","id":"1754311721848950527898100000","date":1754311721848,"serial":"1754311721848950527898100000"}}
+,
+{"type":"stdout","created":1754311721848,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"https://nextjs.org/telemetry","id":"1754311721848950527898100001","date":1754311721848,"serial":"1754311721848950527898100001"}}
+,
+{"type":"stdout","created":1754311721848,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311721848950527898100002","date":1754311721848,"serial":"1754311721848950527898100002"}}
+,
+{"type":"stdout","created":1754311721911,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"   ▲ Next.js 15.4.5","id":"1754311721911950527898100000","date":1754311721911,"serial":"1754311721911950527898100000"}}
+,
+{"type":"stdout","created":1754311721912,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"   - Experiments (use with caution):","id":"1754311721912950527898100000","date":1754311721912,"serial":"1754311721912950527898100000"}}
+,
+{"type":"stdout","created":1754311721912,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"     ✓ optimizeCss","id":"1754311721912950527898100001","date":1754311721912,"serial":"1754311721912950527898100001"}}
+,
+{"type":"stdout","created":1754311721912,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"     ✓ webpackBuildWorker","id":"1754311721912950527898100002","date":1754311721912,"serial":"1754311721912950527898100002"}}
+,
+{"type":"stdout","created":1754311721912,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311721912950527898100003","date":1754311721912,"serial":"1754311721912950527898100003"}}
+,
+{"type":"stdout","created":1754311721983,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"   Creating an optimized production build ...","id":"1754311721983950527898100000","date":1754311721983,"serial":"1754311721983950527898100000"}}
+,
+{"type":"stderr","created":1754311738901,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311738901950527898100000","date":1754311738901,"serial":"1754311738901950527898100000"}}
+,
+{"type":"stderr","created":1754311738902,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311738902950527898100000","date":1754311738902,"serial":"1754311738902950527898100000"}}
+,
+{"type":"stderr","created":1754311738902,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"Retrying 1/3...","id":"1754311738902950527898100001","date":1754311738902,"serial":"1754311738902950527898100001"}}
+,
+{"type":"stdout","created":1754311745888,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":" ✓ Compiled successfully in 20.0s","id":"1754311745888950527898100000","date":1754311745888,"serial":"1754311745888950527898100000"}}
+,
+{"type":"stdout","created":1754311745893,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"   Linting and checking validity of types ...","id":"1754311745893950527898100000","date":1754311745893,"serial":"1754311745893950527898100000"}}
+,
+{"type":"stdout","created":1754311756965,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311756965950527898100000","date":1754311756965,"serial":"1754311756965950527898100000"}}
+,
+{"type":"stdout","created":1754311756965,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"./app/api/analytics/web-vitals/route.ts","id":"1754311756965950527898100001","date":1754311756965,"serial":"1754311756965950527898100001"}}
+,
+{"type":"stdout","created":1754311756966,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"52:31  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311756966950527898100000","date":1754311756966,"serial":"1754311756966950527898100000"}}
+,
+{"type":"stdout","created":1754311756966,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"91:15  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311756966950527898100001","date":1754311756966,"serial":"1754311756966950527898100001"}}
+,
+{"type":"stdout","created":1754311756966,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"94:14  Warning: 'error' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311756966950527898100002","date":1754311756966,"serial":"1754311756966950527898100002"}}
+,
+{"type":"stdout","created":1754311756966,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311756966950527898100003","date":1754311756966,"serial":"1754311756966950527898100003"}}
+,
+{"type":"stdout","created":1754311756966,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"./app/api/events/[id]/rsvp/route.ts","id":"1754311756966950527898100004","date":1754311756966,"serial":"1754311756966950527898100004"}}
+,
+{"type":"stdout","created":1754311756966,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"22:75  Warning: '_rsvp' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311756966950527898100005","date":1754311756966,"serial":"1754311756966950527898100005"}}
+,
+{"type":"stdout","created":1754311756966,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311756966950527898100006","date":1754311756966,"serial":"1754311756966950527898100006"}}
+,
+{"type":"stdout","created":1754311756966,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"./app/blog/[slug]/page.tsx","id":"1754311756966950527898100007","date":1754311756966,"serial":"1754311756966950527898100007"}}
+,
+{"type":"stdout","created":1754311756966,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"4:21  Warning: 'Calendar' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311756966950527898100008","date":1754311756966,"serial":"1754311756966950527898100008"}}
+,
+{"type":"stdout","created":1754311756966,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"4:38  Warning: 'Eye' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311756966950527898100009","date":1754311756966,"serial":"1754311756966950527898100009"}}
+,
+{"type":"stdout","created":1754311756966,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"4:43  Warning: 'Share2' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311756966950527898100010","date":1754311756966,"serial":"1754311756966950527898100010"}}
+,
+{"type":"stdout","created":1754311756966,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"4:51  Warning: 'Tag' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311756966950527898100011","date":1754311756966,"serial":"1754311756966950527898100011"}}
+,
+{"type":"stdout","created":1754311756966,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"170:32  Warning: 'postId' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311756966950527898100012","date":1754311756966,"serial":"1754311756966950527898100012"}}
+,
+{"type":"stdout","created":1754311756966,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311756966950527898100013","date":1754311756966,"serial":"1754311756966950527898100013"}}
+,
+{"type":"stdout","created":1754311756966,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"./app/blog/page.tsx","id":"1754311756966950527898100014","date":1754311756966,"serial":"1754311756966950527898100014"}}
+,
+{"type":"stdout","created":1754311756966,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"266:56  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities","id":"1754311756966950527898100015","date":1754311756966,"serial":"1754311756966950527898100015"}}
+,
+{"type":"stdout","created":1754311756966,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"342:86  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities","id":"1754311756966950527898100016","date":1754311756966,"serial":"1754311756966950527898100016"}}
+,
+{"type":"stdout","created":1754311756967,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"343:53  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities","id":"1754311756967950527898100000","date":1754311756967,"serial":"1754311756967950527898100000"}}
+,
+{"type":"stdout","created":1754311756967,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"349:25  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities","id":"1754311756967950527898100001","date":1754311756967,"serial":"1754311756967950527898100001"}}
+,
+{"type":"stdout","created":1754311756967,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"350:52  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities","id":"1754311756967950527898100002","date":1754311756967,"serial":"1754311756967950527898100002"}}
+,
+{"type":"stdout","created":1754311756967,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"353:23  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities","id":"1754311756967950527898100003","date":1754311756967,"serial":"1754311756967950527898100003"}}
+,
+{"type":"stdout","created":1754311756967,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"353:67  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities","id":"1754311756967950527898100004","date":1754311756967,"serial":"1754311756967950527898100004"}}
+,
+{"type":"stdout","created":1754311756967,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311756967950527898100005","date":1754311756967,"serial":"1754311756967950527898100005"}}
+,
+{"type":"stdout","created":1754311756967,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"./app/business/relationships/page.tsx","id":"1754311756967950527898100006","date":1754311756967,"serial":"1754311756967950527898100006"}}
+,
+{"type":"stdout","created":1754311756967,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"376:99  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities","id":"1754311756967950527898100007","date":1754311756967,"serial":"1754311756967950527898100007"}}
+,
+{"type":"stdout","created":1754311756967,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"422:28  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities","id":"1754311756967950527898100008","date":1754311756967,"serial":"1754311756967950527898100008"}}
+,
+{"type":"stdout","created":1754311756967,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311756967950527898100009","date":1754311756967,"serial":"1754311756967950527898100009"}}
+,
+{"type":"stdout","created":1754311756967,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"./app/error.tsx","id":"1754311756967950527898100010","date":1754311756967,"serial":"1754311756967950527898100010"}}
+,
+{"type":"stdout","created":1754311756971,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"4:10  Warning: 'EnhancedErrorBoundary' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311756971950527898100000","date":1754311756971,"serial":"1754311756971950527898100000"}}
+,
+{"type":"stdout","created":1754311756971,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311756971950527898100001","date":1754311756971,"serial":"1754311756971950527898100001"}}
+,
+{"type":"stdout","created":1754311756971,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"./app/journeys/[slug]/page.tsx","id":"1754311756971950527898100002","date":1754311756971,"serial":"1754311756971950527898100002"}}
+,
+{"type":"stdout","created":1754311756971,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"4:54  Warning: 'Users' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311756971950527898100003","date":1754311756971,"serial":"1754311756971950527898100003"}}
+,
+{"type":"stdout","created":1754311756971,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"351:61  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities","id":"1754311756971950527898100004","date":1754311756971,"serial":"1754311756971950527898100004"}}
+,
+{"type":"stdout","created":1754311756971,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"352:26  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities","id":"1754311756971950527898100005","date":1754311756971,"serial":"1754311756971950527898100005"}}
+,
+{"type":"stdout","created":1754311756974,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311756974950527898100000","date":1754311756974,"serial":"1754311756974950527898100000"}}
+,
+{"type":"stdout","created":1754311756974,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"./app/offline/page.tsx","id":"1754311756974950527898100001","date":1754311756974,"serial":"1754311756974950527898100001"}}
+,
+{"type":"stdout","created":1754311756974,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"21:14  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities","id":"1754311756974950527898100002","date":1754311756974,"serial":"1754311756974950527898100002"}}
+,
+{"type":"stdout","created":1754311756974,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"26:47  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities","id":"1754311756974950527898100003","date":1754311756974,"serial":"1754311756974950527898100003"}}
+,
+{"type":"stdout","created":1754311756974,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311756974950527898100004","date":1754311756974,"serial":"1754311756974950527898100004"}}
+,
+{"type":"stdout","created":1754311756974,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"./app/preferences-demo/page.tsx","id":"1754311756974950527898100005","date":1754311756974,"serial":"1754311756974950527898100005"}}
+,
+{"type":"stdout","created":1754311756974,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"171:54  Warning: `\"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities","id":"1754311756974950527898100006","date":1754311756974,"serial":"1754311756974950527898100006"}}
+,
+{"type":"stdout","created":1754311756974,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"171:69  Warning: `\"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities","id":"1754311756974950527898100007","date":1754311756974,"serial":"1754311756974950527898100007"}}
+,
+{"type":"stdout","created":1754311756974,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311756974950527898100008","date":1754311756974,"serial":"1754311756974950527898100008"}}
+,
+{"type":"stdout","created":1754311756974,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"./components/admin/EnhancedQuestionDashboard.tsx","id":"1754311756974950527898100009","date":1754311756974,"serial":"1754311756974950527898100009"}}
+,
+{"type":"stdout","created":1754311756974,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"3:20  Warning: 'useEffect' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311756974950527898100010","date":1754311756974,"serial":"1754311756974950527898100010"}}
+,
+{"type":"stdout","created":1754311756975,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"21:21  Warning: 'setQuestions' is assigned a value but never used.  @typescript-eslint/no-unused-vars","id":"1754311756975950527898100000","date":1754311756975,"serial":"1754311756975950527898100000"}}
+,
+{"type":"stdout","created":1754311756975,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"58:58  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311756975950527898100001","date":1754311756975,"serial":"1754311756975950527898100001"}}
+,
+{"type":"stdout","created":1754311756975,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311756975950527898100002","date":1754311756975,"serial":"1754311756975950527898100002"}}
+,
+{"type":"stdout","created":1754311756975,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"./components/analytics/AnalyticsDashboard.tsx","id":"1754311756975950527898100003","date":1754311756975,"serial":"1754311756975950527898100003"}}
+,
+{"type":"stdout","created":1754311756975,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"16:3  Warning: 'Calendar' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311756975950527898100004","date":1754311756975,"serial":"1754311756975950527898100004"}}
+,
+{"type":"stdout","created":1754311756975,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"17:3  Warning: 'Filter' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311756975950527898100005","date":1754311756975,"serial":"1754311756975950527898100005"}}
+,
+{"type":"stdout","created":1754311756975,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"162:64  Warning: 'index' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311756975950527898100006","date":1754311756975,"serial":"1754311756975950527898100006"}}
+,
+{"type":"stdout","created":1754311756975,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311756975950527898100007","date":1754311756975,"serial":"1754311756975950527898100007"}}
+,
+{"type":"stdout","created":1754311756975,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"./components/blog/BlogComments.tsx","id":"1754311756975950527898100008","date":1754311756975,"serial":"1754311756975950527898100008"}}
+,
+{"type":"stdout","created":1754311756975,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"140:17  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element","id":"1754311756975950527898100009","date":1754311756975,"serial":"1754311756975950527898100009"}}
+,
+{"type":"stdout","created":1754311756975,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"246:3  Warning: 'postId' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311756975950527898100010","date":1754311756975,"serial":"1754311756975950527898100010"}}
+,
+{"type":"stdout","created":1754311756975,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"291:60  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311756975950527898100011","date":1754311756975,"serial":"1754311756975950527898100011"}}
+,
+{"type":"stdout","created":1754311756975,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311756975950527898100012","date":1754311756975,"serial":"1754311756975950527898100012"}}
+,
+{"type":"stdout","created":1754311756975,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"./components/blog/NewsletterSignup.tsx","id":"1754311756975950527898100013","date":1754311756975,"serial":"1754311756975950527898100013"}}
+,
+{"type":"stdout","created":1754311756975,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"48:14  Warning: 'error' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311756975950527898100014","date":1754311756975,"serial":"1754311756975950527898100014"}}
+,
+{"type":"stdout","created":1754311756976,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"64:9  Warning: 'topics' is assigned a value but never used.  @typescript-eslint/no-unused-vars","id":"1754311756976950527898100000","date":1754311756976,"serial":"1754311756976950527898100000"}}
+,
+{"type":"stdout","created":1754311756976,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"83:14  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities","id":"1754311756976950527898100001","date":1754311756976,"serial":"1754311756976950527898100001"}}
+,
+{"type":"stdout","created":1754311756976,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"127:49  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities","id":"1754311756976950527898100002","date":1754311756976,"serial":"1754311756976950527898100002"}}
+,
+{"type":"stdout","created":1754311756976,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"249:25  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities","id":"1754311756976950527898100003","date":1754311756976,"serial":"1754311756976950527898100003"}}
+,
+{"type":"stdout","created":1754311756976,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"284:66  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities","id":"1754311756976950527898100004","date":1754311756976,"serial":"1754311756976950527898100004"}}
+,
+{"type":"stdout","created":1754311756976,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311756976950527898100005","date":1754311756976,"serial":"1754311756976950527898100005"}}
+,
+{"type":"stdout","created":1754311756976,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"./components/business/NetworkVisualization.tsx","id":"1754311756976950527898100006","date":1754311756976,"serial":"1754311756976950527898100006"}}
+,
+{"type":"stdout","created":1754311756976,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"4:18  Warning: 'Filter' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311756976950527898100007","date":1754311756976,"serial":"1754311756976950527898100007"}}
+,
+{"type":"stdout","created":1754311756976,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"5:10  Warning: 'NetworkMap' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311756976950527898100008","date":1754311756976,"serial":"1754311756976950527898100008"}}
+,
+{"type":"stdout","created":1754311756976,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"39:3  Warning: 'interactive' is assigned a value but never used.  @typescript-eslint/no-unused-vars","id":"1754311756976950527898100009","date":1754311756976,"serial":"1754311756976950527898100009"}}
+,
+{"type":"stdout","created":1754311756976,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"49:10  Warning: 'isDragging' is assigned a value but never used.  @typescript-eslint/no-unused-vars","id":"1754311756976950527898100010","date":1754311756976,"serial":"1754311756976950527898100010"}}
+,
+{"type":"stdout","created":1754311756976,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"49:22  Warning: 'setIsDragging' is assigned a value but never used.  @typescript-eslint/no-unused-vars","id":"1754311756976950527898100011","date":1754311756976,"serial":"1754311756976950527898100011"}}
+,
+{"type":"stdout","created":1754311756977,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"50:10  Warning: 'dragNode' is assigned a value but never used.  @typescript-eslint/no-unused-vars","id":"1754311756977950527898100000","date":1754311756977,"serial":"1754311756977950527898100000"}}
+,
+{"type":"stdout","created":1754311756977,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"50:20  Warning: 'setDragNode' is assigned a value but never used.  @typescript-eslint/no-unused-vars","id":"1754311756977950527898100001","date":1754311756977,"serial":"1754311756977950527898100001"}}
+,
+{"type":"stdout","created":1754311756977,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311756977950527898100002","date":1754311756977,"serial":"1754311756977950527898100002"}}
+,
+{"type":"stdout","created":1754311756977,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"./components/community/AdminSuggestionReview.tsx","id":"1754311756977950527898100003","date":1754311756977,"serial":"1754311756977950527898100003"}}
+,
+{"type":"stdout","created":1754311756977,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"95:65  Warning: 'index' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311756977950527898100004","date":1754311756977,"serial":"1754311756977950527898100004"}}
+,
+{"type":"stdout","created":1754311756977,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"96:13  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element","id":"1754311756977950527898100005","date":1754311756977,"serial":"1754311756977950527898100005"}}
+,
+{"type":"stdout","created":1754311756978,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"134:14  Warning: 'error' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311756978950527898100000","date":1754311756978,"serial":"1754311756978950527898100000"}}
+,
+{"type":"stdout","created":1754311756978,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"183:17  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element","id":"1754311756978950527898100001","date":1754311756978,"serial":"1754311756978950527898100001"}}
+,
+{"type":"stdout","created":1754311756978,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"282:14  Warning: 'error' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311756978950527898100002","date":1754311756978,"serial":"1754311756978950527898100002"}}
+,
+{"type":"stdout","created":1754311756978,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311756978950527898100003","date":1754311756978,"serial":"1754311756978950527898100003"}}
+,
+{"type":"stdout","created":1754311756978,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"./components/community/CommunitySuggestionForm.tsx","id":"1754311756978950527898100004","date":1754311756978,"serial":"1754311756978950527898100004"}}
+,
+{"type":"stdout","created":1754311756978,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"4:26  Warning: 'Camera' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311756978950527898100005","date":1754311756978,"serial":"1754311756978950527898100005"}}
+,
+{"type":"stdout","created":1754311756978,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"38:9  Warning: 'handleLocationSelect' is assigned a value but never used.  @typescript-eslint/no-unused-vars","id":"1754311756978950527898100006","date":1754311756978,"serial":"1754311756978950527898100006"}}
+,
+{"type":"stdout","created":1754311756978,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"108:36  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities","id":"1754311756978950527898100007","date":1754311756978,"serial":"1754311756978950527898100007"}}
+,
+{"type":"stdout","created":1754311756978,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"203:21  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element","id":"1754311756978950527898100008","date":1754311756978,"serial":"1754311756978950527898100008"}}
+,
+{"type":"stdout","created":1754311756978,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"301:80  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities","id":"1754311756978950527898100009","date":1754311756978,"serial":"1754311756978950527898100009"}}
+,
+{"type":"stdout","created":1754311756978,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311756978950527898100010","date":1754311756978,"serial":"1754311756978950527898100010"}}
+,
+{"type":"stdout","created":1754311756979,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"./components/community/CommunityVoting.tsx","id":"1754311756979950527898100000","date":1754311756979,"serial":"1754311756979950527898100000"}}
+,
+{"type":"stdout","created":1754311756979,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"58:14  Warning: 'error' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311756979950527898100001","date":1754311756979,"serial":"1754311756979950527898100001"}}
+,
+{"type":"stdout","created":1754311756979,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311756979950527898100002","date":1754311756979,"serial":"1754311756979950527898100002"}}
+,
+{"type":"stdout","created":1754311756979,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"./components/events/EventCalendar.tsx","id":"1754311756979950527898100003","date":1754311756979,"serial":"1754311756979950527898100003"}}
+,
+{"type":"stdout","created":1754311756979,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"3:20  Warning: 'useEffect' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311756979950527898100004","date":1754311756979,"serial":"1754311756979950527898100004"}}
+,
+{"type":"stdout","created":1754311756979,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"4:10  Warning: 'Calendar' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311756979950527898100005","date":1754311756979,"serial":"1754311756979950527898100005"}}
+,
+{"type":"stdout","created":1754311756979,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"104:54  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311756979950527898100006","date":1754311756979,"serial":"1754311756979950527898100006"}}
+,
+{"type":"stdout","created":1754311756979,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311756979950527898100007","date":1754311756979,"serial":"1754311756979950527898100007"}}
+,
+{"type":"stdout","created":1754311756979,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"./components/events/EventSubmissionForm.tsx","id":"1754311756979950527898100008","date":1754311756979,"serial":"1754311756979950527898100008"}}
+,
+{"type":"stdout","created":1754311756979,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"206:96  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311756979950527898100009","date":1754311756979,"serial":"1754311756979950527898100009"}}
+,
+{"type":"stdout","created":1754311756979,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"298:95  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311756979950527898100010","date":1754311756979,"serial":"1754311756979950527898100010"}}
+,
+{"type":"stdout","created":1754311756979,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311756979950527898100011","date":1754311756979,"serial":"1754311756979950527898100011"}}
+,
+{"type":"stdout","created":1754311756979,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"./components/journeys/InstagramStoryInterface.tsx","id":"1754311756979950527898100012","date":1754311756979,"serial":"1754311756979950527898100012"}}
+,
+{"type":"stdout","created":1754311756980,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"21:45  Warning: 'journey' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311756980950527898100000","date":1754311756980,"serial":"1754311756980950527898100000"}}
+,
+{"type":"stdout","created":1754311756980,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"69:17  Warning: `\"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities","id":"1754311756980950527898100001","date":1754311756980,"serial":"1754311756980950527898100001"}}
+,
+{"type":"stdout","created":1754311756980,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"69:38  Warning: `\"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities","id":"1754311756980950527898100002","date":1754311756980,"serial":"1754311756980950527898100002"}}
+,
+{"type":"stdout","created":1754311756980,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"128:67  Warning: 'index' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311756980950527898100003","date":1754311756980,"serial":"1754311756980950527898100003"}}
+,
+{"type":"stdout","created":1754311756981,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"188:9  Warning: The 'scrollToStop' function makes the dependencies of useCallback Hook (at line 221) change on every render. To fix this, wrap the definition of 'scrollToStop' in its own useCallback() Hook.  react-hooks/exhaustive-deps","id":"1754311756981950527898100000","date":1754311756981,"serial":"1754311756981950527898100000"}}
+,
+{"type":"stdout","created":1754311756981,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"188:9  Warning: The 'scrollToStop' function makes the dependencies of useCallback Hook (at line 227) change on every render. To fix this, wrap the definition of 'scrollToStop' in its own useCallback() Hook.  react-hooks/exhaustive-deps","id":"1754311756981950527898100001","date":1754311756981,"serial":"1754311756981950527898100001"}}
+,
+{"type":"stdout","created":1754311756981,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311756981950527898100002","date":1754311756981,"serial":"1754311756981950527898100002"}}
+,
+{"type":"stdout","created":1754311756981,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"./components/journeys/JourneyExperienceCard.tsx","id":"1754311756981950527898100003","date":1754311756981,"serial":"1754311756981950527898100003"}}
+,
+{"type":"stdout","created":1754311756989,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"6:25  Warning: 'Users' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311756989950527898100000","date":1754311756989,"serial":"1754311756989950527898100000"}}
+,
+{"type":"stdout","created":1754311756989,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"6:32  Warning: 'Star' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311756989950527898100001","date":1754311756989,"serial":"1754311756989950527898100001"}}
+,
+{"type":"stdout","created":1754311756990,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"153:72  Warning: 'index' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311756990950527898100000","date":1754311756990,"serial":"1754311756990950527898100000"}}
+,
+{"type":"stdout","created":1754311756990,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311756990950527898100001","date":1754311756990,"serial":"1754311756990950527898100001"}}
+,
+{"type":"stdout","created":1754311756990,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"./components/map/InteractiveMap.tsx","id":"1754311756990950527898100002","date":1754311756990,"serial":"1754311756990950527898100002"}}
+,
+{"type":"stdout","created":1754311756990,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"19:10  Warning: 'Loader2' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311756990950527898100003","date":1754311756990,"serial":"1754311756990950527898100003"}}
+,
+{"type":"stdout","created":1754311756990,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"100:3  Warning: 'onJourneySelect' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311756990950527898100004","date":1754311756990,"serial":"1754311756990950527898100004"}}
+,
+{"type":"stdout","created":1754311756990,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"188:9  Warning: 'handleMarkerHover' is assigned a value but never used.  @typescript-eslint/no-unused-vars","id":"1754311756990950527898100005","date":1754311756990,"serial":"1754311756990950527898100005"}}
+,
+{"type":"stdout","created":1754311756990,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"188:51  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311756990950527898100006","date":1754311756990,"serial":"1754311756990950527898100006"}}
+,
+{"type":"stdout","created":1754311756990,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"199:9  Warning: 'handleMarkerLeave' is assigned a value but never used.  @typescript-eslint/no-unused-vars","id":"1754311756990950527898100007","date":1754311756990,"serial":"1754311756990950527898100007"}}
+,
+{"type":"stdout","created":1754311756990,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311756990950527898100008","date":1754311756990,"serial":"1754311756990950527898100008"}}
+,
+{"type":"stdout","created":1754311756990,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"./components/map/JourneyRouteVisualization.tsx","id":"1754311756990950527898100009","date":1754311756990,"serial":"1754311756990950527898100009"}}
+,
+{"type":"stdout","created":1754311756990,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"7:10  Warning: 'useMapStore' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311756990950527898100010","date":1754311756990,"serial":"1754311756990950527898100010"}}
+,
+{"type":"stdout","created":1754311756991,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311756991950527898100000","date":1754311756991,"serial":"1754311756991950527898100000"}}
+,
+{"type":"stdout","created":1754311756991,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"./components/map/PlaceMarker.tsx","id":"1754311756991950527898100001","date":1754311756991,"serial":"1754311756991950527898100001"}}
+,
+{"type":"stdout","created":1754311756991,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"129:10  Warning: 'hoveredPlace' is assigned a value but never used.  @typescript-eslint/no-unused-vars","id":"1754311756991950527898100002","date":1754311756991,"serial":"1754311756991950527898100002"}}
+,
+{"type":"stdout","created":1754311756991,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311756991950527898100003","date":1754311756991,"serial":"1754311756991950527898100003"}}
+,
+{"type":"stdout","created":1754311756991,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"./components/mobile/MobileJourneyInterface.tsx","id":"1754311756991950527898100004","date":1754311756991,"serial":"1754311756991950527898100004"}}
+,
+{"type":"stdout","created":1754311756991,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"4:61  Warning: 'Camera' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311756991950527898100005","date":1754311756991,"serial":"1754311756991950527898100005"}}
+,
+{"type":"stdout","created":1754311756991,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"68:19  Warning: `\"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities","id":"1754311756991950527898100006","date":1754311756991,"serial":"1754311756991950527898100006"}}
+,
+{"type":"stdout","created":1754311756991,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"68:40  Warning: `\"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities","id":"1754311756991950527898100007","date":1754311756991,"serial":"1754311756991950527898100007"}}
+,
+{"type":"stdout","created":1754311756991,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"308:18  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities","id":"1754311756991950527898100008","date":1754311756991,"serial":"1754311756991950527898100008"}}
+,
+{"type":"stdout","created":1754311756991,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311756991950527898100009","date":1754311756991,"serial":"1754311756991950527898100009"}}
+,
+{"type":"stdout","created":1754311756991,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"./components/mobile/MobileOptimizedGallery.tsx","id":"1754311756991950527898100010","date":1754311756991,"serial":"1754311756991950527898100010"}}
+,
+{"type":"stdout","created":1754311756992,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"5:40  Warning: 'Download' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311756992950527898100000","date":1754311756992,"serial":"1754311756992950527898100000"}}
+,
+{"type":"stdout","created":1754311756992,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"43:9  Warning: 'imageRefs' is assigned a value but never used.  @typescript-eslint/no-unused-vars","id":"1754311756992950527898100001","date":1754311756992,"serial":"1754311756992950527898100001"}}
+,
+{"type":"stdout","created":1754311756992,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311756992950527898100002","date":1754311756992,"serial":"1754311756992950527898100002"}}
+,
+{"type":"stdout","created":1754311756992,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"./components/mobile/MobilePlaceCard.tsx","id":"1754311756992950527898100003","date":1754311756992,"serial":"1754311756992950527898100003"}}
+,
+{"type":"stdout","created":1754311756992,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"3:10  Warning: 'useState' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311756992950527898100004","date":1754311756992,"serial":"1754311756992950527898100004"}}
+,
+{"type":"stdout","created":1754311756992,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311756992950527898100005","date":1754311756992,"serial":"1754311756992950527898100005"}}
+,
+{"type":"stdout","created":1754311756992,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"./components/places/BusinessRelationships.tsx","id":"1754311756992950527898100006","date":1754311756992,"serial":"1754311756992950527898100006"}}
+,
+{"type":"stdout","created":1754311756992,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"11:62  Warning: 'placeName' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311756992950527898100007","date":1754311756992,"serial":"1754311756992950527898100007"}}
+,
+{"type":"stdout","created":1754311756992,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"27:45  Warning: 'trustLevel' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311756992950527898100008","date":1754311756992,"serial":"1754311756992950527898100008"}}
+,
+{"type":"stdout","created":1754311756992,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"93:87  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities","id":"1754311756992950527898100009","date":1754311756992,"serial":"1754311756992950527898100009"}}
+,
+{"type":"stdout","created":1754311756992,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"94:85  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities","id":"1754311756992950527898100010","date":1754311756992,"serial":"1754311756992950527898100010"}}
+,
+{"type":"stdout","created":1754311756993,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"157:30  Warning: `\"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities","id":"1754311756993950527898100000","date":1754311756993,"serial":"1754311756993950527898100000"}}
+,
+{"type":"stdout","created":1754311756993,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"157:79  Warning: `\"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities","id":"1754311756993950527898100001","date":1754311756993,"serial":"1754311756993950527898100001"}}
+,
+{"type":"stdout","created":1754311756993,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311756993950527898100002","date":1754311756993,"serial":"1754311756993950527898100002"}}
+,
+{"type":"stdout","created":1754311756993,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"./components/places/EnhancedCompanionActivityCard.tsx","id":"1754311756993950527898100003","date":1754311756993,"serial":"1754311756993950527898100003"}}
+,
+{"type":"stdout","created":1754311756993,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"3:43  Warning: 'Sun' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311756993950527898100004","date":1754311756993,"serial":"1754311756993950527898100004"}}
+,
+{"type":"stdout","created":1754311756993,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311756993950527898100005","date":1754311756993,"serial":"1754311756993950527898100005"}}
+,
+{"type":"stdout","created":1754311756993,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"./components/places/EnhancedPlaceGallery.tsx","id":"1754311756993950527898100006","date":1754311756993,"serial":"1754311756993950527898100006"}}
+,
+{"type":"stdout","created":1754311756993,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"73:10  Warning: 'showStories' is assigned a value but never used.  @typescript-eslint/no-unused-vars","id":"1754311756993950527898100007","date":1754311756993,"serial":"1754311756993950527898100007"}}
+,
+{"type":"stdout","created":1754311756993,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"73:23  Warning: 'setShowStories' is assigned a value but never used.  @typescript-eslint/no-unused-vars","id":"1754311756993950527898100008","date":1754311756993,"serial":"1754311756993950527898100008"}}
+,
+{"type":"stdout","created":1754311756993,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"86:46  Warning: 'index' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311756993950527898100009","date":1754311756993,"serial":"1754311756993950527898100009"}}
+,
+{"type":"stdout","created":1754311756993,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"116:33  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities","id":"1754311756993950527898100010","date":1754311756993,"serial":"1754311756993950527898100010"}}
+,
+{"type":"stdout","created":1754311756994,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"141:9  Warning: 'allImages' is assigned a value but never used.  @typescript-eslint/no-unused-vars","id":"1754311756994950527898100000","date":1754311756994,"serial":"1754311756994950527898100000"}}
+,
+{"type":"stdout","created":1754311756994,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"177:9  Warning: 'openLightbox' is assigned a value but never used.  @typescript-eslint/no-unused-vars","id":"1754311756994950527898100001","date":1754311756994,"serial":"1754311756994950527898100001"}}
+,
+{"type":"stdout","created":1754311756994,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"247:47  Warning: 'index' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311756994950527898100002","date":1754311756994,"serial":"1754311756994950527898100002"}}
+,
+{"type":"stdout","created":1754311756994,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311756994950527898100003","date":1754311756994,"serial":"1754311756994950527898100003"}}
+,
+{"type":"stdout","created":1754311756994,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"./components/places/MemoryPalaceStory.tsx","id":"1754311756994950527898100004","date":1754311756994,"serial":"1754311756994950527898100004"}}
+,
+{"type":"stdout","created":1754311756994,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"6:10  Warning: 'MemoryPalaceContent' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311756994950527898100005","date":1754311756994,"serial":"1754311756994950527898100005"}}
+,
+{"type":"stdout","created":1754311756994,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"68:69  Warning: 'index' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311756994950527898100006","date":1754311756994,"serial":"1754311756994950527898100006"}}
+,
+{"type":"stdout","created":1754311756994,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"97:72  Warning: 'index' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311756994950527898100007","date":1754311756994,"serial":"1754311756994950527898100007"}}
+,
+{"type":"stdout","created":1754311756994,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"118:21  Warning: `\"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities","id":"1754311756994950527898100008","date":1754311756994,"serial":"1754311756994950527898100008"}}
+,
+{"type":"stdout","created":1754311756994,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"118:40  Warning: `\"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities","id":"1754311756994950527898100009","date":1754311756994,"serial":"1754311756994950527898100009"}}
+,
+{"type":"stdout","created":1754311756994,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"130:23  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities","id":"1754311756994950527898100010","date":1754311756994,"serial":"1754311756994950527898100010"}}
+,
+{"type":"stdout","created":1754311756995,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"142:68  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities","id":"1754311756995950527898100000","date":1754311756995,"serial":"1754311756995950527898100000"}}
+,
+{"type":"stdout","created":1754311756995,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311756995950527898100001","date":1754311756995,"serial":"1754311756995950527898100001"}}
+,
+{"type":"stdout","created":1754311756995,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"./components/places/PersonalReview.tsx","id":"1754311756995950527898100002","date":1754311756995,"serial":"1754311756995950527898100002"}}
+,
+{"type":"stdout","created":1754311756995,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"11:50  Warning: 'placeName' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311756995950527898100003","date":1754311756995,"serial":"1754311756995950527898100003"}}
+,
+{"type":"stdout","created":1754311756995,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"47:72  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities","id":"1754311756995950527898100004","date":1754311756995,"serial":"1754311756995950527898100004"}}
+,
+{"type":"stdout","created":1754311756995,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311756995950527898100005","date":1754311756995,"serial":"1754311756995950527898100005"}}
+,
+{"type":"stdout","created":1754311756995,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"./components/search/SearchFilters.tsx","id":"1754311756995950527898100006","date":1754311756995,"serial":"1754311756995950527898100006"}}
+,
+{"type":"stdout","created":1754311756995,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"22:68  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311756995950527898100007","date":1754311756995,"serial":"1754311756995950527898100007"}}
+,
+{"type":"stdout","created":1754311756995,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"43:77  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311756995950527898100008","date":1754311756995,"serial":"1754311756995950527898100008"}}
+,
+{"type":"stdout","created":1754311756995,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"45:61  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311756995950527898100009","date":1754311756995,"serial":"1754311756995950527898100009"}}
+,
+{"type":"stdout","created":1754311756995,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"268:75  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311756995950527898100010","date":1754311756995,"serial":"1754311756995950527898100010"}}
+,
+{"type":"stdout","created":1754311756996,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311756996950527898100000","date":1754311756996,"serial":"1754311756996950527898100000"}}
+,
+{"type":"stdout","created":1754311756996,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"./components/search/SearchInterface.tsx","id":"1754311756996950527898100001","date":1754311756996,"serial":"1754311756996950527898100001"}}
+,
+{"type":"stdout","created":1754311756997,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"74:5  Warning: React Hook useMemo has a missing dependency: 'saveRecentSearch'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps","id":"1754311756997950527898100000","date":1754311756997,"serial":"1754311756997950527898100000"}}
+,
+{"type":"stdout","created":1754311756997,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"261:55  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities","id":"1754311756997950527898100001","date":1754311756997,"serial":"1754311756997950527898100001"}}
+,
+{"type":"stdout","created":1754311756997,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"261:76  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities","id":"1754311756997950527898100002","date":1754311756997,"serial":"1754311756997950527898100002"}}
+,
+{"type":"stdout","created":1754311756997,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"261:81  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities","id":"1754311756997950527898100003","date":1754311756997,"serial":"1754311756997950527898100003"}}
+,
+{"type":"stdout","created":1754311756997,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"261:100  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities","id":"1754311756997950527898100004","date":1754311756997,"serial":"1754311756997950527898100004"}}
+,
+{"type":"stdout","created":1754311756997,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311756997950527898100005","date":1754311756997,"serial":"1754311756997950527898100005"}}
+,
+{"type":"stdout","created":1754311757003,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"./components/search/SearchResults.tsx","id":"1754311757003950527898100000","date":1754311757003,"serial":"1754311757003950527898100000"}}
+,
+{"type":"stdout","created":1754311757003,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"29:40  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311757003950527898100001","date":1754311757003,"serial":"1754311757003950527898100001"}}
+,
+{"type":"stdout","created":1754311757003,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"34:38  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311757003950527898100002","date":1754311757003,"serial":"1754311757003950527898100002"}}
+,
+{"type":"stdout","created":1754311757003,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"42:9  Warning: 'formatDistance' is assigned a value but never used.  @typescript-eslint/no-unused-vars","id":"1754311757003950527898100003","date":1754311757003,"serial":"1754311757003950527898100003"}}
+,
+{"type":"stdout","created":1754311757003,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"50:9  Warning: 'getRelevanceColor' is assigned a value but never used.  @typescript-eslint/no-unused-vars","id":"1754311757003950527898100004","date":1754311757003,"serial":"1754311757003950527898100004"}}
+,
+{"type":"stdout","created":1754311757003,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"117:3  Warning: 'viewMode' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311757003950527898100005","date":1754311757003,"serial":"1754311757003950527898100005"}}
+,
+{"type":"stdout","created":1754311757003,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311757003950527898100006","date":1754311757003,"serial":"1754311757003950527898100006"}}
+,
+{"type":"stdout","created":1754311757003,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"./components/search/SearchSuggestions.tsx","id":"1754311757003950527898100007","date":1754311757003,"serial":"1754311757003950527898100007"}}
+,
+{"type":"stdout","created":1754311757004,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"3:30  Warning: 'Clock' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311757004950527898100000","date":1754311757004,"serial":"1754311757004950527898100000"}}
+,
+{"type":"stdout","created":1754311757004,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311757004950527898100001","date":1754311757004,"serial":"1754311757004950527898100001"}}
+,
+{"type":"stdout","created":1754311757004,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"./components/sharing/SocialShare.tsx","id":"1754311757004950527898100002","date":1754311757004,"serial":"1754311757004950527898100002"}}
+,
+{"type":"stdout","created":1754311757004,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"4:37  Warning: 'Instagram' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311757004950527898100003","date":1754311757004,"serial":"1754311757004950527898100003"}}
+,
+{"type":"stdout","created":1754311757004,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"46:20  Warning: 'err' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311757004950527898100004","date":1754311757004,"serial":"1754311757004950527898100004"}}
+,
+{"type":"stdout","created":1754311757004,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311757004950527898100005","date":1754311757004,"serial":"1754311757004950527898100005"}}
+,
+{"type":"stdout","created":1754311757004,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"./components/ui/OptimizedImage.tsx","id":"1754311757004950527898100006","date":1754311757004,"serial":"1754311757004950527898100006"}}
+,
+{"type":"stdout","created":1754311757004,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"45:5  Warning: 'networkCondition' is assigned a value but never used.  @typescript-eslint/no-unused-vars","id":"1754311757004950527898100007","date":1754311757004,"serial":"1754311757004950527898100007"}}
+,
+{"type":"stdout","created":1754311757004,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"54:96  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311757004950527898100008","date":1754311757004,"serial":"1754311757004950527898100008"}}
+,
+{"type":"stdout","created":1754311757004,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"54:116  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311757004950527898100009","date":1754311757004,"serial":"1754311757004950527898100009"}}
+,
+{"type":"stdout","created":1754311757004,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"56:9  Warning: 'imageRef' is assigned a value but never used.  @typescript-eslint/no-unused-vars","id":"1754311757004950527898100010","date":1754311757004,"serial":"1754311757004950527898100010"}}
+,
+{"type":"stdout","created":1754311757004,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"121:65  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311757004950527898100011","date":1754311757004,"serial":"1754311757004950527898100011"}}
+,
+{"type":"stdout","created":1754311757004,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"121:85  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311757004950527898100012","date":1754311757004,"serial":"1754311757004950527898100012"}}
+,
+{"type":"stdout","created":1754311757004,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"134:63  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311757004950527898100013","date":1754311757004,"serial":"1754311757004950527898100013"}}
+,
+{"type":"stdout","created":1754311757005,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"134:83  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311757005950527898100000","date":1754311757005,"serial":"1754311757005950527898100000"}}
+,
+{"type":"stdout","created":1754311757005,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"306:12  Warning: 'name' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311757005950527898100001","date":1754311757005,"serial":"1754311757005950527898100001"}}
+,
+{"type":"stdout","created":1754311757005,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311757005950527898100002","date":1754311757005,"serial":"1754311757005950527898100002"}}
+,
+{"type":"stdout","created":1754311757005,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"./components/ui/SkeletonLoaders.tsx","id":"1754311757005950527898100003","date":1754311757005,"serial":"1754311757005950527898100003"}}
+,
+{"type":"stdout","created":1754311757005,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"3:24  Warning: 'Search' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311757005950527898100004","date":1754311757005,"serial":"1754311757005950527898100004"}}
+,
+{"type":"stdout","created":1754311757005,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311757005950527898100005","date":1754311757005,"serial":"1754311757005950527898100005"}}
+,
+{"type":"stdout","created":1754311757005,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"./components/weather/SeasonalHighlights.tsx","id":"1754311757005950527898100006","date":1754311757005,"serial":"1754311757005950527898100006"}}
+,
+{"type":"stdout","created":1754311757005,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"17:56  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311757005950527898100007","date":1754311757005,"serial":"1754311757005950527898100007"}}
+,
+{"type":"stdout","created":1754311757005,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"103:9  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311757005950527898100008","date":1754311757005,"serial":"1754311757005950527898100008"}}
+,
+{"type":"stdout","created":1754311757005,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"108:36  Warning: 'season' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311757005950527898100009","date":1754311757005,"serial":"1754311757005950527898100009"}}
+,
+{"type":"stdout","created":1754311757005,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"222:89  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311757005950527898100010","date":1754311757005,"serial":"1754311757005950527898100010"}}
+,
+{"type":"stdout","created":1754311757005,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311757005950527898100011","date":1754311757005,"serial":"1754311757005950527898100011"}}
+,
+{"type":"stdout","created":1754311757007,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"./components/weather/WeatherAlerts.tsx","id":"1754311757007950527898100000","date":1754311757007,"serial":"1754311757007950527898100000"}}
+,
+{"type":"stdout","created":1754311757007,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"76:9  Warning: 'getAlertIcon' is assigned a value but never used.  @typescript-eslint/no-unused-vars","id":"1754311757007950527898100001","date":1754311757007,"serial":"1754311757007950527898100001"}}
+,
+{"type":"stdout","created":1754311757007,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311757007950527898100002","date":1754311757007,"serial":"1754311757007950527898100002"}}
+,
+{"type":"stdout","created":1754311757007,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"./components/weather/WeatherRecommendations.tsx","id":"1754311757007950527898100003","date":1754311757007,"serial":"1754311757007950527898100003"}}
+,
+{"type":"stdout","created":1754311757007,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"8:15  Warning: 'Place' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311757007950527898100004","date":1754311757007,"serial":"1754311757007950527898100004"}}
+,
+{"type":"stdout","created":1754311757007,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"26:58  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311757007950527898100005","date":1754311757007,"serial":"1754311757007950527898100005"}}
+,
+{"type":"stdout","created":1754311757007,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"73:9  Warning: 'getSuitabilityIcon' is assigned a value but never used.  @typescript-eslint/no-unused-vars","id":"1754311757007950527898100006","date":1754311757007,"serial":"1754311757007950527898100006"}}
+,
+{"type":"stdout","created":1754311757007,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"173:19  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311757007950527898100007","date":1754311757007,"serial":"1754311757007950527898100007"}}
+,
+{"type":"stdout","created":1754311757007,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"183:56  Warning: 'alternative_suggestions' is assigned a value but never used.  @typescript-eslint/no-unused-vars","id":"1754311757007950527898100008","date":1754311757007,"serial":"1754311757007950527898100008"}}
+,
+{"type":"stdout","created":1754311757007,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"233:72  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities","id":"1754311757007950527898100009","date":1754311757007,"serial":"1754311757007950527898100009"}}
+,
+{"type":"stdout","created":1754311757007,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311757007950527898100010","date":1754311757007,"serial":"1754311757007950527898100010"}}
+,
+{"type":"stdout","created":1754311757008,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"./lib/analytics/events.ts","id":"1754311757008950527898100000","date":1754311757008,"serial":"1754311757008950527898100000"}}
+,
+{"type":"stdout","created":1754311757008,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"5:30  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311757008950527898100001","date":1754311757008,"serial":"1754311757008950527898100001"}}
+,
+{"type":"stdout","created":1754311757008,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"77:52  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311757008950527898100002","date":1754311757008,"serial":"1754311757008950527898100002"}}
+,
+{"type":"stdout","created":1754311757008,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"261:84  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311757008950527898100003","date":1754311757008,"serial":"1754311757008950527898100003"}}
+,
+{"type":"stdout","created":1754311757008,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311757008950527898100004","date":1754311757008,"serial":"1754311757008950527898100004"}}
+,
+{"type":"stdout","created":1754311757008,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"./lib/map/markers.ts","id":"1754311757008950527898100005","date":1754311757008,"serial":"1754311757008950527898100005"}}
+,
+{"type":"stdout","created":1754311757008,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"62:51  Warning: 'hasPhoto' is assigned a value but never used.  @typescript-eslint/no-unused-vars","id":"1754311757008950527898100006","date":1754311757008,"serial":"1754311757008950527898100006"}}
+,
+{"type":"stdout","created":1754311757008,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"183:62  Warning: 'bounds' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311757008950527898100007","date":1754311757008,"serial":"1754311757008950527898100007"}}
+,
+{"type":"stdout","created":1754311757017,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"183:71  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311757017950527898100000","date":1754311757017,"serial":"1754311757017950527898100000"}}
+,
+{"type":"stdout","created":1754311757017,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311757017950527898100001","date":1754311757017,"serial":"1754311757017950527898100001"}}
+,
+{"type":"stdout","created":1754311757017,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"./lib/preferences/PreferencesManager.ts","id":"1754311757017950527898100002","date":1754311757017,"serial":"1754311757017950527898100002"}}
+,
+{"type":"stdout","created":1754311757018,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"122:44  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311757018950527898100000","date":1754311757018,"serial":"1754311757018950527898100000"}}
+,
+{"type":"stdout","created":1754311757018,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"176:38  Warning: 'event' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311757018950527898100001","date":1754311757018,"serial":"1754311757018950527898100001"}}
+,
+{"type":"stdout","created":1754311757018,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311757018950527898100002","date":1754311757018,"serial":"1754311757018950527898100002"}}
+,
+{"type":"stdout","created":1754311757018,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"./lib/search/natural-language.ts","id":"1754311757018950527898100003","date":1754311757018,"serial":"1754311757018950527898100003"}}
+,
+{"type":"stdout","created":1754311757018,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"174:56  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311757018950527898100004","date":1754311757018,"serial":"1754311757018950527898100004"}}
+,
+{"type":"stdout","created":1754311757018,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"179:61  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311757018950527898100005","date":1754311757018,"serial":"1754311757018950527898100005"}}
+,
+{"type":"stdout","created":1754311757018,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311757018950527898100006","date":1754311757018,"serial":"1754311757018950527898100006"}}
+,
+{"type":"stdout","created":1754311757018,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"./lib/search/search-engine.ts","id":"1754311757018950527898100007","date":1754311757018,"serial":"1754311757018950527898100007"}}
+,
+{"type":"stdout","created":1754311757018,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"178:9  Warning: 'totalTerms' is never reassigned. Use 'const' instead.  prefer-const","id":"1754311757018950527898100008","date":1754311757018,"serial":"1754311757018950527898100008"}}
+,
+{"type":"stdout","created":1754311757018,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"206:57  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311757018950527898100009","date":1754311757018,"serial":"1754311757018950527898100009"}}
+,
+{"type":"stdout","created":1754311757018,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311757018950527898100010","date":1754311757018,"serial":"1754311757018950527898100010"}}
+,
+{"type":"stdout","created":1754311757018,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"./lib/types/analytics.ts","id":"1754311757018950527898100011","date":1754311757018,"serial":"1754311757018950527898100011"}}
+,
+{"type":"stdout","created":1754311757018,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"8:30  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311757018950527898100012","date":1754311757018,"serial":"1754311757018950527898100012"}}
+,
+{"type":"stdout","created":1754311757019,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"59:31  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311757019950527898100000","date":1754311757019,"serial":"1754311757019950527898100000"}}
+,
+{"type":"stdout","created":1754311757019,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"69:30  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311757019950527898100001","date":1754311757019,"serial":"1754311757019950527898100001"}}
+,
+{"type":"stdout","created":1754311757019,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311757019950527898100002","date":1754311757019,"serial":"1754311757019950527898100002"}}
+,
+{"type":"stdout","created":1754311757019,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"./lib/types/blog.ts","id":"1754311757019950527898100003","date":1754311757019,"serial":"1754311757019950527898100003"}}
+,
+{"type":"stdout","created":1754311757019,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"68:19  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311757019950527898100004","date":1754311757019,"serial":"1754311757019950527898100004"}}
+,
+{"type":"stdout","created":1754311757019,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"142:26  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311757019950527898100005","date":1754311757019,"serial":"1754311757019950527898100005"}}
+,
+{"type":"stdout","created":1754311757019,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"147:28  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311757019950527898100006","date":1754311757019,"serial":"1754311757019950527898100006"}}
+,
+{"type":"stdout","created":1754311757019,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311757019950527898100007","date":1754311757019,"serial":"1754311757019950527898100007"}}
+,
+{"type":"stdout","created":1754311757019,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"./lib/utils/mobile-optimization.ts","id":"1754311757019950527898100008","date":1754311757019,"serial":"1754311757019950527898100008"}}
+,
+{"type":"stdout","created":1754311757019,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"105:46  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311757019950527898100009","date":1754311757019,"serial":"1754311757019950527898100009"}}
+,
+{"type":"stdout","created":1754311757019,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"128:46  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311757019950527898100010","date":1754311757019,"serial":"1754311757019950527898100010"}}
+,
+{"type":"stdout","created":1754311757019,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"195:24  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311757019950527898100011","date":1754311757019,"serial":"1754311757019950527898100011"}}
+,
+{"type":"stdout","created":1754311757020,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"195:57  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311757020950527898100000","date":1754311757020,"serial":"1754311757020950527898100000"}}
+,
+{"type":"stdout","created":1754311757020,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"259:32  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311757020950527898100001","date":1754311757020,"serial":"1754311757020950527898100001"}}
+,
+{"type":"stdout","created":1754311757020,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"266:32  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311757020950527898100002","date":1754311757020,"serial":"1754311757020950527898100002"}}
+,
+{"type":"stdout","created":1754311757020,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"269:50  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311757020950527898100003","date":1754311757020,"serial":"1754311757020950527898100003"}}
+,
+{"type":"stdout","created":1754311757020,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"275:20  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311757020950527898100004","date":1754311757020,"serial":"1754311757020950527898100004"}}
+,
+{"type":"stdout","created":1754311757020,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"276:38  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311757020950527898100005","date":1754311757020,"serial":"1754311757020950527898100005"}}
+,
+{"type":"stdout","created":1754311757020,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311757020950527898100006","date":1754311757020,"serial":"1754311757020950527898100006"}}
+,
+{"type":"stdout","created":1754311757020,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"./lib/weather/providers.ts","id":"1754311757020950527898100007","date":1754311757020,"serial":"1754311757020950527898100007"}}
+,
+{"type":"stdout","created":1754311757020,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"29:71  Warning: '_temp' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311757020950527898100008","date":1754311757020,"serial":"1754311757020950527898100008"}}
+,
+{"type":"stdout","created":1754311757020,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"132:36  Warning: '_lat' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311757020950527898100009","date":1754311757020,"serial":"1754311757020950527898100009"}}
+,
+{"type":"stdout","created":1754311757020,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"132:50  Warning: '_lng' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311757020950527898100010","date":1754311757020,"serial":"1754311757020950527898100010"}}
+,
+{"type":"stdout","created":1754311757020,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311757020950527898100011","date":1754311757020,"serial":"1754311757020950527898100011"}}
+,
+{"type":"stdout","created":1754311757020,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"./lib/weather/recommendations.ts","id":"1754311757020950527898100012","date":1754311757020,"serial":"1754311757020950527898100012"}}
+,
+{"type":"stdout","created":1754311757020,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"26:5  Warning: 'userLocation' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311757020950527898100013","date":1754311757020,"serial":"1754311757020950527898100013"}}
+,
+{"type":"stdout","created":1754311757021,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"45:21  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311757021950527898100000","date":1754311757021,"serial":"1754311757021950527898100000"}}
+,
+{"type":"stdout","created":1754311757021,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"47:6  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311757021950527898100001","date":1754311757021,"serial":"1754311757021950527898100001"}}
+,
+{"type":"stdout","created":1754311757021,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"79:57  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311757021950527898100002","date":1754311757021,"serial":"1754311757021950527898100002"}}
+,
+{"type":"stdout","created":1754311757021,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"209:58  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311757021950527898100003","date":1754311757021,"serial":"1754311757021950527898100003"}}
+,
+{"type":"stdout","created":1754311757021,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"316:48  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311757021950527898100004","date":1754311757021,"serial":"1754311757021950527898100004"}}
+,
+{"type":"stdout","created":1754311757021,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"316:76  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311757021950527898100005","date":1754311757021,"serial":"1754311757021950527898100005"}}
+,
+{"type":"stdout","created":1754311757021,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"328:44  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311757021950527898100006","date":1754311757021,"serial":"1754311757021950527898100006"}}
+,
+{"type":"stdout","created":1754311757021,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"344:37  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311757021950527898100007","date":1754311757021,"serial":"1754311757021950527898100007"}}
+,
+{"type":"stdout","created":1754311757021,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"362:45  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311757021950527898100008","date":1754311757021,"serial":"1754311757021950527898100008"}}
+,
+{"type":"stdout","created":1754311757021,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"378:46  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311757021950527898100009","date":1754311757021,"serial":"1754311757021950527898100009"}}
+,
+{"type":"stdout","created":1754311757021,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"378:52  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311757021950527898100010","date":1754311757021,"serial":"1754311757021950527898100010"}}
+,
+{"type":"stdout","created":1754311757021,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"388:29  Warning: 'location' is defined but never used.  @typescript-eslint/no-unused-vars","id":"1754311757021950527898100011","date":1754311757021,"serial":"1754311757021950527898100011"}}
+,
+{"type":"stdout","created":1754311757021,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"388:39  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311757021950527898100012","date":1754311757021,"serial":"1754311757021950527898100012"}}
+,
+{"type":"stdout","created":1754311757022,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"388:45  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any","id":"1754311757022950527898100000","date":1754311757022,"serial":"1754311757022950527898100000"}}
+,
+{"type":"stdout","created":1754311757022,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"","id":"1754311757022950527898100001","date":1754311757022,"serial":"1754311757022950527898100001"}}
+,
+{"type":"stdout","created":1754311757022,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/app/api-reference/config/eslint#disabling-rules","id":"1754311757022950527898100002","date":1754311757022,"serial":"1754311757022950527898100002"}}
+,
+{"type":"stdout","created":1754311763511,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"   Collecting page data ...","id":"1754311763511950527898100000","date":1754311763511,"serial":"1754311763511950527898100000"}}
+,
+{"type":"stdout","created":1754311766559,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"   Generating static pages (0/27) ...","id":"1754311766559950527898100000","date":1754311766559,"serial":"1754311766559950527898100000"}}
+,
+{"type":"stdout","created":1754311767968,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"   Generating static pages (6/27) \r","id":"1754311767968950527898100000","date":1754311767968,"serial":"1754311767968950527898100000"}}
+,
+{"type":"stderr","created":1754311767968,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":" ⚠ Unsupported metadata themeColor is configured in metadata export in /_not-found. Please move it to viewport export instead.","id":"1754311767968950527898100001","date":1754311767968,"serial":"1754311767968950527898100001"}}
+,
+{"type":"stderr","created":1754311767969,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport","id":"1754311767969950527898100000","date":1754311767969,"serial":"1754311767969950527898100000"}}
+,
+{"type":"stderr","created":1754311767969,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":" ⚠ Unsupported metadata viewport is configured in metadata export in /_not-found. Please move it to viewport export instead.","id":"1754311767969950527898100001","date":1754311767969,"serial":"1754311767969950527898100001"}}
+,
+{"type":"stderr","created":1754311767969,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport","id":"1754311767969950527898100002","date":1754311767969,"serial":"1754311767969950527898100002"}}
+,
+{"type":"stderr","created":1754311767969,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"Failed to load preferences from storage: ReferenceError: localStorage is not defined","id":"1754311767969950527898100003","date":1754311767969,"serial":"1754311767969950527898100003"}}
+,
+{"type":"stderr","created":1754311767969,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"    at f.initializeFromStorage (.next/server/chunks/245.js:53:19196)","id":"1754311767969950527898100004","date":1754311767969,"serial":"1754311767969950527898100004"}}
+,
+{"type":"stderr","created":1754311767970,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"    at new f (.next/server/chunks/245.js:53:18627)","id":"1754311767970950527898100000","date":1754311767970,"serial":"1754311767970950527898100000"}}
+,
+{"type":"stderr","created":1754311767970,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"    at f.getInstance (.next/server/chunks/245.js:53:18731)","id":"1754311767970950527898100001","date":1754311767970,"serial":"1754311767970950527898100001"}}
+,
+{"type":"stderr","created":1754311767970,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"    at <unknown> (.next/server/chunks/245.js:53:22293)","id":"1754311767970950527898100002","date":1754311767970,"serial":"1754311767970950527898100002"}}
+,
+{"type":"stderr","created":1754311767970,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"    at h (.next/server/chunks/245.js:53:22286)","id":"1754311767970950527898100003","date":1754311767970,"serial":"1754311767970950527898100003"}}
+,
+{"type":"stderr","created":1754311767970,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":" ⚠ Unsupported metadata themeColor is configured in metadata export in /admin/questions/enhanced. Please move it to viewport export instead.","id":"1754311767970950527898100004","date":1754311767970,"serial":"1754311767970950527898100004"}}
+,
+{"type":"stderr","created":1754311767971,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport","id":"1754311767971950527898100000","date":1754311767971,"serial":"1754311767971950527898100000"}}
+,
+{"type":"stderr","created":1754311767971,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":" ⚠ Unsupported metadata viewport is configured in metadata export in /admin/questions/enhanced. Please move it to viewport export instead.","id":"1754311767971950527898100001","date":1754311767971,"serial":"1754311767971950527898100001"}}
+,
+{"type":"stderr","created":1754311767971,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport","id":"1754311767971950527898100002","date":1754311767971,"serial":"1754311767971950527898100002"}}
+,
+{"type":"stderr","created":1754311767971,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":" ⚠ Unsupported metadata themeColor is configured in metadata export in /admin/suggestions. Please move it to viewport export instead.","id":"1754311767971950527898100003","date":1754311767971,"serial":"1754311767971950527898100003"}}
+,
+{"type":"stderr","created":1754311767971,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport","id":"1754311767971950527898100004","date":1754311767971,"serial":"1754311767971950527898100004"}}
+,
+{"type":"stderr","created":1754311767971,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":" ⚠ Unsupported metadata viewport is configured in metadata export in /admin/suggestions. Please move it to viewport export instead.","id":"1754311767971950527898100005","date":1754311767971,"serial":"1754311767971950527898100005"}}
+,
+{"type":"stderr","created":1754311767972,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport","id":"1754311767972950527898100000","date":1754311767972,"serial":"1754311767972950527898100000"}}
+,
+{"type":"stderr","created":1754311767972,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":" ⚠ Unsupported metadata themeColor is configured in metadata export in /analytics. Please move it to viewport export instead.","id":"1754311767972950527898100001","date":1754311767972,"serial":"1754311767972950527898100001"}}
+,
+{"type":"stderr","created":1754311767972,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport","id":"1754311767972950527898100002","date":1754311767972,"serial":"1754311767972950527898100002"}}
+,
+{"type":"stderr","created":1754311767972,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":" ⚠ Unsupported metadata viewport is configured in metadata export in /analytics. Please move it to viewport export instead.","id":"1754311767972950527898100003","date":1754311767972,"serial":"1754311767972950527898100003"}}
+,
+{"type":"stderr","created":1754311767972,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport","id":"1754311767972950527898100004","date":1754311767972,"serial":"1754311767972950527898100004"}}
+,
+{"type":"stderr","created":1754311767972,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":" ⚠ Unsupported metadata themeColor is configured in metadata export in /blog. Please move it to viewport export instead.","id":"1754311767972950527898100005","date":1754311767972,"serial":"1754311767972950527898100005"}}
+,
+{"type":"stderr","created":1754311767973,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport","id":"1754311767973950527898100000","date":1754311767973,"serial":"1754311767973950527898100000"}}
+,
+{"type":"stderr","created":1754311767973,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":" ⚠ Unsupported metadata viewport is configured in metadata export in /blog. Please move it to viewport export instead.","id":"1754311767973950527898100001","date":1754311767973,"serial":"1754311767973950527898100001"}}
+,
+{"type":"stderr","created":1754311767973,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport","id":"1754311767973950527898100002","date":1754311767973,"serial":"1754311767973950527898100002"}}
+,
+{"type":"stderr","created":1754311767973,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"Error occurred prerendering page \"/blog\". Read more: https://nextjs.org/docs/messages/prerender-error","id":"1754311767973950527898100003","date":1754311767973,"serial":"1754311767973950527898100003"}}
+,
+{"type":"stderr","created":1754311767973,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"Error: Event handlers cannot be passed to Client Component props.","id":"1754311767973950527898100004","date":1754311767973,"serial":"1754311767973950527898100004"}}
+,
+{"type":"stderr","created":1754311767973,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"  {variant: \"inline\", showPreferences: ..., onSubscribe: function onSubscribe}","id":"1754311767973950527898100005","date":1754311767973,"serial":"1754311767973950527898100005"}}
+,
+{"type":"stderr","created":1754311767974,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"                                                         ^^^^^^^^^^^^^^^^^^^^","id":"1754311767974950527898100000","date":1754311767974,"serial":"1754311767974950527898100000"}}
+,
+{"type":"stderr","created":1754311767974,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"If you need interactivity, consider converting part of this to a Client Component.","id":"1754311767974950527898100001","date":1754311767974,"serial":"1754311767974950527898100001"}}
+,
+{"type":"stderr","created":1754311767974,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"    at stringify (<anonymous>) {","id":"1754311767974950527898100002","date":1754311767974,"serial":"1754311767974950527898100002"}}
+,
+{"type":"stderr","created":1754311767974,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"  digest: '3675984471'","id":"1754311767974950527898100003","date":1754311767974,"serial":"1754311767974950527898100003"}}
+,
+{"type":"stderr","created":1754311767974,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"}","id":"1754311767974950527898100004","date":1754311767974,"serial":"1754311767974950527898100004"}}
+,
+{"type":"stderr","created":1754311767974,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"Export encountered an error on /blog/page: /blog, exiting the build.","id":"1754311767974950527898100005","date":1754311767974,"serial":"1754311767974950527898100005"}}
+,
+{"type":"stderr","created":1754311767991,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":" ⨯ Next.js build worker exited with code: 1 and signal: null","id":"1754311767991950527898100000","date":1754311767991,"serial":"1754311767991950527898100000"}}
+,
+{"type":"stderr","created":1754311768028,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"Error: Command \"npm run build\" exited with 1","id":"1754311768028950527898100000","date":1754311768028,"serial":"1754311768028950527898100000"}}
+,
+{"type":"stdout","created":1754311771174,"payload":{"deploymentId":"dpl_m71d8hVPjTtJm5WXJ3vivzkVmnkt","info":{"type":"build","name":"bld_22zr550kb","entrypoint":"."},"text":"Exiting build container","id":"1754311771174656219807400000","date":1754311771174,"serial":"1754311771174656219807400000"}}
+]

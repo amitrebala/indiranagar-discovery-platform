@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { ArrowLeft, Calendar, Clock, Eye, Share2, Tag } from 'lucide-react'
 import BlogPost from '@/components/blog/BlogPost'
 import BlogComments from '@/components/blog/BlogComments'
-import NewsletterSignup from '@/components/blog/NewsletterSignup'
+import NewsletterSignupWrapper from '@/components/blog/NewsletterSignupWrapper'
 import { BlogPost as BlogPostType, BlogComment } from '@/lib/types/blog'
 
 interface BlogPostPageProps {
@@ -305,15 +305,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
         {/* Newsletter Signup */}
         <div className="mt-12">
-          <NewsletterSignup
-            variant="inline"
-            showPreferences={false}
-            onSubscribe={async (email, preferences) => {
-              console.log('Newsletter signup:', email, preferences)
-              await new Promise(resolve => setTimeout(resolve, 1000))
-              return true
-            }}
-          />
+          <NewsletterSignupWrapper />
         </div>
 
         {/* Related Posts */}
