@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { Star, Clock, MapPin } from 'lucide-react'
+import Image from 'next/image'
 import type { Place } from '@/lib/validations'
 import { getPlaceImageUrl } from '@/lib/supabase/storage'
 
@@ -76,10 +77,12 @@ export function MapPreview({ place, position, isVisible }: MapPreviewProps) {
             <div className="w-6 h-6 border-2 border-primary border-t-transparent rounded-full animate-spin" />
           </div>
         ) : imageUrl ? (
-          <img 
+          <Image 
             src={imageUrl} 
             alt={place.name}
-            className="w-full h-full object-cover"
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 300px"
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center bg-gray-200">

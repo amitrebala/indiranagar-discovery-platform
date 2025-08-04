@@ -242,6 +242,7 @@ export function SearchInterface({
                       onClick={() => handleRecentSearchClick(recentQuery)}
                       className="flex items-center w-full text-left p-2 rounded text-sm text-neutral-600 hover:bg-neutral-50 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-600 min-h-[44px]"
                       role="option"
+                      aria-selected="false"
                       aria-label={`Search for ${recentQuery}`}
                     >
                       <Clock className="w-3 h-3 mr-2 text-gray-400" aria-hidden="true" />

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import { ChevronLeft, ChevronRight, MapPin, Clock, Camera, Navigation } from 'lucide-react'
 import { JourneyExperience, JourneyStop } from '@/lib/types/journey'
@@ -214,17 +214,17 @@ export default function InstagramStoryInterface({
     }
   }
 
-  const nextStop = () => {
+  const nextStop = useCallback(() => {
     if (currentStop < journey.journey_stops.length - 1) {
       scrollToStop(currentStop + 1)
     }
-  }
+  }, [currentStop, journey.journey_stops.length, scrollToStop])
 
-  const prevStop = () => {
+  const prevStop = useCallback(() => {
     if (currentStop > 0) {
       scrollToStop(currentStop - 1)
     }
-  }
+  }, [currentStop, scrollToStop])
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -237,7 +237,7 @@ export default function InstagramStoryInterface({
 
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [currentStop])
+  }, [currentStop, nextStop, prevStop])
 
   return (
     <div className="journey-interface max-w-md mx-auto">

@@ -5,6 +5,7 @@ import { divIcon } from 'leaflet'
 import { renderToString } from 'react-dom/server'
 import { MapPin, Star } from 'lucide-react'
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 import type { Place } from '@/lib/validations'
 import { useMapStore } from '@/stores/mapStore'
 import { getPlaceImageUrl } from '@/lib/supabase/storage'
@@ -51,11 +52,13 @@ function PhotoMarkerIcon({ place, isSelected, size = 'medium', imageUrl }: {
       `}
     >
       {imageUrl ? (
-        <img 
+        <Image 
           src={imageUrl} 
           alt={place.name}
-          className="w-full h-full object-cover"
+          fill
+          className="object-cover"
           loading="lazy"
+          sizes="60px"
         />
       ) : (
         <div className={`w-full h-full bg-primary flex items-center justify-center`}>
@@ -88,6 +91,8 @@ function PhotoMarkerIcon({ place, isSelected, size = 'medium', imageUrl }: {
   )
 }
 
+// Unused for now, but keeping for future enhancement
+/*
 function MarkerIcon({ place, isSelected }: { place: Place; isSelected: boolean }) {
   const rating = place.rating || 0
   
@@ -114,6 +119,7 @@ function MarkerIcon({ place, isSelected }: { place: Place; isSelected: boolean }
     </div>
   )
 }
+*/
 
 export function PlaceMarker({ place, size = 'medium' }: PlaceMarkerProps) {
   const { selectedPlace, selectPlace, zoom } = useMapStore()

@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { Cloud, Sun, CloudRain, Thermometer, Calendar, Camera } from 'lucide-react'
+import Image from 'next/image'
 import { SeasonalContent } from '@/lib/types/memory-palace'
 
 interface SeasonalContextProps {
@@ -184,10 +185,12 @@ export default function SeasonalContext({ seasonalNotes, currentWeather, placeNa
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                 {seasonalNote.photo_references.map((photo, index) => (
                   <div key={index} className="relative aspect-square rounded-lg overflow-hidden">
-                    <img
+                    <Image
                       src={photo}
                       alt={`${seasonalNote.season} view of ${placeName}`}
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                      fill
+                      className="object-cover hover:scale-105 transition-transform duration-300"
+                      sizes="(max-width: 768px) 50vw, 25vw"
                     />
                   </div>
                 ))}

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { MapPin, User, Clock, ThumbsUp, Eye } from 'lucide-react';
 import { format } from 'date-fns';
 import { toast } from 'react-toastify';
@@ -275,9 +275,9 @@ export const AdminSuggestionReview = () => {
 
   useEffect(() => {
     loadSuggestions();
-  }, [filter]);
+  }, [filter, loadSuggestions]);
 
-  const loadSuggestions = async () => {
+  const loadSuggestions = useCallback(async () => {
     try {
       setLoading(true);
       const response = await fetch(`/api/community-suggestions?status=${filter}`);
@@ -288,7 +288,7 @@ export const AdminSuggestionReview = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [filter]);
 
   const handleStatusChange = async (suggestionId: string, newStatus: string, adminNotes?: string) => {
     // Implementation would call API to update status
