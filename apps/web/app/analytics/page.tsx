@@ -103,7 +103,7 @@ const mockMetrics: DashboardMetrics = {
     place_page_views: [
       {
         place_id: 'place-1',
-        name: 'Blue Tokai Coffee Roasters',
+        name: 'Blue Tokai',
         views: 4250,
         unique_views: 3890,
         average_time_on_page: 280,
@@ -194,7 +194,7 @@ const mockMetrics: DashboardMetrics = {
     most_viewed_places: [
       {
         place_id: 'place-1',
-        name: 'Blue Tokai Coffee Roasters',
+        name: 'Blue Tokai',
         category: 'Coffee Shop',
         views: 4250,
         unique_views: 3890,

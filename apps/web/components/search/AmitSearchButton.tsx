@@ -2,14 +2,14 @@
 
 import { useState } from 'react'
 import { Search, X, MapPin, MessageCircle, Star } from 'lucide-react'
-import { amitActualVisitedPlaces, type AmitPlace } from '@/data/amit-actual-visited-places'
+import { amitRealVisitedPlaces, type AmitRealPlace } from '@/data/amit-real-visited-places'
 
 interface AmitSearchModalProps {
   isOpen: boolean
   onClose: () => void
 }
 
-function PlaceResult({ place, onClick }: { place: AmitPlace; onClick: () => void }) {
+function PlaceResult({ place, onClick }: { place: AmitRealPlace; onClick: () => void }) {
   return (
     <button
       onClick={onClick}
@@ -123,7 +123,7 @@ function SuggestPlaceForm({ onClose }: { onClose: () => void }) {
 
 function AmitSearchModal({ isOpen, onClose }: AmitSearchModalProps) {
   const [query, setQuery] = useState('')
-  const [results, setResults] = useState<AmitPlace[]>([])
+  const [results, setResults] = useState<AmitRealPlace[]>([])
   const [showSuggestForm, setShowSuggestForm] = useState(false)
   const [noResults, setNoResults] = useState(false)
 
@@ -137,7 +137,7 @@ function AmitSearchModal({ isOpen, onClose }: AmitSearchModalProps) {
       return
     }
 
-    const searchResults = amitActualVisitedPlaces.filter(place => 
+    const searchResults = amitRealVisitedPlaces.filter(place => 
       place.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       place.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
       place.notes.toLowerCase().includes(searchQuery.toLowerCase())
@@ -147,7 +147,7 @@ function AmitSearchModal({ isOpen, onClose }: AmitSearchModalProps) {
     setShowSuggestForm(searchResults.length === 0)
   }
 
-  const handlePlaceClick = (place: AmitPlace) => {
+  const handlePlaceClick = (place: AmitRealPlace) => {
     // In a real app, this would navigate to the place page
     alert(`Opening ${place.name}:\n\n${place.notes}\n\nRating: ${place.rating || 'Not rated'}\nCategory: ${place.category}`)
     onClose()

@@ -22,8 +22,8 @@ const mockRelationships: BusinessRelationship[] = [
   {
     id: '1',
     place_id: 'place-1',
-    place_name: 'Blue Tokai Coffee Roasters',
-    business_name: 'Blue Tokai Coffee Roasters',
+    place_name: 'Blue Tokai',
+    business_name: 'Blue Tokai',
     contact_person: 'Rahul Sharma',
     contact_email: 'rahul@bluetokai.com',
     contact_phone: '+91 98765 43210',

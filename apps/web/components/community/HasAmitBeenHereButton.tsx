@@ -1,15 +1,23 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { Search, X, MapPin, MessageCircle, Star } from 'lucide-react'
-import { amitActualVisitedPlaces, type AmitPlace } from '@/data/amit-actual-visited-places'
+import { motion, AnimatePresence } from 'framer-motion'
+import { amitRealVisitedPlaces, type AmitRealPlace } from '@/data/amit-real-visited-places'
+import { useAmitButtonStore } from '@/stores/amitButtonStore'
+import { useMapStore } from '@/stores/mapStore'
+import { cn } from '@/lib/utils'
+import FloatingEmojis from '@/components/ui/FloatingEmojis'
+import CelebrationOverlay from '@/components/ui/CelebrationOverlay'
+import { usePathname } from 'next/navigation'
+import { useHapticFeedback, HapticPattern } from '@/hooks/useHapticFeedback'
 
 interface AmitSearchModalProps {
   isOpen: boolean
   onClose: () => void
 }
 
-function PlaceResult({ place, onClick }: { place: AmitPlace; onClick: () => void }) {
+function PlaceResult({ place, onClick }: { place: AmitRealPlace; onClick: () => void }) {
   return (
     <button
       onClick={onClick}
@@ -123,7 +131,7 @@ function SuggestPlaceForm({ onClose }: { onClose: () => void }) {
 
 function AmitSearchModal({ isOpen, onClose }: AmitSearchModalProps) {
   const [query, setQuery] = useState('')
-  const [results, setResults] = useState<AmitPlace[]>([])
+  const [results, setResults] = useState<AmitRealPlace[]>([])
   const [showSuggestForm, setShowSuggestForm] = useState(false)
   const [noResults, setNoResults] = useState(false)
 
@@ -137,7 +145,7 @@ function AmitSearchModal({ isOpen, onClose }: AmitSearchModalProps) {
       return
     }
 
-    const searchResults = amitActualVisitedPlaces.filter(place => 
+    const searchResults = amitRealVisitedPlaces.filter(place => 
       place.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       place.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
       place.notes.toLowerCase().includes(searchQuery.toLowerCase())
@@ -147,7 +155,7 @@ function AmitSearchModal({ isOpen, onClose }: AmitSearchModalProps) {
     setShowSuggestForm(searchResults.length === 0)
   }
 
-  const handlePlaceClick = (place: AmitPlace) => {
+  const handlePlaceClick = (place: AmitRealPlace) => {
     // In a real app, this would navigate to the place page
     alert(`Opening ${place.name}:\n\n${place.notes}\n\nRating: ${place.rating || 'Not rated'}\nCategory: ${place.category}`)
     onClose()
@@ -201,9 +209,9 @@ function AmitSearchModal({ isOpen, onClose }: AmitSearchModalProps) {
           {noResults && query.trim().length >= 2 && (
             <div className="p-6 text-center">
               <MessageCircle className="w-12 h-12 text-gray-400 mx-auto mb-3" />
-              <h3 className="font-semibold text-gray-900 mb-2">Haven't been there yet!</h3>
+              <h3 className="font-semibold text-gray-900 mb-2">Haven&apos;t been there yet!</h3>
               <p className="text-sm text-gray-600 mb-4">
-                I haven't visited "{query}" yet. Want to suggest it?
+                I haven&apos;t visited &quot;{query}&quot; yet. Want to suggest it?
               </p>
             </div>
           )}
@@ -213,7 +221,7 @@ function AmitSearchModal({ isOpen, onClose }: AmitSearchModalProps) {
               <Search className="w-12 h-12 text-gray-400 mx-auto mb-3" />
               <h3 className="font-semibold text-gray-900 mb-2">Search Places</h3>
               <p className="text-sm text-gray-600">
-                Type to search through all the places I've visited in Indiranagar
+                Type to search through all the places I&apos;ve visited in Indiranagar
               </p>
             </div>
           )}
@@ -228,32 +236,207 @@ function AmitSearchModal({ isOpen, onClose }: AmitSearchModalProps) {
 
 export default function HasAmitBeenHereButton() {
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isHovered, setIsHovered] = useState(false)
+  const [clickCount, setClickCount] = useState(0)
+  const [showCelebration, setShowCelebration] = useState(false)
+  const [isDancing, setIsDancing] = useState(false)
+  const [, setSecretMode] = useState<'none' | 'dance' | 'favorites'>('none')
+  
+  const pathname = usePathname()
+  const { triggerHaptic } = useHapticFeedback()
+  const { isExpanded, filterActive, toggleFilter } = useAmitButtonStore()
+  useMapStore()
+  
+  const buttonRef = useRef<HTMLButtonElement>(null)
+  const clickTimerRef = useRef<NodeJS.Timeout | undefined>(undefined)
+  const longPressTimerRef = useRef<NodeJS.Timeout | undefined>(undefined)
+
+  // Check if Amit visited current place
+  const currentPlaceId = pathname.includes('/places/') ? pathname.split('/').pop() : null
+  const hasAmitVisited = currentPlaceId && amitRealVisitedPlaces.some(
+    place => place.name.toLowerCase().replace(/[^a-z0-9]/g, '-') === currentPlaceId
+  )
+
+  // Handle click interactions
+  const handleClick = useCallback(() => {
+    triggerHaptic(HapticPattern.LIGHT)
+    setClickCount(prev => prev + 1)
+    
+    // Clear previous timer
+    if (clickTimerRef.current) {
+      clearTimeout(clickTimerRef.current)
+    }
+    
+    // Set new timer to reset count
+    clickTimerRef.current = setTimeout(() => {
+      setClickCount(0)
+    }, 500)
+    
+    // Check for triple click
+    if (clickCount === 2) {
+      setIsDancing(true)
+      setSecretMode('dance')
+      triggerHaptic(HapticPattern.IMPACT)
+      setTimeout(() => {
+        setIsDancing(false)
+        setSecretMode('none')
+      }, 3000)
+      return
+    }
+    
+    // Normal click behavior
+    if (pathname.includes('/places/') && hasAmitVisited) {
+      setShowCelebration(true)
+      triggerHaptic(HapticPattern.SUCCESS)
+    } else if (pathname === '/' || pathname.includes('/map')) {
+      toggleFilter()
+      setIsModalOpen(true)
+    } else {
+      setIsModalOpen(true)
+    }
+  }, [clickCount, pathname, hasAmitVisited, toggleFilter, triggerHaptic])
+
+  // Handle long press
+  const handleMouseDown = useCallback(() => {
+    longPressTimerRef.current = setTimeout(() => {
+      setSecretMode('favorites')
+      triggerHaptic(HapticPattern.IMPACT)
+      // Show Amit's favorite places
+      setIsModalOpen(true)
+    }, 1000)
+  }, [triggerHaptic])
+
+  const handleMouseUp = useCallback(() => {
+    if (longPressTimerRef.current) {
+      clearTimeout(longPressTimerRef.current)
+    }
+  }, [])
+
+  // Clean up timers
+  useEffect(() => {
+    return () => {
+      if (clickTimerRef.current) clearTimeout(clickTimerRef.current)
+      if (longPressTimerRef.current) clearTimeout(longPressTimerRef.current)
+    }
+  }, [])
+
+  // Get tooltip text based on state
+  const getTooltipText = () => {
+    if (hasAmitVisited) return "Yes! Amit loves this place!"
+    if (filterActive) return "Showing Amit's places"
+    return "Click to see Amit's adventures!"
+  }
 
   return (
     <>
-      {/* Floating Button */}
-      <button
-        onClick={() => setIsModalOpen(true)}
-        className="fixed bottom-6 right-6 z-40 bg-gradient-to-r from-primary to-primary/80 text-white p-4 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 group"
-        aria-label="Search places Amit has visited"
+      <motion.div
+        className="amit-button-container fixed bottom-6 right-6 z-[9999]"
+        initial={{ x: 100, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ type: "spring", damping: 20 }}
       >
-        <div className="flex items-center gap-2">
-          <Search className="w-5 h-5" />
-          <span className="hidden sm:block font-medium whitespace-nowrap">
-            Has Amit been here?
-          </span>
-        </div>
+        <motion.button
+          ref={buttonRef}
+          className={cn(
+            "relative bg-gradient-to-r from-[#667eea] to-[#764ba2] text-white rounded-full shadow-lg transition-all duration-300",
+            hasAmitVisited && "amit-visited from-[#f093fb] to-[#f5576c]",
+            isExpanded ? "w-[200px] h-16" : "w-16 h-16",
+            isDancing && "amit-dance"
+          )}
+          whileHover={{ scale: 1.1, rotate: 5 }}
+          whileTap={{ scale: 0.95 }}
+          onHoverStart={() => {
+            setIsHovered(true)
+            triggerHaptic(HapticPattern.SELECTION)
+          }}
+          onHoverEnd={() => setIsHovered(false)}
+          onClick={handleClick}
+          onMouseDown={handleMouseDown}
+          onMouseUp={handleMouseUp}
+          onTouchStart={handleMouseDown}
+          onTouchEnd={handleMouseUp}
+          style={{
+            boxShadow: isHovered 
+              ? '0 15px 50px rgba(102, 126, 234, 0.6)' 
+              : '0 10px 40px rgba(102, 126, 234, 0.4)'
+          }}
+          aria-label="Check if Amit has visited this place"
+        >
+          <AnimatePresence mode="wait">
+            {!isExpanded ? (
+              <motion.div
+                key="avatar"
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                exit={{ scale: 0 }}
+                className="relative"
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img 
+                  src="/amit-avatar.svg" 
+                  alt="Amit"
+                  className="amit-avatar w-10 h-10 rounded-full border-3 border-white"
+                />
+                {hasAmitVisited && (
+                  <motion.span 
+                    className="absolute -top-1 -right-1 bg-white text-pink-500 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold"
+                    animate={{ scale: [1, 1.2, 1] }}
+                    transition={{ repeat: Infinity, duration: 2 }}
+                  >
+                    ✓
+                  </motion.span>
+                )}
+              </motion.div>
+            ) : (
+              <motion.span
+                key="text"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="font-medium px-4"
+              >
+                {hasAmitVisited ? "Amit was here! 🎉" : "Show Amit's places"}
+              </motion.span>
+            )}
+          </AnimatePresence>
+          
+          {/* Floating emojis on hover */}
+          {isHovered && (
+            <FloatingEmojis 
+              emojis={['🚶', '📸', '✨', '🗺️']}
+              trigger={isHovered}
+            />
+          )}
+        </motion.button>
         
-        {/* Tooltip for mobile */}
-        <div className="sm:hidden absolute bottom-16 right-0 bg-gray-900 text-white text-xs px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-          Has Amit been here?
-        </div>
-      </button>
+        {/* Tooltip */}
+        <AnimatePresence>
+          {isHovered && !isExpanded && (
+            <motion.div
+              className="amit-tooltip"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 10 }}
+            >
+              {getTooltipText()}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.div>
+      
+      {/* Celebration overlay */}
+      {showCelebration && (
+        <CelebrationOverlay 
+          onComplete={() => setShowCelebration(false)}
+        />
+      )}
 
       {/* Modal */}
       <AmitSearchModal 
         isOpen={isModalOpen} 
-        onClose={() => setIsModalOpen(false)} 
+        onClose={() => {
+          setIsModalOpen(false)
+          setSecretMode('none')
+        }}
       />
     </>
   )

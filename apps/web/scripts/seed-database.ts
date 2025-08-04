@@ -1,69 +1,20 @@
 import { createClient } from '../lib/supabase/client'
 import type { CreatePlace, CreateCompanionActivity } from '../lib/validations'
+import { amitRealVisitedPlaces } from '../data/amit-real-visited-places'
 
-// Sample Indiranagar places data for seeding
-const SAMPLE_PLACES: CreatePlace[] = [
-  {
-    name: "Toit Brewpub",
-    description: "Popular craft brewery and restaurant known for its microbrews and wood-fired pizzas. Great atmosphere with indoor and outdoor seating.",
-    latitude: 12.9716,
-    longitude: 77.6412,
-    rating: 4.3,
-    category: "Restaurant & Bar",
-    weather_suitability: ["sunny", "cloudy", "cool"],
-    accessibility_info: "Ground floor accessible, limited parking",
-    best_time_to_visit: "Evening 6-10 PM",
-    has_amit_visited: true
-  },
-  {
-    name: "Phoenix MarketCity",
-    description: "Large shopping mall with retail stores, food court, and entertainment options. One of Bangalore's premier shopping destinations.",
-    latitude: 12.9698,
-    longitude: 77.6469,
-    rating: 4.1,
-    category: "Shopping Mall",
-    weather_suitability: ["rainy", "hot", "humid"],
-    accessibility_info: "Fully wheelchair accessible, ample parking",
-    best_time_to_visit: "Weekdays 11 AM - 2 PM",
-    has_amit_visited: true
-  },
-  {
-    name: "Cubbon Park",
-    description: "Historic park in the heart of Bangalore, perfect for morning walks, jogging, and relaxation. Beautiful colonial architecture nearby.",
-    latitude: 12.9698,
-    longitude: 77.6388,
-    rating: 4.5,
-    category: "Park & Recreation",
-    weather_suitability: ["sunny", "cool", "cloudy"],
-    accessibility_info: "Multiple entry points, some paved paths",
-    best_time_to_visit: "Early morning 6-9 AM",
-    has_amit_visited: true
-  },
-  {
-    name: "Commercial Street",
-    description: "Famous shopping street with local stores, street food, and traditional markets. Great for bargain shopping and local experience.",
-    latitude: 12.9716,
-    longitude: 77.6093,
-    rating: 4.0,
-    category: "Shopping Street",
-    weather_suitability: ["sunny", "cloudy"],
-    accessibility_info: "Crowded pedestrian area, limited vehicle access",
-    best_time_to_visit: "Afternoon 2-6 PM",
-    has_amit_visited: true
-  },
-  {
-    name: "Vidhana Soudha",
-    description: "Iconic government building and architectural landmark. Symbol of Bangalore with beautiful Dravidian architecture and gardens.",
-    latitude: 12.9798,
-    longitude: 77.5906,
-    rating: 4.2,
-    category: "Historical Landmark",
-    weather_suitability: ["sunny", "cloudy"],
-    accessibility_info: "External viewing only, security restrictions",
-    best_time_to_visit: "Morning 10 AM - 12 PM",
-    has_amit_visited: true
-  }
-]
+// Convert Amit's real visited places to CreatePlace format
+const SAMPLE_PLACES: CreatePlace[] = amitRealVisitedPlaces.map(place => ({
+  name: place.name,
+  description: place.notes,
+  latitude: place.coordinates?.lat || 12.9716, // Default to Indiranagar center
+  longitude: place.coordinates?.lng || 77.6408,
+  rating: place.rating || 4.0,
+  category: place.category,
+  weather_suitability: ["sunny", "cloudy", "cool"], // Default values
+  accessibility_info: "Ground floor accessible",
+  best_time_to_visit: place.bestFor ? place.bestFor.join(", ") : "Anytime",
+  has_amit_visited: true
+}))
 
 // Sample companion activities
 const SAMPLE_ACTIVITIES: Omit<CreateCompanionActivity, 'place_id'>[] = [
@@ -93,7 +44,7 @@ const SAMPLE_ACTIVITIES: Omit<CreateCompanionActivity, 'place_id'>[] = [
 async function seedDatabase() {
   const supabase = createClient()
   
-  console.log('🌱 Starting database seeding...')
+  console.log('🌱 Starting database seeding with Amit\'s real visited places...')
   
   try {
     // Clear existing data (for development)

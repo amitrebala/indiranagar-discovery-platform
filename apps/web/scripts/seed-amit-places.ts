@@ -1,9 +1,9 @@
 import { createClient } from '../lib/supabase/client'
 import type { CreatePlace } from '../lib/validations'
-import { amitActualVisitedPlaces } from '../data/amit-actual-visited-places'
+import { amitRealVisitedPlaces } from '../data/amit-real-visited-places'
 
 // Convert Amit's actual places to CreatePlace format
-const AMIT_ALL_PLACES: CreatePlace[] = amitActualVisitedPlaces.map(place => ({
+const AMIT_ALL_PLACES: CreatePlace[] = amitRealVisitedPlaces.map(place => ({
   name: place.name,
   description: place.notes,
   category: place.category,
@@ -99,10 +99,10 @@ async function seedFeaturedActivities() {
   
   // Define featured places that should have companion activities
   const featuredPlaceNames = [
-    "Blue Tokai Coffee Roasters",
-    "Gallery Sumukha",
-    "Phoenix MarketCity",
-    "Cubbon Park"
+    "Blue Tokai",
+    "31st Floor - High Ultra Lounge",
+    "RIM NAAM",
+    "Bengaluru Oota Company"
   ]
   
   try {
@@ -116,7 +116,7 @@ async function seedFeaturedActivities() {
     
     // Define companion activities for each type of place
     const activitiesMap = {
-      "Blue Tokai Coffee Roasters": [
+      "Blue Tokai": [
         {
           activity_type: "before" as const,
           name: "Morning walk in Defence Colony Park",
@@ -132,52 +132,52 @@ async function seedFeaturedActivities() {
           weather_dependent: false
         }
       ],
-      "Gallery Sumukha": [
+      "31st Floor - High Ultra Lounge": [
         {
           activity_type: "before" as const,
-          name: "Lunch at Koshy's",
-          description: "Experience old Bangalore charm before contemporary art",
-          timing_minutes: 60,
-          weather_dependent: false
-        },
-        {
-          activity_type: "after" as const,
-          name: "Coffee at Third Wave",
-          description: "Discuss art over artisanal coffee",
-          timing_minutes: 45,
-          weather_dependent: false
-        }
-      ],
-      "Phoenix MarketCity": [
-        {
-          activity_type: "before" as const,
-          name: "Breakfast at MTR",
-          description: "Traditional South Indian breakfast before shopping",
-          timing_minutes: 45,
-          weather_dependent: false
-        },
-        {
-          activity_type: "after" as const,
-          name: "Drinks at Toit",
-          description: "Unwind with craft beer after shopping",
-          timing_minutes: 90,
-          weather_dependent: false
-        }
-      ],
-      "Cubbon Park": [
-        {
-          activity_type: "before" as const,
-          name: "Sunrise yoga session",
-          description: "Join the morning yoga groups in the park",
-          timing_minutes: 60,
+          name: "Sunset viewing at nearby park",
+          description: "Watch the sunset before heading to the rooftop lounge",
+          timing_minutes: 30,
           weather_dependent: true
         },
         {
           activity_type: "after" as const,
-          name: "Brunch at Lavonne",
-          description: "Treat yourself to French pastries post-workout",
-          timing_minutes: 60,
+          name: "Night walk in Bangalore CBD",
+          description: "Take a leisurely walk through the illuminated city",
+          timing_minutes: 45,
+          weather_dependent: true
+        }
+      ],
+      "RIM NAAM": [
+        {
+          activity_type: "before" as const,
+          name: "Pre-dinner drinks at the hotel bar",
+          description: "Start your evening with cocktails at the elegant bar",
+          timing_minutes: 45,
           weather_dependent: false
+        },
+        {
+          activity_type: "after" as const,
+          name: "Walk through the hotel gardens",
+          description: "Romantic stroll through the beautifully lit gardens",
+          timing_minutes: 30,
+          weather_dependent: true
+        }
+      ],
+      "Bengaluru Oota Company": [
+        {
+          activity_type: "before" as const,
+          name: "Visit to local market",
+          description: "Explore the nearby traditional market for authentic vibes",
+          timing_minutes: 45,
+          weather_dependent: false
+        },
+        {
+          activity_type: "after" as const,
+          name: "Digestive walk around the neighborhood",
+          description: "Traditional post-meal walk to aid digestion",
+          timing_minutes: 30,
+          weather_dependent: true
         }
       ]
     }

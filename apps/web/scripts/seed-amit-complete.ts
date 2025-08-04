@@ -1,5 +1,5 @@
 import { createClient } from '@supabase/supabase-js'
-import { amitActualVisitedPlaces } from '../data/amit-actual-visited-places'
+import { amitRealVisitedPlaces } from '../data/amit-real-visited-places'
 import dotenv from 'dotenv'
 import path from 'path'
 
@@ -20,7 +20,7 @@ if (!supabaseUrl || !supabaseServiceKey) {
 const supabase = createClient(supabaseUrl, supabaseServiceKey)
 
 async function seedAmitPlaces() {
-  console.log('🌱 Starting to seed Amit\'s 186 visited places...')
+  console.log('🌱 Starting to seed Amit\'s 137 visited places...')
   
   try {
     // First, clear existing places with has_amit_visited = true
@@ -38,8 +38,8 @@ async function seedAmitPlaces() {
     const batchSize = 20
     let totalInserted = 0
     
-    for (let i = 0; i < amitActualVisitedPlaces.length; i += batchSize) {
-      const batch = amitActualVisitedPlaces.slice(i, i + batchSize)
+    for (let i = 0; i < amitRealVisitedPlaces.length; i += batchSize) {
+      const batch = amitRealVisitedPlaces.slice(i, i + batchSize)
       
       // Transform the data to match the database schema
       const transformedBatch = batch.map(place => ({
@@ -53,7 +53,7 @@ async function seedAmitPlaces() {
         best_time_to_visit: place.bestFor ? place.bestFor.join(', ') : null
       }))
       
-      console.log(`📍 Inserting batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(amitActualVisitedPlaces.length / batchSize)}...`)
+      console.log(`📍 Inserting batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(amitRealVisitedPlaces.length / batchSize)}...`)
       
       const { data, error } = await supabase
         .from('places')
@@ -67,7 +67,7 @@ async function seedAmitPlaces() {
       }
       
       totalInserted += data?.length || 0
-      console.log(`✅ Inserted ${data?.length} places (Total: ${totalInserted}/${amitActualVisitedPlaces.length})`)
+      console.log(`✅ Inserted ${data?.length} places (Total: ${totalInserted}/${amitRealVisitedPlaces.length})`)
     }
     
     // Verify the total count
