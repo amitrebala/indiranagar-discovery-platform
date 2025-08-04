@@ -5,9 +5,9 @@ import AmitPlaceDetail from '@/components/places/AmitPlaceDetail'
 import type { Place } from '@/lib/supabase/types'
 
 interface PlacePageProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 // Generate place slug from name (same logic as in PlaceCard)
@@ -69,7 +69,8 @@ async function getCompanionActivities(placeId: string) {
 }
 
 export async function generateMetadata({ params }: PlacePageProps) {
-  const place = await getPlaceBySlug(params.slug)
+  const { slug } = await params
+  const place = await getPlaceBySlug(slug)
   
   if (!place) {
     return {
@@ -111,7 +112,8 @@ function PlaceDetailSkeleton() {
 }
 
 export default async function PlacePage({ params }: PlacePageProps) {
-  const place = await getPlaceBySlug(params.slug)
+  const { slug } = await params
+  const place = await getPlaceBySlug(slug)
   
   if (!place) {
     notFound()
@@ -135,18 +137,7 @@ export default async function PlacePage({ params }: PlacePageProps) {
 }
 
 // Generate static params for static generation (optional)
-export async function generateStaticParams() {
-  const supabase = await createClient()
-  
-  const { data: places } = await supabase
-    .from('places')
-    .select('name')
-    .eq('has_amit_visited', true)
-    .limit(50)
-  
-  if (!places) return []
-  
-  return places.map((place) => ({
-    slug: nameToSlug(place.name),
-  }))
-}
+// Disabled to avoid build-time context issues - pages will be generated on-demand
+// export async function generateStaticParams() {
+//   return []
+// }
