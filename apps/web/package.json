@@ -19,6 +19,8 @@
   },
   "dependencies": {
     "@aws-sdk/client-secrets-manager": "^3.859.0",
+    "@fontsource/inter": "^5.2.6",
+    "@fontsource/space-grotesk": "^5.2.8",
     "@supabase/auth-helpers-nextjs": "^0.10.0",
     "@supabase/ssr": "^0.6.1",
     "@supabase/supabase-js": "^2.53.0",

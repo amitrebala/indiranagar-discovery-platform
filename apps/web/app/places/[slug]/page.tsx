@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
-import PlaceDetail from '@/components/places/PlaceDetail'
+import AmitPlaceDetail from '@/components/places/AmitPlaceDetail'
 import { createClient } from '@/lib/supabase/server'
 import { Place } from '@/lib/validations'
 
@@ -140,7 +140,7 @@ export default async function PlacePage({
   ])
 
   return (
-    <PlaceDetail 
+    <AmitPlaceDetail 
       place={place}
       images={images}
       activities={activities}

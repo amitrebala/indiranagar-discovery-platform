@@ -10,14 +10,167 @@ import { UserQuotes } from './UserQuotes'
 export function AboutContent() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-green-50">
+      {/* How People Use This Platform Section */}
+      <section className="py-16 lg:py-20 bg-gradient-to-r from-primary/10 to-secondary/10">
+        <Container>
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                How People Use Indiranagar with Amit
+              </h1>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Discover how locals, visitors, and food enthusiasts make the most of this personal curation platform
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+              {/* Weekend Explorers */}
+              <div className="bg-white rounded-xl p-6 shadow-md border border-primary/20">
+                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                  <Calendar className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Weekend Explorers</h3>
+                <p className="text-gray-600 mb-4">
+                  Plan perfect weekend outings by browsing categories like "cozy cafes" or "rooftop bars". 
+                  Use the weather-aware recommendations to find the best spots for any day.
+                </p>
+                <div className="text-sm text-primary font-medium">
+                  "Perfect for lazy Sunday brunches!" - Regular User
+                </div>
+              </div>
+
+              {/* New Residents */}
+              <div className="bg-white rounded-xl p-6 shadow-md border border-secondary/20">
+                <div className="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center mb-4">
+                  <MapPin className="w-6 h-6 text-secondary" />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">New Residents</h3>
+                <p className="text-gray-600 mb-4">
+                  Just moved to Indiranagar? Start with Amit's highest-rated places and use the 
+                  "nearby activities" feature to discover what to do before and after your visit.
+                </p>
+                <div className="text-sm text-secondary font-medium">
+                  "Helped me settle into the neighborhood faster!" - New Resident
+                </div>
+              </div>
+
+              {/* Date Planners */}
+              <div className="bg-white rounded-xl p-6 shadow-md border border-accent/20">
+                <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center mb-4">
+                  <Heart className="w-6 h-6 text-accent" />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Date Planners</h3>
+                <p className="text-gray-600 mb-4">
+                  Filter by "romantic" vibes or "special occasions" tags. Amit's personal notes 
+                  include perfect spots for first dates, anniversaries, and special celebrations.
+                </p>
+                <div className="text-sm text-accent font-medium">
+                  "RIM NAAM recommendation was perfect!" - Happy Couple
+                </div>
+              </div>
+
+              {/* Food Enthusiasts */}
+              <div className="bg-white rounded-xl p-6 shadow-md border border-green-500/20">
+                <div className="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center mb-4">
+                  <Coffee className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Food Enthusiasts</h3>
+                <p className="text-gray-600 mb-4">
+                  Dive deep into cuisine categories, check "must try" dishes, and read Amit's 
+                  detailed notes about what makes each place special. No generic reviews here!
+                </p>
+                <div className="text-sm text-green-600 font-medium">
+                  "Found my new favorite biryani spot!" - Food Lover
+                </div>
+              </div>
+
+              {/* Business Travelers */}
+              <div className="bg-white rounded-xl p-6 shadow-md border border-blue-500/20">
+                <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center mb-4">
+                  <Camera className="w-6 h-6 text-blue-600" />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Business Travelers</h3>
+                <p className="text-gray-600 mb-4">
+                  Short on time? Use the floating "Has Amit Been Here?" button to quickly check 
+                  if that restaurant near your hotel is worth visiting. Get instant authentic insights.
+                </p>
+                <div className="text-sm text-blue-600 font-medium">
+                  "Saved me from tourist traps!" - Business Traveler
+                </div>
+              </div>
+
+              {/* Community Contributors */}
+              <div className="bg-white rounded-xl p-6 shadow-md border border-purple-500/20">
+                <div className="w-12 h-12 bg-purple-50 rounded-full flex items-center justify-center mb-4">
+                  <CheckCircle className="w-6 h-6 text-purple-600" />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Community Contributors</h3>
+                <p className="text-gray-600 mb-4">
+                  Suggest new places through the search feature, add comments with your own experiences, 
+                  and help other community members with questions in the Community section.
+                </p>
+                <div className="text-sm text-purple-600 font-medium">
+                  "Love contributing to this growing community!" - Active Member
+                </div>
+              </div>
+            </div>
+
+            {/* Key Features Callout */}
+            <div className="bg-white rounded-2xl p-8 shadow-lg border border-primary/30">
+              <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">
+                What Makes This Different?
+              </h3>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="flex items-start gap-3">
+                  <div className="w-6 h-6 bg-primary rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <CheckCircle className="w-4 h-4 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900 mb-1">100% Personally Verified</h4>
+                    <p className="text-gray-600 text-sm">Every single place has been visited by Amit personally. No paid promotions or generic listings.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-6 h-6 bg-secondary rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <CheckCircle className="w-4 h-4 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900 mb-1">Local Insider Knowledge</h4>
+                    <p className="text-gray-600 text-sm">Get the real scoop - best times to visit, what to order, and what to skip.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-6 h-6 bg-accent rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <CheckCircle className="w-4 h-4 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900 mb-1">Interactive Search</h4>
+                    <p className="text-gray-600 text-sm">Floating search button lets you instantly check if Amit has been to any place you're curious about.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-6 h-6 bg-green-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <CheckCircle className="w-4 h-4 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900 mb-1">Community Driven</h4>
+                    <p className="text-gray-600 text-sm">Suggest new places, ask questions, and share your own experiences with fellow food lovers.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
       {/* Hero Section */}
       <section className="py-16 lg:py-20">
         <Container>
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                Hi, I'm Amit
-              </h1>
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                Meet Amit
+              </h2>
               <p className="text-xl text-gray-600">
                 Your personal guide to Indiranagar, Bangalore
               </p>

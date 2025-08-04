@@ -222,7 +222,7 @@ function AmitSearchModal({ isOpen, onClose }: AmitSearchModalProps) {
   )
 }
 
-export default function HasAmitBeenHereButton() {
+export function AmitSearchButton() {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   return (
@@ -231,7 +231,6 @@ export default function HasAmitBeenHereButton() {
       <button
         onClick={() => setIsModalOpen(true)}
         className="fixed bottom-6 right-6 z-40 bg-gradient-to-r from-primary to-primary/80 text-white p-4 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 group"
-        aria-label="Search places Amit has visited"
       >
         <div className="flex items-center gap-2">
           <Search className="w-5 h-5" />

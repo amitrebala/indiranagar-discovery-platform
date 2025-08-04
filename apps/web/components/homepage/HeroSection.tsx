@@ -65,18 +65,18 @@ export function HeroSection() {
           <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
             <Link
               href="/map"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors font-semibold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200"
+              className="inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-primary to-primary/80 text-white rounded-xl hover:from-primary/90 hover:to-primary/70 transition-all font-bold text-lg shadow-2xl hover:shadow-3xl transform hover:-translate-y-1 hover:scale-105 transition-all duration-300 ring-2 ring-primary/20 hover:ring-primary/40"
             >
-              <Navigation size={20} />
-              Explore Interactive Map
+              <Navigation size={24} />
+              Start Exploring Map
             </Link>
             
             <Link
               href="/places"
-              className="inline-flex items-center gap-2 px-8 py-4 border-2 border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-colors font-semibold text-lg"
+              className="inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-secondary to-secondary/80 text-white rounded-xl hover:from-secondary/90 hover:to-secondary/70 transition-all font-bold text-lg shadow-2xl hover:shadow-3xl transform hover:-translate-y-1 hover:scale-105 transition-all duration-300 ring-2 ring-secondary/20 hover:ring-secondary/40"
             >
-              <Star size={20} />
-              Browse All Places
+              <Star size={24} />
+              Browse My Places
             </Link>
           </div>
 
