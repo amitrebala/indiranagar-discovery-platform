@@ -1,0 +1,98 @@
+/* Amit Button Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(245, 87, 108, 0.7); }
+  70% { box-shadow: 0 0 0 20px rgba(245, 87, 108, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(245, 87, 108, 0); }
+}
+
+@keyframes celebrate {
+  0% { transform: scale(1) rotate(0deg); }
+  25% { transform: scale(1.2) rotate(-15deg); }
+  50% { transform: scale(0.9) rotate(15deg); }
+  75% { transform: scale(1.1) rotate(-5deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+@keyframes slideInBounce {
+  0% { 
+    transform: translateX(100px) scale(0.3);
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(-10px) scale(1.1);
+  }
+  70% {
+    transform: translateX(5px) scale(0.9);
+  }
+  100% {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes dance {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  25% { transform: rotate(-20deg) scale(1.1); }
+  50% { transform: rotate(20deg) scale(0.9); }
+  75% { transform: rotate(-10deg) scale(1.05); }
+}
+
+/* Avatar float animation */
+.amit-avatar {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Pulse effect for visited places */
+.amit-visited {
+  animation: pulse 2s infinite;
+}
+
+/* Celebration animation */
+.amit-celebrate {
+  animation: celebrate 0.8s ease-in-out;
+}
+
+/* Dance mode */
+.amit-dance {
+  animation: dance 0.5s ease-in-out infinite;
+}
+
+/* Entry animation */
+.amit-button-container {
+  animation: slideInBounce 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Tooltip styles */
+.amit-tooltip {
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  white-space: nowrap;
+  position: absolute;
+  bottom: 100%;
+  right: 0;
+  margin-bottom: 8px;
+  pointer-events: none;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .amit-avatar,
+  .amit-visited,
+  .amit-celebrate,
+  .amit-dance,
+  .amit-button-container {
+    animation: none !important;
+  }
+  
+  .amit-button-container {
+    transition: opacity 0.3s ease;
+  }
+}
