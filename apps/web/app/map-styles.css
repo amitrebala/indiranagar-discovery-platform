@@ -99,6 +99,90 @@
   font-weight: 600 !important;
 }
 
+/* Map UI Elements - Always Visible */
+.map-ui-overlay {
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.map-ui-overlay > * {
+  pointer-events: auto;
+}
+
+/* Map Controls Visibility */
+.map-controls {
+  z-index: 1001 !important;
+}
+
+.map-legend {
+  z-index: 1001 !important;
+}
+
+.map-stats {
+  z-index: 1000 !important;
+}
+
+/* Ensure controls are always visible on mobile */
+@media (max-width: 640px) {
+  .map-controls {
+    top: 0.75rem !important;
+    right: 0.75rem !important;
+    gap: 0.375rem !important;
+  }
+  
+  .map-controls button {
+    padding: 0.5rem 0.75rem !important;
+    font-size: 0.75rem !important;
+    min-height: 2.5rem;
+    white-space: nowrap;
+  }
+  
+  .map-legend {
+    bottom: 0.75rem !important;
+    left: 0.75rem !important;
+    max-width: calc(100vw - 6rem) !important;
+  }
+  
+  .map-stats {
+    bottom: 0.75rem !important;
+    right: 0.75rem !important;
+    font-size: 0.75rem !important;
+    padding: 0.5rem !important;
+  }
+}
+
+/* Extra small screens - ensure critical controls remain visible */
+@media (max-width: 380px) {
+  .map-controls {
+    top: 0.5rem !important;
+    right: 0.5rem !important;
+    gap: 0.25rem !important;
+  }
+  
+  .map-controls button {
+    padding: 0.375rem 0.5rem !important;
+    font-size: 0.625rem !important;
+    min-height: 2rem;
+  }
+  
+  .map-legend {
+    bottom: 0.5rem !important;
+    left: 0.5rem !important;
+    max-width: calc(100vw - 4rem) !important;
+  }
+  
+  .map-legend.w-64 {
+    width: calc(100vw - 4rem) !important;
+  }
+  
+  .map-stats {
+    bottom: 0.5rem !important;
+    right: 0.5rem !important;
+    font-size: 0.625rem !important;
+    padding: 0.375rem !important;
+  }
+}
+
 /* Mobile optimizations */
 @media (max-width: 768px) {
   .leaflet-control-zoom {

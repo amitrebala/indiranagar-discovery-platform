@@ -8,12 +8,13 @@ export function MapLegend() {
   const [isCollapsed, setIsCollapsed] = useState(false)
 
   return (
-    <div className={`absolute bottom-4 left-4 z-10 bg-white rounded-lg shadow-lg transition-all duration-300 ${
+    <div className={`absolute bottom-4 left-4 bg-white rounded-lg shadow-lg transition-all duration-300 pointer-events-auto map-legend ${
       isCollapsed ? 'w-12' : 'w-64'
     }`}>
       <button
         onClick={() => setIsCollapsed(!isCollapsed)}
-        className="absolute -right-3 top-1/2 -translate-y-1/2 bg-white rounded-full shadow-md p-1 hover:bg-gray-50"
+        className="absolute -right-3 top-1/2 -translate-y-1/2 bg-white rounded-full shadow-md p-1 hover:bg-gray-50 z-10"
+        aria-label={isCollapsed ? 'Expand legend' : 'Collapse legend'}
       >
         {isCollapsed ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
       </button>

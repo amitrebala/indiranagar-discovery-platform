@@ -108,7 +108,7 @@ function MapControls({
   const { refetchPlaces } = usePlaces()
 
   return (
-    <div className="absolute top-4 right-4 z-10 flex flex-col gap-2">
+    <div className="absolute top-4 right-4 flex flex-col gap-2 pointer-events-auto map-controls sm:top-4 sm:right-4">
       <button
         onClick={toggleClusters}
         className={`px-3 py-2 rounded-lg shadow-lg text-sm font-medium transition-colors ${
@@ -268,18 +268,20 @@ export function InteractiveMap({ className = '' }: InteractiveMapProps) {
         </div>
       )}
       
-      {/* Map controls */}
-      <MapControls 
-        showJourneys={showJourneys}
-        toggleJourneys={toggleJourneys}
-        onJourneySelect={handleJourneySelect}
-      />
+      {/* Map controls - always visible with high z-index */}
+      <div className="absolute inset-0 pointer-events-none map-ui-overlay">
+        <MapControls 
+          showJourneys={showJourneys}
+          toggleJourneys={toggleJourneys}
+          onJourneySelect={handleJourneySelect}
+        />
+        
+        {/* Map Legend */}
+        <MapLegend />
+      </div>
       
-      {/* Map Legend */}
-      <MapLegend />
-      
-      {/* Stats display */}
-      <div className="absolute bottom-4 right-4 z-10 bg-white/90 backdrop-blur-sm px-3 py-2 rounded-lg shadow-lg text-sm">
+      {/* Stats display - always visible */}
+      <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-2 rounded-lg shadow-lg text-sm pointer-events-none map-stats">
         <div className="space-y-1">
           <div className="text-neutral-600">
             {places.length} places discovered

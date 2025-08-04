@@ -1,38 +1,39 @@
+import { Suspense } from 'react'
 import { notFound } from 'next/navigation'
-import { Metadata } from 'next'
-import AmitPlaceDetail from '@/components/places/AmitPlaceDetail'
 import { createClient } from '@/lib/supabase/server'
-import { Place } from '@/lib/validations'
+import AmitPlaceDetail from '@/components/places/AmitPlaceDetail'
+import type { Place } from '@/lib/supabase/types'
 
-// Generate slug from place name
-function generateSlug(name: string): string {
-  return name
-    .toLowerCase()
-    .replace(/[^a-z0-9\s-]/g, '')
-    .replace(/\s+/g, '-')
-    .replace(/-+/g, '-')
-    .trim()
+interface PlacePageProps {
+  params: {
+    slug: string
+  }
 }
 
-// Get place data by slug
+// Generate place slug from name (same logic as in PlaceCard)
+function nameToSlug(name: string): string {
+  return name.toLowerCase().replace(/[^a-z0-9]+/g, '-')
+}
+
 async function getPlaceBySlug(slug: string): Promise<Place | null> {
   const supabase = await createClient()
   
+  // Get all places and find the one that matches the slug
   const { data: places, error } = await supabase
     .from('places')
     .select('*')
-    
-  if (error || !places) {
+    .eq('has_amit_visited', true)
+  
+  if (error) {
     console.error('Error fetching places:', error)
     return null
   }
 
-  // Find place by matching slug
-  const place = places.find(p => generateSlug(p.name) === slug)
+  // Find place by matching generated slug
+  const place = places?.find(p => nameToSlug(p.name) === slug)
   return place || null
 }
 
-// Get place images
 async function getPlaceImages(placeId: string) {
   const supabase = await createClient()
   
@@ -40,8 +41,8 @@ async function getPlaceImages(placeId: string) {
     .from('place_images')
     .select('*')
     .eq('place_id', placeId)
-    .order('sort_order', { ascending: true })
-    
+    .order('display_order', { ascending: true })
+  
   if (error) {
     console.error('Error fetching place images:', error)
     return []
@@ -50,7 +51,6 @@ async function getPlaceImages(placeId: string) {
   return images || []
 }
 
-// Get companion activities
 async function getCompanionActivities(placeId: string) {
   const supabase = await createClient()
   
@@ -58,8 +58,8 @@ async function getCompanionActivities(placeId: string) {
     .from('companion_activities')
     .select('*')
     .eq('place_id', placeId)
-    .order('activity_type', { ascending: true })
-    
+    .order('activity_order', { ascending: true })
+  
   if (error) {
     console.error('Error fetching companion activities:', error)
     return []
@@ -68,82 +68,85 @@ async function getCompanionActivities(placeId: string) {
   return activities || []
 }
 
-// Generate metadata for each place
-export async function generateMetadata(
-  { params }: { params: Promise<{ slug: string }> }
-): Promise<Metadata> {
-  const { slug } = await params
-  const place = await getPlaceBySlug(slug)
+export async function generateMetadata({ params }: PlacePageProps) {
+  const place = await getPlaceBySlug(params.slug)
   
   if (!place) {
     return {
       title: 'Place Not Found - Indiranagar Discovery',
-      description: 'The place you\'re looking for could not be found.',
+      description: 'The requested place could not be found.'
     }
   }
-
-  const title = `${place.name} - Indiranagar Discovery`
-  const description = place.description.length > 160 
-    ? place.description.substring(0, 157) + '...'
-    : place.description
-
+  
   return {
-    title,
-    description,
+    title: `${place.name} - Indiranagar Discovery`,
+    description: place.description,
     openGraph: {
-      title,
-      description,
-      images: place.primary_image ? [
-        {
-          url: place.primary_image,
-          width: 1200,
-          height: 630,
-          alt: place.name,
-        }
-      ] : [],
-      type: 'website',
-      locale: 'en_US',
-      siteName: 'Indiranagar Discovery',
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title,
-      description,
-      images: place.primary_image ? [place.primary_image] : [],
+      title: `${place.name} - Indiranagar Discovery`,
+      description: place.description,
+      type: 'article',
     },
   }
 }
 
-// Generate static params for known places (optional optimization)
-export async function generateStaticParams() {
-  // Skip static generation for dynamic routes in development
-  // This will be generated at request time instead
-  return []
+function PlaceDetailSkeleton() {
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <div className="max-w-4xl mx-auto p-4">
+        <div className="animate-pulse">
+          <div className="flex items-center gap-4 mb-6">
+            <div className="w-8 h-8 bg-gray-200 rounded"></div>
+            <div className="h-8 bg-gray-200 rounded w-64"></div>
+          </div>
+          <div className="aspect-[4/3] bg-gray-200 rounded-xl mb-6"></div>
+          <div className="space-y-4">
+            <div className="h-4 bg-gray-200 rounded w-full"></div>
+            <div className="h-4 bg-gray-200 rounded w-3/4"></div>
+            <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
 }
 
-export default async function PlacePage({ 
-  params 
-}: { 
-  params: Promise<{ slug: string }> 
-}) {
-  const { slug } = await params
-  const place = await getPlaceBySlug(slug)
+export default async function PlacePage({ params }: PlacePageProps) {
+  const place = await getPlaceBySlug(params.slug)
   
   if (!place) {
     notFound()
   }
-
-  // Fetch additional data in parallel
+  
+  // Fetch related data in parallel
   const [images, activities] = await Promise.all([
     getPlaceImages(place.id),
     getCompanionActivities(place.id)
   ])
-
+  
   return (
-    <AmitPlaceDetail 
-      place={place}
-      images={images}
-      activities={activities}
-    />
+    <Suspense fallback={<PlaceDetailSkeleton />}>
+      <AmitPlaceDetail 
+        place={place}
+        images={images}
+        activities={activities}
+      />
+    </Suspense>
   )
+}
+
+// Generate static params for static generation (optional)
+export async function generateStaticParams() {
+  const supabase = await createClient()
+  
+  const { data: places } = await supabase
+    .from('places')
+    .select('name')
+    .eq('has_amit_visited', true)
+    .limit(50)
+  
+  if (!places) return []
+  
+  return places.map((place) => ({
+    slug: nameToSlug(place.name),
+  }))
 }
