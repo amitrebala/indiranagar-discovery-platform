@@ -65,6 +65,15 @@ interface HapticFeedbackReturn {
   capabilities: HapticCapabilities
   isEnabled: boolean
   setEnabled: (enabled: boolean) => void
+  // Convenience methods
+  triggerLight: () => Promise<boolean>
+  triggerMedium: () => Promise<boolean>
+  triggerHeavy: () => Promise<boolean>
+  triggerSuccess: () => Promise<boolean>
+  triggerError: () => Promise<boolean>
+  triggerWarning: () => Promise<boolean>
+  triggerSelection: () => Promise<boolean>
+  triggerImpact: () => Promise<boolean>
 }
 
 export function useHapticFeedback(options: UseHapticFeedbackOptions = {}): HapticFeedbackReturn {
@@ -165,8 +174,8 @@ export function useHapticFeedback(options: UseHapticFeedbackOptions = {}): Hapti
         let vibrationPattern: number | number[]
 
         // Use custom patterns for complex feedback
-        if (VIBRATION_PATTERNS[pattern]) {
-          vibrationPattern = VIBRATION_PATTERNS[pattern]
+        if (pattern in VIBRATION_PATTERNS) {
+          vibrationPattern = VIBRATION_PATTERNS[pattern as keyof typeof VIBRATION_PATTERNS]
         } else {
           // Use simple duration-based vibration
           vibrationPattern = HAPTIC_DURATIONS[pattern] || 50
@@ -233,15 +242,6 @@ export function useHapticFeedback(options: UseHapticFeedbackOptions = {}): Hapti
     triggerWarning,
     triggerSelection,
     triggerImpact
-  } as HapticFeedbackReturn & {
-    triggerLight: () => Promise<boolean>
-    triggerMedium: () => Promise<boolean>
-    triggerHeavy: () => Promise<boolean>
-    triggerSuccess: () => Promise<boolean>
-    triggerError: () => Promise<boolean>
-    triggerWarning: () => Promise<boolean>
-    triggerSelection: () => Promise<boolean>
-    triggerImpact: () => Promise<boolean>
   }
 }
 

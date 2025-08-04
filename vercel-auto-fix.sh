@@ -282,45 +282,38 @@ Proceed with emergency deployment recovery using the BMAD methodology.
 EOF
 }
 
-# BMAD-enhanced attempt to fix issues using Claude Code
+# BMAD-enhanced attempt to fix issues using specialized development agent
 attempt_bmad_fix() {
     local error_info="$1"
     local deployment_id="$2"
     local attempt_num="$3"
+    local previous_attempts="${4:-}"
     
     log_info "🔧 BMAD Fix Attempt #$attempt_num for deployment $deployment_id"
     
-    # Create BMAD development story
-    local story_file=$(create_bmad_story "$error_info" "$deployment_id" "$attempt_num")
-    log_info "📖 BMAD story created: $story_file"
+    # Check if BMAD development agent script exists
+    local script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+    local bmad_agent_script="$script_dir/bmad-dev-agent.sh"
     
-    # Create enhanced BMAD prompt
-    local prompt=$(create_bmad_fix_prompt "$story_file" "$error_info" "$deployment_id" "$attempt_num")
-    local temp_prompt_file=$(mktemp)
+    if [[ ! -f "$bmad_agent_script" ]]; then
+        log_error "❌ BMAD development agent script not found: $bmad_agent_script"
+        log_info "ℹ️ Falling back to basic fix attempt"
+        return 1
+    fi
     
-    echo "$prompt" > "$temp_prompt_file"
+    if [[ ! -x "$bmad_agent_script" ]]; then
+        log_warn "⚠️ BMAD development agent script is not executable"
+        log_info "🔧 Making script executable..."
+        chmod +x "$bmad_agent_script"
+    fi
     
-    debug_log "BMAD prompt saved to: $temp_prompt_file"
-    debug_log "Story file: $story_file"
-    debug_log "Running: $CLAUDE_CODE_PATH < $temp_prompt_file"
-    
-    # Run Claude Code with extended timeout for BMAD process
-    if timeout 600 "$CLAUDE_CODE_PATH" < "$temp_prompt_file"; then
+    # Execute BMAD development agent
+    log_info "🚀 Launching BMAD Development Agent"
+    if "$bmad_agent_script" execute "$error_info" "$deployment_id" "$attempt_num" "$previous_attempts"; then
         log_success "✅ BMAD development agent completed successfully"
-        
-        # Verify the fix was applied
-        if verify_fix_applied; then
-            log_success "✅ Fix verification passed"
-            rm -f "$temp_prompt_file"
-            return 0
-        else
-            log_warn "⚠️ Fix may not have been fully applied"
-            rm -f "$temp_prompt_file"
-            return 1
-        fi
+        return 0
     else
-        log_error "❌ BMAD development agent failed or timed out"
-        rm -f "$temp_prompt_file"
+        log_error "❌ BMAD development agent failed"
         return 1
     fi
 }

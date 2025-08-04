@@ -123,23 +123,25 @@ export function usePerformanceTracking() {
   const { trackPerformance } = useAnalytics()
 
   useEffect(() => {
-    // Track Core Web Vitals
-    if (typeof window !== 'undefined' && 'web-vitals' in window) {
-      import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
-        getCLS((metric) => trackPerformance('CLS', metric.value, 'core_web_vitals'))
-        getFID((metric) => trackPerformance('FID', metric.value, 'core_web_vitals'))
-        getFCP((metric) => trackPerformance('FCP', metric.value, 'core_web_vitals'))
-        getLCP((metric) => trackPerformance('LCP', metric.value, 'core_web_vitals'))
-        getTTFB((metric) => trackPerformance('TTFB', metric.value, 'core_web_vitals'))
-      })
-    }
+    // Track Core Web Vitals (disabled - web-vitals package not installed)
+    // if (typeof window !== 'undefined') {
+    //   import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
+    //     getCLS((metric) => trackPerformance('CLS', metric.value, 'core_web_vitals'))
+    //     getFID((metric) => trackPerformance('FID', metric.value, 'core_web_vitals'))
+    //     getFCP((metric) => trackPerformance('FCP', metric.value, 'core_web_vitals'))
+    //     getLCP((metric) => trackPerformance('LCP', metric.value, 'core_web_vitals'))
+    //     getTTFB((metric) => trackPerformance('TTFB', metric.value, 'core_web_vitals'))
+    //   }).catch((error) => {
+    //     console.warn('Failed to load web-vitals library:', error)
+    //   })
+    // }
 
     // Track custom performance metrics
     const observer = new PerformanceObserver((list) => {
       list.getEntries().forEach((entry) => {
         if (entry.entryType === 'navigation') {
           const navEntry = entry as PerformanceNavigationTiming
-          trackPerformance('page_load_time', navEntry.loadEventEnd - navEntry.navigationStart, 'navigation')
+          trackPerformance('page_load_time', navEntry.loadEventEnd - navEntry.fetchStart, 'navigation')
         }
         
         if (entry.entryType === 'resource') {

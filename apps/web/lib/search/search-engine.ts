@@ -203,7 +203,7 @@ export class SearchEngine {
     const currentCondition = weather.condition.toLowerCase()
 
     // Direct match
-    if (suitableConditions.includes(currentCondition)) {
+    if (suitableConditions.includes(currentCondition as any)) {
       return 1.0
     }
 

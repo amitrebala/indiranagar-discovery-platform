@@ -3,9 +3,10 @@
 import { useState } from 'react'
 import { X, Mail, MessageCircle } from 'lucide-react'
 import { Place } from '@/lib/validations'
+import { EnhancedPlace } from '@/lib/types/memory-palace'
 
 interface ContactModalProps {
-  place: Place
+  place: Place | EnhancedPlace
   onClose: () => void
 }
 

@@ -4,7 +4,7 @@ import { useState, useRef, useEffect, forwardRef } from 'react'
 import Image, { ImageProps } from 'next/image'
 import { useNetworkOptimization } from '@/hooks/useNetworkOptimization'
 
-interface OptimizedImageProps extends Omit<ImageProps, 'quality' | 'loading'> {
+interface OptimizedImageProps extends Omit<ImageProps, 'quality' | 'loading' | 'priority'> {
   priority?: 'high' | 'medium' | 'low'
   isAboveFold?: boolean
   errorFallback?: string | React.ReactNode
@@ -51,7 +51,7 @@ const OptimizedImage = forwardRef<HTMLImageElement, OptimizedImageProps>(({
     hasLoaded: false
   })
 
-  const [currentSrc, setCurrentSrc] = useState<string>(src)
+  const [currentSrc, setCurrentSrc] = useState<string>(typeof src === 'string' ? src : (src as any).src || (src as any).default || '')
   const [retryCount, setRetryCount] = useState(0)
   const imageRef = useRef<HTMLImageElement>(null)
   const intersectionRef = useRef<HTMLDivElement>(null)
@@ -118,7 +118,7 @@ const OptimizedImage = forwardRef<HTMLImageElement, OptimizedImageProps>(({
         // Try with lower quality on retry
         if (retryCount === 0 && adaptiveQuality) {
           // First retry: reduce quality
-          setCurrentSrc(src)
+          setCurrentSrc(typeof src === 'string' ? src : (src as any).src || (src as any).default || '')
         } else if (retryCount === 1) {
           // Second retry: try different format or fallback
           setCurrentSrc('/images/placeholder-place.jpg')
@@ -131,11 +131,12 @@ const OptimizedImage = forwardRef<HTMLImageElement, OptimizedImageProps>(({
 
   // Preload critical images
   useEffect(() => {
-    if (shouldPreload(priority) && typeof src === 'string') {
+    const srcString = typeof src === 'string' ? src : (src as any).src || (src as any).default || ''
+    if (shouldPreload(priority) && srcString) {
       const link = document.createElement('link')
       link.rel = 'preload'
       link.as = 'image'
-      link.href = src
+      link.href = srcString
       
       // Add format hints for WebP
       if (optimizationSettings.enableWebP) {

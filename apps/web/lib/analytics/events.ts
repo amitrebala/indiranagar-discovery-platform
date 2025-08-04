@@ -174,14 +174,14 @@ export const journeyEvents = {
     }
   }),
 
-  journeyCompleted: (journeyId: string, duration: number, placesVisited: number) => ({
+  journeyCompleted: (journeyId: string, duration: number, placesVisited: number, totalPlaces: number = 1) => ({
     name: 'journey_completed',
     category: EventCategory.JOURNEY,
     properties: {
       journey_id: journeyId,
       actual_duration_minutes: duration,
       places_visited: placesVisited,
-      completion_rate: placesVisited / 'total_places'
+      completion_rate: totalPlaces > 0 ? placesVisited / totalPlaces : 0
     }
   }),
 

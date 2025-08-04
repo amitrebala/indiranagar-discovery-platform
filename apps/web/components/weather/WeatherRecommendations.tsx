@@ -22,7 +22,7 @@ export function WeatherRecommendations({
   showWeatherDisplay = true
 }: WeatherRecommendationsProps) {
   const { places } = usePlaces()
-  const { location } = useGeolocation()
+  const { coordinates: location } = useGeolocation()
   const [recommendations, setRecommendations] = useState<any[]>([])
   const [isLoading, setIsLoading] = useState(false)
 
@@ -34,7 +34,7 @@ export function WeatherRecommendations({
         const engine = new WeatherRecommendationEngine()
         const weatherRecommendations = engine.generateRecommendations(
           weather,
-          location || { latitude: 12.9716, longitude: 77.5946 } // Default to Bangalore
+          location ? { latitude: location.lat, longitude: location.lng } : { latitude: 12.9716, longitude: 77.5946 } // Default to Bangalore
         )
         
         setRecommendations(weatherRecommendations.slice(0, maxRecommendations))

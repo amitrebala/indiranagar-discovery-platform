@@ -211,6 +211,13 @@ daemon_mode() {
     log_info "PID: $$"
     
     local last_deployment_id=""
+    local last_known_file="$SCRIPT_DIR/.vercel-last-known-deployment"
+    
+    # Load last known deployment to skip existing failures
+    if [[ -f "$last_known_file" ]]; then
+        last_deployment_id=$(cat "$last_known_file")
+        log_info "📋 Skipping known deployment: $last_deployment_id"
+    fi
     
     while true; do
         stats[checks]=$((stats[checks] + 1))
@@ -218,16 +225,25 @@ daemon_mode() {
         local deployment=$(get_deployment_status)
         if [[ $? -eq 0 ]] && [[ -n "$deployment" ]]; then
             local current_deployment_id=$(echo "$deployment" | jq -r '.uid // ""')
+            local created_at=$(echo "$deployment" | jq -r '.createdAt // ""')
             
             # Only check for fixes if this is a new deployment or we haven't seen it before
             if [[ "$current_deployment_id" != "$last_deployment_id" ]]; then
+                log_info "🆕 New deployment detected: $current_deployment_id (created: $created_at)"
+                
                 if needs_fixing "$deployment"; then
+                    log_warn "🚨 New deployment failed - activating BMAD /dev agent"
                     stats[fixes_attempted]=$((stats[fixes_attempted] + 1))
                     
                     if run_auto_fix; then
                         stats[fixes_successful]=$((stats[fixes_successful] + 1))
                     fi
+                else
+                    log_info "✅ New deployment successful: $current_deployment_id"
                 fi
+                
+                # Update last known deployment
+                echo "$current_deployment_id" > "$last_known_file"
                 last_deployment_id="$current_deployment_id"
             fi
         else

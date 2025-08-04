@@ -1,0 +1,10 @@
+# BMAD Vercel Auto-Fix Configuration
+VERCEL_TOKEN="PT2mjz7bPUU3Iot8DP82VJe7"
+PROJECT_ID="prj_z5RaKzjE2JWdKwWTmwigPfAjpw86"
+TEAM_ID=""
+
+# BMAD Settings
+MAX_FIX_ATTEMPTS=10
+BMAD_ENABLED=1
+STORY_DIR=".bmad-stories"
+BMAD_AGENT_MODE="developer"

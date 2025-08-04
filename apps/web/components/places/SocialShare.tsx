@@ -3,9 +3,10 @@
 import { useState } from 'react'
 import { Share2, Copy, Check } from 'lucide-react'
 import { Place } from '@/lib/validations'
+import { EnhancedPlace } from '@/lib/types/memory-palace'
 
 interface SocialShareProps {
-  place: Place
+  place: Place | EnhancedPlace
 }
 
 export default function SocialShare({ place }: SocialShareProps) {

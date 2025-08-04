@@ -38,7 +38,7 @@ export function SearchInterface({
   const [recentSearches, setRecentSearches] = useState<string[]>([])
   
   const { searchResults, isLoading, search, clearResults } = useSearch()
-  const { location, requestLocation, isLocationLoading } = useGeolocation()
+  const { coordinates: location, getCurrentPosition: requestLocation, isLoading: isLocationLoading } = useGeolocation()
 
   // Load recent searches from localStorage
   useEffect(() => {
@@ -65,7 +65,7 @@ export function SearchInterface({
   const debouncedSearch = useMemo(
     () => debounce((searchQuery: string, searchFilters: SearchFiltersType) => {
       if (searchQuery.length > 1) {
-        search(searchQuery, searchFilters, location || undefined)
+        search(searchQuery, searchFilters, location ? { latitude: location.lat, longitude: location.lng } : undefined)
         saveRecentSearch(searchQuery)
       } else {
         clearResults()
@@ -90,7 +90,7 @@ export function SearchInterface({
       { 
         current_weather: undefined, // TODO: Get from weather context
         time_of_day: getCurrentTimeOfDay(),
-        user_location: location || undefined,
+        user_location: location ? { latitude: location.lat, longitude: location.lng } : undefined,
         user_preferences: undefined,
         search_history: recentSearches.map(q => ({ query: q, timestamp: Date.now() }))
       }
@@ -271,7 +271,7 @@ export function SearchInterface({
             filters={filters}
             onFiltersChange={setFilters}
             onClose={() => setIsFiltersOpen(false)}
-            userLocation={location}
+            userLocation={location ? { latitude: location.lat, longitude: location.lng } : null}
           />
         </div>
       )}
@@ -310,7 +310,7 @@ export function SearchInterface({
             results={searchResults}
             query={query}
             onResultSelect={onResultSelect}
-            userLocation={location}
+            userLocation={location ? { latitude: location.lat, longitude: location.lng } : null}
           />
         </div>
       )}

@@ -189,7 +189,7 @@ export function useTouchFeedback({
 } = {}) {
   const [isTouched, setIsTouched] = useState(false)
   const { triggerHaptic } = useHapticFeedback()
-  const touchTimeoutRef = useRef<NodeJS.Timeout>()
+  const touchTimeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   const startTouch = () => {
     if (disabled) return

@@ -156,30 +156,149 @@ jobs:
             echo "has_errors=false" >> $GITHUB_OUTPUT
           fi
       
-      - name: Run Claude Code auto-fix
+      - name: Run BMAD Development Agent auto-fix
         if: steps.check-deployment.outputs.needs_fix == 'true' && steps.get-logs.outputs.has_errors == 'true'
         run: |
-          echo "Running Claude Code auto-fix..."
+          echo "🚀 Running BMAD Development Agent for emergency deployment recovery..."
           
-          # Create comprehensive fix prompt
-          cat << 'EOF' > fix-prompt.txt
-          I need help fixing Vercel deployment failures. Please analyze the errors in deployment-errors.txt and fix them systematically.
+          # Extract error information for BMAD agent
+          error_info=$(cat deployment-errors.txt)
+          deployment_id="${{ steps.check-deployment.outputs.deployment_id }}"
           
-          After making fixes:
-          1. Run appropriate linting commands (npm run lint, etc.)
-          2. Run type checking (npm run type-check, tsc --noEmit, etc.)  
-          3. Test the build locally if possible (npm run build)
-          4. Ensure all import/export statements are correct
-          5. Check for any missing dependencies in package.json
+          # Create BMAD agent activation prompt
+          cat << EOF > bmad-agent-prompt.txt
+          🚨 **BMAD EMERGENCY ACTIVATION** 🚨
           
-          Make minimal, targeted fixes to resolve the specific errors shown.
+          You are being activated as a BMAD-METHOD Development Agent for critical deployment recovery.
+          
+          **AGENT ACTIVATION COMMAND**: /BMad:agents:developer
+          
+          **CRITICAL MISSION PARAMETERS**:
+          - **Status**: DEPLOYMENT FAILURE - IMMEDIATE ACTION REQUIRED
+          - **Deployment ID**: $deployment_id
+          - **Recovery Attempt**: 1 (GitHub Actions)
+          - **Agent Role**: DEVELOPER
+          - **Framework**: BMAD-METHOD Story-Driven Development
+          - **Platform**: Vercel/Next.js/TypeScript
+          
+          **PRIMARY DIRECTIVE**: 
+          Systematic deployment recovery using BMAD methodology.
+          
+          **ERROR ANALYSIS**:
+          \`\`\`
+          $error_info
+          \`\`\`
+          
+          **CRITICAL EXECUTION REQUIREMENTS**:
+          
+          1. **🎯 EMERGENCY MODE** - Focus on speed and precision
+          2. **🔧 MINIMAL INTERVENTION** - Fix only deployment-blocking errors
+          3. **⚡ SYSTEMATIC APPROACH** - Follow BMAD story-driven development
+          4. **✅ VERIFY EACH STEP** - Run verification commands
+          5. **📝 COMMIT PROPERLY** - Use proper commit format
+          
+          **WORKFLOW EXECUTION**:
+          - Phase 1: Analysis & Planning (5 min max)
+          - Phase 2: Implementation (systematic error resolution)  
+          - Phase 3: Quality Assurance & Commit
+          
+          **ERROR PRIORITY ORDER**:
+          1. **🔴 CRITICAL** - TypeScript compilation errors
+          2. **🔴 CRITICAL** - Missing critical dependencies
+          3. **🟡 HIGH** - Import/export resolution failures
+          4. **🟡 HIGH** - Module not found errors
+          5. **🟢 MEDIUM** - Linting and code style issues
+          
+          **IMPLEMENTATION STRATEGY**:
+          
+          ### Step 1: Environment Setup
+          \`\`\`bash
+          # Check repository structure
+          pwd && ls -la
+          
+          # Navigate to correct directory
+          if [[ -f "apps/web/package.json" ]]; then
+              echo "Multi-package repository detected"
+              cd apps/web
+          fi
+          \`\`\`
+          
+          ### Step 2: Critical Error Resolution
+          
+          **TypeScript Compilation Errors:**
+          - Fix type mismatches immediately
+          - Add missing type definitions
+          - Resolve import type issues
+          - Use \`any\` type as emergency fallback if needed
+          
+          **Missing Dependencies:**
+          - Check package.json for missing packages
+          - Install required dependencies: \`npm install [package]\`
+          - Update import statements if needed
+          
+          **Module Resolution Issues:**
+          - Fix relative/absolute import paths
+          - Ensure exported modules match imports
+          - Check for case sensitivity issues
+          
+          ### Step 3: Verification Process
+          After each fix category:
+          
+          \`\`\`bash
+          # Critical verification - MUST PASS
+          npm run build 2>&1
+          
+          # Type checking verification
+          npm run type-check 2>&1 || tsc --noEmit 2>&1
+          
+          # Linting (if critical for build)
+          npm run lint 2>&1
+          \`\`\`
+          
+          ### Step 4: Commit Process
+          Use this exact commit message format:
+          
+          \`\`\`
+          fix: emergency deployment recovery via BMAD agent
+          
+          Deployment-ID: $deployment_id
+          BMAD-Method: GitHub Actions automated recovery
+          Error-Categories: [list main categories fixed]
+          Build-Status: VERIFIED
+          Platform: GitHub Actions
+          
+          Automated fixes applied through BMAD development agent:
+          - [specific fix 1]
+          - [specific fix 2]  
+          - [specific fix 3]
+          
+          🤖 Generated with Claude Code (BMAD-METHOD)
+          Co-Authored-By: Claude <noreply@anthropic.com>
+          \`\`\`
+          
+          **SUCCESS CRITERIA**:
+          - ✅ \`npm run build\` completes successfully
+          - ✅ All TypeScript errors resolved
+          - ✅ All import/export issues fixed
+          - ✅ No new critical errors introduced
+          
+          **DEPLOYMENT CONTEXT**:
+          This is running in GitHub Actions for automated deployment recovery.
+          The repository has been checked out and dependencies are available.
+          Focus on surgical fixes that will allow the Vercel deployment to succeed.
+          
+          🚀 **BEGIN BMAD DEVELOPMENT AGENT EXECUTION NOW**
+          
+          Execute systematic deployment recovery using the BMAD methodology.
           EOF
           
-          # Run Claude Code with timeout
-          timeout 300 claude-code < fix-prompt.txt || {
-            echo "::warning::Claude Code execution failed or timed out"
-            exit 0  # Don't fail the workflow
+          # Run Claude Code with BMAD agent prompt and extended timeout
+          timeout 600 claude-code < bmad-agent-prompt.txt || {
+            echo "::warning::BMAD Development Agent execution failed or timed out"
+            exit 0  # Don't fail the workflow, allow manual intervention
           }
+          
+          echo "✅ BMAD Development Agent execution completed"
       
       - name: Validate fixes
         if: steps.check-deployment.outputs.needs_fix == 'true'
@@ -219,30 +338,39 @@ jobs:
             fi
           fi
       
-      - name: Commit and push fixes
+      - name: Commit and push BMAD fixes
         if: steps.check-deployment.outputs.needs_fix == 'true'
         run: |
           # Configure git
-          git config user.name "GitHub Actions Auto-Fix"
-          git config user.email "actions@github.com"
+          git config user.name "BMAD Development Agent"
+          git config user.email "bmad-agent@github-actions.com"
           
           # Check for changes
           if git diff --quiet && git diff --staged --quiet; then
-            echo "No changes to commit"
+            echo "No changes to commit from BMAD agent"
             exit 0
           fi
           
           # Stage all changes
           git add .
           
-          # Create commit
-          commit_message="🔧 Auto-fix Vercel deployment errors
+          # Create comprehensive BMAD commit message
+          commit_message="fix: emergency deployment recovery via BMAD GitHub Actions
           
-          Deployment ID: ${{ steps.check-deployment.outputs.deployment_id }}
-          Fixed by: GitHub Actions + Claude Code
+          Deployment-ID: ${{ steps.check-deployment.outputs.deployment_id }}
+          BMAD-Method: GitHub Actions automated recovery
+          Recovery-Attempt: 1
+          Agent-Role: Developer
+          Platform: GitHub Actions
           Timestamp: $(date -u)
           
-          🤖 Generated with Claude Code
+          This commit contains automated fixes generated by the BMAD
+          development agent to resolve critical Vercel deployment failures.
+          
+          The BMAD methodology ensures systematic, story-driven development
+          with focus on minimal intervention and maximum deployment success.
+          
+          🤖 Generated with Claude Code (BMAD-METHOD)
           Co-Authored-By: Claude <noreply@anthropic.com>"
           
           git commit -m "$commit_message"
@@ -250,7 +378,7 @@ jobs:
           # Push changes
           git push origin ${{ github.ref_name }}
           
-          echo "✅ Fixes committed and pushed"
+          echo "✅ BMAD fixes committed and pushed successfully"
       
       - name: Wait for new deployment
         if: steps.check-deployment.outputs.needs_fix == 'true'
@@ -301,31 +429,57 @@ jobs:
           echo "⏰ Deployment did not complete within $max_wait seconds"
           echo "success=unknown" >> $GITHUB_OUTPUT
       
-      - name: Report results
+      - name: Report BMAD results
         if: always()
         run: |
-          echo "=== Auto-Fix Results ==="
-          echo "Project ID: $PROJECT_ID"
-          echo "Original deployment: ${{ steps.check-deployment.outputs.deployment_id }}"
-          echo "Original state: ${{ steps.check-deployment.outputs.state }}"
-          echo "Needed fix: ${{ steps.check-deployment.outputs.needs_fix }}"
-          echo "Had errors: ${{ steps.get-logs.outputs.has_errors }}"
-          echo "New deployment success: ${{ steps.wait-deployment.outputs.success }}"
+          echo "🏗️ === BMAD AUTO-FIX RESULTS ==="
+          echo "🎯 Project ID: $PROJECT_ID"
+          echo "🔥 Original deployment: ${{ steps.check-deployment.outputs.deployment_id }}"
+          echo "💥 Original state: ${{ steps.check-deployment.outputs.state }}"
+          echo "🔧 Needed fix: ${{ steps.check-deployment.outputs.needs_fix }}"
+          echo "📝 Had errors: ${{ steps.get-logs.outputs.has_errors }}"
+          echo "✅ New deployment success: ${{ steps.wait-deployment.outputs.success }}"
+          echo "🤖 Agent: BMAD Development Agent"
+          echo "📚 Method: Story-Driven Development"
           
           if [[ "${{ steps.check-deployment.outputs.needs_fix }}" == "true" ]]; then
             if [[ "${{ steps.wait-deployment.outputs.success }}" == "true" ]]; then
-              echo "🎉 Auto-fix was successful!"
+              echo ""
+              echo "🎉 === BMAD AUTO-FIX SUCCESSFUL ==="
+              echo "✅ BMAD development agent successfully resolved deployment issues"
+              echo "🚀 System is now operational"
+              echo "📊 Recovery Method: Systematic story-driven development"
+              echo "⏱️  Recovery Time: GitHub Actions automated"
             elif [[ "${{ steps.wait-deployment.outputs.success }}" == "false" ]]; then
-              echo "❌ Auto-fix did not resolve the deployment issues"
+              echo ""
+              echo "💥 === BMAD AUTO-FIX FAILED ==="
+              echo "❌ BMAD development agent could not resolve all deployment issues"
+              echo "🔍 Manual intervention may be required"
+              echo "📋 Check deployment logs and BMAD stories for analysis"
               exit 1
             else
-              echo "⚠️ Auto-fix completed but deployment status is unclear"
+              echo ""
+              echo "⚠️ === BMAD AUTO-FIX STATUS UNCLEAR ==="
+              echo "🤔 BMAD agent completed but deployment status is unclear"
+              echo "🔍 Manual verification recommended"
             fi
           else
-            echo "ℹ️ No fix was needed"
+            echo ""
+            echo "ℹ️ === NO BMAD INTERVENTION NEEDED ==="
+            echo "✅ Deployment is in good state"
+            echo "🎯 No emergency recovery required"
           fi
+          
+          echo ""
+          echo "📊 === BMAD METHODOLOGY SUMMARY ==="
+          echo "🎯 Agent Role: Developer"
+          echo "📖 Approach: Story-driven development"
+          echo "🔧 Focus: Minimal intervention for maximum impact"
+          echo "⚡ Priority: Emergency deployment recovery"
+          echo "🤖 Platform: GitHub Actions automation"
       
       - name: Cleanup
         if: always()
         run: |
-          rm -f deployment-errors.txt fix-prompt.txt
+          rm -f deployment-errors.txt bmad-agent-prompt.txt
+          echo "🧹 BMAD cleanup completed"

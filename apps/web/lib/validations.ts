@@ -1,7 +1,7 @@
 import { z } from 'zod'
 
 // Weather conditions enum
-export const weatherConditionSchema = z.enum(['sunny', 'rainy', 'cloudy', 'hot', 'cool', 'humid'])
+export const weatherConditionSchema = z.enum(['sunny', 'rainy', 'cloudy', 'hot', 'cool', 'humid', 'indoor', 'covered', 'outdoor', 'air-conditioned', 'heated', 'garden'])
 
 // Activity type enum
 export const activityTypeSchema = z.enum(['before', 'after'])

@@ -2,6 +2,7 @@
 
 import { useContext } from 'react';
 import PreferencesContext from '@/contexts/PreferencesContext';
+import { useInterfacePreferences as useInterfacePreferencesContext, useAccessibilityPreferences as useAccessibilityPreferencesContext } from '@/contexts/PreferencesContext';
 
 /**
  * Hook for accessing user preferences throughout the application
@@ -148,8 +149,8 @@ export function useAccessibilityChecks() {
  * Hook for responsive behavior based on interface preferences
  */
 export function useResponsiveInterface() {
-  const { interface: interfacePrefs } = useInterfacePreferences();
-  const { accessibility } = useAccessibilityPreferences();
+  const { interface: interfacePrefs } = useInterfacePreferencesContext();
+  const { accessibility } = useAccessibilityPreferencesContext();
   
   const getDensitySpacing = () => {
     switch (interfacePrefs.density) {

@@ -76,7 +76,7 @@ export class WeatherRecommendationEngine {
     const currentCondition = weather.condition.toLowerCase()
 
     // Direct condition match
-    if (suitableConditions.includes(currentCondition)) {
+    if (suitableConditions.includes(currentCondition as any)) {
       score = 1.0
     }
     // Partial matches and related conditions
@@ -206,7 +206,7 @@ export class WeatherRecommendationEngine {
     const humidity = weather.humidity
 
     // Direct condition matches
-    if (place.weather_suitability?.includes(condition)) {
+    if (place.weather_suitability?.includes(condition as any)) {
       reasons.push(`Perfect for ${condition} weather`)
     }
 
