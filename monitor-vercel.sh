@@ -152,27 +152,26 @@ run_auto_fix() {
     fi
 }
 
-# Statistics tracking
-declare -A stats
-stats[checks]=0
-stats[fixes_attempted]=0
-stats[fixes_successful]=0
-stats[start_time]=$(date +%s)
+# Statistics tracking (compatible with older bash)
+stats_checks=0
+stats_fixes_attempted=0
+stats_fixes_successful=0
+stats_start_time=$(date +%s)
 
 # Print statistics
 print_stats() {
-    local runtime=$(($(date +%s) - stats[start_time]))
+    local runtime=$(($(date +%s) - stats_start_time))
     local hours=$((runtime / 3600))
     local minutes=$(((runtime % 3600) / 60))
     
     log_info "=== Monitor Statistics ==="
     log_info "Runtime: ${hours}h ${minutes}m"
-    log_info "Checks performed: ${stats[checks]}"
-    log_info "Fixes attempted: ${stats[fixes_attempted]}"
-    log_info "Fixes successful: ${stats[fixes_successful]}"
+    log_info "Checks performed: ${stats_checks}"
+    log_info "Fixes attempted: ${stats_fixes_attempted}"
+    log_info "Fixes successful: ${stats_fixes_successful}"
     
-    if [[ ${stats[fixes_attempted]} -gt 0 ]]; then
-        local success_rate=$((stats[fixes_successful] * 100 / stats[fixes_attempted]))
+    if [[ ${stats_fixes_attempted} -gt 0 ]]; then
+        local success_rate=$((stats_fixes_successful * 100 / stats_fixes_attempted))
         log_info "Success rate: ${success_rate}%"
     fi
 }
@@ -220,7 +219,7 @@ daemon_mode() {
     fi
     
     while true; do
-        stats[checks]=$((stats[checks] + 1))
+        stats_checks=$((stats_checks + 1))
         
         local deployment=$(get_deployment_status)
         if [[ $? -eq 0 ]] && [[ -n "$deployment" ]]; then
@@ -233,10 +232,10 @@ daemon_mode() {
                 
                 if needs_fixing "$deployment"; then
                     log_warn "🚨 New deployment failed - activating BMAD /dev agent"
-                    stats[fixes_attempted]=$((stats[fixes_attempted] + 1))
+                    stats_fixes_attempted=$((stats_fixes_attempted + 1))
                     
                     if run_auto_fix; then
-                        stats[fixes_successful]=$((stats[fixes_successful] + 1))
+                        stats_fixes_successful=$((stats_fixes_successful + 1))
                     fi
                 else
                     log_info "✅ New deployment successful: $current_deployment_id"
@@ -251,7 +250,7 @@ daemon_mode() {
         fi
         
         # Print stats every hour
-        if [[ $((stats[checks] % 12)) -eq 0 ]]; then
+        if [[ $((stats_checks % 12)) -eq 0 ]]; then
             print_stats
         fi
         

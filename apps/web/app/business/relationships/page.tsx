@@ -13,7 +13,7 @@ import {
   Network
 } from 'lucide-react'
 import BusinessRelationshipCard from '@/components/business/BusinessRelationshipCard'
-import NetworkVisualization from '@/components/business/NetworkVisualization'
+import NetworkVisualizationWrapper from '@/components/business/NetworkVisualizationWrapper'
 import { BusinessRelationship, RelationshipMetrics } from '@/lib/types/business-relationships'
 
 // Mock data - in real app this would come from database
@@ -249,9 +249,6 @@ function RelationshipGrid({ relationships }: { relationships: BusinessRelationsh
           key={relationship.id}
           relationship={relationship}
           variant="detailed"
-          onEdit={(rel) => console.log('Edit relationship:', rel.id)}
-          onViewDetails={(id) => console.log('View details:', id)}
-          onAddInteraction={(id) => console.log('Add interaction:', id)}
         />
       ))}
     </div>
@@ -353,10 +350,8 @@ export default function BusinessRelationshipsPage() {
         {/* Network Visualization */}
         <div className="mb-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-6">Relationship Network</h2>
-          <NetworkVisualization
+          <NetworkVisualizationWrapper
             relationships={mockRelationships}
-            onNodeSelect={(nodeId) => console.log('Selected node:', nodeId)}
-            onNodeHover={(nodeId) => console.log('Hovered node:', nodeId)}
             height={400}
           />
         </div>

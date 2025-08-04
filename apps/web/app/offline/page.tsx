@@ -1,12 +1,9 @@
-import { Metadata } from 'next'
+'use client'
+
 import Link from 'next/link'
 import { WifiOff, RefreshCw, Home, Map, Search } from 'lucide-react'
 
-export const metadata: Metadata = {
-  title: 'Offline - Indiranagar Discovery',
-  description: 'You are currently offline. Some features may be limited.',
-  robots: 'noindex',
-}
+// Note: metadata export not supported in client components
 
 export default function OfflinePage() {
   return (

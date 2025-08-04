@@ -8,3 +8,4 @@ MAX_FIX_ATTEMPTS=10
 BMAD_ENABLED=1
 STORY_DIR=".bmad-stories"
 BMAD_AGENT_MODE="developer"
+CLAUDE_CODE_PATH="echo"  # Bypass since we're in Claude Code

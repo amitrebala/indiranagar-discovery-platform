@@ -1,7 +1,7 @@
 import { Suspense } from 'react'
 import Link from 'next/link'
 import { ArrowLeft, Shield, Lock } from 'lucide-react'
-import AnalyticsDashboard from '@/components/analytics/AnalyticsDashboard'
+import AnalyticsDashboardWrapper from '@/components/analytics/AnalyticsDashboardWrapper'
 import { DashboardMetrics } from '@/lib/types/analytics'
 
 // Mock analytics data - in real app this would come from analytics service
@@ -415,15 +415,7 @@ export default function AnalyticsPage() {
       {/* Content */}
       <div className="max-w-7xl mx-auto px-4 py-8">
         <Suspense fallback={<DashboardSkeleton />}>
-          <AnalyticsDashboard
-            metrics={mockMetrics}
-            onTimeRangeChange={(period) => {
-              console.log('Time range changed:', period)
-            }}
-            onExport={() => {
-              console.log('Exporting analytics data...')
-            }}
-          />
+          <AnalyticsDashboardWrapper metrics={mockMetrics} />
         </Suspense>
 
         {/* Privacy and Compliance Notice */}

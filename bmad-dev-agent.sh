@@ -307,7 +307,7 @@ create_bmad_agent_prompt() {
 
 You are being activated as a BMAD-METHOD Development Agent for critical deployment recovery.
 
-**AGENT ACTIVATION COMMAND**: /BMad:agents:${agent_mode}
+**AGENT ACTIVATION COMMAND**: /dev
 
 **CRITICAL MISSION PARAMETERS**:
 - **Status**: DEPLOYMENT FAILURE - IMMEDIATE ACTION REQUIRED
