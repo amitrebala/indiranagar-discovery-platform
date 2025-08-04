@@ -126,7 +126,7 @@ export function PlaceMarker({ place, size = 'medium' }: PlaceMarkerProps) {
   const isSelected = selectedPlace?.id === place.id
   const [imageUrl, setImageUrl] = useState<string | null>(null)
   // const [imageLoading, setImageLoading] = useState(false)
-  // const [hoveredPlace, setHoveredPlace] = useState<Place | null>(null)
+  const [hoveredPlace, setHoveredPlace] = useState<Place | null>(null)
   
   // Determine marker size based on zoom level
   const dynamicSize = zoom >= 16 ? 'large' : zoom >= 14 ? 'medium' : 'small'

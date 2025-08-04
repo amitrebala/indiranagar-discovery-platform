@@ -73,6 +73,7 @@ export interface PhotoOpportunity {
   lighting_notes: string
   location_notes: string
   instagram_worthy: boolean
+  image?: string
 }
 
 export interface TimeWindow {

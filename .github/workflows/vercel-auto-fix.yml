@@ -1,0 +1,331 @@
+name: Vercel Auto-Fix
+
+on:
+  workflow_dispatch:
+    inputs:
+      project_id:
+        description: 'Vercel Project ID'
+        required: false
+        type: string
+      team_id:
+        description: 'Vercel Team ID (optional)'
+        required: false
+        type: string
+      force_fix:
+        description: 'Force fix even if deployment is not in ERROR state'
+        required: false
+        type: boolean
+        default: false
+  
+  schedule:
+    - cron: '*/10 * * * *'  # Every 10 minutes
+  
+  repository_dispatch:
+    types: [vercel-deployment-failed]
+
+env:
+  VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+  PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+  TEAM_ID: ${{ secrets.VERCEL_TEAM_ID }}
+
+jobs:
+  auto-fix:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+      
+      - name: Setup dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y jq curl netcat-openbsd
+          
+      - name: Install Claude Code
+        run: |
+          # Download and install Claude Code
+          curl -fsSL https://claude.ai/install.sh | bash
+          # Add to PATH for subsequent steps
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+        
+      - name: Validate environment
+        run: |
+          if [[ -z "$VERCEL_TOKEN" ]]; then
+            echo "::error::VERCEL_TOKEN secret is required"
+            exit 1
+          fi
+          
+          # Use input project ID if provided, otherwise use secret
+          if [[ -n "${{ github.event.inputs.project_id }}" ]]; then
+            echo "PROJECT_ID=${{ github.event.inputs.project_id }}" >> $GITHUB_ENV
+          elif [[ -z "$PROJECT_ID" ]]; then
+            echo "::error::PROJECT_ID must be provided via input or secret"
+            exit 1
+          fi
+          
+          # Use input team ID if provided
+          if [[ -n "${{ github.event.inputs.team_id }}" ]]; then
+            echo "TEAM_ID=${{ github.event.inputs.team_id }}" >> $GITHUB_ENV
+          fi
+          
+          echo "Project ID: $PROJECT_ID"
+          echo "Team ID: ${TEAM_ID:-'Not specified'}"
+      
+      - name: Check deployment status
+        id: check-deployment
+        run: |
+          echo "Checking deployment status for project: $PROJECT_ID"
+          
+          # Build API URL
+          url="https://api.vercel.com/v6/deployments?projectId=$PROJECT_ID&limit=1"
+          if [[ -n "$TEAM_ID" ]]; then
+            url="$url&teamId=$TEAM_ID"
+          fi
+          
+          # Get latest deployment
+          deployment=$(curl -s -H "Authorization: Bearer $VERCEL_TOKEN" "$url" | jq -r '.deployments[0]')
+          
+          if [[ "$deployment" == "null" ]]; then
+            echo "::error::Could not fetch deployment information"
+            exit 1
+          fi
+          
+          deployment_id=$(echo "$deployment" | jq -r '.uid')
+          state=$(echo "$deployment" | jq -r '.state')
+          
+          echo "deployment_id=$deployment_id" >> $GITHUB_OUTPUT
+          echo "state=$state" >> $GITHUB_OUTPUT
+          
+          echo "Latest deployment: $deployment_id"
+          echo "State: $state"
+          
+          # Check if fix is needed
+          if [[ "$state" == "ERROR" ]] || [[ "${{ github.event.inputs.force_fix }}" == "true" ]]; then
+            echo "needs_fix=true" >> $GITHUB_OUTPUT
+            echo "Deployment needs fixing"
+          else
+            echo "needs_fix=false" >> $GITHUB_OUTPUT
+            echo "Deployment is in good state: $state"
+          fi
+      
+      - name: Get deployment logs
+        if: steps.check-deployment.outputs.needs_fix == 'true'
+        id: get-logs
+        run: |
+          deployment_id="${{ steps.check-deployment.outputs.deployment_id }}"
+          echo "Fetching logs for deployment: $deployment_id"
+          
+          logs_url="https://api.vercel.com/v2/deployments/$deployment_id/events"
+          logs=$(curl -s -H "Authorization: Bearer $VERCEL_TOKEN" "$logs_url")
+          
+          # Extract error information
+          error_logs=$(echo "$logs" | jq -r '.[] | select(.type == "stderr" and (.text | contains("error") or contains("Error") or contains("failed"))) | .text' | head -20)
+          
+          if [[ -n "$error_logs" ]]; then
+            echo "Found error logs:"
+            echo "$error_logs"
+            
+            # Save to file for Claude Code
+            cat << EOF > deployment-errors.txt
+          DEPLOYMENT ERROR ANALYSIS
+          =========================
+          
+          Deployment ID: $deployment_id
+          Project ID: $PROJECT_ID
+          Timestamp: $(date -u)
+          
+          ERROR LOGS:
+          $error_logs
+          
+          Please analyze these deployment errors and fix them in the codebase.
+          Focus on:
+          1. TypeScript type errors
+          2. Build configuration issues  
+          3. Missing dependencies
+          4. Import/export issues
+          5. Syntax errors
+          EOF
+            
+            echo "has_errors=true" >> $GITHUB_OUTPUT
+          else
+            echo "No specific error logs found"
+            echo "has_errors=false" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: Run Claude Code auto-fix
+        if: steps.check-deployment.outputs.needs_fix == 'true' && steps.get-logs.outputs.has_errors == 'true'
+        run: |
+          echo "Running Claude Code auto-fix..."
+          
+          # Create comprehensive fix prompt
+          cat << 'EOF' > fix-prompt.txt
+          I need help fixing Vercel deployment failures. Please analyze the errors in deployment-errors.txt and fix them systematically.
+          
+          After making fixes:
+          1. Run appropriate linting commands (npm run lint, etc.)
+          2. Run type checking (npm run type-check, tsc --noEmit, etc.)  
+          3. Test the build locally if possible (npm run build)
+          4. Ensure all import/export statements are correct
+          5. Check for any missing dependencies in package.json
+          
+          Make minimal, targeted fixes to resolve the specific errors shown.
+          EOF
+          
+          # Run Claude Code with timeout
+          timeout 300 claude-code < fix-prompt.txt || {
+            echo "::warning::Claude Code execution failed or timed out"
+            exit 0  # Don't fail the workflow
+          }
+      
+      - name: Validate fixes
+        if: steps.check-deployment.outputs.needs_fix == 'true'
+        run: |
+          echo "Validating fixes..."
+          
+          # Check if package.json exists and run appropriate commands
+          if [[ -f "package.json" ]]; then
+            if jq -e '.scripts.lint' package.json > /dev/null; then
+              echo "Running lint..."
+              npm run lint || echo "::warning::Lint failed"
+            fi
+            
+            if jq -e '.scripts["type-check"]' package.json > /dev/null; then
+              echo "Running type check..."
+              npm run type-check || echo "::warning::Type check failed"
+            fi
+            
+            if jq -e '.scripts.build' package.json > /dev/null; then
+              echo "Testing build..."
+              npm run build || echo "::warning::Build failed"
+            fi
+          fi
+          
+          # Check apps/web directory
+          if [[ -f "apps/web/package.json" ]]; then
+            cd apps/web
+            
+            if jq -e '.scripts.lint' package.json > /dev/null; then
+              echo "Running lint in apps/web..."
+              npm run lint || echo "::warning::Lint failed in apps/web"
+            fi
+            
+            if jq -e '.scripts.build' package.json > /dev/null; then
+              echo "Testing build in apps/web..."
+              npm run build || echo "::warning::Build failed in apps/web"
+            fi
+          fi
+      
+      - name: Commit and push fixes
+        if: steps.check-deployment.outputs.needs_fix == 'true'
+        run: |
+          # Configure git
+          git config user.name "GitHub Actions Auto-Fix"
+          git config user.email "actions@github.com"
+          
+          # Check for changes
+          if git diff --quiet && git diff --staged --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          
+          # Stage all changes
+          git add .
+          
+          # Create commit
+          commit_message="🔧 Auto-fix Vercel deployment errors
+          
+          Deployment ID: ${{ steps.check-deployment.outputs.deployment_id }}
+          Fixed by: GitHub Actions + Claude Code
+          Timestamp: $(date -u)
+          
+          🤖 Generated with Claude Code
+          Co-Authored-By: Claude <noreply@anthropic.com>"
+          
+          git commit -m "$commit_message"
+          
+          # Push changes
+          git push origin ${{ github.ref_name }}
+          
+          echo "✅ Fixes committed and pushed"
+      
+      - name: Wait for new deployment
+        if: steps.check-deployment.outputs.needs_fix == 'true'
+        id: wait-deployment
+        run: |
+          echo "Waiting for new deployment after fixes..."
+          
+          max_wait=300  # 5 minutes
+          wait_time=0
+          check_interval=10
+          
+          while [[ $wait_time -lt $max_wait ]]; do
+            # Get latest deployment
+            url="https://api.vercel.com/v6/deployments?projectId=$PROJECT_ID&limit=1"
+            if [[ -n "$TEAM_ID" ]]; then
+              url="$url&teamId=$TEAM_ID"
+            fi
+            
+            deployment=$(curl -s -H "Authorization: Bearer $VERCEL_TOKEN" "$url" | jq -r '.deployments[0]')
+            new_deployment_id=$(echo "$deployment" | jq -r '.uid')
+            new_state=$(echo "$deployment" | jq -r '.state')
+            
+            echo "Current deployment: $new_deployment_id (state: $new_state)"
+            
+            # Check if this is a new deployment
+            if [[ "$new_deployment_id" != "${{ steps.check-deployment.outputs.deployment_id }}" ]]; then
+              case "$new_state" in
+                "READY")
+                  echo "✅ New deployment completed successfully!"
+                  echo "success=true" >> $GITHUB_OUTPUT
+                  exit 0
+                  ;;
+                "ERROR"|"CANCELED")
+                  echo "❌ New deployment failed with state: $new_state"
+                  echo "success=false" >> $GITHUB_OUTPUT
+                  exit 0
+                  ;;
+                "BUILDING"|"QUEUED"|"INITIALIZING")
+                  echo "🔄 New deployment in progress... ($new_state)"
+                  ;;
+              esac
+            fi
+            
+            sleep $check_interval
+            wait_time=$((wait_time + check_interval))
+          done
+          
+          echo "⏰ Deployment did not complete within $max_wait seconds"
+          echo "success=unknown" >> $GITHUB_OUTPUT
+      
+      - name: Report results
+        if: always()
+        run: |
+          echo "=== Auto-Fix Results ==="
+          echo "Project ID: $PROJECT_ID"
+          echo "Original deployment: ${{ steps.check-deployment.outputs.deployment_id }}"
+          echo "Original state: ${{ steps.check-deployment.outputs.state }}"
+          echo "Needed fix: ${{ steps.check-deployment.outputs.needs_fix }}"
+          echo "Had errors: ${{ steps.get-logs.outputs.has_errors }}"
+          echo "New deployment success: ${{ steps.wait-deployment.outputs.success }}"
+          
+          if [[ "${{ steps.check-deployment.outputs.needs_fix }}" == "true" ]]; then
+            if [[ "${{ steps.wait-deployment.outputs.success }}" == "true" ]]; then
+              echo "🎉 Auto-fix was successful!"
+            elif [[ "${{ steps.wait-deployment.outputs.success }}" == "false" ]]; then
+              echo "❌ Auto-fix did not resolve the deployment issues"
+              exit 1
+            else
+              echo "⚠️ Auto-fix completed but deployment status is unclear"
+            fi
+          else
+            echo "ℹ️ No fix was needed"
+          fi
+      
+      - name: Cleanup
+        if: always()
+        run: |
+          rm -f deployment-errors.txt fix-prompt.txt

@@ -18,6 +18,7 @@ import { getMarkerSizeForZoom } from '@/lib/map/markers'
 import { createJourneyRoute } from '@/lib/map/journeys'
 import { Loader2, MapPin, RefreshCw, Route } from 'lucide-react'
 import type { JourneyRoute } from './JourneyRouteVisualization'
+import type { Place } from '@/lib/validations'
 
 // Component to handle map events and state updates
 function MapEventHandler() {

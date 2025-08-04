@@ -273,10 +273,6 @@ export const AdminSuggestionReview = () => {
   const [selectedSuggestion, setSelectedSuggestion] = useState<CommunitySuggestion | null>(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    loadSuggestions();
-  }, [filter, loadSuggestions]);
-
   const loadSuggestions = useCallback(async () => {
     try {
       setLoading(true);
@@ -289,6 +285,10 @@ export const AdminSuggestionReview = () => {
       setLoading(false);
     }
   }, [filter]);
+
+  useEffect(() => {
+    loadSuggestions();
+  }, [filter, loadSuggestions]);
 
   const handleStatusChange = async (suggestionId: string, newStatus: string, adminNotes?: string) => {
     // Implementation would call API to update status
