@@ -93,11 +93,11 @@ apps/web/
 Create `.env.local` with required variables:
 
 ```env
-NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
-SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
-OPENWEATHERMAP_API_KEY=your_openweathermap_key
-WEATHERAPI_KEY=your_weatherapi_key
+SUPABASE_SECRET_KEY=your_supabase_service_key
+WEATHER_API_PRIMARY=your_openweather_api_key
+WEATHER_API_FALLBACK=your_weather_api_key
 ```
 
 ## 🧪 Testing

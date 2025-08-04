@@ -62,3 +62,6 @@ next-env.d.ts
 
 # Project specific
 .ignore/
+
+# Scripts with secrets
+scripts/setup-github-secrets-from-env.sh
