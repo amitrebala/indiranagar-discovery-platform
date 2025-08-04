@@ -1,0 +1,40 @@
+#!/bin/bash
+
+echo "Adding all missing environment variables to Vercel..."
+echo "Make sure you're logged in to Vercel CLI (vercel login)"
+echo ""
+
+# Database
+echo "Adding database variables..."
+vercel env add DATABASE_URL production < /dev/null
+vercel env add SUPABASE_DB_PASSWORD production < /dev/null
+
+# App URL (you'll need to update this after deployment)
+echo "Adding app URL..."
+echo "IMPORTANT: Update NEXT_PUBLIC_APP_URL with your actual Vercel URL after deployment!"
+vercel env add NEXT_PUBLIC_APP_URL production < /dev/null
+
+# Feature Flags
+echo "Adding feature flags..."
+echo "true" | vercel env add NEXT_PUBLIC_ENABLE_FOUNDATION_FEATURES production
+echo "true" | vercel env add NEXT_PUBLIC_ENABLE_PLACE_DISCOVERY production
+echo "true" | vercel env add NEXT_PUBLIC_ENABLE_SOCIAL_COMMUNITY production
+echo "true" | vercel env add NEXT_PUBLIC_ENABLE_WEATHER_RECOMMENDATIONS production
+echo "true" | vercel env add NEXT_PUBLIC_ENABLE_NATURAL_LANGUAGE_SEARCH production
+echo "true" | vercel env add NEXT_PUBLIC_ENABLE_PHOTO_MARKERS production
+echo "true" | vercel env add NEXT_PUBLIC_ENABLE_JOURNEY_ROUTES production
+echo "true" | vercel env add NEXT_PUBLIC_ENABLE_ACCESSIBILITY_FEATURES production
+echo "true" | vercel env add NEXT_PUBLIC_ENABLE_PWA_FEATURES production
+
+# Image Settings
+echo "Adding image optimization settings..."
+echo "true" | vercel env add NEXT_PUBLIC_IMAGE_OPTIMIZATION production
+echo "true" | vercel env add NEXT_PUBLIC_IMAGE_PROXY_ENABLED production
+echo "false" | vercel env add NEXT_PUBLIC_AUTO_SAVE_IMAGES production
+
+echo ""
+echo "✅ All environment variables added!"
+echo ""
+echo "NEXT STEPS:"
+echo "1. Go to Vercel Dashboard and update NEXT_PUBLIC_APP_URL with your deployment URL"
+echo "2. Deploy with: vercel --prod"

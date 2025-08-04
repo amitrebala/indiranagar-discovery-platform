@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import type { Place, PlaceImage } from '@/lib/supabase/types'
-import { PlaceCard } from './PlaceCard'
+import { PlaceCardEnhanced } from './PlaceCardEnhanced'
 import { PlaceCardSkeleton } from './PlaceCardSkeleton'
 
 interface PlacesGridProps {
@@ -86,7 +86,7 @@ export function PlacesGrid({ searchTerm, selectedCategory }: PlacesGridProps) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
       {filteredPlaces.map((place) => (
-        <PlaceCard key={place.id} place={place} />
+        <PlaceCardEnhanced key={place.id} place={place} />
       ))}
     </div>
   )
