@@ -2,6 +2,10 @@
   "name": "simple-todo-coordination",
   "version": "1.0.0",
   "scripts": {
+    "build": "cd apps/web && npm run build",
+    "dev": "cd apps/web && npm run dev",
+    "start": "cd apps/web && npm run start",
+    "install-web": "cd apps/web && npm install",
     "coordinate:init": "node scripts/coordination.js init",
     "coordinate:status": "node scripts/coordination.js status",
     "coordinate:check": "node scripts/coordination.js check",
