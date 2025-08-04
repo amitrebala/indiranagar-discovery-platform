@@ -96,7 +96,7 @@ const mockRelationships: BusinessRelationship[] = [
     referral_benefits: [
       {
         id: 'ben-2',
-        type: 'special_access',
+        type: 'exclusive_access',
         description: 'Access to the heritage breakfast menu',
         special_access: 'Traditional recipes not on regular menu',
         conditions: ['Weekend mornings only', 'Must call ahead'],
