@@ -29,7 +29,7 @@ const eventSchema = z.object({
   }).optional()
 });
 
-async function sendNewEventNotification(event: any) {
+async function sendNewEventNotification(event: { id: string; title: string }) {
   // Implementation for sending notification to admin
   console.log('New event notification:', event.title);
 }
