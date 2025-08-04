@@ -232,7 +232,7 @@ const nextConfig = {
   },
 
   // Output configuration for deployment
-  output: 'standalone',
+  // output: 'standalone', // Disabled for Vercel deployment
   
   // Advanced performance settings
   compress: true,
