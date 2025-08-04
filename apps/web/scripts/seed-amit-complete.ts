@@ -1,5 +1,5 @@
 import { createClient } from '@supabase/supabase-js'
-import { AMIT_COMPLETE_PLACES } from '../data/amit-places-complete'
+import { amitActualVisitedPlaces } from '../data/amit-actual-visited-places'
 import dotenv from 'dotenv'
 import path from 'path'
 
@@ -38,14 +38,26 @@ async function seedAmitPlaces() {
     const batchSize = 20
     let totalInserted = 0
     
-    for (let i = 0; i < AMIT_COMPLETE_PLACES.length; i += batchSize) {
-      const batch = AMIT_COMPLETE_PLACES.slice(i, i + batchSize)
+    for (let i = 0; i < amitActualVisitedPlaces.length; i += batchSize) {
+      const batch = amitActualVisitedPlaces.slice(i, i + batchSize)
       
-      console.log(`📍 Inserting batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(AMIT_COMPLETE_PLACES.length / batchSize)}...`)
+      // Transform the data to match the database schema
+      const transformedBatch = batch.map(place => ({
+        name: place.name,
+        description: place.notes || '',
+        latitude: place.coordinates?.lat || 12.9716, // Default to Indiranagar center
+        longitude: place.coordinates?.lng || 77.6412,
+        rating: place.rating || 4,
+        category: place.category,
+        has_amit_visited: true,
+        best_time_to_visit: place.bestFor ? place.bestFor.join(', ') : null
+      }))
+      
+      console.log(`📍 Inserting batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(amitActualVisitedPlaces.length / batchSize)}...`)
       
       const { data, error } = await supabase
         .from('places')
-        .insert(batch)
+        .insert(transformedBatch)
         .select()
       
       if (error) {
@@ -55,7 +67,7 @@ async function seedAmitPlaces() {
       }
       
       totalInserted += data?.length || 0
-      console.log(`✅ Inserted ${data?.length} places (Total: ${totalInserted}/${AMIT_COMPLETE_PLACES.length})`)
+      console.log(`✅ Inserted ${data?.length} places (Total: ${totalInserted}/${amitActualVisitedPlaces.length})`)
     }
     
     // Verify the total count
