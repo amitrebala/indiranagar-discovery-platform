@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowLeft, MapPin, Phone, Star, Clock, MessageCircle, ThumbsUp, Navigation, Heart } from 'lucide-react'
 import { Place, PlaceImage, CompanionActivity } from '@/lib/validations'
-import { searchPlaces, amitVisitedPlaces, type AmitPlace } from '@/data/amit-visited-places'
+import { amitActualVisitedPlaces, type AmitPlace } from '@/data/amit-actual-visited-places'
 import SocialShare from './SocialShare'
 import ContactModal from './ContactModal'
 
@@ -59,7 +59,7 @@ const mockComments: UserComment[] = [
 ]
 
 function findAmitPlace(placeName: string): AmitPlace | null {
-  return amitVisitedPlaces.find(p => 
+  return amitActualVisitedPlaces.find(p => 
     p.name.toLowerCase().includes(placeName.toLowerCase()) ||
     placeName.toLowerCase().includes(p.name.toLowerCase())
   ) || null
@@ -68,7 +68,7 @@ function findAmitPlace(placeName: string): AmitPlace | null {
 function getNearbyPlaces(currentPlace: Place, limit: number = 4): AmitPlace[] {
   // For now, return random places from Amit's list
   // In a real app, this would use coordinate distance
-  const shuffled = [...amitVisitedPlaces].sort(() => 0.5 - Math.random())
+  const shuffled = [...amitActualVisitedPlaces].sort(() => 0.5 - Math.random())
   return shuffled.slice(0, limit)
 }
 

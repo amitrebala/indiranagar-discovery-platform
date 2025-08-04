@@ -3,7 +3,7 @@ import path from 'path'
 
 // Files to fix
 const filesToFix = [
-  '../data/amit-visited-places.ts',
+  '../data/amit-actual-visited-places.ts',
   '../scripts/seed-amit-places.ts',
   '../scripts/seed-database.ts'
 ]

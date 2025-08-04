@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { Search, X, MapPin, MessageCircle, Star } from 'lucide-react'
-import { searchPlaces, type AmitPlace } from '@/data/amit-visited-places'
+import { amitActualVisitedPlaces, type AmitPlace } from '@/data/amit-actual-visited-places'
 
 interface AmitSearchModalProps {
   isOpen: boolean
@@ -137,7 +137,11 @@ function AmitSearchModal({ isOpen, onClose }: AmitSearchModalProps) {
       return
     }
 
-    const searchResults = searchPlaces(searchQuery)
+    const searchResults = amitActualVisitedPlaces.filter(place => 
+      place.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      place.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      place.notes.toLowerCase().includes(searchQuery.toLowerCase())
+    )
     setResults(searchResults)
     setNoResults(searchResults.length === 0)
     setShowSuggestForm(searchResults.length === 0)
