@@ -100,13 +100,16 @@ class PreferencesManager {
 
   private initializeFromStorage(): void {
     try {
-      const stored = localStorage.getItem(this.storageKey);
-      if (stored) {
-        const parsedPreferences = JSON.parse(stored) as UserPreferences;
-        
-        // Validate and migrate if necessary
-        if (this.validatePreferences(parsedPreferences)) {
-          this.preferences = this.migratePreferences(parsedPreferences);
+      // Only access localStorage on client-side
+      if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+        const stored = localStorage.getItem(this.storageKey);
+        if (stored) {
+          const parsedPreferences = JSON.parse(stored) as UserPreferences;
+          
+          // Validate and migrate if necessary
+          if (this.validatePreferences(parsedPreferences)) {
+            this.preferences = this.migratePreferences(parsedPreferences);
+          }
         }
       }
       
@@ -307,8 +310,11 @@ class PreferencesManager {
 
   private persistPreferences(): void {
     try {
-      this.preferences.lastModified = Date.now();
-      localStorage.setItem(this.storageKey, JSON.stringify(this.preferences));
+      // Only access localStorage on client-side
+      if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+        this.preferences.lastModified = Date.now();
+        localStorage.setItem(this.storageKey, JSON.stringify(this.preferences));
+      }
     } catch (error) {
       console.warn('Failed to persist preferences:', error);
     }
