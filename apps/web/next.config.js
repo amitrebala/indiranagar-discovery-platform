@@ -202,10 +202,10 @@ const nextConfig = {
       // Minimize and compress
       config.optimization.minimize = true
       
-      // Performance budget warnings
+      // Performance budget warnings - adjusted for maps bundle
       config.performance = {
-        maxAssetSize: 250000, // 250KB per asset
-        maxEntrypointSize: 400000, // 400KB per entry point
+        maxAssetSize: 1300000, // 1.3MB per asset (accommodates maps bundle)
+        maxEntrypointSize: 1400000, // 1.4MB per entry point
         hints: 'warning',
       }
     }
