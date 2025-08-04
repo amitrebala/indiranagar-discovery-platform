@@ -96,20 +96,44 @@ jobs:
           
           deployment_id=$(echo "$deployment" | jq -r '.uid')
           state=$(echo "$deployment" | jq -r '.state')
+          created_at=$(echo "$deployment" | jq -r '.createdAt')
           
           echo "deployment_id=$deployment_id" >> $GITHUB_OUTPUT
           echo "state=$state" >> $GITHUB_OUTPUT
           
           echo "Latest deployment: $deployment_id"
           echo "State: $state"
+          echo "Created: $created_at"
           
-          # Check if fix is needed
+          # Check if this is a known deployment we should skip
+          KNOWN_DEPLOYMENT_FILE=".vercel-last-known-deployment"
+          if [[ -f "$KNOWN_DEPLOYMENT_FILE" ]]; then
+            known_deployment=$(cat "$KNOWN_DEPLOYMENT_FILE")
+            if [[ "$deployment_id" == "$known_deployment" ]]; then
+              echo "🔍 This is a known deployment, skipping..."
+              echo "needs_fix=false" >> $GITHUB_OUTPUT
+              echo "Deployment is already known: $deployment_id"
+              exit 0
+            fi
+          fi
+          
+          # Check if fix is needed for NEW deployments only
           if [[ "$state" == "ERROR" ]] || [[ "${{ github.event.inputs.force_fix }}" == "true" ]]; then
             echo "needs_fix=true" >> $GITHUB_OUTPUT
-            echo "Deployment needs fixing"
+            echo "🚨 NEW deployment failure detected - needs fixing"
+            
+            # Update known deployment file for future runs
+            echo "$deployment_id" > "$KNOWN_DEPLOYMENT_FILE"
+            git add "$KNOWN_DEPLOYMENT_FILE" || true
+            git commit -m "chore: track known deployment $deployment_id" || true
           else
             echo "needs_fix=false" >> $GITHUB_OUTPUT
-            echo "Deployment is in good state: $state"
+            echo "✅ NEW deployment is in good state: $state"
+            
+            # Update known deployment file
+            echo "$deployment_id" > "$KNOWN_DEPLOYMENT_FILE"
+            git add "$KNOWN_DEPLOYMENT_FILE" || true
+            git commit -m "chore: track known deployment $deployment_id" || true
           fi
       
       - name: Get deployment logs
@@ -171,7 +195,7 @@ jobs:
           
           You are being activated as a BMAD-METHOD Development Agent for critical deployment recovery.
           
-          **AGENT ACTIVATION COMMAND**: /BMad:agents:developer
+          **AGENT ACTIVATION COMMAND**: /dev
           
           **CRITICAL MISSION PARAMETERS**:
           - **Status**: DEPLOYMENT FAILURE - IMMEDIATE ACTION REQUIRED
