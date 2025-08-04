@@ -1,0 +1,69 @@
+name: Multi-Terminal Coordination CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  terminal-coordination:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        terminal: [
+          "enhanced-experience",
+          "community-social", 
+          "content-business"
+        ]
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: |
+        npm ci
+        cd apps/web && npm ci
+    
+    - name: Run terminal-specific tests
+      run: |
+        npm run test:terminal:${{ matrix.terminal }}
+    
+    - name: Integration checkpoint validation
+      run: |
+        npm run validate:integration:${{ matrix.terminal }}
+
+  coordination-checkpoint:
+    needs: terminal-coordination
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: |
+        npm ci
+        cd apps/web && npm ci
+    
+    - name: Cross-terminal integration tests
+      run: |
+        npm run test:integration:cross-terminal
+    
+    - name: Performance baseline validation
+      run: |
+        npm run test:performance:baseline
+    
+    - name: API contract validation
+      run: |
+        npm run validate:api-contracts

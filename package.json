@@ -1,0 +1,34 @@
+{
+  "name": "simple-todo-coordination",
+  "version": "1.0.0",
+  "scripts": {
+    "coordinate:init": "node scripts/coordination.js init",
+    "coordinate:status": "node scripts/coordination.js status",
+    "coordinate:check": "node scripts/coordination.js check",
+    "coordinate:validate": "node scripts/coordination.js validate",
+    "coordinate:integrate": "node scripts/coordination.js integrate",
+    "coordinate:update": "node scripts/coordination.js update",
+    "orchestrator:monitor": "node scripts/orchestrator-interface.js monitor",
+    "orchestrator:dashboard": "node scripts/orchestrator-interface.js dashboard",
+    "orchestrator:risks": "node scripts/orchestrator-interface.js risks",
+    "orchestrator:start-all": "node scripts/orchestrator-interface.js start-all",
+    "orchestrator:emergency-stop": "node scripts/orchestrator-interface.js emergency-stop",
+    "test:terminal:enhanced-experience": "cd apps/web && npm run test -- --grep 'map|search|weather|e2e'",
+    "test:terminal:community-social": "cd apps/web && npm run test -- --grep 'community|social|admin|notification'",
+    "test:terminal:content-business": "cd apps/web && npm run test -- --grep 'content|mobile|analytics|business'",
+    "test:integration:cross-terminal": "cd apps/web && npm run test:integration",
+    "test:performance:baseline": "cd apps/web && npm run test:performance",
+    "validate:api-contracts": "node scripts/coordination.js validate",
+    "validate:integration:enhanced-experience": "npm run coordinate:check && npm run test:terminal:enhanced-experience",
+    "validate:integration:community-social": "npm run coordinate:check && npm run test:terminal:community-social", 
+    "validate:integration:content-business": "npm run coordinate:check && npm run test:terminal:content-business"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.4",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@vitejs/plugin-react": "^4.7.0",
+    "jsdom": "^26.1.0",
+    "vitest": "^3.2.4"
+  }
+}
