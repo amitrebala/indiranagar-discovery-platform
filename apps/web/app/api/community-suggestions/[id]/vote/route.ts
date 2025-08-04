@@ -5,14 +5,15 @@ import crypto from 'crypto';
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
+  const params = await context.params;
   try {
     const supabase = createRouteHandlerClient({ cookies });
     const suggestionId = params.id;
     
     // Create voter fingerprint from IP + User-Agent
-    const ip = request.ip || request.headers.get('x-forwarded-for') || 'unknown';
+    const ip = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown';
     const userAgent = request.headers.get('user-agent') || 'unknown';
     const fingerprint = crypto
       .createHash('sha256')

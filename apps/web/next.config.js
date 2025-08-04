@@ -1,18 +1,26 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    // Enable turbopack for development
-    turbo: {
-      rules: {
-        '*.svg': {
-          loaders: ['@svgr/webpack'],
-          as: '*.js',
-        },
+  // Enable Turbopack for development
+  turbopack: {
+    rules: {
+      '*.svg': {
+        loaders: ['@svgr/webpack'],
+        as: '*.js',
       },
     },
   },
   
-  // Image optimization for place photos
+  experimental: {
+    // Enable advanced optimizations
+    optimizeCss: true,
+    optimizeServerReact: true,
+    webpackBuildWorker: true,
+  },
+  
+  // External packages that should be bundled
+  serverExternalPackages: ['sharp'],
+  
+  // Advanced image optimization
   images: {
     remotePatterns: [
       {
@@ -28,7 +36,13 @@ const nextConfig = {
         pathname: '/**',
       },
     ],
-    formats: ['image/webp', 'image/avif'],
+    formats: ['image/avif', 'image/webp'],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    minimumCacheTTL: 60 * 60 * 24 * 365, // 1 year
+    dangerouslyAllowSVG: false,
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    unoptimized: false,
   },
 
   // Environment variables for build-time configuration
@@ -36,7 +50,7 @@ const nextConfig = {
     CUSTOM_KEY: process.env.CUSTOM_KEY,
   },
 
-  // Headers for security and performance
+  // Enhanced headers for security and performance
   async headers() {
     return [
       {
@@ -58,6 +72,14 @@ const nextConfig = {
             key: 'Permissions-Policy',
             value: 'camera=(), microphone=(), geolocation=(self)',
           },
+          {
+            key: 'X-DNS-Prefetch-Control',
+            value: 'on',
+          },
+          {
+            key: 'Strict-Transport-Security',
+            value: 'max-age=31536000; includeSubDomains',
+          },
         ],
       },
       {
@@ -78,6 +100,37 @@ const nextConfig = {
           },
         ],
       },
+      {
+        source: '/images/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, stale-while-revalidate=86400',
+          },
+        ],
+      },
+      {
+        source: '/sw.js',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=0, must-revalidate',
+          },
+          {
+            key: 'Service-Worker-Allowed',
+            value: '/',
+          },
+        ],
+      },
+      {
+        source: '/manifest.json',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=86400, stale-while-revalidate=604800',
+          },
+        ],
+      },
     ]
   },
 
@@ -92,33 +145,113 @@ const nextConfig = {
     ]
   },
 
-  // Bundle analyzer in development
-  webpack: (config, { dev, isServer }) => {
-    // Optimize bundle size
+  // Advanced webpack optimizations
+  webpack: (config, { dev, isServer, webpack }) => {
+    // Performance optimizations for production
     if (!dev && !isServer) {
+      // Bundle optimization
       config.resolve.alias = {
         ...config.resolve.alias,
         '@': require('path').resolve(__dirname),
       }
+
+      // Enable tree shaking
+      config.optimization = {
+        ...config.optimization,
+        usedExports: true,
+        sideEffects: false,
+        
+        // Advanced splitting strategy
+        splitChunks: {
+          ...config.optimization.splitChunks,
+          chunks: 'all',
+          cacheGroups: {
+            ...config.optimization.splitChunks.cacheGroups,
+            // Vendor chunk for stable dependencies
+            vendor: {
+              test: /[\\/]node_modules[\\/]/,
+              name: 'vendors',
+              priority: 10,
+              reuseExistingChunk: true,
+            },
+            // Common components chunk
+            common: {
+              name: 'common',
+              minChunks: 2,
+              priority: 5,
+              reuseExistingChunk: true,
+            },
+            // React-specific chunk
+            react: {
+              test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+              name: 'react',
+              chunks: 'all',
+              priority: 20,
+            },
+            // Map libraries chunk
+            maps: {
+              test: /[\\/]node_modules[\\/](leaflet|react-leaflet)[\\/]/,
+              name: 'maps',
+              chunks: 'all',
+              priority: 15,
+            },
+          },
+        },
+      }
+
+      // Minimize and compress
+      config.optimization.minimize = true
+      
+      // Performance budget warnings
+      config.performance = {
+        maxAssetSize: 250000, // 250KB per asset
+        maxEntrypointSize: 400000, // 400KB per entry point
+        hints: 'warning',
+      }
+    }
+
+    // Copy leaflet images to public folder
+    config.module.rules.push({
+      test: /\.(png|jpe?g|gif|svg)$/,
+      type: 'asset/resource',
+      generator: {
+        filename: 'static/images/[name].[hash][ext]',
+      },
+    })
+
+    // Optimize CSS
+    if (!dev) {
+      config.plugins.push(
+        new webpack.optimize.LimitChunkCountPlugin({
+          maxChunks: 10,
+        })
+      )
     }
 
     return config
   },
 
   // Output configuration for deployment
-  output:  'standalone',
+  output: 'standalone',
   
-  // Compression
+  // Advanced performance settings
   compress: true,
-  
-  // PoweredBy header removal
   poweredByHeader: false,
-
-  // Strict mode for development
   reactStrictMode: true,
-
-  // SWC minification
-  swcMinify: true,
+  
+  // Build optimizations
+  productionBrowserSourceMaps: false, // Disable source maps in production for performance
+  
+  // Compiler optimizations
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production' ? {
+      exclude: ['error', 'warn'],
+    } : false,
+  },
+  
+  // Runtime configuration
+  generateEtags: true,
+  trailingSlash: false,
 }
 
 module.exports = nextConfig

@@ -10,6 +10,7 @@ import 'leaflet.markercluster/dist/MarkerCluster.Default.css'
 import { PlaceMarker } from './PlaceMarker'
 import { JourneyCollection } from './JourneyRouteVisualization'
 import { MapPreview, useMapPreview } from './MapPreview'
+import { MapLoadingSkeleton } from '@/components/ui/SkeletonLoaders'
 import { useMapStore } from '@/stores/mapStore'
 import { usePlaces } from '@/hooks/usePlaces'
 import { MAP_CONFIG } from '@/lib/constants'
@@ -66,17 +67,6 @@ function MapBoundsHandler() {
   return null
 }
 
-// Loading skeleton component
-function MapLoadingSkeleton() {
-  return (
-    <div className="absolute inset-0 bg-neutral-50 flex items-center justify-center z-10">
-      <div className="text-center">
-        <Loader2 className="w-8 h-8 animate-spin text-primary mx-auto mb-2" />
-        <p className="text-sm text-neutral-600">Loading map...</p>
-      </div>
-    </div>
-  )
-}
 
 // Error state component
 function MapError({ error, onRetry }: { error: string; onRetry: () => void }) {
@@ -265,7 +255,9 @@ export function InteractiveMap({ className = '' }: InteractiveMapProps) {
   return (
     <div className={`relative ${className}`}>
       {/* Loading overlay */}
-      {(!isMapReady || isLoading) && <MapLoadingSkeleton />}
+      {(!isMapReady || isLoading) && (
+        <MapLoadingSkeleton showControls={true} showStats={true} />
+      )}
       
       {/* Error overlay */}
       {error && (

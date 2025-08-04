@@ -26,8 +26,9 @@ async function notifyOrganizerNewRSVP(event: { organizer_email: string }, _rsvp:
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
+  const params = await context.params;
   try {
     const supabase = createRouteHandlerClient({ cookies });
     const eventId = params.id;

@@ -58,7 +58,28 @@ export async function deletePlaceImage(path: string): Promise<void> {
   }
 }
 
-// Note: Server-side storage functions moved to separate API route files to avoid import issues
+// Server-side storage functions
+export async function uploadPlaceImageServer(file: File, placeId: string): Promise<string> {
+  // For server-side use in API routes
+  const supabase = createClient()
+  
+  // Generate unique filename
+  const fileExt = file.name.split('.').pop()
+  const fileName = `${placeId}/${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`
+  
+  const { data, error } = await supabase.storage
+    .from(STORAGE_BUCKETS.PLACE_IMAGES)
+    .upload(fileName, file, {
+      cacheControl: '3600',
+      upsert: false
+    })
+
+  if (error) {
+    throw new Error(`Upload failed: ${error.message}`)
+  }
+
+  return data.path
+}
 
 // Image optimization utilities
 export function generateThumbnailPath(originalPath: string): string {

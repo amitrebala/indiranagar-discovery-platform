@@ -8,6 +8,7 @@ import { useGeolocation } from '@/hooks/useGeolocation'
 import { SearchFilters } from './SearchFilters'
 import { SearchResults } from './SearchResults'
 import { SearchSuggestions } from './SearchSuggestions'
+import { SearchResultsSkeleton } from '@/components/ui/SkeletonLoaders'
 import { NaturalLanguageProcessor } from '@/lib/search/natural-language'
 import type { SearchFilters as SearchFiltersType } from '@/lib/search/search-engine'
 
@@ -139,12 +140,12 @@ export function SearchInterface({
   ]
 
   return (
-    <div className={`search-interface ${className}`}>
+    <div className={`search-interface ${className}`} role="search" aria-label="Place search">
       {/* Main Search Input */}
       <div className="relative">
         <div className="search-input-container relative">
           <div className="relative flex items-center">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" aria-hidden="true" />
             
             <input
               type="text"
@@ -152,42 +153,53 @@ export function SearchInterface({
               onChange={handleQueryChange}
               onFocus={() => setShowSuggestions(query.length > 1 || recentSearches.length > 0)}
               placeholder={placeholder}
-              className="w-full pl-10 pr-20 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
+              className="w-full pl-10 pr-20 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-600 focus:border-transparent text-sm focus:outline-none"
+              aria-label="Search for places"
+              aria-describedby="search-description search-results-status"
+              aria-expanded={showSuggestions}
+              aria-autocomplete="list"
+              aria-controls={showSuggestions ? 'search-suggestions' : undefined}
+              role="combobox"
             />
             
             <div className="absolute right-3 top-1/2 transform -translate-y-1/2 flex items-center gap-2">
               {query && (
                 <button
                   onClick={handleClearSearch}
-                  className="p-1 text-gray-400 hover:text-gray-600 transition-colors"
+                  className="p-1 text-gray-400 hover:text-neutral-600 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-600 rounded"
+                  aria-label="Clear search"
                   title="Clear search"
                 >
-                  <X className="w-4 h-4" />
+                  <X className="w-4 h-4" aria-hidden="true" />
                 </button>
               )}
               
               <button
                 onClick={() => setIsFiltersOpen(!isFiltersOpen)}
-                className={`p-1 transition-colors ${
-                  isFiltersOpen ? 'text-primary' : 'text-gray-400 hover:text-gray-600'
+                className={`p-1 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-600 rounded ${
+                  isFiltersOpen ? 'text-primary-600' : 'text-gray-400 hover:text-neutral-600'
                 }`}
+                aria-label={isFiltersOpen ? 'Hide search filters' : 'Show search filters'}
+                aria-expanded={isFiltersOpen}
+                aria-controls="search-filters"
                 title="Search filters"
               >
-                <Filter className="w-4 h-4" />
+                <Filter className="w-4 h-4" aria-hidden="true" />
               </button>
               
               <button
                 onClick={requestLocation}
                 disabled={isLocationLoading}
-                className={`p-1 transition-colors ${
-                  location ? 'text-green-600' : 'text-gray-400 hover:text-gray-600'
+                className={`p-1 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-600 rounded disabled:opacity-50 disabled:cursor-not-allowed ${
+                  location ? 'text-success-600' : 'text-gray-400 hover:text-neutral-600'
                 }`}
+                aria-label={location ? 'Location enabled' : 'Enable location for nearby results'}
                 title={location ? 'Location enabled' : 'Enable location for nearby results'}
               >
                 {isLocationLoading ? (
-                  <Loader2 className="w-4 h-4 animate-spin" />
+                  <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" />
                 ) : (
-                  <MapPin className="w-4 h-4" />
+                  <MapPin className="w-4 h-4" aria-hidden="true" />
                 )}
               </button>
             </div>
@@ -196,7 +208,12 @@ export function SearchInterface({
 
         {/* Search Suggestions Dropdown */}
         {showSuggestions && (
-          <div className="absolute top-full left-0 right-0 z-50 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg max-h-80 overflow-y-auto">
+          <div 
+            id="search-suggestions"
+            className="absolute top-full left-0 right-0 z-50 mt-1 bg-white border border-neutral-200 rounded-lg shadow-lg max-h-80 overflow-y-auto"
+            role="listbox"
+            aria-label="Search suggestions"
+          >
             <SearchSuggestions
               query={query}
               onSuggestionClick={handleNaturalLanguageSearch}
@@ -205,26 +222,29 @@ export function SearchInterface({
             
             {/* Recent Searches */}
             {recentSearches.length > 0 && (
-              <div className="border-t border-gray-100 p-3">
+              <div className="border-t border-neutral-100 p-3" role="group" aria-labelledby="recent-searches-heading">
                 <div className="flex items-center justify-between mb-2">
-                  <h4 className="text-xs font-medium text-gray-500 uppercase tracking-wide">
+                  <h4 id="recent-searches-heading" className="text-xs font-medium text-neutral-500 uppercase tracking-wide">
                     Recent Searches
                   </h4>
                   <button
                     onClick={clearRecentSearches}
-                    className="text-xs text-gray-400 hover:text-gray-600"
+                    className="text-xs text-gray-400 hover:text-neutral-600 focus:outline-none focus:ring-2 focus:ring-primary-600 rounded px-1"
+                    aria-label="Clear recent searches"
                   >
                     Clear
                   </button>
                 </div>
-                <div className="space-y-1">
+                <div className="space-y-1" role="list">
                   {recentSearches.slice(0, 5).map((recentQuery, index) => (
                     <button
                       key={index}
                       onClick={() => handleRecentSearchClick(recentQuery)}
-                      className="flex items-center w-full text-left p-2 rounded text-sm text-gray-600 hover:bg-gray-50 transition-colors"
+                      className="flex items-center w-full text-left p-2 rounded text-sm text-neutral-600 hover:bg-neutral-50 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-600 min-h-[44px]"
+                      role="option"
+                      aria-label={`Search for ${recentQuery}`}
                     >
-                      <Clock className="w-3 h-3 mr-2 text-gray-400" />
+                      <Clock className="w-3 h-3 mr-2 text-gray-400" aria-hidden="true" />
                       {recentQuery}
                     </button>
                   ))}
@@ -235,9 +255,17 @@ export function SearchInterface({
         )}
       </div>
 
+      {/* Hidden status for screen readers */}
+      <div id="search-description" className="sr-only">
+        Search for places using natural language like 'quiet morning coffee' or 'good for rainy day'
+      </div>
+      <div id="search-results-status" className="sr-only" aria-live="polite" aria-atomic="true">
+        {isLoading ? 'Searching...' : searchResults.length > 0 ? `Found ${searchResults.length} results` : query.length > 1 && searchResults.length === 0 ? 'No results found' : ''}
+      </div>
+
       {/* Advanced Filters */}
       {isFiltersOpen && (
-        <div className="mt-3">
+        <div id="search-filters" className="mt-3">
           <SearchFilters 
             filters={filters}
             onFiltersChange={setFilters}
@@ -249,14 +277,16 @@ export function SearchInterface({
 
       {/* Quick Search Options */}
       {!query && !isLoading && searchResults.length === 0 && (
-        <div className="mt-4">
-          <h3 className="text-sm font-medium text-gray-700 mb-3">Quick searches</h3>
-          <div className="flex flex-wrap gap-2">
+        <div className="mt-4" role="region" aria-labelledby="quick-searches-heading">
+          <h3 id="quick-searches-heading" className="text-sm font-medium text-neutral-700 mb-3">Quick searches</h3>
+          <div className="flex flex-wrap gap-2" role="list">
             {quickSearchOptions.map((option, index) => (
               <button
                 key={index}
                 onClick={() => handleNaturalLanguageSearch(option.query)}
-                className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 rounded-full text-sm text-gray-700 transition-colors"
+                className="px-3 py-1.5 bg-neutral-100 hover:bg-neutral-200 rounded-full text-sm text-neutral-700 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-600 min-h-[44px] flex items-center"
+                role="listitem"
+                aria-label={`Quick search for ${option.label}`}
               >
                 {option.label}
               </button>
@@ -267,15 +297,14 @@ export function SearchInterface({
 
       {/* Loading State */}
       {isLoading && (
-        <div className="mt-4 flex items-center justify-center py-8">
-          <Loader2 className="w-6 h-6 animate-spin text-primary mr-2" />
-          <span className="text-sm text-gray-600">Searching places...</span>
+        <div className="mt-4" role="status" aria-live="polite">
+          <SearchResultsSkeleton count={6} compact={false} />
         </div>
       )}
 
       {/* Search Results */}
       {!isLoading && searchResults.length > 0 && (
-        <div className="mt-4">
+        <div className="mt-4" role="region" aria-label="Search results">
           <SearchResults 
             results={searchResults}
             query={query}
@@ -287,10 +316,10 @@ export function SearchInterface({
 
       {/* No Results */}
       {!isLoading && query.length > 1 && searchResults.length === 0 && (
-        <div className="mt-4 text-center py-8">
-          <Search className="w-12 h-12 text-gray-300 mx-auto mb-3" />
-          <h3 className="text-lg font-medium text-gray-900 mb-2">No places found</h3>
-          <p className="text-sm text-gray-600 mb-4">
+        <div className="mt-4 text-center py-8" role="status" aria-live="polite">
+          <Search className="w-12 h-12 text-neutral-300 mx-auto mb-3" aria-hidden="true" />
+          <h3 className="text-lg font-medium text-neutral-900 mb-2">No places found</h3>
+          <p className="text-sm text-neutral-600 mb-4">
             Try adjusting your search terms or filters
           </p>
           <button
@@ -306,7 +335,8 @@ export function SearchInterface({
                 distance_km: undefined
               })
             }}
-            className="text-sm text-primary hover:text-primary/80 font-medium"
+            className="text-sm text-primary-600 hover:text-primary-700 font-medium focus:outline-none focus:ring-2 focus:ring-primary-600 rounded px-2 py-1 min-h-[44px] flex items-center mx-auto"
+            aria-label="Clear search and filters to start over"
           >
             Clear search and filters
           </button>

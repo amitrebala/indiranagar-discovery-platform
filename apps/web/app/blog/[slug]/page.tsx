@@ -8,9 +8,9 @@ import NewsletterSignup from '@/components/blog/NewsletterSignup'
 import { BlogPost as BlogPostType, BlogComment } from '@/lib/types/blog'
 
 interface BlogPostPageProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 // Mock data - in real app this would come from database/CMS
@@ -245,7 +245,8 @@ function PostSkeleton() {
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  const post = await getBlogPost(params.slug)
+  const { slug } = await params;
+  const post = await getBlogPost(slug)
   
   if (!post) {
     notFound()

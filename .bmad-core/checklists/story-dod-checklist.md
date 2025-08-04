@@ -53,14 +53,38 @@ The goal is quality delivery, not just checking boxes.]]
    - [ ] Functionality has been manually verified by the developer (e.g., running the app locally, checking UI, testing API endpoints).
    - [ ] Edge cases and potential error conditions considered and handled gracefully.
 
-5. **Story Administration:**
+5. **Rich Media & Content Features (Story 2.2 - Memory Palace):**
+
+   [[LLM: Only applicable if implementing rich place content with memory palace features]]
+   - [ ] Image galleries load progressively and handle multiple photos efficiently
+   - [ ] Memory palace section displays spatial storytelling elements correctly
+   - [ ] Personal review sections render with proper italic styling
+   - [ ] Business relationship indicators and trust badges display appropriately
+   - [ ] Seasonal context notes integrate weather data correctly
+   - [ ] Interactive photo captions show contextual stories on interaction
+   - [ ] Performance optimization for mobile connections tested and verified
+   - [ ] Memory palace visual elements are accessible and responsive
+
+6. **Search & Discovery Features (Story 2.4 - Enhanced Search):**
+
+   [[LLM: Only applicable if implementing search and discovery functionality]]
+   - [ ] Natural language search processes queries like "quiet morning coffee" and "rainy day spots" correctly
+   - [ ] Advanced filtering works for categories, price, weather, and accessibility options
+   - [ ] Location-based "Near me" discovery uses geolocation appropriately with user consent
+   - [ ] Recently viewed places tracking stores and retrieves data from local storage
+   - [ ] Favoriting system allows users to create and manage personal lists
+   - [ ] Contextual search ranking algorithm produces relevant results
+   - [ ] Search performance optimization includes debouncing and caching mechanisms
+   - [ ] Privacy considerations for location data are properly implemented
+
+7. **Story Administration:**
 
    [[LLM: Documentation helps the next developer. What should they know?]]
    - [ ] All tasks within the story file are marked as complete.
    - [ ] Any clarifications or decisions made during development are documented in the story file or linked appropriately.
    - [ ] The story wrap up section has been completed with notes of changes or information relevant to the next story or overall project, the agent model that was primarily used during development, and the changelog of any changes is properly updated.
 
-6. **Dependencies, Build & Configuration:**
+8. **Dependencies, Build & Configuration:**
 
    [[LLM: Build issues block everyone. Ensure everything compiles and runs cleanly]]
    - [ ] Project builds successfully without errors.
@@ -70,7 +94,7 @@ The goal is quality delivery, not just checking boxes.]]
    - [ ] No known security vulnerabilities introduced by newly added and approved dependencies.
    - [ ] If new environment variables or configurations were introduced by the story, they are documented and handled securely.
 
-7. **Documentation (If Applicable):**
+9. **Documentation (If Applicable):**
 
    [[LLM: Good documentation prevents future confusion. What needs explaining?]]
    - [ ] Relevant inline code documentation (e.g., JSDoc, TSDoc, Python docstrings) for new public APIs or complex logic is complete.

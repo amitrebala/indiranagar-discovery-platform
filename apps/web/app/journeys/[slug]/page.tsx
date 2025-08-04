@@ -6,9 +6,9 @@ import ResponsiveJourneyInterface from '@/components/journeys/ResponsiveJourneyI
 import { JourneyExperience } from '@/lib/types/journey'
 
 interface JourneyPageProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 // Mock journey data - in real app this would come from database
@@ -309,7 +309,8 @@ function JourneySkeleton() {
 }
 
 export default async function JourneyPage({ params }: JourneyPageProps) {
-  const journey = await getJourney(params.slug)
+  const { slug } = await params;
+  const journey = await getJourney(slug)
 
   if (!journey) {
     notFound()

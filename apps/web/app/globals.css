@@ -1,11 +1,148 @@
 @import "tailwindcss";
 @import "./map-styles.css";
 
+/* ===== ROOT VARIABLES ===== */
 :root {
+  /* Base theme variables */
   --background: #ffffff;
   --foreground: #171717;
+  --background-secondary: #f8f9fa;
+  --background-tertiary: #e9ecef;
+  
+  /* Border and surface colors */
+  --border: #e1e5e9;
+  --border-light: #f1f3f4;
+  --surface: #ffffff;
+  --surface-hover: #f8f9fa;
+  
+  /* Text colors */
+  --text-primary: #171717;
+  --text-secondary: #6c757d;
+  --text-tertiary: #adb5bd;
+  --text-inverse: #ffffff;
+  
+  /* Semantic colors */
+  --success: #198754;
+  --success-light: #d1eddb;
+  --warning: #ffc107;
+  --warning-light: #fff3cd;
+  --error: #dc3545;
+  --error-light: #f8d7da;
+  --info: #0dcaf0;
+  --info-light: #d1ecf1;
+  
+  /* Focus and interaction states */
+  --focus-ring: #0d6efd;
+  --focus-ring-offset: #ffffff;
+  
+  /* Density variables */
+  --density-compact-spacing: 0.5rem;
+  --density-comfortable-spacing: 1rem;
+  --density-spacious-spacing: 1.5rem;
+  
+  /* Font size variables */
+  --font-size-small: 0.875rem;
+  --font-size-medium: 1rem;
+  --font-size-large: 1.125rem;
+  --font-size-extra-large: 1.25rem;
+  
+  /* Animation variables */
+  --animation-duration-fast: 0.15s;
+  --animation-duration-normal: 0.25s;
+  --animation-duration-slow: 0.4s;
+  --animation-easing: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* ===== DARK THEME ===== */
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --background-secondary: #1a1a1a;
+  --background-tertiary: #2d2d2d;
+  
+  --border: #404040;
+  --border-light: #2d2d2d;
+  --surface: #1a1a1a;
+  --surface-hover: #2d2d2d;
+  
+  --text-primary: #ededed;
+  --text-secondary: #a3a3a3;
+  --text-tertiary: #737373;
+  --text-inverse: #0a0a0a;
+  
+  --success: #22c55e;
+  --success-light: #052e16;
+  --warning: #eab308;
+  --warning-light: #1e1000;
+  --error: #ef4444;
+  --error-light: #2d0a0a;
+  --info: #06b6d4;
+  --info-light: #0c2a2e;
+  
+  --focus-ring: #3b82f6;
+  --focus-ring-offset: #0a0a0a;
+}
+
+/* ===== HIGH CONTRAST THEME ===== */
+.high-contrast {
+  --background: #ffffff;
+  --foreground: #000000;
+  --background-secondary: #ffffff;
+  --background-tertiary: #f0f0f0;
+  
+  --border: #000000;
+  --border-light: #666666;
+  --surface: #ffffff;
+  --surface-hover: #f0f0f0;
+  
+  --text-primary: #000000;
+  --text-secondary: #000000;
+  --text-tertiary: #333333;
+  --text-inverse: #ffffff;
+  
+  --success: #006600;
+  --success-light: #ccffcc;
+  --warning: #cc6600;
+  --warning-light: #fff0cc;
+  --error: #cc0000;
+  --error-light: #ffcccc;
+  --info: #0066cc;
+  --info-light: #ccf0ff;
+  
+  --focus-ring: #0066cc;
+  --focus-ring-offset: #ffffff;
+}
+
+.high-contrast.dark {
+  --background: #000000;
+  --foreground: #ffffff;
+  --background-secondary: #000000;
+  --background-tertiary: #333333;
+  
+  --border: #ffffff;
+  --border-light: #999999;
+  --surface: #000000;
+  --surface-hover: #333333;
+  
+  --text-primary: #ffffff;
+  --text-secondary: #ffffff;
+  --text-tertiary: #cccccc;
+  --text-inverse: #000000;
+  
+  --success: #00ff00;
+  --success-light: #003300;
+  --warning: #ffcc00;
+  --warning-light: #332600;
+  --error: #ff0000;
+  --error-light: #330000;
+  --info: #0099ff;
+  --info-light: #002633;
+  
+  --focus-ring: #0099ff;
+  --focus-ring-offset: #000000;
+}
+
+/* ===== THEME INTEGRATION ===== */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -13,15 +150,272 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* ===== SYSTEM PREFERENCE FALLBACKS ===== */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not(.light):not(.dark):not(.high-contrast) {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --background-secondary: #1a1a1a;
+    --background-tertiary: #2d2d2d;
+    
+    --border: #404040;
+    --border-light: #2d2d2d;
+    --surface: #1a1a1a;
+    --surface-hover: #2d2d2d;
+    
+    --text-primary: #ededed;
+    --text-secondary: #a3a3a3;
+    --text-tertiary: #737373;
+    --text-inverse: #0a0a0a;
+    
+    --focus-ring: #3b82f6;
+    --focus-ring-offset: #0a0a0a;
   }
 }
 
+/* ===== DENSITY CLASSES ===== */
+.density-compact {
+  --current-spacing: var(--density-compact-spacing);
+}
+
+.density-comfortable {
+  --current-spacing: var(--density-comfortable-spacing);
+}
+
+.density-spacious {
+  --current-spacing: var(--density-spacious-spacing);
+}
+
+/* Apply density to common elements */
+.density-compact .space-y-1 > * + * { margin-top: 0.25rem !important; }
+.density-compact .space-y-2 > * + * { margin-top: 0.5rem !important; }
+.density-compact .space-y-4 > * + * { margin-top: 0.75rem !important; }
+.density-compact .p-4 { padding: 0.5rem !important; }
+.density-compact .px-4 { padding-left: 0.5rem !important; padding-right: 0.5rem !important; }
+.density-compact .py-4 { padding-top: 0.5rem !important; padding-bottom: 0.5rem !important; }
+
+.density-spacious .space-y-1 > * + * { margin-top: 0.75rem !important; }
+.density-spacious .space-y-2 > * + * { margin-top: 1.5rem !important; }
+.density-spacious .space-y-4 > * + * { margin-top: 2rem !important; }
+.density-spacious .p-4 { padding: 1.5rem !important; }
+.density-spacious .px-4 { padding-left: 1.5rem !important; padding-right: 1.5rem !important; }
+.density-spacious .py-4 { padding-top: 1.5rem !important; padding-bottom: 1.5rem !important; }
+
+/* ===== FONT SIZE CLASSES ===== */
+.font-small {
+  --current-font-size: var(--font-size-small);
+}
+
+.font-medium {
+  --current-font-size: var(--font-size-medium);
+}
+
+.font-large {
+  --current-font-size: var(--font-size-large);
+}
+
+.font-extra-large {
+  --current-font-size: var(--font-size-extra-large);
+}
+
+/* Apply font sizes */
+.font-small body, .font-small .text-base { font-size: 0.875rem; }
+.font-small .text-sm { font-size: 0.75rem; }
+.font-small .text-lg { font-size: 1rem; }
+.font-small .text-xl { font-size: 1.125rem; }
+
+.font-large body, .font-large .text-base { font-size: 1.125rem; }
+.font-large .text-sm { font-size: 1rem; }
+.font-large .text-lg { font-size: 1.25rem; }
+.font-large .text-xl { font-size: 1.375rem; }
+
+.font-extra-large body, .font-extra-large .text-base { font-size: 1.25rem; }
+.font-extra-large .text-sm { font-size: 1.125rem; }
+.font-extra-large .text-lg { font-size: 1.375rem; }
+.font-extra-large .text-xl { font-size: 1.5rem; }
+
+/* ===== ACCESSIBILITY CLASSES ===== */
+
+/* Reduced Motion */
+.reduce-motion,
+.reduce-motion *,
+.reduce-motion *::before,
+.reduce-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+.reduce-motion .animate-spin {
+  animation: none !important;
+}
+
+.reduce-motion .animate-pulse {
+  animation: none !important;
+}
+
+.reduce-motion .animate-bounce {
+  animation: none !important;
+}
+
+/* Screen Reader Optimizations */
+.screen-reader-optimized {
+  /* Improved focus indicators */
+}
+
+.screen-reader-optimized *:focus {
+  outline: 3px solid var(--focus-ring) !important;
+  outline-offset: 2px !important;
+}
+
+.screen-reader-optimized .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.screen-reader-optimized .sr-only:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: 0.5rem;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+  background: var(--background);
+  color: var(--text-primary);
+  border: 2px solid var(--focus-ring);
+}
+
+/* Keyboard Navigation Enhancements */
+.keyboard-navigation-enhanced {
+  /* Enhanced focus indicators */
+}
+
+.keyboard-navigation-enhanced button:focus,
+.keyboard-navigation-enhanced [role="button"]:focus,
+.keyboard-navigation-enhanced a:focus,
+.keyboard-navigation-enhanced input:focus,
+.keyboard-navigation-enhanced select:focus,
+.keyboard-navigation-enhanced textarea:focus {
+  outline: 3px solid var(--focus-ring) !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 6px var(--focus-ring-offset), 0 0 0 9px var(--focus-ring) !important;
+}
+
+/* Skip to content link */
+.keyboard-navigation-enhanced .skip-to-content {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: var(--background);
+  color: var(--text-primary);
+  padding: 8px;
+  text-decoration: none;
+  border: 2px solid var(--focus-ring);
+  border-radius: 4px;
+  z-index: 100;
+}
+
+.keyboard-navigation-enhanced .skip-to-content:focus {
+  top: 6px;
+}
+
+/* ===== ANIMATION CONTROL ===== */
+.animations-disabled,
+.animations-disabled *,
+.animations-disabled *::before,
+.animations-disabled *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+}
+
+/* ===== BASE STYLES ===== */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  font-size: var(--current-font-size, var(--font-size-medium));
+  line-height: 1.6;
+  transition: background-color var(--animation-duration-normal) var(--animation-easing),
+              color var(--animation-duration-normal) var(--animation-easing);
+}
+
+/* Ensure animations respect user preferences */
+@media (prefers-reduced-motion: reduce) {
+  :root:not(.animations-disabled) {
+    --animation-duration-fast: 0.01ms;
+    --animation-duration-normal: 0.01ms;
+    --animation-duration-slow: 0.01ms;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Focus visible for better accessibility */
+*:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* Improve text contrast in high contrast mode */
+.high-contrast * {
+  border-color: var(--border) !important;
+}
+
+.high-contrast button,
+.high-contrast [role="button"] {
+  border: 2px solid var(--border) !important;
+  background: var(--surface) !important;
+  color: var(--text-primary) !important;
+}
+
+.high-contrast a {
+  color: var(--info) !important;
+  text-decoration: underline !important;
+}
+
+.high-contrast a:visited {
+  color: var(--warning) !important;
+}
+
+/* Custom scrollbar for better theming */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+}
+
+/* Selection styles */
+::selection {
+  background: var(--focus-ring);
+  color: var(--text-inverse);
 }
