@@ -6,10 +6,10 @@ export const weatherConditionSchema = z.enum(['sunny', 'rainy', 'cloudy', 'hot',
 // Activity type enum
 export const activityTypeSchema = z.enum(['before', 'after'])
 
-// Indiranagar coordinate boundaries
-const INDIRANAGAR_BOUNDS = {
-  lat: { min: 12.95, max: 13.00 },
-  lng: { min: 77.58, max: 77.65 }
+// Bangalore coordinate boundaries (expanded to include outskirts)
+const BANGALORE_BOUNDS = {
+  lat: { min: 12.70, max: 13.20 },
+  lng: { min: 77.40, max: 77.80 }
 }
 
 // Place validation schemas
@@ -18,11 +18,11 @@ export const placeSchema = z.object({
   name: z.string().min(1, 'Name is required').max(255, 'Name too long'),
   description: z.string().min(10, 'Description must be at least 10 characters'),
   latitude: z.number()
-    .min(INDIRANAGAR_BOUNDS.lat.min, 'Latitude outside Indiranagar boundaries')
-    .max(INDIRANAGAR_BOUNDS.lat.max, 'Latitude outside Indiranagar boundaries'),
+    .min(BANGALORE_BOUNDS.lat.min, 'Latitude outside Bangalore boundaries')
+    .max(BANGALORE_BOUNDS.lat.max, 'Latitude outside Bangalore boundaries'),
   longitude: z.number()
-    .min(INDIRANAGAR_BOUNDS.lng.min, 'Longitude outside Indiranagar boundaries')
-    .max(INDIRANAGAR_BOUNDS.lng.max, 'Longitude outside Indiranagar boundaries'),
+    .min(BANGALORE_BOUNDS.lng.min, 'Longitude outside Bangalore boundaries')
+    .max(BANGALORE_BOUNDS.lng.max, 'Longitude outside Bangalore boundaries'),
   rating: z.number()
     .min(1, 'Rating must be at least 1')
     .max(5, 'Rating must be at most 5')
@@ -31,6 +31,7 @@ export const placeSchema = z.object({
   weather_suitability: z.array(weatherConditionSchema).optional().nullable(),
   accessibility_info: z.string().optional().nullable(),
   best_time_to_visit: z.string().max(100).optional().nullable(),
+  has_amit_visited: z.boolean().default(false),
   primary_image: z.string().url().optional().nullable(),
   created_at: z.string().datetime(),
   updated_at: z.string().datetime(),
@@ -88,12 +89,15 @@ export const imageFileSchema = z.object({
 })
 
 // Content validation functions
-export function validateIndiranagar(lat: number, lng: number): boolean {
-  return lat >= INDIRANAGAR_BOUNDS.lat.min && 
-         lat <= INDIRANAGAR_BOUNDS.lat.max &&
-         lng >= INDIRANAGAR_BOUNDS.lng.min && 
-         lng <= INDIRANAGAR_BOUNDS.lng.max
+export function validateBangalore(lat: number, lng: number): boolean {
+  return lat >= BANGALORE_BOUNDS.lat.min && 
+         lat <= BANGALORE_BOUNDS.lat.max &&
+         lng >= BANGALORE_BOUNDS.lng.min && 
+         lng <= BANGALORE_BOUNDS.lng.max
 }
+
+// Legacy function name for backward compatibility
+export const validateIndiranagar = validateBangalore
 
 export function validateRating(rating: number): boolean {
   return rating >= 1 && rating <= 5 && (rating * 10) % 1 === 0

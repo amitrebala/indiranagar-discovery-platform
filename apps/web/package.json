@@ -13,10 +13,12 @@
     "test:coverage": "vitest run --coverage",
     "test:clean": "pkill -f vitest || true",
     "seed:database": "tsx scripts/seed-database.ts",
+    "seed:amit-places": "tsx scripts/seed-amit-places.ts",
     "backup:content": "tsx scripts/backup-content.ts",
     "restore:content": "tsx scripts/backup-content.ts --restore"
   },
   "dependencies": {
+    "@aws-sdk/client-secrets-manager": "^3.859.0",
     "@supabase/auth-helpers-nextjs": "^0.10.0",
     "@supabase/ssr": "^0.6.1",
     "@supabase/supabase-js": "^2.53.0",
@@ -25,7 +27,6 @@
     "@types/lodash": "^4.17.20",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
-    "dotenv": "^17.2.1",
     "express": "^5.1.0",
     "leaflet": "^1.9.4",
     "leaflet.markercluster": "^1.5.3",
@@ -47,6 +48,7 @@
     "@types/react-dom": "^19",
     "autoprefixer": "^10.4.20",
     "critters": "^0.0.23",
+    "dotenv": "^17.2.1",
     "eslint": "^9",
     "eslint-config-next": "15.4.5",
     "msw": "^2.10.4",

@@ -19,22 +19,22 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Indiranagar Discovery | Personal Place Recommendations",
-  description: "Discover hidden gems in Indiranagar with personal recommendations from a local expert. Weather-aware exploration with 100+ curated places.",
-  keywords: "Indiranagar, Bangalore, places, recommendations, local expert, weather-aware",
+  title: "Indiranagar with Amit | 186 Personally Visited Places",
+  description: "Explore Indiranagar through Amit's eyes. 186 personally visited and verified places with insider tips, weather-aware recommendations, and authentic local experiences.",
+  keywords: "Indiranagar with Amit, Bangalore, places, personal recommendations, verified places, local guide",
   openGraph: {
-    title: "Indiranagar Discovery Platform",
-    description: "Personal place recommendations from local expert",
+    title: "Indiranagar with Amit",
+    description: "186 personally visited places in Bangalore's most vibrant neighborhood",
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Indiranagar Discovery Platform",
-    description: "Personal place recommendations from local expert",
+    title: "Indiranagar with Amit",
+    description: "186 personally visited places in Bangalore's most vibrant neighborhood",
   },
   manifest: "/manifest.json",
-  themeColor: "#6366f1",
+  themeColor: "#f97316",
   viewport: {
     width: "device-width",
     initialScale: 1,

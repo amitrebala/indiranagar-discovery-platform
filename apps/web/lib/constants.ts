@@ -17,24 +17,33 @@ export const EXTERNAL_LINKS = {
 
 // Map configuration constants
 export const MAP_CONFIG = {
-  // Indiranagar center coordinates
+  // Indiranagar center coordinates (initial focus)
   CENTER: {
     lat: 12.9716,
     lng: 77.5946
   },
   
-  // Map bounds for Indiranagar area
-  BOUNDS: {
+  // Indiranagar bounds (for initial view)
+  INDIRANAGAR_BOUNDS: {
     north: 13.0000,
     south: 12.9500,
     east: 77.6500,
     west: 77.5800
   },
   
+  // Greater Bangalore bounds (for expanded view)
+  BANGALORE_BOUNDS: {
+    north: 13.1000,
+    south: 12.8000,
+    east: 77.7500,
+    west: 77.4500
+  },
+  
   // Zoom levels
   DEFAULT_ZOOM: 15,
-  MIN_ZOOM: 13,
+  MIN_ZOOM: 11,  // Allow zooming out to see all of Bangalore
   MAX_ZOOM: 18,
+  EXPANDED_ZOOM: 12,  // Zoom level when showing places outside Indiranagar
   
   // Tile configuration
   TILE_URL: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',

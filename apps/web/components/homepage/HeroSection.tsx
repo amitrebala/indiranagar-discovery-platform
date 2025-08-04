@@ -12,19 +12,20 @@ export function HeroSection() {
           {/* Hero Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-primary/20 text-sm font-medium text-primary mb-6">
             <TrendingUp size={16} />
-            100+ Personally Curated Places
+            166 Personally Visited Places
           </div>
 
           {/* Main Heading */}
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-            Discover Indiranagar Through
-            <span className="text-primary block">Local Expertise</span>
+            Indiranagar
+            <span className="text-primary block">with Amit</span>
           </h1>
 
           {/* Subheading */}
           <p className="text-xl md:text-2xl text-neutral-600 mb-8 leading-relaxed">
-            Personal recommendations from someone who&apos;s explored every corner. 
-            Weather-aware suggestions, authentic experiences, and hidden gems you won&apos;t find elsewhere.
+            Your personal guide to Bangalore&apos;s most vibrant neighborhood. 
+            I&apos;ve explored every street, cafe, and hidden corner so you can discover 
+            the authentic Indiranagar through trusted recommendations.
           </p>
 
           {/* Value Propositions */}
@@ -33,9 +34,9 @@ export function HeroSection() {
               <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-3">
                 <MapPin className="w-6 h-6 text-primary" />
               </div>
-              <h3 className="font-semibold text-gray-900 mb-2">Local Authority</h3>
+              <h3 className="font-semibold text-gray-900 mb-2">Personally Verified</h3>
               <p className="text-sm text-neutral-600">
-                Personal exploration of 100+ places with authentic insights and honest reviews
+                Every single place has been visited by me, with honest reviews and insider tips
               </p>
             </div>
             
@@ -83,20 +84,20 @@ export function HeroSection() {
           <div className="mt-12 pt-8 border-t border-neutral-200">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
               <div>
-                <div className="text-2xl font-bold text-primary mb-1">100+</div>
-                <div className="text-sm text-neutral-600">Places Explored</div>
+                <div className="text-2xl font-bold text-primary mb-1">166</div>
+                <div className="text-sm text-neutral-600">Places Visited</div>
               </div>
               <div>
-                <div className="text-2xl font-bold text-secondary mb-1">25+</div>
+                <div className="text-2xl font-bold text-secondary mb-1">15+</div>
                 <div className="text-sm text-neutral-600">Categories</div>
               </div>
               <div>
-                <div className="text-2xl font-bold text-accent/80 mb-1">4.2</div>
-                <div className="text-sm text-neutral-600">Avg Rating</div>
+                <div className="text-2xl font-bold text-accent/80 mb-1">100%</div>
+                <div className="text-sm text-neutral-600">Personally Verified</div>
               </div>
               <div>
-                <div className="text-2xl font-bold text-primary mb-1">2.1km²</div>
-                <div className="text-sm text-neutral-600">Area Covered</div>
+                <div className="text-2xl font-bold text-primary mb-1">5+ Years</div>
+                <div className="text-sm text-neutral-600">Living Here</div>
               </div>
             </div>
           </div>

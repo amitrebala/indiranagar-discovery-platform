@@ -49,10 +49,10 @@ export function Header() {
             </div>
             <div className="hidden sm:block">
               <h1 className="text-lg font-bold text-neutral-900">
-                Indiranagar Discovery
+                Indiranagar <span className="text-primary-600">with Amit</span>
               </h1>
               <p className="text-xs text-neutral-600 -mt-1">
-                Personal place recommendations
+                186 personally visited places
               </p>
             </div>
           </Link>

@@ -11,6 +11,7 @@ import { PlaceMarker } from './PlaceMarker'
 import { JourneyCollection } from './JourneyRouteVisualization'
 import { MapPreview, useMapPreview } from './MapPreview'
 import { MapLoadingSkeleton } from '@/components/ui/SkeletonLoaders'
+import { MapLegend } from './MapLegend'
 import { useMapStore } from '@/stores/mapStore'
 import { usePlaces } from '@/hooks/usePlaces'
 import { MAP_CONFIG } from '@/lib/constants'
@@ -54,11 +55,11 @@ function MapBoundsHandler() {
 
   useEffect(() => {
     const bounds = new LatLngBounds(
-      [MAP_CONFIG.BOUNDS.south, MAP_CONFIG.BOUNDS.west],
-      [MAP_CONFIG.BOUNDS.north, MAP_CONFIG.BOUNDS.east]
+      [MAP_CONFIG.BANGALORE_BOUNDS.south, MAP_CONFIG.BANGALORE_BOUNDS.west],
+      [MAP_CONFIG.BANGALORE_BOUNDS.north, MAP_CONFIG.BANGALORE_BOUNDS.east]
     )
     
-    // Set max bounds to keep map focused on Indiranagar
+    // Set max bounds to show all of Bangalore
     map.setMaxBounds(bounds)
     map.setMinZoom(MAP_CONFIG.MIN_ZOOM)
     map.setMaxZoom(MAP_CONFIG.MAX_ZOOM)
@@ -274,8 +275,11 @@ export function InteractiveMap({ className = '' }: InteractiveMapProps) {
         onJourneySelect={handleJourneySelect}
       />
       
+      {/* Map Legend */}
+      <MapLegend />
+      
       {/* Stats display */}
-      <div className="absolute bottom-4 left-4 z-10 bg-white/90 backdrop-blur-sm px-3 py-2 rounded-lg shadow-lg text-sm">
+      <div className="absolute bottom-4 right-4 z-10 bg-white/90 backdrop-blur-sm px-3 py-2 rounded-lg shadow-lg text-sm">
         <div className="space-y-1">
           <div className="text-neutral-600">
             {places.length} places discovered

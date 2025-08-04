@@ -39,6 +39,7 @@ export interface Place {
   weather_suitability: WeatherCondition[] | null
   accessibility_info: string | null
   best_time_to_visit: string | null
+  has_amit_visited: boolean
   created_at: string
   updated_at: string
 }
@@ -54,6 +55,7 @@ export interface PlaceInsert {
   weather_suitability?: WeatherCondition[] | null
   accessibility_info?: string | null
   best_time_to_visit?: string | null
+  has_amit_visited?: boolean
   created_at?: string
   updated_at?: string
 }
@@ -69,6 +71,7 @@ export interface PlaceUpdate {
   weather_suitability?: WeatherCondition[] | null
   accessibility_info?: string | null
   best_time_to_visit?: string | null
+  has_amit_visited?: boolean
   updated_at?: string
 }
 

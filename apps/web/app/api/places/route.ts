@@ -22,6 +22,7 @@ export async function GET(request: NextRequest) {
         companion_activities (*),
         place_images (*)
       `)
+      .eq('has_amit_visited', true) // Only show places Amit has visited
       .order('rating', { ascending: false })
       .range(offset, offset + limit - 1)
     

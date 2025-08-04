@@ -12,7 +12,8 @@ const SAMPLE_PLACES: CreatePlace[] = [
     category: "Restaurant & Bar",
     weather_suitability: ["sunny", "cloudy", "cool"],
     accessibility_info: "Ground floor accessible, limited parking",
-    best_time_to_visit: "Evening 6-10 PM"
+    best_time_to_visit: "Evening 6-10 PM",
+    has_amit_visited: true
   },
   {
     name: "Phoenix MarketCity",
@@ -23,7 +24,8 @@ const SAMPLE_PLACES: CreatePlace[] = [
     category: "Shopping Mall",
     weather_suitability: ["rainy", "hot", "humid"],
     accessibility_info: "Fully wheelchair accessible, ample parking",
-    best_time_to_visit: "Weekdays 11 AM - 2 PM"
+    best_time_to_visit: "Weekdays 11 AM - 2 PM",
+    has_amit_visited: true
   },
   {
     name: "Cubbon Park",
@@ -34,7 +36,8 @@ const SAMPLE_PLACES: CreatePlace[] = [
     category: "Park & Recreation",
     weather_suitability: ["sunny", "cool", "cloudy"],
     accessibility_info: "Multiple entry points, some paved paths",
-    best_time_to_visit: "Early morning 6-9 AM"
+    best_time_to_visit: "Early morning 6-9 AM",
+    has_amit_visited: true
   },
   {
     name: "Commercial Street",
@@ -45,7 +48,8 @@ const SAMPLE_PLACES: CreatePlace[] = [
     category: "Shopping Street",
     weather_suitability: ["sunny", "cloudy"],
     accessibility_info: "Crowded pedestrian area, limited vehicle access",
-    best_time_to_visit: "Afternoon 2-6 PM"
+    best_time_to_visit: "Afternoon 2-6 PM",
+    has_amit_visited: true
   },
   {
     name: "Vidhana Soudha",
@@ -56,7 +60,8 @@ const SAMPLE_PLACES: CreatePlace[] = [
     category: "Historical Landmark",
     weather_suitability: ["sunny", "cloudy"],
     accessibility_info: "External viewing only, security restrictions",
-    best_time_to_visit: "Morning 10 AM - 12 PM"
+    best_time_to_visit: "Morning 10 AM - 12 PM",
+    has_amit_visited: true
   }
 ]
 

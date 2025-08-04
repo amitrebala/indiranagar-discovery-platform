@@ -1,14 +1,15 @@
 'use client'
 
-import { Marker, Popup } from 'react-leaflet'
+import { Marker, Popup, useMap } from 'react-leaflet'
 import { divIcon } from 'leaflet'
 import { renderToString } from 'react-dom/server'
-import { MapPin, Star } from 'lucide-react'
+import { MapPin, Star, CheckCircle } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import type { Place } from '@/lib/validations'
 import { useMapStore } from '@/stores/mapStore'
 import { getPlaceImageUrl } from '@/lib/supabase/storage'
+import { MAP_CONFIG } from '@/lib/constants'
 
 interface PlaceMarkerProps {
   place: Place
@@ -87,6 +88,13 @@ function PhotoMarkerIcon({ place, isSelected, size = 'medium', imageUrl }: {
           <Star size={8} className="text-black fill-current" />
         </div>
       )}
+      
+      {/* Amit visited indicator */}
+      {place.has_amit_visited && (
+        <div className="absolute -top-1 -right-1 w-5 h-5 bg-green-500 rounded-full flex items-center justify-center shadow-sm">
+          <CheckCircle size={12} className="text-white fill-current" />
+        </div>
+      )}
     </div>
   )
 }
@@ -127,6 +135,7 @@ export function PlaceMarker({ place, size = 'medium' }: PlaceMarkerProps) {
   const [imageUrl, setImageUrl] = useState<string | null>(null)
   // const [imageLoading, setImageLoading] = useState(false)
   const [hoveredPlace, setHoveredPlace] = useState<Place | null>(null)
+  const map = useMap()
   
   // Determine marker size based on zoom level
   const dynamicSize = zoom >= 16 ? 'large' : zoom >= 14 ? 'medium' : 'small'
@@ -167,6 +176,22 @@ export function PlaceMarker({ place, size = 'medium' }: PlaceMarkerProps) {
 
   const handleMarkerClick = () => {
     selectPlace(place)
+    
+    // Check if place is outside Indiranagar bounds
+    const { INDIRANAGAR_BOUNDS } = MAP_CONFIG
+    const isOutsideIndiranagar = 
+      place.latitude < INDIRANAGAR_BOUNDS.south ||
+      place.latitude > INDIRANAGAR_BOUNDS.north ||
+      place.longitude < INDIRANAGAR_BOUNDS.west ||
+      place.longitude > INDIRANAGAR_BOUNDS.east
+    
+    // If outside Indiranagar, expand the map view
+    if (isOutsideIndiranagar && map) {
+      map.setView([place.latitude, place.longitude], MAP_CONFIG.EXPANDED_ZOOM, {
+        animate: true,
+        duration: 0.5
+      })
+    }
   }
   
   const handleMarkerMouseOver = () => {
@@ -201,13 +226,19 @@ export function PlaceMarker({ place, size = 'medium' }: PlaceMarkerProps) {
             </div>
           </div>
           
-          {place.category && (
-            <div className="mb-2">
+          <div className="flex items-center gap-2 mb-2">
+            {place.category && (
               <span className="inline-block bg-secondary/10 text-secondary text-xs px-2 py-1 rounded-full">
                 {place.category}
               </span>
-            </div>
-          )}
+            )}
+            {place.has_amit_visited && (
+              <span className="inline-flex items-center gap-1 bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full">
+                <CheckCircle size={10} />
+                Verified
+              </span>
+            )}
+          </div>
           
           <p className="text-neutral-600 text-xs leading-relaxed mb-3">
             {place.description.length > 120 
