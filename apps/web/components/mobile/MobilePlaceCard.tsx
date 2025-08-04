@@ -88,7 +88,7 @@ export default function MobilePlaceCard({
   if (compact) {
     return (
       <Link 
-        href={`/places/${place.id}`}
+        href={`/places/${place.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
         className="focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2 rounded-lg"
         aria-label={`View details for ${place.name}`}
       >

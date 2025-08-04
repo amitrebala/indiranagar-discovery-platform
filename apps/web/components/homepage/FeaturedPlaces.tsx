@@ -11,7 +11,7 @@ import type { Place } from '@/lib/validations'
 function PlaceCard({ place }: { place: Place }) {
   return (
     <Link 
-      href={`/places/${place.id}`}
+      href={`/places/${place.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
       className="group bg-white rounded-xl shadow-sm border border-neutral-200 overflow-hidden hover:shadow-md transition-all duration-200 hover:-translate-y-1"
     >
       {/* Place Image */}

@@ -257,15 +257,15 @@ export function PlaceMarker({ place, size = 'medium' }: PlaceMarkerProps) {
             <span>
               {place.latitude.toFixed(4)}, {place.longitude.toFixed(4)}
             </span>
-            <button 
+            <a 
+              href={`/places/${place.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
               className="text-primary hover:text-primary/80 font-medium"
-              onClick={() => {
-                // Future: Navigate to place detail page
-                console.log('Navigate to place:', place.id)
+              onClick={(e) => {
+                e.stopPropagation()
               }}
             >
               View Details →
-            </button>
+            </a>
           </div>
         </div>
       </Popup>
