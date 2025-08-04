@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
-import { supabase } from '@/lib/supabase/client'
+import { createClient } from '@/lib/supabase/client'
 import { ImageSourceManager, ImageResult } from '@/lib/services/image-sources'
 import type { Place, PlaceImage } from '@/lib/supabase/types'
 
@@ -106,6 +106,7 @@ export function usePlaceImage(place: Place): UsePlaceImageResult {
       }
 
       // 2. Check existing place_images in database
+      const supabase = createClient()
       const { data: existingImages, error: dbError } = await supabase
         .from('place_images')
         .select('*')
@@ -197,6 +198,7 @@ function getImageUrl(storagePath: string): string {
 
 async function saveDiscoveredImage(placeId: string, image: ImageResult): Promise<void> {
   try {
+    const supabase = createClient()
     const { error } = await supabase.from('place_images').insert({
       place_id: placeId,
       storage_path: image.url,
