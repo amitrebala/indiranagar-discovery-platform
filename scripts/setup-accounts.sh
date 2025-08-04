@@ -462,6 +462,58 @@ setup_deployment() {
     echo ""
 }
 
+# Function to setup GitHub repository with CLI
+setup_github_with_cli() {
+    log_info "Creating GitHub repository with GitHub CLI..."
+    
+    # Get repository details
+    get_input "Repository name (default: indiranagar-discovery-platform): " REPO_NAME
+    REPO_NAME=${REPO_NAME:-indiranagar-discovery-platform}
+    
+    get_input "Repository description (default: Enhanced Experience Intelligence Platform): " REPO_DESC  
+    REPO_DESC=${REPO_DESC:-"Enhanced Experience Intelligence Platform"}
+    
+    echo "Repository visibility:"
+    echo "1) Public (recommended - easier to share)"
+    echo "2) Private"
+    get_input "Choose (1-2): " REPO_VISIBILITY
+    
+    if [ "$REPO_VISIBILITY" = "2" ]; then
+        VISIBILITY_FLAG="--private"
+    else
+        VISIBILITY_FLAG="--public"
+    fi
+    
+    # Initialize git if needed
+    if [ ! -d "$PROJECT_ROOT/.git" ]; then
+        cd "$PROJECT_ROOT"
+        git init
+        git add .
+        git commit -m "Initial commit: Enhanced Experience Intelligence Platform with 5 Epics
+
+Complete implementation including:
+- Epic 1: Foundation & Core Infrastructure  
+- Epic 2: Place Discovery & Journey Experiences
+- Epic 3: Social Coordination & Community Features
+- Epic 4: Enhanced Discovery & Content Hub
+- Epic 5: UX Excellence & Accessibility
+
+🤖 Generated with [Claude Code](https://claude.ai/code)
+
+Co-Authored-By: Claude <noreply@anthropic.com>"
+    fi
+    
+    # Create repository
+    log_info "Creating repository '$REPO_NAME'..."
+    if gh repo create "$REPO_NAME" --description "$REPO_DESC" $VISIBILITY_FLAG --source=. --push; then
+        log_success "✓ GitHub repository created and code pushed!"
+        log_success "✓ Repository URL: $(gh repo view --web --json url -q .url)"
+    else
+        log_error "Failed to create repository with GitHub CLI"
+        log_info "You can create it manually at: https://github.com/new"
+    fi
+}
+
 # Function to setup Vercel deployment
 setup_vercel_deployment() {
     log_info "Setting up Vercel deployment..."
