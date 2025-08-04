@@ -1,9 +1,20 @@
 import { createClient } from '../lib/supabase/client'
 import type { CreatePlace } from '../lib/validations'
-import AMIT_COMPLETE_PLACES from '../data/amit-places-complete'
+import { amitActualVisitedPlaces } from '../data/amit-actual-visited-places'
 
-// Use the complete list from the data file
-const AMIT_ALL_PLACES: CreatePlace[] = AMIT_COMPLETE_PLACES
+// Convert Amit's actual places to CreatePlace format
+const AMIT_ALL_PLACES: CreatePlace[] = amitActualVisitedPlaces.map(place => ({
+  name: place.name,
+  description: place.notes,
+  category: place.category,
+  rating: place.rating || 4.0,
+  latitude: place.coordinates?.lat || 12.9716, // Default to Indiranagar center
+  longitude: place.coordinates?.lng || 77.6408,
+  weather_suitability: ["sunny", "cloudy", "cool"], // Default values
+  accessibility_info: "Ground floor accessible",
+  best_time_to_visit: "Anytime",
+  has_amit_visited: true
+}))
 
 // Original inline places array has been moved to data/amit-places-complete.ts
 const AMIT_ALL_PLACES_OLD: CreatePlace[] = [

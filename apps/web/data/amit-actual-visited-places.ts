@@ -13,7 +13,97 @@ export interface AmitPlace {
   };
 }
 
-export const amitVisitedPlaces: AmitPlace[] = [
+// Amit's actual visited places - cleaned up and categorized from his list
+export const amitActualVisitedPlaces: AmitPlace[] = [
+  // Fine Dining & Premium Experiences
+  {
+    name: "31st Floor - High Ultra Lounge",
+    category: "fine dining",
+    rating: 5,
+    notes: "Amazing views and experience",
+    vibe: "luxurious",
+    priceRange: "$$$$",
+    bestFor: ["special occasions", "dates"]
+  },
+  {
+    name: "RIM NAAM",
+    category: "fine dining",
+    rating: 5,
+    notes: "Amazing 'Big Date' place",
+    vibe: "romantic",
+    priceRange: "$$$$",
+    bestFor: ["special dates", "anniversaries"]
+  },
+  {
+    name: "Swwing",
+    category: "fine dining",
+    notes: "Indiranagar - Great Date setting and an interesting menu",
+    vibe: "romantic",
+    priceRange: "$$$",
+    bestFor: ["dates"]
+  },
+  {
+    name: "Salt",
+    category: "fine dining",
+    notes: "Good food, good ambience, good service, Overpriced",
+    vibe: "upscale",
+    priceRange: "$$$$"
+  },
+  {
+    name: "Muro",
+    category: "fine dining",
+    rating: 5,
+    notes: "Gorgeous place, inspired cocktails, interesting food presentation, great service",
+    vibe: "sophisticated",
+    priceRange: "$$$$",
+    bestFor: ["special occasions"]
+  },
+  {
+    name: "MIRTH",
+    category: "fine dining",
+    rating: 5,
+    notes: "Great indoor dining experience, premium",
+    vibe: "premium",
+    priceRange: "$$$$"
+  },
+  {
+    name: "Jamavar",
+    category: "fine dining",
+    notes: "Leela palace - Amazing for anniversaries and parents will definitely love it",
+    vibe: "traditional luxury",
+    priceRange: "$$$$",
+    bestFor: ["anniversaries", "family celebrations"]
+  },
+  {
+    name: "Dakshin",
+    category: "fine dining",
+    notes: "South Indian fine dining",
+    vibe: "traditional",
+    priceRange: "$$$"
+  },
+  {
+    name: "Alba",
+    category: "fine dining",
+    notes: "Great Italian food",
+    vibe: "elegant",
+    priceRange: "$$$"
+  },
+  {
+    name: "Olive Beach",
+    category: "fine dining",
+    notes: "Great ambience, mid food, good date place choice",
+    vibe: "beachside",
+    priceRange: "$$$",
+    bestFor: ["dates"]
+  },
+  {
+    name: "Bastian",
+    category: "fine dining",
+    notes: "Great ambience",
+    vibe: "modern",
+    priceRange: "$$$"
+  },
+
   // Cafes & Coffee
   {
     name: "Urban Solace",
@@ -176,104 +266,7 @@ export const amitVisitedPlaces: AmitPlace[] = [
     priceRange: "$$"
   },
 
-  // Fine Dining & Premium
-  {
-    name: "31st Floor - High Ultra Lounge",
-    category: "fine dining",
-    rating: 5,
-    notes: "Amazing views and experience",
-    vibe: "luxurious",
-    priceRange: "$$$$",
-    bestFor: ["special occasions", "dates"]
-  },
-  {
-    name: "13th Floor MG Road",
-    category: "fine dining",
-    notes: "Views",
-    vibe: "rooftop",
-    priceRange: "$$$",
-    bestFor: ["dates", "celebrations"]
-  },
-  {
-    name: "RIM NAAM",
-    category: "fine dining",
-    rating: 5,
-    notes: "Amazing 'Big Date' place",
-    vibe: "romantic",
-    priceRange: "$$$$",
-    bestFor: ["special dates", "anniversaries"]
-  },
-  {
-    name: "Swwing",
-    category: "fine dining",
-    notes: "Indiranagar - Great Date setting and an interesting menu",
-    vibe: "romantic",
-    priceRange: "$$$",
-    bestFor: ["dates"]
-  },
-  {
-    name: "Salt",
-    category: "fine dining",
-    notes: "Good food, good ambience, good service, Overpriced",
-    vibe: "upscale",
-    priceRange: "$$$$"
-  },
-  {
-    name: "Muro",
-    category: "fine dining",
-    rating: 5,
-    notes: "Gorgeous place, inspired cocktails, interesting food presentation, great service",
-    vibe: "sophisticated",
-    priceRange: "$$$$",
-    bestFor: ["special occasions"]
-  },
-  {
-    name: "MIRTH",
-    category: "fine dining",
-    rating: 5,
-    notes: "Great indoor dining experience, premium",
-    vibe: "premium",
-    priceRange: "$$$$"
-  },
-  {
-    name: "Jamavar",
-    category: "fine dining",
-    notes: "Leela palace - Amazing for anniversaries and parents will definitely love it",
-    vibe: "traditional luxury",
-    priceRange: "$$$$",
-    bestFor: ["anniversaries", "family celebrations"]
-  },
-  {
-    name: "Dakshin",
-    category: "fine dining",
-    notes: "South Indian fine dining",
-    vibe: "traditional",
-    priceRange: "$$$"
-  },
-  {
-    name: "Alba",
-    category: "fine dining",
-    notes: "Great Italian food",
-    vibe: "elegant",
-    priceRange: "$$$"
-  },
-  {
-    name: "Olive Beach",
-    category: "fine dining",
-    notes: "Great ambience, mid food, good date place choice",
-    vibe: "beachside",
-    priceRange: "$$$",
-    bestFor: ["dates"]
-  },
-  {
-    name: "Bastian",
-    category: "fine dining",
-    notes: "Great ambience",
-    vibe: "modern",
-    priceRange: "$$$"
-  },
-
-  // Casual Dining & Restaurants
+  // Casual Dining & Restaurants  
   {
     name: "Koshys",
     category: "restaurant",
@@ -1095,24 +1088,24 @@ export const amitVisitedPlaces: AmitPlace[] = [
 
 // Helper function to get places by category
 export function getPlacesByCategory(category: string): AmitPlace[] {
-  return amitVisitedPlaces.filter(place => place.category === category);
+  return amitActualVisitedPlaces.filter(place => place.category === category);
 }
 
 // Helper function to get highly rated places (4+ rating)
 export function getHighlyRatedPlaces(): AmitPlace[] {
-  return amitVisitedPlaces.filter(place => place.rating && place.rating >= 4);
+  return amitActualVisitedPlaces.filter(place => place.rating && place.rating >= 4);
 }
 
-// Helper function to search places by name
+// Helper function to search places by name or notes
 export function searchPlaces(query: string): AmitPlace[] {
   const lowerQuery = query.toLowerCase();
-  return amitVisitedPlaces.filter(place => 
+  return amitActualVisitedPlaces.filter(place => 
     place.name.toLowerCase().includes(lowerQuery) ||
     place.notes.toLowerCase().includes(lowerQuery)
   );
 }
 
-// Categories for filtering
+// Categories for filtering - updated to match actual data
 export const placeCategories = [
   { id: 'cafe', name: 'Cafes & Coffee', icon: '☕' },
   { id: 'fine dining', name: 'Fine Dining', icon: '🍽️' },
