@@ -66,7 +66,8 @@ const mockRelationships: BusinessRelationship[] = [
       }
     ],
     tags: ['coffee', 'artisanal', 'weekend-visits', 'group-friendly'],
-    notes: 'Great for introducing coffee enthusiasts to specialty coffee. The staff is knowledgeable and patient.'
+    notes: 'Great for introducing coffee enthusiasts to specialty coffee. The staff is knowledgeable and patient.',
+    mutual_contacts: ['Priya Nair', 'Rohan Gupta']
   },
   {
     id: '2',
@@ -114,7 +115,8 @@ const mockRelationships: BusinessRelationship[] = [
       }
     ],
     tags: ['heritage', 'family-friendly', 'breakfast', 'institutional'],
-    notes: 'Perfect for visitors who want to experience old Bangalore charm. The heritage breakfast is exceptional.'
+    notes: 'Perfect for visitors who want to experience old Bangalore charm. The heritage breakfast is exceptional.',
+    mutual_contacts: ['Uncle Kumar', 'Meera Aunty']
   },
   {
     id: '3',
@@ -151,7 +153,8 @@ const mockRelationships: BusinessRelationship[] = [
       }
     ],
     tags: ['traditional', 'weekend-routine', 'south-indian'],
-    notes: 'Consistent quality and service. Good for authentic South Indian breakfast experience.'
+    notes: 'Consistent quality and service. Good for authentic South Indian breakfast experience.',
+    mutual_contacts: []
   }
 ]
 
