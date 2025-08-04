@@ -14,12 +14,12 @@ const rsvpSchema = z.object({
   notes: z.string().optional()
 });
 
-async function sendRSVPConfirmation(event: any, rsvp: any) {
+async function sendRSVPConfirmation(event: { title: string }, rsvp: { attendee_email: string }) {
   // Implementation for sending RSVP confirmation email
   console.log('RSVP confirmation:', event.title, rsvp.attendee_email);
 }
 
-async function notifyOrganizerNewRSVP(event: any, rsvp: any) {
+async function notifyOrganizerNewRSVP(event: { organizer_email: string }, _rsvp: { attendee_email: string }) {
   // Implementation for notifying organizer of new RSVP
   console.log('New RSVP notification to organizer:', event.organizer_email);
 }
@@ -52,14 +52,14 @@ export async function POST(
     }
     
     // Check capacity if event has one
-    let finalData = { ...validatedData };
+    const finalData = { ...validatedData };
     if (event.capacity && validatedData.status === 'going') {
       const totalRequestedSpots = 1 + validatedData.guest_count;
       const availableSpots = event.capacity - event.rsvp_count;
       
       if (totalRequestedSpots > availableSpots) {
         // Add to waitlist if no spots available
-        finalData.status = 'waitlist' as any;
+        (finalData as { status: string }).status = 'waitlist';
       }
     }
     
