@@ -1,6 +1,6 @@
 VERCEL DEPLOYMENT ERROR REPORT
 ==============================
-Generated: Tue Aug  5 22:54:31 IST 2025
+Generated: Wed Aug  6 00:04:07 IST 2025
 Project: simple-todo
 
 PARSED ERRORS:
@@ -9,26 +9,6 @@ PARSED ERRORS:
 
 BUILD OUTPUT (Last 200 lines):
 ------------------------------
-
-./components/mobile/MobileJourneyInterface.tsx
-4:61  Warning: 'Camera' is defined but never used.  @typescript-eslint/no-unused-vars
-68:19  Warning: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
-68:40  Warning: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
-308:18  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
-
-./components/mobile/MobileOptimizedGallery.tsx
-5:40  Warning: 'Download' is defined but never used.  @typescript-eslint/no-unused-vars
-43:9  Warning: 'imageRefs' is assigned a value but never used.  @typescript-eslint/no-unused-vars
-
-./components/mobile/MobilePlaceCard.tsx
-3:10  Warning: 'useState' is defined but never used.  @typescript-eslint/no-unused-vars
-
-./components/places/AmitPlaceDetail.tsx
-75:27  Warning: 'placeName' is defined but never used.  @typescript-eslint/no-unused-vars
-411:70  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
-462:21  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
-
-./components/places/BusinessRelationships.tsx
 11:62  Warning: 'placeName' is defined but never used.  @typescript-eslint/no-unused-vars
 27:45  Warning: 'trustLevel' is defined but never used.  @typescript-eslint/no-unused-vars
 93:87  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
@@ -208,6 +188,26 @@ BUILD OUTPUT (Last 200 lines):
 388:45  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
 
 info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/app/api-reference/config/eslint#disabling-rules
+   Collecting page data ...
+ ⚠ Using edge runtime on a page currently disables static generation for that page
+   Generating static pages (0/32) ...
+ ⚠ Unsupported metadata themeColor is configured in metadata export in /preferences-demo. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ ⚠ Unsupported metadata viewport is configured in metadata export in /preferences-demo. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ ⚠ Unsupported metadata themeColor is configured in metadata export in /preferences-demo. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ ⚠ Unsupported metadata viewport is configured in metadata export in /preferences-demo. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+Error occurred prerendering page "/preferences-demo". Read more: https://nextjs.org/docs/messages/prerender-error
+Error: usePreferences must be used within a PreferencesProvider
+    at g (.next/server/app/preferences-demo/page.js:1:1675)
+    at l (.next/server/app/preferences-demo/page.js:1:20365) {
+  digest: '1409585415'
+}
+Export encountered an error on /preferences-demo/page: /preferences-demo, exiting the build.
+   Generating static pages (8/32) 
+ ⨯ Next.js build worker exited with code: 1 and signal: null
 Error: Command "npm run build" exited with 1
 
 ERROR CATEGORIES DETECTED:

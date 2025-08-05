@@ -3,9 +3,9 @@ RECENT CODE CHANGES AND INTENT:
 
 
 RECENT COMMITS:
-f018737 fix: ensure FAB visibility and fix Vercel deployment configuration
-5a6b663 fix: ensure FAB is always visible in viewport with proper fixed positioning
-6f15204 fix: resolve vitest config conflict with Next.js build
+aa51407 fix: resolve homepage journeys display and critical application stability issues
+7ce819f feat: commit all open work including UX accessibility specs and ensure journeys feature is active
+a5d8247 fix: update vercel.json configuration for monorepo structure
 
 CHANGED FILES:
 
