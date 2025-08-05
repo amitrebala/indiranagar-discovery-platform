@@ -16,6 +16,17 @@ const testPlaces: Place[] = [
     accessibility_info: null,
     best_time_to_visit: 'Evening',
     has_amit_visited: true,
+    brand_name: 'Corner House',
+    establishment_type: 'ice-cream-parlor',
+    search_keywords: ['corner house', 'ice cream parlor', 'death by chocolate'],
+    metadata: {
+      businessInfo: { isChain: true, parentBrand: 'Corner House' },
+      searchHints: {
+        mustIncludeTerms: ['Corner House'],
+        avoidTerms: ['corner', 'house'],
+        locationQualifiers: ['Indiranagar', 'Bangalore']
+      }
+    },
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
   },
@@ -31,6 +42,15 @@ const testPlaces: Place[] = [
     accessibility_info: null,
     best_time_to_visit: null,
     has_amit_visited: false,
+    establishment_type: 'metro-station',
+    search_keywords: ['namma metro', 'purple line', 'metro station'],
+    metadata: {
+      searchHints: {
+        mustIncludeTerms: ['Indiranagar Metro', 'Namma Metro'],
+        locationQualifiers: ['Bangalore', 'Purple Line'],
+        avoidTerms: ['delhi metro', 'mumbai metro']
+      }
+    },
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
   },
@@ -46,6 +66,17 @@ const testPlaces: Place[] = [
     accessibility_info: null,
     best_time_to_visit: 'Dinner',
     has_amit_visited: true,
+    brand_name: 'Social',
+    establishment_type: 'gastropub',
+    search_keywords: ['social', 'gastropub', 'church street social'],
+    metadata: {
+      businessInfo: { isChain: true, parentBrand: 'Social' },
+      searchHints: {
+        mustIncludeTerms: ['Church Street Social', 'Social gastropub'],
+        locationQualifiers: ['Bangalore', 'Church Street'],
+        avoidTerms: ['church', 'street']
+      }
+    },
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
   },
@@ -102,9 +133,24 @@ export default function TestImagesPage() {
           </h3>
           <ul className="space-y-1 text-sm text-blue-800">
             <li>• Check browser DevTools Network tab to see image proxy requests</li>
-            <li>• Check localStorage for cached image data (keys start with "place-image-")</li>
+            <li>• Check localStorage for cached image data (keys start with &quot;place-image-&quot;)</li>
             <li>• The proxy adds cache headers for CDN optimization</li>
             <li>• External images are converted to WebP format for better performance</li>
+            <li>• Set NEXT_PUBLIC_DEBUG_IMAGE_SEARCH=true to see search strategy decisions</li>
+            <li>• Enhanced cards now use intelligent search strategies based on place metadata</li>
+          </ul>
+        </div>
+
+        <div className="mt-6 bg-green-50 rounded-lg p-6">
+          <h3 className="text-lg font-semibold text-green-900 mb-2">
+            New Image Relevance Features
+          </h3>
+          <ul className="space-y-1 text-sm text-green-800">
+            <li>• <strong>Corner House</strong>: Uses BrandedEstablishmentStrategy to find actual Corner House images</li>
+            <li>• <strong>Metro Station</strong>: Uses LocalLandmarkStrategy to find Bangalore metro images</li>
+            <li>• <strong>Church Street Social</strong>: Uses BrandedEstablishmentStrategy for Social brand images</li>
+            <li>• Images are validated to filter out inappropriate or irrelevant results</li>
+            <li>• Fallback images provided when no relevant images found</li>
           </ul>
         </div>
       </div>

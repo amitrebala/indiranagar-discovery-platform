@@ -1,9 +1,15 @@
 import { ImageSource, ImageResult, Coordinates } from './types'
 import { UnsplashSource } from './unsplash'
+import { SearchStrategyManager } from './strategies/manager'
+import { ImageValidator } from './validator'
+import { FallbackImageProvider } from './fallback-provider'
+import { EnhancedPlace, ImageSearchResult } from './enhanced-types'
 
 export * from './types'
+export * from './enhanced-types'
 
 interface SearchOptions {
+  place?: EnhancedPlace
   location?: Coordinates
   limit?: number
   timeout?: number
@@ -11,9 +17,15 @@ interface SearchOptions {
 
 export class ImageSourceManager {
   private sources: ImageSource[] = []
+  private strategyManager: SearchStrategyManager
+  private validator: ImageValidator
+  private fallbackProvider: FallbackImageProvider
 
   constructor() {
     this.initializeSources()
+    this.strategyManager = new SearchStrategyManager()
+    this.validator = new ImageValidator()
+    this.fallbackProvider = new FallbackImageProvider()
   }
 
   private initializeSources() {
@@ -35,6 +47,68 @@ export class ImageSourceManager {
       return []
     }
 
+    // If we have enhanced place data, use strategy-based search
+    if (options?.place && this.hasEnhancedMetadata(options.place)) {
+      const results = await this.strategyManager.searchWithStrategies(
+        options.place,
+        this.sources,
+        {
+          limit: options.limit,
+          timeout: options.timeout
+        }
+      )
+
+      // Validate and filter results
+      const validResults = results.filter(result => 
+        this.validator.validateImage(result, options.place!)
+      )
+
+      // Apply quality scoring
+      const scoredResults = validResults.map(result => ({
+        ...result,
+        relevanceScore: result.relevanceScore * this.validator.scoreImageQuality(result)
+      }))
+
+      // If we have good results, return them
+      if (scoredResults.length > 0) {
+        return this.convertToImageResults(scoredResults, options.limit || 5)
+      }
+
+      // Otherwise, fall back to default search with fallback image
+      const legacyResults = await this.legacySearch(placeName, options)
+      if (legacyResults.length === 0) {
+        return [this.fallbackProvider.getFallbackImage(options.place)]
+      }
+      return legacyResults
+    }
+
+    // Legacy search for places without metadata
+    return this.legacySearch(placeName, options)
+  }
+
+  private hasEnhancedMetadata(place: EnhancedPlace): boolean {
+    return !!(place.brand_name || place.establishment_type || place.metadata || 
+      (place.search_keywords && place.search_keywords.length > 0))
+  }
+
+  private convertToImageResults(searchResults: ImageSearchResult[], limit: number): ImageResult[] {
+    return searchResults
+      .slice(0, limit)
+      .map(result => ({
+        url: result.url,
+        thumbnail: result.thumbnail,
+        width: result.width,
+        height: result.height,
+        attribution: result.attribution,
+        relevanceScore: result.relevanceScore,
+        tags: result.tags
+      }))
+  }
+
+  private async legacySearch(
+    placeName: string,
+    options?: SearchOptions
+  ): Promise<ImageResult[]> {
     const searchPromises = this.sources.map(source => 
       this.searchWithTimeout(source, placeName, options)
     )

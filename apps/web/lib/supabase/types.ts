@@ -17,6 +17,16 @@ export interface Database {
         Insert: PlaceImageInsert
         Update: PlaceImageUpdate
       }
+      journeys: {
+        Row: Journey
+        Insert: JourneyInsert
+        Update: JourneyUpdate
+      }
+      journey_places: {
+        Row: JourneyPlace
+        Insert: JourneyPlaceInsert
+        Update: Partial<JourneyPlace>
+      }
     }
   }
 }
@@ -40,6 +50,10 @@ export interface Place {
   accessibility_info: string | null
   best_time_to_visit: string | null
   has_amit_visited: boolean
+  brand_name?: string | null
+  establishment_type?: string | null
+  search_keywords?: string[] | null
+  metadata?: Record<string, unknown> | null
   created_at: string
   updated_at: string
 }
@@ -56,6 +70,10 @@ export interface PlaceInsert {
   accessibility_info?: string | null
   best_time_to_visit?: string | null
   has_amit_visited?: boolean
+  brand_name?: string | null
+  establishment_type?: string | null
+  search_keywords?: string[] | null
+  metadata?: Record<string, unknown> | null
   created_at?: string
   updated_at?: string
 }
@@ -72,6 +90,10 @@ export interface PlaceUpdate {
   accessibility_info?: string | null
   best_time_to_visit?: string | null
   has_amit_visited?: boolean
+  brand_name?: string | null
+  establishment_type?: string | null
+  search_keywords?: string[] | null
+  metadata?: Record<string, unknown> | null
   updated_at?: string
 }
 
@@ -145,4 +167,56 @@ export interface PlaceMetadata {
   companion_activities: CompanionActivity[]
   accessibility_info?: string
   best_time_to_visit?: string
+}
+
+// Journey interface
+export interface Journey {
+  id: string
+  title: string
+  description: string | null
+  gradient: string
+  icon: string
+  estimated_time: string | null
+  vibe_tags: string[] | null
+  created_at: string
+  updated_at: string
+}
+
+export interface JourneyInsert {
+  id?: string
+  title: string
+  description?: string | null
+  gradient: string
+  icon: string
+  estimated_time?: string | null
+  vibe_tags?: string[] | null
+}
+
+export interface JourneyUpdate {
+  title?: string
+  description?: string | null
+  gradient?: string
+  icon?: string
+  estimated_time?: string | null
+  vibe_tags?: string[] | null
+}
+
+// Journey Place interface
+export interface JourneyPlace {
+  journey_id: string
+  place_id: string
+  order_index: number
+  notes: string | null
+}
+
+export interface JourneyPlaceInsert {
+  journey_id: string
+  place_id: string
+  order_index: number
+  notes?: string | null
+}
+
+// Journey with places
+export interface JourneyWithPlaces extends Journey {
+  places: (Place & { order_index: number; notes: string | null })[]
 }

@@ -4,7 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/navigation/Header";
 import { MobileNav } from "@/components/navigation/MobileNav";
 import { Footer } from "@/components/layout/Footer";
-import HasAmitBeenHereButton from "@/components/community/HasAmitBeenHereButton";
+import AmitFABWrapper from "@/components/fab/AmitFABWrapper";
 import { PreferencesProvider } from "@/contexts/PreferencesContext";
 import Script from 'next/script';
 
@@ -238,7 +238,7 @@ export default function RootLayout({
             {children}
           </main>
           <Footer />
-          <HasAmitBeenHereButton />
+          <AmitFABWrapper />
         </PreferencesProvider>
 
         {/* Performance Budget Monitoring */}

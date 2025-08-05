@@ -15,6 +15,8 @@ module.exports = {
         'slide-up': 'slideUp 0.5s ease-out',
         bounce: 'bounce 1s infinite',
         pulse: 'pulse 2s infinite',
+        'gradient-shift': 'gradient-shift 8s ease infinite',
+        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
       },
       // Enhanced keyframes
       keyframes: {
@@ -39,6 +41,10 @@ module.exports = {
           '40%, 43%': { transform: 'translate3d(0, -30px, 0)' },
           '70%': { transform: 'translate3d(0, -15px, 0)' },
           '90%': { transform: 'translate3d(0, -4px, 0)' }
+        },
+        'gradient-shift': {
+          '0%, 100%': { 'background-position': '0% 50%' },
+          '50%': { 'background-position': '100% 50%' }
         }
       },
       // Enhanced colors with brand gradients
@@ -131,6 +137,8 @@ module.exports = {
         'gradient-sunset': 'linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%)',
         'gradient-ocean': 'linear-gradient(135deg, #667db6 0%, #0052d4 100%)',
         'gradient-forest': 'linear-gradient(135deg, #56ab2f 0%, #a8e6cf 100%)',
+        'gradient-mesh': 'radial-gradient(at 40% 20%, hsla(28,100%,74%,1) 0px, transparent 50%), radial-gradient(at 80% 0%, hsla(189,100%,56%,1) 0px, transparent 50%)',
+        'gradient-aurora': 'linear-gradient(135deg, #667eea 0%, #764ba2 35%, #f093fb 70%, #f5576c 100%)',
       },
       // Enhanced shadows
       boxShadow: {

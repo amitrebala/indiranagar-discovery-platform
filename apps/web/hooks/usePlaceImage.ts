@@ -130,6 +130,7 @@ export function usePlaceImage(place: Place): UsePlaceImageResult {
       // 3. Search external sources
       const manager = getImageSourceManager()
       const discovered = await manager.findImages(place.name, {
+        place: place, // Pass the full place object with metadata
         location: place.latitude && place.longitude 
           ? { lat: place.latitude, lng: place.longitude }
           : undefined,
