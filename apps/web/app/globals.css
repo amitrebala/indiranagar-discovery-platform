@@ -4,6 +4,21 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Ensure FAB is always on top and visible */
+#amit-fab-portal {
+  position: fixed !important;
+  bottom: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  pointer-events: none !important;
+  z-index: 99999 !important;
+}
+
+#amit-fab-portal > * {
+  pointer-events: auto !important;
+}
+
 /* ===== ROOT VARIABLES ===== */
 :root {
   /* Base theme variables */

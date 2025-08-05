@@ -4,7 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/navigation/Header";
 import { MobileNav } from "@/components/navigation/MobileNav";
 import { Footer } from "@/components/layout/Footer";
-import AmitFABWrapper from "@/components/fab/AmitFABWrapper";
+import UnifiedAmitFAB from "@/components/fab/UnifiedAmitFAB";
 import { PreferencesProvider } from "@/contexts/PreferencesContext";
 import Script from 'next/script';
 
@@ -238,8 +238,8 @@ export default function RootLayout({
             {children}
           </main>
           <Footer />
-          <AmitFABWrapper />
         </PreferencesProvider>
+        <UnifiedAmitFAB />
 
         {/* Performance Budget Monitoring */}
         <Script
