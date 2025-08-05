@@ -203,8 +203,8 @@ export default function AmitFAB({
           duration: shouldReduceMotion ? 0 : undefined
         }}
         style={{
-          bottom: position.bottom,
-          right: position.right
+          bottom: (position as any).bottom || position.y || 24,
+          right: (position as any).right || position.x || 24
         }}
       >
         <div className="relative pointer-events-auto">
