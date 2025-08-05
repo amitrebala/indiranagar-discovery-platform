@@ -44,20 +44,20 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({
       weather: {
         ...weatherConditions,
-        description: this.getWeatherDescription(weatherConditions, timeOfDay)
+        description: getWeatherDescription(weatherConditions, timeOfDay)
       },
       timeOfDay,
       recommendations: {
         places: placeRecommendations,
         journeys: journeyRecommendations
       },
-      insights: this.generateInsights(weatherConditions, timeOfDay)
+      insights: generateInsights(weatherConditions, timeOfDay)
     });
   } catch (error) {
     console.error('Error getting weather recommendations:', error);
     
     // Fallback recommendations without weather data
-    const timeOfDay = this.getTimeOfDay();
+    const timeOfDay = getTimeOfDay();
     const fallbackWeather = {
       temp: 25,
       feels_like: 25,

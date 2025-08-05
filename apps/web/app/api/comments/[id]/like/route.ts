@@ -4,12 +4,13 @@ import { headers } from 'next/headers';
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ) {
   try {
     const supabase = await createClient();
     const headersList = await headers();
     const ip = headersList.get('x-forwarded-for') || 'unknown';
+    const params = await context.params;
     
     if (ip === 'unknown') {
       return NextResponse.json(
