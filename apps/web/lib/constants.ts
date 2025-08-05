@@ -17,10 +17,10 @@ export const EXTERNAL_LINKS = {
 
 // Map configuration constants
 export const MAP_CONFIG = {
-  // Indiranagar center coordinates (initial focus)
+  // 100 Feet Road, Indiranagar center coordinates (initial focus)
   CENTER: {
-    lat: 12.9716,
-    lng: 77.5946
+    lat: 12.9783,  // 100 Feet Road center
+    lng: 77.6408   // 100 Feet Road center
   },
   
   // Indiranagar bounds (for initial view)

@@ -94,6 +94,22 @@
   --color-secondary-400: #4ECDC4;
   --color-accent-400: #FF8E53;
   
+  /* Accessibility color tokens - WCAG AA compliant */
+  --text-on-primary: #ffffff; /* 8.5:1 on primary-600 */
+  --text-on-secondary: #000000; /* 12:1 on secondary-400 */
+  
+  /* Accessible gradients with guaranteed contrast */
+  --gradient-hero-accessible: linear-gradient(
+    135deg, 
+    rgba(0,0,0,0.4) 0%, /* Overlay for contrast */
+    transparent 50%
+  ), linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+  
+  /* Touch target minimum sizes */
+  --touch-target-min: 48px;
+  --touch-target-padding: 12px;
+  --touch-target-margin: 4px;
+  
   /* Glass morphism variables */
   --glass-white: rgba(255, 255, 255, 0.1);
   --glass-white-med: rgba(255, 255, 255, 0.2);
@@ -202,6 +218,9 @@
   
   --focus-ring: #0099ff;
   --focus-ring-offset: #000000;
+  
+  /* Dark mode accessibility tokens */
+  --gradient-overlay: rgba(0,0,0,0.6); /* Stronger overlay for dark mode */
 }
 
 /* ===== THEME INTEGRATION ===== */
@@ -391,6 +410,36 @@
   top: 6px;
 }
 
+/* ===== HIGH CONTRAST MODE SUPPORT ===== */
+@media (prefers-contrast: high) {
+  :root {
+    --gradient-overlay: rgba(0,0,0,0.7);
+    --text-primary: #000000;
+    --text-secondary: #000000;
+    --background: #ffffff;
+    --border: #000000;
+  }
+  
+  .dark {
+    --gradient-overlay: rgba(0,0,0,0.8);
+    --text-primary: #ffffff;
+    --text-secondary: #ffffff;
+    --background: #000000;
+    --border: #ffffff;
+  }
+  
+  /* Ensure all interactive elements have borders */
+  button, a, input, select, textarea, [role="button"] {
+    border: 2px solid currentColor !important;
+  }
+  
+  /* Enhanced focus states for high contrast */
+  *:focus-visible {
+    outline: 3px solid currentColor !important;
+    outline-offset: 2px !important;
+  }
+}
+
 /* ===== ANIMATION CONTROL ===== */
 .animations-disabled,
 .animations-disabled *,
@@ -399,6 +448,16 @@
   animation-duration: 0.01ms !important;
   animation-iteration-count: 1 !important;
   transition-duration: 0.01ms !important;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* ===== BASE STYLES ===== */

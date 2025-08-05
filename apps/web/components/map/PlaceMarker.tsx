@@ -62,10 +62,15 @@ function PhotoMarkerIcon({ place, isSelected, size = 'medium', imageUrl }: {
           sizes="60px"
         />
       ) : (
-        <div className={`w-full h-full bg-primary flex items-center justify-center`}>
+        <div className={`w-full h-full flex items-center justify-center ${
+          place.category?.toLowerCase() === 'restaurant' ? 'bg-red-500' :
+          place.category?.toLowerCase() === 'cafe' ? 'bg-green-700' :
+          place.category?.toLowerCase() === 'activity' ? 'bg-yellow-500' :
+          'bg-primary'
+        }`}>
           <MapPin 
             size={size === 'small' ? 12 : size === 'medium' ? 16 : 20} 
-            className="text-white" 
+            className="text-white drop-shadow-sm" 
           />
         </div>
       )}

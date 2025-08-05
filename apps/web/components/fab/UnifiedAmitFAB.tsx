@@ -267,7 +267,7 @@ function UnifiedAmitFABInner() {
         Icon: Search,
         label: 'Search Places',
         action: 'search',
-        colorClass: 'from-blue-500 to-blue-600',
+        colorClass: 'from-blue-600 to-blue-700',
         available: true,
         ariaLabel: 'Search for places Amit has visited'
       },
@@ -276,7 +276,7 @@ function UnifiedAmitFABInner() {
         Icon: Filter,
         label: filterActive ? "Show All" : "Amit's Places",
         action: 'filter',
-        colorClass: 'from-purple-500 to-purple-600',
+        colorClass: 'from-purple-600 to-purple-700',
         available: pageContext === 'map',
         ariaLabel: filterActive ? 'Show all places on map' : 'Filter to show only places Amit visited'
       },
@@ -285,7 +285,7 @@ function UnifiedAmitFABInner() {
         Icon: Heart,
         label: "Amit's Favorites",
         action: 'favorites',
-        colorClass: 'from-pink-500 to-pink-600',
+        colorClass: 'from-pink-600 to-pink-700',
         available: true,
         ariaLabel: "View Amit's favorite places"
       },
@@ -294,7 +294,7 @@ function UnifiedAmitFABInner() {
         Icon: MapPin,
         label: 'Near Me',
         action: 'nearby',
-        colorClass: 'from-green-500 to-green-600',
+        colorClass: 'from-green-600 to-green-700',
         available: true,
         ariaLabel: 'Find places near your current location'
       },
@@ -303,7 +303,7 @@ function UnifiedAmitFABInner() {
         Icon: Camera,
         label: 'View Photos',
         action: 'photos',
-        colorClass: 'from-amber-500 to-amber-600',
+        colorClass: 'from-amber-600 to-amber-700',
         available: pageContext === 'place',
         ariaLabel: 'View photos of this place'
       },
@@ -312,7 +312,7 @@ function UnifiedAmitFABInner() {
         Icon: MessageCircle,
         label: 'Suggest Place',
         action: 'suggest',
-        colorClass: 'from-teal-500 to-teal-600',
+        colorClass: 'from-teal-600 to-teal-700',
         available: true,
         ariaLabel: 'Suggest a place for Amit to visit'
       }
@@ -444,9 +444,10 @@ function UnifiedAmitFABInner() {
                   <motion.button
                     key={option.id}
                     className={cn(
-                      "absolute w-12 h-12 rounded-full shadow-lg flex items-center justify-center text-white",
+                      "absolute min-w-[48px] min-h-[48px] w-12 h-12 rounded-full shadow-lg flex items-center justify-center text-white font-semibold",
                       `bg-gradient-to-br ${option.colorClass}`
                     )}
+                    style={{ textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}
                     variants={menuItemVariants}
                     custom={index}
                     initial="hidden"
@@ -471,8 +472,8 @@ function UnifiedAmitFABInner() {
         <motion.button
           className={cn(
             "relative bg-gradient-to-r text-white rounded-full shadow-lg transition-all duration-300",
-            hasAmitVisited ? "from-[#f093fb] to-[#f5576c]" : "from-[#667eea] to-[#764ba2]",
-            state.isExpanded ? "w-auto px-6 h-14" : "w-16 h-16 sm:w-auto sm:px-6 sm:h-14",
+            hasAmitVisited ? "from-[#d946ef] to-[#dc2626]" : "from-[#5a3f8f] to-[#6b4298]",
+            state.isExpanded ? "w-auto px-6 min-h-[56px] h-14" : "min-w-[64px] min-h-[64px] w-16 h-16 sm:w-auto sm:px-6 sm:min-h-[56px] sm:h-14",
             state.isDancing && "animate-bounce"
           )}
           variants={buttonVariants}
