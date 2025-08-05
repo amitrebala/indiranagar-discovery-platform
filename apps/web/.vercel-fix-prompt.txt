@@ -1,0 +1,64 @@
+/BMad:agents:dev
+
+**GOAL-ORIENTED DEPLOYMENT RECOVERY MISSION**
+
+Critical: Fix deployment errors while PRESERVING the intended functionality of recent changes.
+
+**ERROR LOG FILES PROVIDED:**
+1. Error Report: /Users/amitrebala/Projects/simple-todo/.vercel-error-report.txt (parsed errors and summary)
+2. Full Build Log: /Users/amitrebala/Projects/simple-todo/.vercel-build-full.log (complete build output)
+3. Error Log: /Users/amitrebala/Projects/simple-todo/.vercel-errors.log (categorized errors)
+4. Recent Changes: /Users/amitrebala/Projects/simple-todo/.recent-changes.txt (intent and context)
+
+**CRITICAL MISSION PARAMETERS:**
+- DO NOT just make the build pass by removing functionality
+- UNDERSTAND what the recent code was trying to achieve
+- PRESERVE the intended behavior while fixing errors
+- The goal is to make the intended functionality work correctly
+
+**GOAL-ORIENTED FIX APPROACH:**
+1. **UNDERSTAND THE INTENT** - Read /Users/amitrebala/Projects/simple-todo/.recent-changes.txt to understand:
+   - What functionality was being added/modified
+   - What the developer was trying to achieve
+   - The purpose of the recent changes
+
+2. **ANALYZE ERRORS IN CONTEXT**:
+   - Read all error files
+   - Understand how errors relate to intended functionality
+   - Identify if errors are blocking the new feature
+   - Determine minimal fixes that preserve intent
+
+3. **FIX WITH PURPOSE**:
+   - Make the intended functionality work correctly
+   - Don't remove features to make build pass
+   - Add missing types/imports to support new code
+   - Fix integration issues with existing code
+   - Ensure the goal of the changes is achieved
+
+4. **VALIDATE FUNCTIONALITY**:
+   - After fixes, ensure build passes
+   - Verify the intended feature still works
+   - Check that no functionality was lost
+   - Confirm the original goal is met
+
+**PROJECT CONTEXT:**
+- Location: /Users/amitrebala/Projects/simple-todo
+- Build Directory: /Users/amitrebala/Projects/simple-todo/apps/web
+- This is likely a Next.js/TypeScript project with Vercel deployment
+
+**CRITICAL REQUIREMENTS:**
+- Fix ALL errors, not just the first few
+- Consider the holistic impact of changes
+- Maintain existing functionality
+- Follow project conventions
+- Do NOT create new files unless absolutely necessary
+- Ensure the deployment will succeed on Vercel
+
+**SUCCESS METRICS:**
+✓ npm run build completes with zero errors
+✓ npm run type-check passes (if available)
+✓ All imports resolve correctly
+✓ No TypeScript compilation errors
+✓ Vercel deployment validation passes
+
+Begin comprehensive deployment recovery NOW. Read the error files first!

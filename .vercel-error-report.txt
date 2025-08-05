@@ -1,0 +1,222 @@
+VERCEL DEPLOYMENT ERROR REPORT
+==============================
+Generated: Tue Aug  5 22:54:31 IST 2025
+Project: simple-todo
+
+PARSED ERRORS:
+--------------
+
+
+BUILD OUTPUT (Last 200 lines):
+------------------------------
+
+./components/mobile/MobileJourneyInterface.tsx
+4:61  Warning: 'Camera' is defined but never used.  @typescript-eslint/no-unused-vars
+68:19  Warning: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+68:40  Warning: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+308:18  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./components/mobile/MobileOptimizedGallery.tsx
+5:40  Warning: 'Download' is defined but never used.  @typescript-eslint/no-unused-vars
+43:9  Warning: 'imageRefs' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+
+./components/mobile/MobilePlaceCard.tsx
+3:10  Warning: 'useState' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./components/places/AmitPlaceDetail.tsx
+75:27  Warning: 'placeName' is defined but never used.  @typescript-eslint/no-unused-vars
+411:70  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+462:21  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./components/places/BusinessRelationships.tsx
+11:62  Warning: 'placeName' is defined but never used.  @typescript-eslint/no-unused-vars
+27:45  Warning: 'trustLevel' is defined but never used.  @typescript-eslint/no-unused-vars
+93:87  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+94:85  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+157:30  Warning: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+157:79  Warning: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+
+./components/places/EnhancedCompanionActivityCard.tsx
+3:43  Warning: 'Sun' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./components/places/EnhancedPlaceGallery.tsx
+73:10  Warning: 'showStories' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+73:23  Warning: 'setShowStories' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+86:46  Warning: 'index' is defined but never used.  @typescript-eslint/no-unused-vars
+116:33  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+141:9  Warning: 'allImages' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+177:9  Warning: 'openLightbox' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+247:47  Warning: 'index' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./components/places/MemoryPalaceStory.tsx
+6:10  Warning: 'MemoryPalaceContent' is defined but never used.  @typescript-eslint/no-unused-vars
+68:69  Warning: 'index' is defined but never used.  @typescript-eslint/no-unused-vars
+97:72  Warning: 'index' is defined but never used.  @typescript-eslint/no-unused-vars
+118:21  Warning: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+118:40  Warning: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+130:23  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+142:68  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./components/places/PersonalReview.tsx
+11:50  Warning: 'placeName' is defined but never used.  @typescript-eslint/no-unused-vars
+47:72  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./components/places/PlaceCardEnhanced.tsx
+22:5  Warning: 'thumbnailUrl' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+
+./components/places/PlacesHeader.tsx
+14:35  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./components/search/AmitSearchButton.tsx
+204:69  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+206:24  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+206:35  Warning: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+206:43  Warning: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+216:56  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./components/search/SearchFilters.tsx
+22:68  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+43:77  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+45:61  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+268:75  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./components/search/SearchInterface.tsx
+74:5  Warning: React Hook useMemo has a missing dependency: 'saveRecentSearch'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+261:55  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+261:76  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+261:81  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+261:100  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./components/search/SearchResults.tsx
+29:40  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+34:38  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+42:9  Warning: 'formatDistance' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+50:9  Warning: 'getRelevanceColor' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+117:3  Warning: 'viewMode' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./components/search/SearchSuggestions.tsx
+3:30  Warning: 'Clock' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./components/sharing/SocialShare.tsx
+4:37  Warning: 'Instagram' is defined but never used.  @typescript-eslint/no-unused-vars
+46:20  Warning: 'err' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./components/ui/GradientMesh.tsx
+98:6  Warning: React Hook useEffect has a missing dependency: 'gradientConfigs'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./components/ui/OptimizedImage.tsx
+45:5  Warning: 'networkCondition' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+54:96  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+54:116  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+56:9  Warning: 'imageRef' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+121:65  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+121:85  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+134:63  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+134:83  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+306:12  Warning: 'name' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./components/ui/SkeletonLoaders.tsx
+3:24  Warning: 'Search' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./components/weather/SeasonalHighlights.tsx
+17:56  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+103:9  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+108:36  Warning: 'season' is defined but never used.  @typescript-eslint/no-unused-vars
+222:89  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./components/weather/WeatherAlerts.tsx
+76:9  Warning: 'getAlertIcon' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+
+./components/weather/WeatherRecommendations.tsx
+8:15  Warning: 'Place' is defined but never used.  @typescript-eslint/no-unused-vars
+26:58  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+73:9  Warning: 'getSuitabilityIcon' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+173:19  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+183:56  Warning: 'alternative_suggestions' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+233:72  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./lib/analytics/events.ts
+5:30  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+77:52  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+261:84  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./lib/map/markers.ts
+62:51  Warning: 'hasPhoto' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+183:62  Warning: 'bounds' is defined but never used.  @typescript-eslint/no-unused-vars
+183:71  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./lib/preferences/PreferencesManager.ts
+125:44  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+179:38  Warning: 'event' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./lib/search/natural-language.ts
+174:56  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+179:61  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./lib/search/search-engine.ts
+178:9  Warning: 'totalTerms' is never reassigned. Use 'const' instead.  prefer-const
+206:57  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./lib/services/image-sources/strategies/generic-place.ts
+8:17  Warning: '_place' is defined but never used.  @typescript-eslint/no-unused-vars
+35:31  Warning: '_place' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./lib/types/analytics.ts
+8:30  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+59:31  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+69:30  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./lib/types/blog.ts
+68:19  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+142:26  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+147:28  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./lib/utils/accessibility.ts
+134:9  Warning: 'requiredRatio' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+
+./lib/utils/mobile-optimization.ts
+105:46  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+128:46  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+195:24  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+195:57  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+259:32  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+266:32  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+269:50  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+275:20  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+276:38  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./lib/weather/providers.ts
+29:71  Warning: '_temp' is defined but never used.  @typescript-eslint/no-unused-vars
+132:36  Warning: '_lat' is defined but never used.  @typescript-eslint/no-unused-vars
+132:50  Warning: '_lng' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./lib/weather/recommendations.ts
+26:5  Warning: 'userLocation' is defined but never used.  @typescript-eslint/no-unused-vars
+45:21  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+47:6  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+79:57  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+209:58  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+316:48  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+316:76  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+328:44  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+344:37  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+362:45  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+378:46  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+378:52  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+388:29  Warning: 'location' is defined but never used.  @typescript-eslint/no-unused-vars
+388:39  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+388:45  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/app/api-reference/config/eslint#disabling-rules
+Error: Command "npm run build" exited with 1
+
+ERROR CATEGORIES DETECTED:
+-------------------------
+TypeScript Errors: 0
+0
+Module Errors: 0
+0
+Import Errors: 0
+0
+Syntax Errors: 0
+0
