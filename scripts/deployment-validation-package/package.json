@@ -1,0 +1,27 @@
+{
+  "name": "vercel-deployment-validation",
+  "version": "1.0.0",
+  "description": "Automated pre-commit Vercel deployment validation system",
+  "keywords": [
+    "vercel",
+    "deployment",
+    "validation",
+    "pre-commit",
+    "automation"
+  ],
+  "scripts": {
+    "install": "./install.sh",
+    "validate": "../vercel-pre-deploy.sh",
+    "commit": "../safe-commit.sh"
+  },
+  "files": [
+    "*.sh",
+    "README.md"
+  ],
+  "requirements": {
+    "node": ">=18.0.0",
+    "vercel-cli": "*"
+  },
+  "author": "BMAD-METHOD",
+  "license": "MIT"
+}

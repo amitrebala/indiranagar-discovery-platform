@@ -93,8 +93,39 @@ export function JourneySelector({ onSelect }: JourneySelectorProps) {
   
   if (error && journeys.length === 0) {
     return (
-      <div className="text-center py-12">
+      <div className="text-center py-12 space-y-4">
         <p className="text-gray-600">{error}</p>
+        <div className="bg-yellow-50 p-4 rounded-lg max-w-2xl mx-auto text-left">
+          <p className="text-sm font-semibold text-yellow-800 mb-2">To see the journeys, run this SQL in your Supabase dashboard:</p>
+          <pre className="text-xs bg-white p-3 rounded border border-yellow-200 overflow-x-auto">
+{`-- Create journeys table
+CREATE TABLE IF NOT EXISTS journeys (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  title TEXT NOT NULL,
+  description TEXT,
+  gradient TEXT NOT NULL,
+  icon TEXT NOT NULL,
+  estimated_time TEXT,
+  vibe_tags TEXT[],
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+-- Enable RLS
+ALTER TABLE journeys ENABLE ROW LEVEL SECURITY;
+
+-- Create policy
+CREATE POLICY "Journeys are viewable by everyone" ON journeys
+  FOR SELECT USING (true);
+
+-- Insert sample journeys
+INSERT INTO journeys (title, description, gradient, icon, estimated_time, vibe_tags) VALUES
+('First Timer''s Perfect Day', 'Amit''s curated 6-hour journey through must-visit spots', 'from-amber-500 to-orange-600', 'map', '6 hours', ARRAY['curious', 'explorer', 'foodie']),
+('Local''s Secret Circuit', 'Hidden gems only 2% of visitors know about', 'from-purple-600 to-pink-600', 'compass', '4 hours', ARRAY['adventurous', 'offbeat', 'insider']),
+('Live Like a Resident', 'Experience Amit''s actual weekly routine', 'from-teal-500 to-cyan-600', 'home', '3 hours', ARRAY['authentic', 'slow', 'mindful']);`}
+          </pre>
+          <p className="text-xs text-yellow-700 mt-2">Go to your Supabase dashboard → SQL Editor → New Query → Paste and Run</p>
+        </div>
       </div>
     )
   }

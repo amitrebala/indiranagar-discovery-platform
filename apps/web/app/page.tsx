@@ -2,6 +2,7 @@ import { HeroSection } from '@/components/homepage/HeroSection'
 import { FeaturedPlaces } from '@/components/homepage/FeaturedPlaces'
 import { DynamicHeroSection } from '@/components/homepage/hero/DynamicHeroSection'
 import { JourneySelector } from '@/components/homepage/journey/JourneySelector'
+import { JourneySelectorWithRotation } from '@/components/homepage/journey/JourneySelectorWithRotation'
 import { features } from '@/lib/features'
 
 export default function Home() {
@@ -18,7 +19,10 @@ export default function Home() {
               <h2 className="text-4xl font-bold mb-4">Choose Your Indiranagar Adventure</h2>
               <p className="text-xl text-gray-600">Curated journeys designed by Amit for every type of explorer</p>
             </div>
-            <JourneySelector />
+            <JourneySelectorWithRotation 
+              itemsPerPage={3}
+              autoRotateInterval={15000}
+            />
           </div>
         </section>
       )}

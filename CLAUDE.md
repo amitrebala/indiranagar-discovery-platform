@@ -2,6 +2,29 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## CRITICAL: Commit Workflow for This Project
+**WHENEVER you request a commit (commit this, commit these changes, commit all, etc.), Claude MUST:**
+```bash
+./scripts/terminal-safe-commit.sh "appropriate commit message"
+```
+This automatically:
+- **Isolates terminal-specific changes** - only commits files from current terminal
+- Validates Vercel deployment locally
+- If errors found, BMAD Development Agent (`/BMad:agents:dev`) activates automatically
+- BMAD agent receives full error context via log files:
+  - `.vercel-error-report.txt` - Error analysis and statistics
+  - `.vercel-build-full.log` - Complete Vercel build output
+  - `.vercel-context.txt` - Project structure and recent changes
+  - `.recent-changes.txt` - Code intent and modifications
+  - `.vercel-intent.txt` - What the feature was trying to achieve
+- **GOAL-ORIENTED FIXES**: BMAD agent ensures:
+  - Intended functionality is preserved and enabled
+  - Errors are fixed while achieving the original goal
+  - The feature works correctly, not just compiles
+- Only commits if functionality works and build passes
+- Eliminates manual Vercel error checking
+- NO MANUAL INTERVENTION REQUIRED - BMAD agent handles everything
+
 ## Project Overview
 
 This is the **Indiranagar Discovery Platform** - a comprehensive neighborhood discovery application built with Next.js 15, TypeScript, and Supabase. The platform implements 5 major epics across 27 user stories, featuring interactive mapping, community engagement, weather-aware recommendations, and advanced content management.
@@ -163,3 +186,78 @@ Comprehensive documentation in `docs/`:
 - `docs/stories/` - Individual story implementation details
 
 The platform is production-ready with all 27 user stories implemented across 5 epics, suitable for deployment to Vercel for social sharing and professional demonstration.
+
+## Deployment Validation Process
+
+**MANDATORY: All commits must pass Vercel deployment validation before pushing to GitHub**
+
+### DEFAULT COMMIT BEHAVIOR
+**When user requests ANY form of commit (commit this, commit these changes, commit all, etc.), ALWAYS use:**
+```bash
+./scripts/safe-commit.sh -a "appropriate commit message"
+```
+
+This is NOT optional - it's the ONLY way to commit in this project.
+
+### Automated Deployment Workflow
+
+This project implements a comprehensive pre-commit deployment validation system:
+
+1. **Local Vercel Build Validation**
+   ```bash
+   # Run before any commit
+   ./scripts/vercel-pre-deploy.sh
+   ```
+   - Simulates exact Vercel build environment
+   - Catches TypeScript, module, and build errors
+   - Automatically fixes common issues
+
+2. **Safe Commit Commands**
+   ```bash
+   # Recommended: Safe commit with validation
+   ./scripts/safe-commit.sh "feat: add new feature"
+   
+   # For Claude Code integration
+   ./scripts/claude-deploy-commit.sh "fix: resolve type errors"
+   ```
+
+3. **Git Hooks Installation**
+   ```bash
+   # One-time setup
+   ./scripts/install-deployment-hooks.sh
+   ```
+   - Installs pre-commit validation hook
+   - Prevents commits that would fail deployment
+   - Adds deployment metadata to commits
+
+4. **Error Handling**
+   - Errors logged to `.vercel-errors.log`
+   - Automatic fixes attempted for:
+     - TypeScript compilation errors
+     - Missing type definitions
+     - Module resolution failures
+     - Import/export mismatches
+     - Missing dependencies
+   - Claude Code integration for complex fixes
+
+### Deployment Commands Summary
+
+```bash
+# Validate only (no commit)
+./scripts/vercel-pre-deploy.sh
+
+# Validate and commit
+./scripts/safe-commit.sh -a "feat: complete feature"
+
+# Skip validation (emergency only)
+./scripts/safe-commit.sh -f "hotfix: urgent fix"
+
+# Validate, fix with Claude, and commit
+./scripts/claude-deploy-commit.sh "fix: deployment issues"
+```
+
+### Important Notes
+- Never use `git commit` directly - always use the safe commit scripts
+- Validation runs automatically if Git hooks are installed
+- All deployment errors are fixed BEFORE reaching GitHub
+- This eliminates manual Vercel log checking and fix cycles
