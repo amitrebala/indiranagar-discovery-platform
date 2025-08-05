@@ -122,3 +122,146 @@ export interface JourneyProgress {
   estimated_completion: string
   notes: string[]
 }
+
+// Advanced Features - Journey System Types
+export interface AdvancedJourney {
+  id: string;
+  slug: string;
+  name: string;
+  description: string;
+  duration_minutes: number;
+  distance_km: number;
+  difficulty: 'easy' | 'moderate' | 'challenging';
+  mood_tags: string[];
+  optimal_times: OptimalTime[];
+  weather_suitability: WeatherSuitability;
+  estimated_cost: CostEstimate;
+  hero_image_url?: string;
+  is_published: boolean;
+  view_count: number;
+  save_count: number;
+  created_by: string;
+  created_at: string;
+  updated_at: string;
+  stops?: AdvancedJourneyStop[];
+}
+
+export interface AdvancedJourneyStop {
+  id: string;
+  journey_id: string;
+  place_id: string;
+  order_index: number;
+  arrival_time_offset: number;
+  recommended_duration: number;
+  stop_type: 'must_visit' | 'optional' | 'photo_op' | 'refreshment' | 'activity';
+  notes?: string;
+  activities?: StopActivity[];
+  place?: any; // Place data populated when fetched
+}
+
+export interface StopActivity {
+  name: string;
+  duration: number;
+  cost?: number;
+  booking_required: boolean;
+  booking_link?: string;
+}
+
+export interface OptimalTime {
+  days: string[];
+  start_time: string;
+  end_time: string;
+  reason: string;
+  crowd_level: 'quiet' | 'moderate' | 'busy';
+}
+
+export interface WeatherSuitability {
+  ideal_conditions: string[];
+  acceptable_conditions: string[];
+  avoid_conditions: string[];
+  seasonal_notes: {
+    summer: string;
+    monsoon: string;
+    winter: string;
+  };
+}
+
+export interface CostEstimate {
+  min: number;
+  max: number;
+  breakdown: Array<{
+    category: string;
+    amount_range: string;
+  }>;
+}
+
+export interface RouteCalculation {
+  total_distance_km: number;
+  total_walking_time_min: number;
+  segments: RouteSegment[];
+  calculated_at: string;
+}
+
+export interface RouteSegment {
+  from: string;
+  to: string;
+  distance_meters: number;
+  duration_seconds: number;
+  polyline: string;
+  steps: RouteStep[];
+}
+
+export interface RouteStep {
+  instruction: string;
+  distance: string;
+  duration: string;
+}
+
+// Companion Activities Engine Types
+export interface CompanionSuggestion {
+  place: any;
+  activity_type: 'before' | 'after';
+  reason: string;
+  time_gap_minutes: number;
+  distance_meters: number;
+  compatibility_score: number;
+}
+
+export interface CompanionActivity {
+  id: string;
+  place_id: string;
+  companion_place_id: string;
+  activity_type: 'before' | 'after';
+  time_gap_minutes: number;
+  distance_meters: number;
+  compatibility_score: number;
+  created_at: string;
+}
+
+// Weather Recommendations Types
+export interface WeatherConditions {
+  temp: number;
+  feels_like: number;
+  humidity: number;
+  weather: string;
+  rain_chance: number;
+}
+
+export interface PlaceRecommendation {
+  place: any;
+  score: number;
+  reason: string;
+}
+
+// Legacy journey type for compatibility with existing data
+export interface LegacyJourney {
+  id: string;
+  title: string;
+  description: string;
+  gradient: string;
+  icon: string;
+  estimated_time: string;
+  vibe_tags: string[];
+  created_at: string;
+  updated_at: string;
+}
