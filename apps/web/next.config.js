@@ -1,5 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // ESLint configuration - don't fail build on warnings
+  eslint: {
+    ignoreDuringBuilds: false,
+    dirs: ['app', 'components', 'lib', 'utils'],
+  },
+  
   // Enable Turbopack for development
   turbopack: {
     rules: {
