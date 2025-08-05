@@ -64,4 +64,8 @@ next-env.d.ts
 .ignore/
 
 # Scripts with secrets
-scripts/setup-github-secrets-from-env.sh
+scripts/setup-github-secrets-from-env.sh.vercel/
+.env
+.env.local
+.env.development.local
+.env.production.local
