@@ -15,7 +15,7 @@ interface GestureState {
 export function useAmitFABGestures(elementRef: React.RefObject<HTMLElement | null>) {
   const { setState, preferences } = useAmitFABStore()
   const gestureState = useRef<GestureState | null>(null)
-  const animationFrame = useRef<number>()
+  const animationFrame = useRef<number | null>(null)
   
   // Detect swipe direction
   const detectSwipe = useCallback((deltaX: number, deltaY: number, duration: number) => {
