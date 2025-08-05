@@ -1,3 +1,9 @@
+import * as dotenv from 'dotenv'
+import path from 'path'
+
+// Load environment variables from .env.local
+dotenv.config({ path: path.resolve(process.cwd(), '.env.local') })
+
 import { createClient } from '../lib/supabase/client'
 import type { CreatePlace } from '../lib/validations'
 import { amitRealVisitedPlaces } from '../data/amit-real-visited-places'

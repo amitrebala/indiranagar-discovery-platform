@@ -14,6 +14,9 @@
     "test:clean": "pkill -f vitest || true",
     "seed:database": "tsx scripts/seed-database.ts",
     "seed:amit-places": "tsx scripts/seed-amit-places.ts",
+    "seed:verified": "tsx scripts/seed-amit-verified-places.ts",
+    "clean:dummy-data": "tsx scripts/clean-dummy-data.ts",
+    "validate:data": "tsx scripts/validate-data-integrity.ts",
     "backup:content": "tsx scripts/backup-content.ts",
     "restore:content": "tsx scripts/backup-content.ts --restore"
   },

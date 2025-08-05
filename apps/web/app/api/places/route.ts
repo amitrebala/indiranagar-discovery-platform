@@ -2,6 +2,18 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import { createPlaceSchema } from '@/lib/validations'
 
+// Temporary list of dummy places to exclude until database is cleaned
+const EXCLUDE_DUMMY_PLACES = [
+  'The Yoga Room',
+  'Karavalli',
+  'Gallery Sumukha',
+  'Toit Brewpub',
+  'Phoenix MarketCity',
+  'Cubbon Park',
+  'Commercial Street',
+  'Vidhana Soudha'
+]
+
 // GET /api/places - List all places
 export async function GET(request: NextRequest) {
   try {
@@ -23,6 +35,10 @@ export async function GET(request: NextRequest) {
         place_images (*)
       `)
       .eq('has_amit_visited', true) // Only show places Amit has visited
+      // TODO: Add verification filters once migration is complete
+      // .eq('is_verified', true)
+      // .eq('data_source', 'amit_real_visited')
+      .not('name', 'in', `(${EXCLUDE_DUMMY_PLACES.map(p => `"${p}"`).join(',')})`) // Temporary: exclude known dummy places
       .order('rating', { ascending: false })
       .range(offset, offset + limit - 1)
     
