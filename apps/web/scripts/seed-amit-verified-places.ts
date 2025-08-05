@@ -94,14 +94,14 @@ async function seedAmitVerifiedPlaces() {
       .eq('data_source', 'amit_real_visited')
       .eq('is_verified', true)
     
-    const { data: unverifiedCount } = await supabase
+    const { count: unverifiedCount } = await supabase
       .from('places')
-      .select('count', { count: 'exact', head: true })
+      .select('*', { count: 'exact', head: true })
       .or('is_verified.is.false,data_source.neq.amit_real_visited')
     
     console.log('\n📊 Final Results:')
     console.log(`   ✅ Verified places: ${count}`)
-    console.log(`   ❌ Unverified places: ${unverifiedCount?.count || 0}`)
+    console.log(`   ❌ Unverified places: ${unverifiedCount || 0}`)
     console.log(`   📍 Expected places: ${amitRealVisitedPlaces.length}`)
     console.log(`   🎯 Success rate: ${((successCount / amitRealVisitedPlaces.length) * 100).toFixed(1)}%`)
     
