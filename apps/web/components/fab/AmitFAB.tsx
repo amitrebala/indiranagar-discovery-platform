@@ -68,8 +68,8 @@ export default function AmitFAB({
   const [isDancing, setIsDancing] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
   
-  const clickTimerRef = useRef<NodeJS.Timeout>()
-  const longPressTimerRef = useRef<NodeJS.Timeout>()
+  const clickTimerRef = useRef<NodeJS.Timeout | null>(null)
+  const longPressTimerRef = useRef<NodeJS.Timeout | null>(null)
   
   // Action handlers map - memoized to prevent recreating on every render
   const actionHandlers = React.useMemo<Record<string, () => void>>(() => ({
