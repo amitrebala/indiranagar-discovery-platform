@@ -2,6 +2,7 @@
 
 import React, { useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import type { Options as ConfettiOptions } from 'canvas-confetti'
 
 interface AmitFABCelebrationProps {
   trigger: boolean
@@ -25,7 +26,7 @@ export const AmitFABCelebration: React.FC<AmitFABCelebrationProps> = ({
           zIndex: 9999
         }
         
-        function fire(particleRatio: number, opts: confettiModule.Options) {
+        function fire(particleRatio: number, opts: ConfettiOptions) {
           confetti({
             ...defaults,
             ...opts,
