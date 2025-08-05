@@ -102,7 +102,10 @@ export class FallbackImageProvider {
         'fallback',
         place.category || 'place',
         place.establishment_type || 'location'
-      ]
+      ],
+      metadata: {
+        searchStrategy: 'Fallback Provider'
+      }
     }
   }
 

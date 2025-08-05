@@ -26,6 +26,9 @@ describe('ImageValidator', () => {
     height: 1080,
     attribution: { author: 'Test Author', source: 'Test Source' },
     tags: ['test', 'image'],
+    metadata: {
+      searchStrategy: 'Test Strategy'
+    },
     ...overrides
   })
 

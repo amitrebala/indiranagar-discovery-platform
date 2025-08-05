@@ -133,14 +133,16 @@ describe('BrandedEstablishmentStrategy', () => {
         url: 'https://example.com/corner-house.jpg',
         attribution: { author: 'Test', source: 'Test' },
         tags: ['corner house', 'ice cream', 'bangalore'],
-        relevanceScore: 0.5
+        relevanceScore: 0.5,
+        metadata: { searchStrategy: 'Test' }
       }
       
       const badImage: ImageResult = {
         url: 'https://example.com/random-ice-cream.jpg',
         attribution: { author: 'Test', source: 'Test' },
         tags: ['ice cream', 'dessert'],
-        relevanceScore: 0.5
+        relevanceScore: 0.5,
+        metadata: { searchStrategy: 'Test' }
       }
       
       const goodScore = strategy.scoreResult(place, goodImage)
@@ -173,7 +175,8 @@ describe('BrandedEstablishmentStrategy', () => {
         url: 'https://example.com/house.jpg',
         attribution: { author: 'Test', source: 'Test' },
         tags: ['house', 'home', 'building'],
-        relevanceScore: 0.5
+        relevanceScore: 0.5,
+        metadata: { searchStrategy: 'Test' }
       }
       
       const score = strategy.scoreResult(place, image)

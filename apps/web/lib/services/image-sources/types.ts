@@ -13,6 +13,10 @@ export interface ImageResult {
   attribution: ImageAttribution
   relevanceScore?: number
   tags?: string[]
+  metadata?: {
+    matchedTerms?: string[]
+    searchStrategy?: string
+  }
 }
 
 export interface Coordinates {

@@ -71,6 +71,9 @@ export class UnsplashSource implements ImageSource {
         },
         tags: photo.tags?.map(tag => tag.title) || [],
         relevanceScore: this.calculateRelevance(query, photo),
+        metadata: {
+          searchStrategy: 'Unsplash API'
+        }
       }))
     } catch (error) {
       console.error('Unsplash search error:', error)

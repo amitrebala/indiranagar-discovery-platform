@@ -101,7 +101,8 @@ export class ImageSourceManager {
         height: result.height,
         attribution: result.attribution,
         relevanceScore: result.relevanceScore,
-        tags: result.tags
+        tags: result.tags,
+        metadata: result.metadata
       }))
   }
 
