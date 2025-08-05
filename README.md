@@ -209,9 +209,46 @@ WEATHER_API_FALLBACK=your_weather_api_fallback_key
 ## 🚀 Deployment
 
 ### Vercel (Recommended)
-1. Connect your GitHub repository to Vercel
-2. Add environment variables in Vercel dashboard
-3. Deploy with automatic CI/CD
+
+#### Prerequisites
+- Vercel account and CLI installed (`npm i -g vercel`)
+- Environment variables configured
+
+#### Environment Variables Setup
+
+1. **Via Vercel Dashboard:**
+   - Go to your project settings on Vercel
+   - Navigate to "Environment Variables"
+   - Add all required variables from `.env.example`
+
+2. **Via Vercel CLI:**
+   ```bash
+   # Add each environment variable
+   vercel env add NEXT_PUBLIC_SUPABASE_URL production
+   vercel env add NEXT_PUBLIC_SUPABASE_ANON_KEY production
+   vercel env add SUPABASE_SERVICE_ROLE_KEY production
+   vercel env add OPENWEATHERMAP_API_KEY production
+   vercel env add WEATHERAPI_KEY production
+   # Add all other required variables...
+   ```
+
+3. **Required Environment Variables:**
+   - `NEXT_PUBLIC_SUPABASE_URL` - Your Supabase project URL
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY` - Supabase anonymous key
+   - `SUPABASE_SERVICE_ROLE_KEY` - Supabase service role key
+   - `OPENWEATHERMAP_API_KEY` - OpenWeatherMap API key
+   - `WEATHERAPI_KEY` - WeatherAPI key (fallback)
+   - See `.env.example` for complete list
+
+#### Deploy Commands
+
+```bash
+# Deploy from project root
+vercel --prod
+
+# Or use deployment script
+./scripts/deploy.sh production vercel
+```
 
 ### Docker
 ```bash
