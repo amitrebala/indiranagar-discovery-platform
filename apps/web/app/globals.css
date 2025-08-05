@@ -117,6 +117,9 @@
   --glass-dark: rgba(0, 0, 0, 0.1);
   --glass-dark-med: rgba(0, 0, 0, 0.2);
   --glass-dark-high: rgba(0, 0, 0, 0.3);
+
+  /* Aurora gradient for hero text */
+  --gradient-aurora: linear-gradient(135deg, #667eea 0%, #764ba2 35%, #f093fb 70%, #f5576c 100%);
   
   /* Typography variables */
   --font-display: var(--font-inter), 'Cal Sans', system-ui, sans-serif;
@@ -539,4 +542,34 @@ body {
 ::selection {
   background: var(--focus-ring);
   color: var(--text-inverse);
+}
+
+/* ===== ENHANCED UX ANIMATIONS ===== */
+
+/* Aurora gradient animation */
+.bg-gradient-aurora {
+  background: var(--gradient-aurora);
+}
+
+.animate-gradient-shift {
+  background-size: 200% auto;
+  animation: gradient-shift 8s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Additional utility classes for enhanced UX */
+.backdrop-blur-md {
+  backdrop-filter: blur(12px);
+}
+
+.backdrop-blur-xl {
+  backdrop-filter: blur(24px);
 }
