@@ -1,6 +1,53 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 import { render, screen, fireEvent } from '@testing-library/react'
+import React from 'react'
 import HasAmitBeenHereButton from '@/components/community/HasAmitBeenHereButton'
+
+// Mock framer-motion
+vi.mock('framer-motion', () => ({
+  motion: {
+    div: ({ children, ...props }: any) => React.createElement('div', props, children),
+    button: ({ children, ...props }: any) => React.createElement('button', props, children),
+  },
+  AnimatePresence: ({ children }: any) => children,
+}))
+
+// Mock next/navigation
+vi.mock('next/navigation', () => ({
+  usePathname: () => '/',
+}))
+
+// Mock hooks
+vi.mock('@/hooks/useHapticFeedback', () => ({
+  useHapticFeedback: () => ({ vibrate: vi.fn() }),
+  HapticPattern: {
+    Light: [10],
+    Medium: [20],
+    Heavy: [30],
+  },
+}))
+
+// Mock UI components
+vi.mock('@/components/ui/FloatingEmojis', () => ({
+  default: () => null,
+}))
+
+vi.mock('@/components/ui/CelebrationOverlay', () => ({
+  default: () => null,
+}))
+
+// Mock Zustand stores
+vi.mock('@/stores/amitButtonStore', () => ({
+  useAmitButtonStore: () => ({
+    isExpanded: false,
+    filterActive: false,
+    toggleFilter: vi.fn(),
+  }),
+}))
+
+vi.mock('@/stores/mapStore', () => ({
+  useMapStore: () => ({}),
+}))
 
 describe('HasAmitBeenHereButton', () => {
   it('should render the floating button', () => {
