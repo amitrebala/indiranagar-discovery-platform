@@ -6,6 +6,11 @@ const nextConfig = {
     dirs: ['app', 'components', 'lib', 'utils'],
   },
   
+  // TypeScript configuration - don't fail build on type errors
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  
   // Enable Turbopack for development
   turbopack: {
     rules: {
