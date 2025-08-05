@@ -112,7 +112,6 @@ export async function GET(request: NextRequest) {
       .select(`
         *,
         event_images(*),
-        event_categories(display_name, color_code, icon_name),
         rsvp_count
       `)
       .eq('status', status)

@@ -1,7 +1,7 @@
 import { Suspense } from 'react'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { ArrowLeft, Calendar, Clock, Eye, Share2, Tag } from 'lucide-react'
+import { ArrowLeft, Clock } from 'lucide-react'
 import BlogPost from '@/components/blog/BlogPost'
 import BlogComments from '@/components/blog/BlogComments'
 import NewsletterSignupWrapper from '@/components/blog/NewsletterSignupWrapper'
@@ -167,7 +167,7 @@ async function getBlogPost(slug: string): Promise<BlogPostType | null> {
   return null
 }
 
-async function getBlogComments(postId: string): Promise<BlogComment[]> {
+async function getBlogComments(_postId: string): Promise<BlogComment[]> {
   // In real app, this would be a database query
   return mockComments
 }

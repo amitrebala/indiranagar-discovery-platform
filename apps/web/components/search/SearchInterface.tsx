@@ -71,7 +71,7 @@ export function SearchInterface({
         clearResults()
       }
     }, 300),
-    [search, location, clearResults, recentSearches]
+    [search, location, clearResults, saveRecentSearch]
   )
 
   // Execute search when query or filters change
@@ -258,7 +258,7 @@ export function SearchInterface({
 
       {/* Hidden status for screen readers */}
       <div id="search-description" className="sr-only">
-        Search for places using natural language like 'quiet morning coffee' or 'good for rainy day'
+        Search for places using natural language like &apos;quiet morning coffee&apos; or &apos;good for rainy day&apos;
       </div>
       <div id="search-results-status" className="sr-only" aria-live="polite" aria-atomic="true">
         {isLoading ? 'Searching...' : searchResults.length > 0 ? `Found ${searchResults.length} results` : query.length > 1 && searchResults.length === 0 ? 'No results found' : ''}

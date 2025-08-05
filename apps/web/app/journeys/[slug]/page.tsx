@@ -1,7 +1,7 @@
 import { Suspense } from 'react'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { ArrowLeft, Clock, MapPin, Navigation, Star, Users } from 'lucide-react'
+import { ArrowLeft, Clock, MapPin, Navigation, Star } from 'lucide-react'
 import ResponsiveJourneyInterface from '@/components/journeys/ResponsiveJourneyInterface'
 import { JourneyExperience } from '@/lib/types/journey'
 
@@ -16,7 +16,7 @@ const mockJourneyData: Record<string, JourneyExperience> = {
   '1': {
     id: '1',
     name: 'Coffee Culture Crawl',
-    description: 'Discover Indiranagar\'s finest coffee spots with insider knowledge and perfect timing. This journey takes you through three distinct coffee experiences, from artisanal single-origin to cozy neighborhood favorites.',
+    description: 'Discover Indiranagar&apos;s finest coffee spots with insider knowledge and perfect timing. This journey takes you through three distinct coffee experiences, from artisanal single-origin to cozy neighborhood favorites.',
     mood_category: 'social',
     duration_minutes: 180,
     difficulty_level: 'easy',
@@ -349,7 +349,7 @@ export default async function JourneyPage({ params }: JourneyPageProps) {
               <h4 className="font-medium text-green-900 mb-2">During the Journey</h4>
               <ul className="text-green-800 text-sm space-y-1">
                 <li>• Take your time at each stop - this isn't a race</li>
-                <li>• Don't hesitate to ask locals for recommendations</li>
+                <li>• Don&apos;t hesitate to ask locals for recommendations</li>
                 <li>• Document your experience for future reference</li>
               </ul>
             </div>

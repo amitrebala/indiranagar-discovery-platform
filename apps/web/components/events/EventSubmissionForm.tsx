@@ -203,7 +203,7 @@ export const EventSubmissionForm = () => {
               <label className="block text-sm font-medium text-gray-700 mb-2">Venue Type</label>
               <select
                 value={formData.venue_type}
-                onChange={(e) => setFormData(prev => ({ ...prev, venue_type: e.target.value as any }))}
+                onChange={(e) => setFormData(prev => ({ ...prev, venue_type: e.target.value as 'indoor' | 'outdoor' | 'hybrid' }))}
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent"
               >
                 <option value="indoor">Indoor</option>
@@ -295,7 +295,7 @@ export const EventSubmissionForm = () => {
               </label>
               <select
                 value={formData.cost_type}
-                onChange={(e) => setFormData(prev => ({ ...prev, cost_type: e.target.value as any }))}
+                onChange={(e) => setFormData(prev => ({ ...prev, cost_type: e.target.value as 'free' | 'paid' | 'donation' }))}
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent"
               >
                 <option value="free">Free</option>

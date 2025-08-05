@@ -12,7 +12,6 @@ import {
   BarChart3,
   Network
 } from 'lucide-react'
-import BusinessRelationshipCard from '@/components/business/BusinessRelationshipCard'
 import NetworkVisualizationWrapper from '@/components/business/NetworkVisualizationWrapper'
 import { RelationshipGrid, RelationshipGridSkeleton } from '@/components/business/RelationshipGrid'
 import { BusinessRelationship, RelationshipMetrics } from '@/lib/types/business-relationships'
@@ -73,8 +72,8 @@ const mockRelationships: BusinessRelationship[] = [
   {
     id: '2',
     place_id: 'place-2',
-    place_name: 'Koshy\'s Restaurant',
-    business_name: 'Koshy\'s Restaurant',
+    place_name: 'Koshy&apos;s Restaurant',
+    business_name: 'Koshy&apos;s Restaurant',
     contact_person: 'Mrs. Koshy',
     contact_phone: '+91 80 2558 4333',
     relationship_type: 'personal_friend',
@@ -329,7 +328,7 @@ export default function BusinessRelationshipsPage() {
               <div className="flex items-start gap-4 p-4 bg-green-50 rounded-lg border border-green-200">
                 <div className="w-2 h-2 bg-green-500 rounded-full mt-2" />
                 <div>
-                  <p className="text-green-900 font-medium">Special arrangement activated at Koshy's</p>
+                  <p className="text-green-900 font-medium">Special arrangement activated at Koshy&apos;s</p>
                   <p className="text-green-700 text-sm">Reserved heritage breakfast for visiting family</p>
                   <p className="text-green-600 text-xs mt-1">1 week ago</p>
                 </div>
@@ -375,7 +374,7 @@ export default function BusinessRelationshipsPage() {
               <div className="p-4 bg-orange-50 rounded-lg border border-orange-200">
                 <h4 className="font-medium text-orange-900 mb-2">Maintenance Opportunity</h4>
                 <p className="text-orange-800 text-sm mb-3">
-                  You haven't visited MTR in 3 weeks. Consider scheduling a weekend breakfast to maintain the relationship.
+                  You haven&apos;t visited MTR in 3 weeks. Consider scheduling a weekend breakfast to maintain the relationship.
                 </p>
                 <button className="text-orange-600 hover:text-orange-700 text-sm font-medium">
                   Schedule visit →

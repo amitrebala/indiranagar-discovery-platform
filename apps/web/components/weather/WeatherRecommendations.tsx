@@ -5,8 +5,7 @@ import { Cloud, Sun, CloudRain, Thermometer, Droplets, Eye, MapPin } from 'lucid
 import { usePlaces } from '@/hooks/usePlaces'
 import { useGeolocation } from '@/hooks/useGeolocation'
 import type { WeatherData } from '@/lib/weather/types'
-import type { Place } from '@/lib/validations'
-import { WeatherRecommendationEngine } from '@/lib/weather/recommendations'
+import { WeatherRecommendationEngine, type WeatherRecommendation } from '@/lib/weather/recommendations'
 
 interface WeatherRecommendationsProps {
   weather?: WeatherData
@@ -23,7 +22,7 @@ export function WeatherRecommendations({
 }: WeatherRecommendationsProps) {
   const { places } = usePlaces()
   const { coordinates: location } = useGeolocation()
-  const [recommendations, setRecommendations] = useState<any[]>([])
+  const [recommendations, setRecommendations] = useState<WeatherRecommendation[]>([])
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
@@ -33,8 +32,7 @@ export function WeatherRecommendations({
       try {
         const engine = new WeatherRecommendationEngine()
         const weatherRecommendations = engine.generateRecommendations(
-          weather,
-          location ? { latitude: location.lat, longitude: location.lng } : { latitude: 12.9716, longitude: 77.5946 } // Default to Bangalore
+          weather
         )
         
         setRecommendations(weatherRecommendations.slice(0, maxRecommendations))
@@ -70,12 +68,6 @@ export function WeatherRecommendations({
     }
   }
 
-  const getSuitabilityIcon = (suitability: number) => {
-    if (suitability >= 0.8) return '🌟'
-    if (suitability >= 0.6) return '👍'
-    if (suitability >= 0.4) return '👌'
-    return '⚠️'
-  }
 
   if (!weather) {
     return (
@@ -169,8 +161,10 @@ export function WeatherRecommendations({
   )
 }
 
+type WeatherRecommendationType = WeatherRecommendation
+
 interface WeatherRecommendationCardProps {
-  recommendation: any
+  recommendation: WeatherRecommendationType
   index: number
   weather: WeatherData
 }
@@ -180,7 +174,7 @@ function WeatherRecommendationCard({
   index, 
   weather 
 }: WeatherRecommendationCardProps) {
-  const { place, suitability_score, weather_reasoning, alternative_suggestions } = recommendation
+  const { place, suitability_score, weather_reasoning } = recommendation
 
   const getSuitabilityColor = (score: number) => {
     if (score >= 0.8) return 'text-green-600 bg-green-50'
@@ -230,7 +224,7 @@ function WeatherRecommendationCard({
       {/* Weather Reasoning */}
       {weather_reasoning && weather_reasoning.length > 0 && (
         <div className="mb-3">
-          <h5 className="text-sm font-medium text-gray-700 mb-1">Why it's perfect now:</h5>
+          <h5 className="text-sm font-medium text-gray-700 mb-1">Why it&apos;s perfect now:</h5>
           <div className="space-y-1">
             {weather_reasoning.map((reason: string, idx: number) => (
               <div key={idx} className="text-sm text-gray-600 flex items-center gap-2">

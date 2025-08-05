@@ -263,7 +263,7 @@ export default function BlogPage() {
             </h1>
             <p className="text-lg text-gray-700 leading-relaxed max-w-3xl">
               Personal commentary on neighborhood happenings, business updates, and the evolving 
-              character of Indiranagar from someone who's called it home for years.
+              character of Indiranagar from someone who&apos;s called it home for years.
             </p>
           </div>
 
@@ -330,18 +330,18 @@ export default function BlogPage() {
           <h3 className="text-xl font-bold text-gray-900 mb-4">About This Blog</h3>
           <div className="prose prose-gray max-w-none">
             <p className="text-gray-700 leading-relaxed mb-4">
-              This blog is my personal take on life in Indiranagar - one of Bangalore's most vibrant neighborhoods. 
-              Having lived here for several years, I've watched the area evolve, businesses come and go, 
+              This blog is my personal take on life in Indiranagar - one of Bangalore&apos;s most vibrant neighborhoods. 
+              Having lived here for several years, I&apos;ve watched the area evolve, businesses come and go, 
               and communities form around shared spaces.
             </p>
             <p className="text-gray-700 leading-relaxed mb-4">
               My goal is to document these changes, celebrate the people who make this neighborhood special, 
               and share insights that only come from being deeply embedded in the community. 
-              Whether it's a new restaurant opening, a beloved shop closing, or just observations about 
-              how the neighborhood is changing, you'll find it here.
+              Whether it&apos;s a new restaurant opening, a beloved shop closing, or just observations about 
+              how the neighborhood is changing, you&apos;ll find it here.
             </p>
             <p className="text-gray-700 leading-relaxed">
-              This isn't just food blogging or travel writing - it's community journalism with a personal lens. 
+              This isn&apos;t just food blogging or travel writing - it&apos;s community journalism with a personal lens. 
               I hope it helps you see Indiranagar through the eyes of someone who truly calls it home.
             </p>
           </div>

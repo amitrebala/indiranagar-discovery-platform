@@ -56,7 +56,7 @@ export function UserQuotes() {
             >
               <Quote className="w-8 h-8 text-orange-300 mb-4" />
               <blockquote className="text-gray-700 mb-4 italic">
-                "{quote.text}"
+                &quot;{quote.text}&quot;
               </blockquote>
               <div className="border-t pt-4">
                 <div className="font-semibold text-gray-900">

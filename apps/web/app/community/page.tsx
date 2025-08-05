@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { Container } from '@/components/layout/Container'
-import { MessageCircle, MapPin, ThumbsUp, Calendar, Filter, Search } from 'lucide-react'
+import { MessageCircle, MapPin, ThumbsUp, Filter, Search } from 'lucide-react'
 
 interface Suggestion {
   id: string
@@ -205,7 +205,7 @@ export default function CommunityPage() {
                     <Filter className="w-4 h-4 text-gray-400" />
                     <select
                       value={filterStatus}
-                      onChange={(e) => setFilterStatus(e.target.value as any)}
+                      onChange={(e) => setFilterStatus(e.target.value as 'all' | 'pending' | 'approved' | 'declined')}
                       className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
                     >
                       <option value="all">All Status</option>

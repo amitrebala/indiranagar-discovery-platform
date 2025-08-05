@@ -26,7 +26,7 @@ function determineCondition(temp: number, humidity: number): WeatherData['condit
 }
 
 // Generate recommendations based on weather
-function generateRecommendations(condition: WeatherData['condition'], _temp: number): string[] {
+function generateRecommendations(condition: WeatherData['condition']): string[] {
   const recommendations: string[] = []
   
   switch (condition) {
@@ -84,7 +84,7 @@ export async function fetchFromOpenWeatherMap(lat: number, lng: number): Promise
       temperature: Math.round(data.main.temp),
       humidity: data.main.humidity,
       description: data.weather[0]?.description || 'Weather data',
-      recommendations: generateRecommendations(condition, data.main.temp),
+      recommendations: generateRecommendations(condition),
       source: 'openweather',
       timestamp: Date.now()
     }
@@ -119,7 +119,7 @@ export async function fetchFromWeatherAPI(lat: number, lng: number): Promise<Wea
       temperature: Math.round(data.current.temp_c),
       humidity: data.current.humidity,
       description: data.current.condition.text,
-      recommendations: generateRecommendations(condition, data.current.temp_c),
+      recommendations: generateRecommendations(condition),
       source: 'weatherapi',
       timestamp: Date.now()
     }
@@ -129,7 +129,7 @@ export async function fetchFromWeatherAPI(lat: number, lng: number): Promise<Wea
   }
 }
 
-export function getFallbackWeather(_lat: number, _lng: number): WeatherData {
+export function getFallbackWeather(): WeatherData {
   // Seasonal defaults based on Bangalore weather patterns
   const month = new Date().getMonth()
   let condition: WeatherData['condition'] = 'sunny'
@@ -155,7 +155,7 @@ export function getFallbackWeather(_lat: number, _lng: number): WeatherData {
     temperature,
     humidity: 65,
     description: `Typical ${condition} weather for Bangalore`,
-    recommendations: generateRecommendations(condition, temperature),
+    recommendations: generateRecommendations(condition),
     source: 'fallback',
     timestamp: Date.now()
   }

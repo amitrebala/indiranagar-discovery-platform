@@ -7,7 +7,6 @@ import {
   Users, 
   Camera, 
   Cloud, 
-  MapPin,
   Clock,
   Star,
   ChevronRight,
@@ -36,7 +35,7 @@ const scenarios: Scenario[] = [
     steps: [
       'Open the interactive map',
       'Filter by "Cafe" category',
-      'Check the weather widget - it\'s a beautiful sunny morning',
+      'Check the weather widget - it&apos;s a beautiful sunny morning',
       'Find Blue Tokai Coffee Roasters marked with a green verified badge',
       'Click to see it opens at 8 AM with "Morning 8-11 AM" as best time'
     ],
@@ -54,7 +53,7 @@ const scenarios: Scenario[] = [
       'Browse the places page',
       'Sort by highest rating',
       'Spot "The Permit Room" with 4.3 stars',
-      'Read Amit\'s insider tip about their special toddy',
+      'Read Amit&apos;s insider tip about their special toddy',
       'Check companion activities - "Walk around 100 Feet Road after"'
     ],
     outcome: 'You experience authentic South Indian bar culture, try local drinks, and end the night with a pleasant walk discovering street art.',
@@ -83,12 +82,12 @@ const scenarios: Scenario[] = [
     id: 'photo-walk',
     title: 'Instagram-Worthy Photo Walk',
     icon: <Camera className="w-6 h-6" />,
-    description: 'You want to capture Indiranagar\'s essence for your travel blog.',
+    description: 'You want to capture Indiranagar&apos;s essence for your travel blog.',
     steps: [
       'Discover the "Journey Routes" feature on the map',
       'Select "Morning Photography Walk"',
       'Follow the curated route hitting 5 photogenic spots',
-      'Each stop has Amit\'s composition tips',
+      'Each stop has Amit&apos;s composition tips',
       'Best lighting times included for each location'
     ],
     outcome: 'Your Instagram explodes with unique shots of hidden murals, heritage buildings, and candid street life that only a local would know.',
@@ -117,15 +116,15 @@ const scenarios: Scenario[] = [
     id: 'late-night',
     title: 'Late Night Munchies',
     icon: <Clock className="w-6 h-6" />,
-    description: 'It\'s 11 PM and you\'re craving something delicious.',
+    description: 'It&apos;s 11 PM and you&apos;re craving something delicious.',
     steps: [
       'Use time-based search',
       'Filter "Open now"',
-      'Sony\'s Rolls appears - "Late night 10 PM-2 AM"',
-      'See it\'s marked as "Street Food" with 4.1 rating',
+      'Sony&apos;s Rolls appears - &quot;Late night 10 PM-2 AM&quot;',
+      'See it&apos;s marked as &quot;Street Food&quot; with 4.1 rating',
       'Read about their legendary Kolkata-style rolls'
     ],
-    outcome: 'You discover why there\'s always a queue at Sony\'s, enjoy amazing rolls, and it becomes your go-to late-night spot.',
+    outcome: 'You discover why there&apos;s always a queue at Sony&apos;s, enjoy amazing rolls, and it becomes your go-to late-night spot.',
     ctaText: 'Find Late Night Options',
     ctaLink: '/search?open=late-night',
     features: ['Time-based search', 'Operating hours', 'Local favorites']
@@ -190,7 +189,7 @@ export function UsageScenarios() {
 
             {/* Steps */}
             <div className="space-y-3">
-              <h4 className="font-semibold text-gray-900">Here\'s what you do:</h4>
+              <h4 className="font-semibold text-gray-900">Here&apos;s what you do:</h4>
               {active.steps.map((step, index) => (
                 <div key={index} className="flex items-start gap-3">
                   <div className="w-6 h-6 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center flex-shrink-0 text-sm font-medium">

@@ -86,7 +86,7 @@ export async function GET(request: NextRequest) {
     
     // Use fallback if both APIs fail
     if (!weatherData) {
-      weatherData = getFallbackWeather(lat, lng)
+      weatherData = getFallbackWeather()
     }
     
     // Cache the result

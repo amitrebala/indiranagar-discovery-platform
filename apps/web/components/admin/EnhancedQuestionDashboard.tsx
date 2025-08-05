@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Clock, AlertTriangle, Tag, BarChart3 } from 'lucide-react';
 
 interface CommunityQuestion {
@@ -18,7 +18,7 @@ interface CommunityQuestion {
 }
 
 export const EnhancedQuestionDashboard = () => {
-  const [questions, setQuestions] = useState<CommunityQuestion[]>([]);
+  const [questions] = useState<CommunityQuestion[]>([]);
   const [filter, setFilter] = useState<string>('all');
   const [sortBy, setSortBy] = useState<'priority' | 'date' | 'sla'>('priority');
 
@@ -55,7 +55,7 @@ export const EnhancedQuestionDashboard = () => {
           
           <select
             value={sortBy}
-            onChange={(e) => setSortBy(e.target.value as any)}
+            onChange={(e) => setSortBy(e.target.value as 'priority' | 'date' | 'sla')}
             className="px-3 py-2 border border-gray-300 rounded-lg"
           >
             <option value="priority">Priority</option>

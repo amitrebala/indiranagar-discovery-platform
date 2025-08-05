@@ -101,8 +101,7 @@ export async function GET(request: NextRequest) {
       .from('community_place_suggestions')
       .select(`
         *,
-        suggestion_images(*),
-        contributors(name, recognition_level)
+        suggestion_images(*)
       `)
       .order('created_at', { ascending: false })
       .range(offset, offset + limit - 1);

@@ -1,6 +1,50 @@
 import type { WeatherData } from './types'
 import type { Place } from '@/lib/validations'
 
+interface JourneyType {
+  id: string
+  name: string
+  outdoor_heavy?: boolean
+  walking_intensive?: boolean
+  outdoor_moderate?: boolean
+  walking_moderate?: boolean
+  estimated_duration: number
+  current_location?: LocationType
+}
+
+interface LocationType {
+  latitude: number
+  longitude: number
+}
+
+interface AdaptationResult {
+  recommend_postpone?: boolean
+  alternative_indoor_journey?: IndoorAlternative
+  safe_shelter_locations?: ShelterLocation[]
+  reasoning?: string[]
+  minor_adjustments?: string[]
+  continue_with_caution?: boolean
+  timing_recommendations?: string[]
+}
+
+interface WeatherImpactAnalysis {
+  severity: 'low' | 'medium' | 'high'
+  reasons: string[]
+  suggestions: string[]
+}
+
+interface IndoorAlternative {
+  id: string
+  name: string
+  indoor_focused: boolean
+  estimated_duration: number
+}
+
+interface ShelterLocation {
+  name: string
+  distance: string
+}
+
 export interface WeatherRecommendation {
   place: Place
   suitability_score: number
@@ -22,8 +66,7 @@ export interface Coordinates {
 
 export class WeatherRecommendationEngine {
   generateRecommendations(
-    weatherData: WeatherData,
-    userLocation: Coordinates
+    weatherData: WeatherData
   ): WeatherRecommendation[] {
     // This would typically get places from a service/store
     // For now, we'll use an empty array and the caller should pass places
@@ -42,16 +85,16 @@ export class WeatherRecommendationEngine {
   }
 
   adaptToWeatherChange(
-    currentJourney: any,
+    currentJourney: JourneyType,
     newWeather: WeatherData
-  ): any {
+  ): AdaptationResult {
     const impact = this.analyzeJourneyWeatherImpact(currentJourney, newWeather)
     
     if (impact.severity === 'high') {
       return {
         recommend_postpone: true,
         alternative_indoor_journey: this.generateIndoorAlternative(currentJourney),
-        safe_shelter_locations: this.findNearbyShelter(currentJourney.current_location),
+        safe_shelter_locations: this.findNearbyShelter(),
         reasoning: impact.reasons
       }
     }
@@ -76,7 +119,7 @@ export class WeatherRecommendationEngine {
     const currentCondition = weather.condition.toLowerCase()
 
     // Direct condition match
-    if (suitableConditions.includes(currentCondition as any)) {
+    if (suitableConditions.some(cond => cond === currentCondition)) {
       score = 1.0
     }
     // Partial matches and related conditions
@@ -101,7 +144,8 @@ export class WeatherRecommendationEngine {
     return Math.max(0, Math.min(1, score))
   }
 
-  private hasCompatibleConditions(suitableConditions: string[], weather: WeatherData): boolean {
+  private hasCompatibleConditions(suitableConditions: Place['weather_suitability'], weather: WeatherData): boolean {
+    if (!suitableConditions) return false
     const condition = weather.condition.toLowerCase()
     
     // Rain-related compatibility
@@ -128,7 +172,8 @@ export class WeatherRecommendationEngine {
     return false
   }
 
-  private isIndoorSuitable(suitableConditions: string[], weather: WeatherData): boolean {
+  private isIndoorSuitable(suitableConditions: Place['weather_suitability'], weather: WeatherData): boolean {
+    if (!suitableConditions) return false
     const hasIndoorOptions = suitableConditions.some(c => 
       c.includes('indoor') || c.includes('covered') || c.includes('air-conditioned')
     )
@@ -140,7 +185,8 @@ export class WeatherRecommendationEngine {
     return hasIndoorOptions && needsIndoor
   }
 
-  private hasConflictingConditions(suitableConditions: string[], weather: WeatherData): boolean {
+  private hasConflictingConditions(suitableConditions: Place['weather_suitability'], weather: WeatherData): boolean {
+    if (!suitableConditions) return false
     const condition = weather.condition.toLowerCase()
     
     // Outdoor places during rain
@@ -206,7 +252,7 @@ export class WeatherRecommendationEngine {
     const humidity = weather.humidity
 
     // Direct condition matches
-    if (place.weather_suitability?.includes(condition as any)) {
+    if (place.weather_suitability?.some(cond => cond === condition)) {
       reasons.push(`Perfect for ${condition} weather`)
     }
 
@@ -313,7 +359,7 @@ export class WeatherRecommendationEngine {
     }
   }
 
-  private analyzeJourneyWeatherImpact(journey: any, weather: WeatherData): any {
+  private analyzeJourneyWeatherImpact(journey: JourneyType, weather: WeatherData): WeatherImpactAnalysis {
     const severity = this.determineImpactSeverity(journey, weather)
     const reasons = this.getImpactReasons(journey, weather)
     const suggestions = this.getAdaptationSuggestions(journey, weather)
@@ -325,7 +371,7 @@ export class WeatherRecommendationEngine {
     }
   }
 
-  private determineImpactSeverity(journey: any, weather: WeatherData): 'low' | 'medium' | 'high' {
+  private determineImpactSeverity(journey: JourneyType, weather: WeatherData): 'low' | 'medium' | 'high' {
     const condition = weather.condition
     const temp = weather.temperature
 
@@ -341,7 +387,7 @@ export class WeatherRecommendationEngine {
     return 'low'
   }
 
-  private getImpactReasons(journey: any, weather: WeatherData): string[] {
+  private getImpactReasons(journey: JourneyType, weather: WeatherData): string[] {
     const reasons: string[] = []
     const condition = weather.condition
     const temp = weather.temperature
@@ -359,7 +405,7 @@ export class WeatherRecommendationEngine {
     return reasons
   }
 
-  private getAdaptationSuggestions(journey: any, weather: WeatherData): string[] {
+  private getAdaptationSuggestions(journey: JourneyType, weather: WeatherData): string[] {
     const suggestions: string[] = []
     const condition = weather.condition
 
@@ -375,7 +421,7 @@ export class WeatherRecommendationEngine {
     return suggestions
   }
 
-  private generateIndoorAlternative(journey: any): any {
+  private generateIndoorAlternative(journey: JourneyType): IndoorAlternative {
     // This would create an alternative indoor-focused journey
     return {
       id: `${journey.id}-indoor-alt`,
@@ -385,7 +431,7 @@ export class WeatherRecommendationEngine {
     }
   }
 
-  private findNearbyShelter(location: any): any[] {
+  private findNearbyShelter(): ShelterLocation[] {
     // This would find nearby sheltered locations
     return [
       { name: 'Metro Station', distance: '200m' },

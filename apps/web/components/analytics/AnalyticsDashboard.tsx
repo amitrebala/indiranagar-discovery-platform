@@ -13,8 +13,6 @@ import {
   MapPin,
   BookOpen,
   Zap,
-  Calendar,
-  Filter
 } from 'lucide-react'
 import { DashboardMetrics, TimePeriod } from '@/lib/types/analytics'
 
@@ -159,7 +157,7 @@ export default function AnalyticsDashboard({
       <div className="grid gap-8 lg:grid-cols-2">
         <ChartCard title="Top Pages">
           <div className="space-y-4">
-            {metrics.overview.top_pages.slice(0, 5).map((page, index) => (
+            {metrics.overview.top_pages.slice(0, 5).map((page) => (
               <div key={page.url} className="flex items-center justify-between">
                 <div className="flex-1">
                   <p className="font-medium text-gray-900 truncate">{page.title}</p>

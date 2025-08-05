@@ -49,10 +49,10 @@ function getRating(name: string, value: number): 'good' | 'needs-improvement' | 
   return 'poor'
 }
 
-function validateMetric(data: any): WebVitalMetric | null {
+function validateMetric(data: unknown): WebVitalMetric | null {
   if (!data || typeof data !== 'object') return null
   
-  const { name, value, url, timestamp } = data
+  const { name, value, url, timestamp } = data as Record<string, unknown>
   
   if (
     typeof name !== 'string' ||
@@ -88,7 +88,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    let data: any
+    let data: unknown
     try {
       data = JSON.parse(body)
     } catch (error) {
@@ -108,14 +108,15 @@ export async function POST(request: NextRequest) {
 
     // Extract additional context from headers and data
     const userAgent = request.headers.get('user-agent')
+    const typedData = data as Record<string, unknown>
     const report: WebVitalReport = {
       ...metric,
       rating: getRating(metric.name, metric.value),
       userAgent: userAgent || undefined,
-      viewport: data.viewport,
-      connection: data.connection,
-      deviceMemory: data.deviceMemory,
-      hardwareConcurrency: data.hardwareConcurrency,
+      viewport: typedData.viewport as { width: number; height: number } | undefined,
+      connection: typedData.connection as NetworkCondition | undefined,
+      deviceMemory: typedData.deviceMemory as number | undefined,
+      hardwareConcurrency: typedData.hardwareConcurrency as number | undefined,
     }
 
     // Log to console in development

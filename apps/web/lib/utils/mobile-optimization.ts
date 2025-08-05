@@ -1,5 +1,29 @@
 // Mobile-specific utilities for optimizing performance and UX
 
+interface BatteryManager {
+  level: number
+  charging: boolean
+  chargingTime: number
+  dischargingTime: number
+}
+
+interface NavigatorWithBattery extends Navigator {
+  getBattery(): Promise<BatteryManager>
+}
+
+interface NavigatorWithStandalone extends Navigator {
+  standalone?: boolean
+}
+
+interface BeforeInstallPromptEvent extends Event {
+  prompt(): void
+  userChoice: Promise<{ outcome: string }>
+}
+
+interface WindowWithDeferredPrompt extends Window {
+  deferredPrompt?: BeforeInstallPromptEvent
+}
+
 interface ImageOptimizationOptions {
   width?: number
   height?: number
@@ -102,7 +126,7 @@ export function getOptimalTouchTargets() {
 }
 
 // Debounce function for scroll and resize events
-export function debounce<T extends (...args: any[]) => void>(
+export function debounce<T extends (...args: unknown[]) => void>(
   func: T,
   wait: number,
   immediate?: boolean
@@ -125,7 +149,7 @@ export function debounce<T extends (...args: any[]) => void>(
 }
 
 // Throttle function for high-frequency events
-export function throttle<T extends (...args: any[]) => void>(
+export function throttle<T extends (...args: unknown[]) => void>(
   func: T,
   limit: number
 ): (...args: Parameters<T>) => void {
@@ -175,10 +199,9 @@ export function cancelAnimationFrame(id: number): void {
 }
 
 // Memory management utilities
-export function cleanupImageCache(maxCacheSize: number = 50): void {
+export function cleanupImageCache(): void {
   // This would integrate with a proper image cache system
   // For now, it's a placeholder for future implementation
-  console.log(`Cleaning up image cache, max size: ${maxCacheSize}`)
 }
 
 // Battery optimization
@@ -192,7 +215,7 @@ export function getBatteryInfo(): Promise<{
     return Promise.resolve(null)
   }
   
-  return (navigator as any).getBattery().then((battery: any) => ({
+  return (navigator as NavigatorWithBattery).getBattery().then((battery: BatteryManager) => ({
     level: battery.level,
     charging: battery.charging,
     chargingTime: battery.chargingTime,
@@ -256,24 +279,25 @@ export function getOrientation(): 'portrait' | 'landscape' {
 export function canInstallPWA(): boolean {
   return typeof window !== 'undefined' && 
          ('beforeinstallprompt' in window || 
-          (window.navigator as any).standalone !== undefined)
+          (window.navigator as NavigatorWithStandalone).standalone !== undefined)
 }
 
 export function promptPWAInstall(): Promise<boolean> {
   return new Promise((resolve) => {
     const handleInstallPrompt = (e: Event) => {
       e.preventDefault()
-      const promptEvent = e as any
+      const promptEvent = e as BeforeInstallPromptEvent
       
       promptEvent.prompt()
-      promptEvent.userChoice.then((choiceResult: any) => {
+      promptEvent.userChoice.then((choiceResult: { outcome: string }) => {
         resolve(choiceResult.outcome === 'accepted')
         window.removeEventListener('beforeinstallprompt', handleInstallPrompt)
       })
     }
     
-    if ((window as any).deferredPrompt) {
-      handleInstallPrompt((window as any).deferredPrompt)
+    const deferredPrompt = (window as WindowWithDeferredPrompt).deferredPrompt
+    if (deferredPrompt) {
+      handleInstallPrompt(deferredPrompt)
     } else {
       window.addEventListener('beforeinstallprompt', handleInstallPrompt)
       // Timeout after 5 seconds

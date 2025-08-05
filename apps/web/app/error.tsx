@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
-import { EnhancedErrorBoundary, ErrorCategory, ErrorSeverity } from '@/components/errors/EnhancedErrorBoundary'
+import { ErrorCategory, ErrorSeverity } from '@/components/errors/EnhancedErrorBoundary'
 import { Home, RefreshCw } from 'lucide-react'
 
 // Error fallback component that matches Next.js error page interface

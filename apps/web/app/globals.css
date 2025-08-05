@@ -683,12 +683,12 @@ body {
   transform-style: preserve-3d;
 }
 
-.hero-section .motion-safe\:animate-* {
+.hero-section [class*="motion-safe:animate"] {
   animation-play-state: running;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-section .motion-safe\:animate-* {
+  .hero-section [class*="motion-safe:animate"] {
     animation-play-state: paused;
   }
 }

@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import { Heart, MapPin, Calendar, Camera } from 'lucide-react'
-import { MemoryPalaceContent, EnhancedPlace } from '@/lib/types/memory-palace'
+import { EnhancedPlace } from '@/lib/types/memory-palace'
 
 interface MemoryPalaceStoryProps {
   place: EnhancedPlace;
@@ -65,7 +65,7 @@ export default function MemoryPalaceStory({ place }: MemoryPalaceStoryProps) {
       <div className="spatial-elements mb-8">
         <h3 className="text-xl font-semibold mb-4 text-gray-900">Visual Memories</h3>
         <div className="grid gap-6 md:grid-cols-2">
-          {place.memory_palace_story.spatial_elements.map((element, index) => (
+          {place.memory_palace_story.spatial_elements.map((element) => (
             <div key={element.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
               <div className="relative h-48">
                 <Image 
@@ -94,7 +94,7 @@ export default function MemoryPalaceStory({ place }: MemoryPalaceStoryProps) {
           Personal Moments
         </h3>
         <div className="space-y-4">
-          {place.memory_palace_story.personal_anecdotes.map((anecdote, index) => (
+          {place.memory_palace_story.personal_anecdotes.map((anecdote) => (
             <div 
               key={anecdote.id} 
               className={`border-l-4 pl-6 py-4 rounded-r-lg transition-all cursor-pointer ${getEmotionColor(anecdote.emotion)}`}
@@ -115,7 +115,7 @@ export default function MemoryPalaceStory({ place }: MemoryPalaceStoryProps) {
                     className="text-gray-800 leading-relaxed italic text-lg"
                     style={{ fontFamily: 'Playfair Display, serif' }}
                   >
-                    "{anecdote.content}"
+                    &quot;{anecdote.content}&quot;
                   </blockquote>
                   {expandedAnecdote === anecdote.id && (
                     <div className="mt-3 pt-3 border-t border-gray-200">
@@ -127,7 +127,7 @@ export default function MemoryPalaceStory({ place }: MemoryPalaceStoryProps) {
                 </div>
               </div>
               <footer className="text-sm mt-3 font-normal text-gray-500">
-                — Amit's memory from {anecdote.context}
+                — Amit&apos;s memory from {anecdote.context}
               </footer>
             </div>
           ))}

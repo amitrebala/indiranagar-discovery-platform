@@ -19,7 +19,7 @@ async function sendRSVPConfirmation(event: { title: string }, rsvp: { attendee_e
   console.log('RSVP confirmation:', event.title, rsvp.attendee_email);
 }
 
-async function notifyOrganizerNewRSVP(event: { organizer_email: string }, _rsvp: { attendee_email: string }) {
+async function notifyOrganizerNewRSVP(event: { organizer_email: string }) {
   // Implementation for notifying organizer of new RSVP
   console.log('New RSVP notification to organizer:', event.organizer_email);
 }
@@ -82,7 +82,7 @@ export async function POST(
     await sendRSVPConfirmation(event, rsvp);
     
     // Notify organizer
-    await notifyOrganizerNewRSVP(event, rsvp);
+    await notifyOrganizerNewRSVP(event);
     
     return NextResponse.json({ 
       success: true, 

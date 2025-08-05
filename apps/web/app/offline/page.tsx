@@ -18,12 +18,12 @@ export default function OfflinePage() {
 
         {/* Heading */}
         <h1 className="text-2xl font-bold text-neutral-900 mb-3">
-          You're Offline
+          You&apos;re Offline
         </h1>
 
         {/* Description */}
         <p className="text-neutral-600 mb-8 leading-relaxed">
-          No internet connection detected. Don't worry, you can still explore some cached places and view your saved favorites.
+          No internet connection detected. Don&apos;t worry, you can still explore some cached places and view your saved favorites.
         </p>
 
         {/* Available Actions */}
