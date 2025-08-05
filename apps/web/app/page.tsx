@@ -28,12 +28,6 @@ export default function Home() {
         </section>
       )}
 
-      {/* Status Indicator */}
-      <div className="container mx-auto px-4 py-8">
-        <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded">
-          <strong>✅ Journeys Fixed!</strong> The homepage now shows the journey selector with rotating cards.
-        </div>
-      </div>
     </div>
   )
 }
