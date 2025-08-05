@@ -447,13 +447,15 @@ function UnifiedAmitFABInner() {
                       "absolute min-w-[48px] min-h-[48px] w-12 h-12 rounded-full shadow-lg flex items-center justify-center text-white font-semibold",
                       `bg-gradient-to-br ${option.colorClass}`
                     )}
-                    style={{ textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}
+                    style={{
+                      ...getMenuItemStyle(index, menuOptions.length),
+                      textShadow: '0 1px 2px rgba(0,0,0,0.3)'
+                    }}
                     variants={menuItemVariants}
                     custom={index}
                     initial="hidden"
                     animate="visible"
                     exit="exit"
-                    style={getMenuItemStyle(index, menuOptions.length)}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={actionHandler}
