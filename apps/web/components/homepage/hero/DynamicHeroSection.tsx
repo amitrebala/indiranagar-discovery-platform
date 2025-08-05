@@ -13,10 +13,13 @@ export function DynamicHeroSection() {
   const { timeOfDay, greeting } = useTimeOfDay()
   const liveData = useLiveActivity()
   
+  // Map weather conditions to supported ones
+  const mappedWeather = weather?.condition === 'partly-cloudy' ? 'cloudy' : weather?.condition
+  
   return (
     <section className="relative min-h-[80vh] overflow-hidden">
       {/* Animated gradient background */}
-      <GradientMesh timeOfDay={timeOfDay} weather={weather?.condition} />
+      <GradientMesh timeOfDay={timeOfDay} weather={mappedWeather} />
       
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 py-20">

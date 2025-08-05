@@ -7,14 +7,22 @@ interface ViewportSize {
   height: number
 }
 
+interface CSSPosition {
+  bottom: number
+  right: number
+}
+
 export function useAmitFABPosition() {
   const { position, updatePosition } = useAmitFABStore()
   const [viewport, setViewport] = useState<ViewportSize>({ width: 0, height: 0 })
-  const [adjustedPosition, setAdjustedPosition] = useState(position)
+  const [adjustedPosition, setAdjustedPosition] = useState<CSSPosition>({ 
+    bottom: position.y, 
+    right: position.x 
+  })
   const fabRef = useRef<HTMLDivElement>(null)
   
   // Get responsive position based on viewport
-  const getResponsivePosition = useCallback(() => {
+  const getResponsivePosition = useCallback((): CSSPosition => {
     if (viewport.width < 640) {
       return SMART_POSITIONING.responsive.mobile
     } else if (viewport.width < 1024) {
@@ -92,14 +100,14 @@ export function useAmitFABPosition() {
   // Handle temporary repositioning (e.g., drag gesture)
   const temporaryReposition = useCallback((deltaX: number, deltaY: number) => {
     const newPosition = {
-      x: position.x + deltaX,
-      y: position.y + deltaY
+      x: position.x - deltaX,  // right moves opposite to deltaX
+      y: position.y - deltaY   // bottom moves opposite to deltaY
     }
     updatePosition(newPosition)
     
     // Reset position after delay
     setTimeout(() => {
-      updatePosition(SMART_POSITIONING.base)
+      updatePosition({ x: 24, y: 24 })  // Default position
     }, 3000)
   }, [position, updatePosition])
   
@@ -108,6 +116,7 @@ export function useAmitFABPosition() {
     fabRef,
     viewport,
     temporaryReposition,
-    isAdjusted: adjustedPosition !== getResponsivePosition()
+    isAdjusted: adjustedPosition.bottom !== getResponsivePosition().bottom || 
+                adjustedPosition.right !== getResponsivePosition().right
   }
 }
