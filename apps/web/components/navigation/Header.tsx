@@ -42,7 +42,7 @@ export function Header() {
           {/* Logo and Brand */}
           <Link 
             href="/" 
-            className="flex items-center gap-3 hover:opacity-80 transition-opacity focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2 rounded-lg p-1"
+            className="flex items-center gap-3 hover:opacity-80 transition-opacity focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 focus:ring-2 focus:ring-primary-600 focus:ring-offset-2 rounded-lg p-1"
             aria-label="Indiranagar Discovery - Home"
           >
             <div className="flex items-center justify-center w-10 h-10 bg-primary-100 rounded-full">
@@ -69,10 +69,10 @@ export function Header() {
                   key={item.href}
                   href={item.href}
                   className={`
-                    flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2
+                    flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus:ring-2 focus:ring-offset-2
                     ${isActive 
-                      ? 'bg-primary-600 text-white shadow-sm focus:ring-primary-300' 
-                      : 'text-neutral-700 hover:text-primary-600 hover:bg-primary-50 focus:ring-primary-600'
+                      ? 'bg-primary-700 text-white shadow-sm focus:ring-primary-400 focus-visible:outline-primary-400' 
+                      : 'text-neutral-700 hover:text-primary-600 hover:bg-primary-50 focus:ring-primary-600 focus-visible:outline-primary-600'
                     }
                   `}
                   aria-current={isActive ? 'page' : undefined}
@@ -87,7 +87,7 @@ export function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={toggleMobileMenu}
-            className="md:hidden flex items-center justify-center min-w-[44px] min-h-[44px] rounded-lg text-neutral-700 hover:text-primary-600 hover:bg-primary-50 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2"
+            className="md:hidden flex items-center justify-center min-w-[48px] min-h-[48px] rounded-lg text-neutral-700 hover:text-primary-600 hover:bg-primary-50 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 focus:ring-2 focus:ring-primary-600 focus:ring-offset-2"
             aria-label={isMobileMenuOpen ? 'Close mobile menu' : 'Open mobile menu'}
             aria-expanded={isMobileMenuOpen}
             aria-controls="mobile-navigation"

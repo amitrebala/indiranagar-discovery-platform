@@ -453,7 +453,6 @@ function UnifiedAmitFABInner() {
                     }}
                     variants={menuItemVariants}
                     custom={index}
-                    initial="hidden"
                     animate="visible"
                     exit="exit"
                     whileHover={{ scale: 1.1 }}

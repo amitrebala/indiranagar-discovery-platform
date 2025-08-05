@@ -21,6 +21,9 @@ export function DynamicHeroSection() {
       {/* Animated gradient background */}
       <GradientMesh timeOfDay={timeOfDay} weather={mappedWeather} />
       
+      {/* Contrast overlay for text readability */}
+      <div className="absolute inset-0 bg-black/40 z-[5]" />
+      
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 py-20">
         <motion.div
@@ -30,14 +33,18 @@ export function DynamicHeroSection() {
         >
           {/* Main title with gradient text */}
           <h1 className="text-[clamp(3rem,8vw,6rem)] font-extrabold leading-[0.9] mb-6">
-            <span className="bg-gradient-aurora bg-clip-text text-transparent animate-gradient-shift bg-[length:200%_auto]">
+            <span 
+              className="bg-gradient-aurora bg-clip-text text-transparent animate-gradient-shift bg-[length:200%_auto]"
+              style={{ textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}
+            >
               Indiranagar Discovery
             </span>
           </h1>
           
           {/* Dynamic greeting */}
           <motion.p 
-            className="text-2xl text-white/90 mb-8"
+            className="text-2xl text-white font-semibold mb-8"
+            style={{ textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
@@ -63,17 +70,17 @@ export function DynamicHeroSection() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.7 }}
           >
-            <div className="text-white/80">
-              <span className="text-3xl font-bold text-white">{liveData.openPlaces}</span>
-              <p className="text-sm">places to explore right now</p>
+            <div className="text-white">
+              <span className="text-3xl font-bold text-white" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>{liveData.openPlaces}</span>
+              <p className="text-sm font-medium" style={{ textShadow: '0 1px 2px rgba(0,0,0,0.5)' }}>places to explore right now</p>
             </div>
-            <div className="text-white/80">
-              <span className="text-3xl font-bold text-white">166</span>
-              <p className="text-sm">curated experiences</p>
+            <div className="text-white">
+              <span className="text-3xl font-bold text-white" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>166</span>
+              <p className="text-sm font-medium" style={{ textShadow: '0 1px 2px rgba(0,0,0,0.5)' }}>curated experiences</p>
             </div>
-            <div className="text-white/80">
-              <span className="text-3xl font-bold text-white">5+</span>
-              <p className="text-sm">years of local expertise</p>
+            <div className="text-white">
+              <span className="text-3xl font-bold text-white" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>5+</span>
+              <p className="text-sm font-medium" style={{ textShadow: '0 1px 2px rgba(0,0,0,0.5)' }}>years of local expertise</p>
             </div>
           </motion.div>
         </motion.div>
