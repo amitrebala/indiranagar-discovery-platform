@@ -573,3 +573,122 @@ body {
 .backdrop-blur-xl {
   backdrop-filter: blur(24px);
 }
+
+/* ===== HERO SECTION ENHANCEMENTS ===== */
+
+/* Noise texture overlay */
+.noise-overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  z-index: 3;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* GPU-accelerated gradient layers */
+.gradient-layer {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Enhanced aurora gradient */
+@layer utilities {
+  .bg-gradient-aurora {
+    background: linear-gradient(
+      -45deg,
+      #ee7752,
+      #e73c7e,
+      #23a6d5,
+      #23d5ab,
+      #ee7752
+    );
+  }
+  
+  .animate-gradient-shift {
+    animation: gradient-shift 8s ease infinite;
+  }
+  
+  @keyframes gradient-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  /* Reduce animation complexity on mobile */
+  .floating-orb {
+    animation: none;
+    opacity: 0.3;
+  }
+  
+  /* Optimize gradient for mobile GPUs */
+  .gradient-mesh {
+    filter: blur(60px);
+  }
+  
+  /* Stack layout vertically */
+  .hero-content {
+    min-height: 100vh;
+    padding: 2rem 1rem;
+  }
+  
+  /* Simplify glass effects on mobile */
+  .backdrop-blur-2xl {
+    backdrop-filter: blur(16px);
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  .animate-gradient-shift,
+  .floating-orb,
+  .gradient-layer {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  /* Static gradients for reduced motion */
+  .bg-gradient-aurora {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+}
+
+/* High contrast mode improvements */
+@media (prefers-contrast: high) {
+  .hero-section {
+    background: linear-gradient(135deg, #000 0%, #333 100%);
+  }
+  
+  .glass-effect,
+  .backdrop-blur-xl,
+  .backdrop-blur-2xl {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+    backdrop-filter: none !important;
+  }
+  
+  .noise-overlay {
+    display: none;
+  }
+}
+
+/* Performance optimizations for hero animations */
+.hero-section * {
+  transform-style: preserve-3d;
+}
+
+.hero-section .motion-safe\:animate-* {
+  animation-play-state: running;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-section .motion-safe\:animate-* {
+    animation-play-state: paused;
+  }
+}

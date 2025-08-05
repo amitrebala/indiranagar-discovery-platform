@@ -45,8 +45,6 @@ Add these to your `.env.local`:
 NEXT_PUBLIC_UNSPLASH_ACCESS_KEY=your_unsplash_access_key_here
 
 # Optional settings
-NEXT_PUBLIC_IMAGE_OPTIMIZATION=true
-NEXT_PUBLIC_IMAGE_PROXY_ENABLED=true
 NEXT_PUBLIC_AUTO_SAVE_IMAGES=false
 ```
 
