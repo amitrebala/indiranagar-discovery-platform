@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Header } from "@/components/navigation/Header";
+import { MobileNav } from "@/components/navigation/MobileNav";
 import "./globals.css";
 
 const inter = Inter({
@@ -41,6 +43,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} antialiased`}>
+        <Header />
+        <MobileNav />
         <main className="min-h-screen">
           {children}
         </main>
