@@ -8,7 +8,7 @@ export function useAmitFABAnimations() {
   const controls = useAnimation()
   const optionControls = useAnimation()
   const celebrationControls = useAnimation()
-  const danceTimeoutRef = useRef<NodeJS.Timeout>()
+  const danceTimeoutRef = useRef<NodeJS.Timeout | null>(null)
   
   // Check if animations should be reduced
   const shouldReduceMotion = preferences.reducedMotion || 
