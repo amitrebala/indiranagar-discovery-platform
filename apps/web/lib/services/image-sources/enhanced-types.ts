@@ -8,7 +8,7 @@ export interface EnhancedPlace extends Place {
   metadata?: PlaceSearchMetadata | null
 }
 
-export interface PlaceSearchMetadata {
+export interface PlaceSearchMetadata extends Record<string, unknown> {
   businessInfo?: {
     isChain?: boolean
     parentBrand?: string
