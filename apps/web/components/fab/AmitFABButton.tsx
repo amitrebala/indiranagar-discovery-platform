@@ -64,7 +64,7 @@ export const AmitFABButton = forwardRef<HTMLButtonElement, AmitFABButtonProps>(
         </div>
         
         {/* Glow effect for interacting state */}
-        {state === 'interacting' && stateConfig.glow && (
+        {state === 'interacting' && 'glow' in stateConfig && stateConfig.glow && (
           <motion.div
             className="absolute inset-0 rounded-full"
             animate={{
