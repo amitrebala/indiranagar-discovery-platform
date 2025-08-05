@@ -27,7 +27,7 @@ const SuggestPlaceModal = dynamic(() => import('@/components/community/SuggestPl
 export default function AmitFABWrapper() {
   const router = useRouter()
   const { toggleFilter } = useAmitButtonStore()
-  const { setCenter, setZoom } = useMapStore()
+  const { setMapView } = useMapStore()
   
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [isSuggestOpen, setIsSuggestOpen] = useState(false)
@@ -63,15 +63,14 @@ export default function AmitFABWrapper() {
     // Get user location and show nearby places
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
-        setCenter({
+        setMapView({
           lat: position.coords.latitude,
           lng: position.coords.longitude
-        })
-        setZoom(16)
+        }, 16)
         router.push('/')
       })
     }
-  }, [setCenter, setZoom, router])
+  }, [setMapView, router])
   
   // Handle photos action
   const handlePhotos = useCallback(() => {
