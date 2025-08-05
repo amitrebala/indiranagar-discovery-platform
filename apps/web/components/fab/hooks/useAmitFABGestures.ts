@@ -12,7 +12,7 @@ interface GestureState {
   velocityY: number
 }
 
-export function useAmitFABGestures(elementRef: React.RefObject<HTMLElement>) {
+export function useAmitFABGestures(elementRef: React.RefObject<HTMLElement | null>) {
   const { setState, preferences } = useAmitFABStore()
   const gestureState = useRef<GestureState | null>(null)
   const animationFrame = useRef<number>()
