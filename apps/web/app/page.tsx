@@ -1,24 +1,22 @@
+import { HeroSection } from '@/components/homepage/HeroSection'
+import { FeaturedPlaces } from '@/components/homepage/FeaturedPlaces'
+import { DynamicHeroSection } from '@/components/homepage/hero/DynamicHeroSection'
 import { JourneySelectorWithRotation } from '@/components/homepage/journey/JourneySelectorWithRotation'
 import { features } from '@/lib/features'
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Simple Header */}
-      <header className="bg-white shadow-sm">
-        <div className="container mx-auto px-4 py-6">
-          <h1 className="text-3xl font-bold text-gray-900">Indiranagar with Amit</h1>
-          <p className="text-gray-600">Discover 186 personally visited places</p>
-        </div>
-      </header>
-
-      {/* Journey Selector - NOW WORKING */}
+    <>
+      {/* Hero Section with feature flag */}
+      {features.dynamicHero ? <DynamicHeroSection /> : <HeroSection />}
+      
+      {/* Journey Selector with feature flag */}
       {features.journeySelector && (
-        <section className="py-20">
+        <section className="py-20 bg-gray-50">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-4xl font-bold mb-4">Choose Your Indiranagar Adventure</h2>
-              <p className="text-xl text-gray-700">Curated journeys designed by Amit for every type of explorer</p>
+              <p className="text-xl text-gray-600">Curated journeys designed by Amit for every type of explorer</p>
             </div>
             <JourneySelectorWithRotation 
               itemsPerPage={3}
@@ -27,7 +25,9 @@ export default function Home() {
           </div>
         </section>
       )}
-
-    </div>
+      
+      {/* Featured Places - always shown */}
+      <FeaturedPlaces />
+    </>
   )
 }
