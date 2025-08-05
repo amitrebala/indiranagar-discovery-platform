@@ -3,10 +3,11 @@ import { createClient } from '@/lib/supabase/server';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { slug: string } }
+  context: { params: { slug: string } }
 ) {
   try {
     const supabase = await createClient();
+    const params = await context.params;
     
     // For legacy data, we'll match by title converted to slug
     // or by actual slug if it exists

@@ -3,13 +3,14 @@ import { CompanionEngine } from '@/lib/services/companion-engine';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ) {
   try {
     const searchParams = request.nextUrl.searchParams;
     const timeAvailable = searchParams.get('time');
     const mood = searchParams.get('mood');
     const budget = searchParams.get('budget') as 'low' | 'medium' | 'high' | null;
+    const params = await context.params;
     
     const engine = new CompanionEngine();
     const companions = await engine.findCompanions(params.id, {
@@ -31,9 +32,10 @@ export async function GET(
 // POST: Compute and store companion activities for a place
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ) {
   try {
+    const params = await context.params;
     const engine = new CompanionEngine();
     await engine.computeAndStoreCompanions(params.id);
     

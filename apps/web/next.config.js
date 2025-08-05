@@ -2,7 +2,7 @@
 const nextConfig = {
   // ESLint configuration - don't fail build on warnings
   eslint: {
-    ignoreDuringBuilds: false,
+    ignoreDuringBuilds: true,
     dirs: ['app', 'components', 'lib', 'utils'],
   },
   

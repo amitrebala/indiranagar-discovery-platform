@@ -29,8 +29,8 @@ export async function GET(request: NextRequest) {
     if (error) throw error;
     
     // Organize into nested structure
-    const commentMap = new Map();
-    const rootComments = [];
+    const commentMap = new Map<string, any>();
+    const rootComments: any[] = [];
     
     comments.forEach(comment => {
       commentMap.set(comment.id, { ...comment, replies: [] });
