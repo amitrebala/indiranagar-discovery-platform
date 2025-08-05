@@ -129,7 +129,30 @@ main() {
         fi
     done < "$TERMINAL_STAGE_FILE"
     
-    # Step 3: Run safe commit with staged files
+    # Step 3: Check for Git conflicts before proceeding
+    if ! git status &>/dev/null; then
+        log_error "Git repository is in an invalid state"
+        exit 1
+    fi
+    
+    # Check if another process is using Git
+    if [[ -f "$PROJECT_ROOT/.git/index.lock" ]]; then
+        log_warning "Git index is locked by another process"
+        log_info "Waiting for Git to become available..."
+        
+        local git_wait=0
+        while [[ -f "$PROJECT_ROOT/.git/index.lock" ]] && [[ $git_wait -lt 30 ]]; do
+            sleep 1
+            git_wait=$((git_wait + 1))
+        done
+        
+        if [[ -f "$PROJECT_ROOT/.git/index.lock" ]]; then
+            log_error "Git index remains locked. Another Git operation may be stuck."
+            exit 1
+        fi
+    fi
+    
+    # Step 4: Run safe commit with staged files
     log_info "Running deployment validation..."
     "$SCRIPT_DIR/safe-commit.sh" "$commit_msg"
     
