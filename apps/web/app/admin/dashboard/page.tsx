@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import Link from 'next/link';
 import { useAdminDashboard } from '@/stores/adminDashboardStore';
 import StatsCard from '@/components/admin/StatsCard';
 import ActivityFeed from '@/components/admin/ActivityFeed';
@@ -104,12 +105,12 @@ export default function AdminDashboardPage() {
               Quick Actions
             </h3>
             <div className="grid grid-cols-2 gap-3">
-              <a
+              <Link
                 href="/admin/places/new"
                 className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700"
               >
                 + Add Place
-              </a>
+              </Link>
               <a
                 href="/admin/journeys/new"
                 className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700"
