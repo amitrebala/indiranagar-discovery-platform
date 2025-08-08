@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Star, MapPin, RefreshCw, ArrowRight, Filter, Grid3x3, Play } from 'lucide-react'
+import { Star, MapPin, RefreshCw, ArrowRight, Filter, Grid3x3, Play, Sparkles, Utensils } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useFeaturedPlaces } from '@/hooks/useFeaturedPlaces'
 import { useTimeOfDay } from '@/hooks/useTimeOfDay'
@@ -149,9 +149,26 @@ export function EnhancedFeaturedDiscoveries() {
               Featured Discoveries
             </GradientText>
           </h2>
-          <p className="text-lg text-neutral-700 dark:text-neutral-300 max-w-2xl mx-auto">
+          <p className="text-lg text-neutral-700 dark:text-neutral-300 max-w-2xl mx-auto mb-6">
             Handpicked places that showcase the best of Indiranagar. Each location has been personally explored and curated for your discovery journey.
           </p>
+          
+          {/* Foodie Adventure CTA */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.3, duration: 0.4 }}
+            className="flex justify-center"
+          >
+            <Link
+              href="/foodie-adventure"
+              className="group inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-orange-500 to-pink-500 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform transition-all duration-300 hover:scale-105"
+            >
+              <Utensils className="w-5 h-5" />
+              <span>Create Your Foodie Adventure</span>
+              <Sparkles className="w-5 h-5 group-hover:rotate-12 transition-transform" />
+            </Link>
+          </motion.div>
         </motion.div>
 
         {/* View Mode Toggle & Filters */}
@@ -214,6 +231,38 @@ export function EnhancedFeaturedDiscoveries() {
                   onQuickView={() => openQuickView(place)}
                 />
               ))}
+              
+              {/* Foodie Adventure Card - Integrated within grid */}
+              {smartSortedPlaces.length > 0 && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                  className="relative group"
+                >
+                  <Link
+                    href="/foodie-adventure"
+                    className="block h-full bg-gradient-to-br from-orange-100 via-pink-100 to-purple-100 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-white/50"
+                  >
+                    <div className="flex flex-col items-center justify-center h-full min-h-[300px] text-center">
+                      <div className="mb-4 p-4 bg-white/80 rounded-full">
+                        <Utensils className="w-12 h-12 text-orange-500" />
+                      </div>
+                      <h3 className="text-xl font-bold mb-2 bg-gradient-to-r from-orange-600 to-pink-600 bg-clip-text text-transparent">
+                        Create a Foodie Adventure
+                      </h3>
+                      <p className="text-gray-600 mb-4 text-sm">
+                        Generate personalized food challenges and crawls through Indiranagar
+                      </p>
+                      <div className="flex items-center gap-2 text-orange-500 font-semibold">
+                        <span>Start Adventure</span>
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      </div>
+                      <Sparkles className="absolute top-4 right-4 w-6 h-6 text-pink-400 animate-pulse" />
+                    </div>
+                  </Link>
+                </motion.div>
+              )}
             </motion.div>
           ) : (
             <DiscoveryCarousel
