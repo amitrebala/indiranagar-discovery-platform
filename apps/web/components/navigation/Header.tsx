@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { MapPin, Menu, Home, Map, Building2, User, Users, Settings } from 'lucide-react'
+import { MapPin, Menu, Home, Map, Building2, User, Users, Settings, Utensils } from 'lucide-react'
 import { useNavigationStore } from '@/stores/navigationStore'
 import { Container } from '@/components/layout/Container'
 
@@ -11,6 +11,7 @@ const navigationItems = [
   { href: '/', label: 'Home', icon: Home },
   { href: '/map', label: 'Map', icon: Map },
   { href: '/places', label: 'Places', icon: Building2 },
+  { href: '/foodie-adventure', label: 'Foodie Adventures', icon: Utensils },
   { href: '/community', label: 'Community', icon: Users },
   { href: '/about', label: 'About', icon: User },
   { href: '/configuration', label: 'Config', icon: Settings }

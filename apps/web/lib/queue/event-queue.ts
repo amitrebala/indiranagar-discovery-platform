@@ -44,8 +44,11 @@ export class EventQueue {
   async getNextJob(): Promise<EventJob | null> {
     if (!redis) return null;
 
-    // Move job from queue to processing
-    const jobStr = await redis.rpoplpush(this.queueKey, this.processingKey);
+    // Move job from queue to processing - use brpoplpush for atomicity
+    const jobStr = await redis.rpop(this.queueKey);
+    if (jobStr) {
+      await redis.lpush(this.processingKey, jobStr);
+    }
     if (!jobStr) return null;
 
     return JSON.parse(jobStr as string);
