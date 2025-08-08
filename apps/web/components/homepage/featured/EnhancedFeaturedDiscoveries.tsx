@@ -40,21 +40,46 @@ export function EnhancedFeaturedDiscoveries() {
   // Transform raw places to enhanced format
   useEffect(() => {
     if (rawPlaces && rawPlaces.length > 0) {
-      const enhanced = rawPlaces.map(place => ({
-        ...place,
-        images: [place.primary_image].filter(Boolean) as string[],
-        quick_tags: place.category ? [place.category] : [],
-        weather_suitable: {
-          sunny: place.weather_suitability?.includes('sunny') ?? true,
-          rainy: place.weather_suitability?.includes('rainy') ?? false,
-          evening: place.best_time_to_visit?.includes('evening') ?? true
-        },
-        visitor_metrics: {
-          daily_average: Math.floor(Math.random() * 500) + 100,
-          peak_hours: ['12:00 PM', '7:00 PM'],
-          current_status: (['quiet', 'moderate', 'busy'] as const)[Math.floor(Math.random() * 3)]
-        }
-      } as EnhancedPlaceData))
+      let placesToEnhance = [...rawPlaces]
+      
+      // Ensure we always have at least 6 places by duplicating if needed
+      while (placesToEnhance.length < 6 && rawPlaces.length > 0) {
+        const placeToAdd = rawPlaces[placesToEnhance.length % rawPlaces.length]
+        placesToEnhance.push({
+          ...placeToAdd,
+          id: `${placeToAdd.id}-dup-${placesToEnhance.length}`
+        })
+      }
+      
+      const enhanced = placesToEnhance.map((place, idx) => {
+        // Generate placeholder images using Unsplash for each place
+        const placeImages = place.primary_image 
+          ? [place.primary_image]
+          : [
+              `https://source.unsplash.com/800x600/?${encodeURIComponent(place.category || 'restaurant')},interior&sig=${idx}`,
+              `https://source.unsplash.com/800x600/?${encodeURIComponent(place.category || 'restaurant')},food&sig=${idx}`,
+              `https://source.unsplash.com/800x600/?${encodeURIComponent(place.category || 'restaurant')},ambiance&sig=${idx}`,
+              `https://source.unsplash.com/800x600/?${encodeURIComponent(place.category || 'restaurant')},outdoor&sig=${idx}`
+            ]
+        
+        return {
+          ...place,
+          images: placeImages,
+          quick_tags: place.category 
+            ? [place.category, 'Popular', 'Trending'].slice(0, 3)
+            : ['Popular'],
+          weather_suitable: {
+            sunny: place.weather_suitability?.includes('sunny') ?? true,
+            rainy: place.weather_suitability?.includes('rainy') ?? false,
+            evening: place.best_time_to_visit?.includes('evening') ?? true
+          },
+          visitor_metrics: {
+            daily_average: Math.floor(Math.random() * 500) + 100,
+            peak_hours: ['12:00 PM', '7:00 PM'],
+            current_status: (['quiet', 'moderate', 'busy'] as const)[Math.floor(Math.random() * 3)]
+          }
+        } as EnhancedPlaceData
+      })
       
       setPlaces(enhanced)
     }

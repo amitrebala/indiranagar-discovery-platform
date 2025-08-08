@@ -18,7 +18,7 @@ export function useFeaturedPlaces(): UseFeaturedPlacesReturn {
       setIsLoading(true)
       setError(null)
       
-      const response = await fetch('/api/places?featured=true&limit=5&has_amit_visited=true')
+      const response = await fetch('/api/places?featured=true&limit=6&has_amit_visited=true')
       
       if (!response.ok) {
         throw new Error(`Failed to fetch featured places: ${response.status}`)

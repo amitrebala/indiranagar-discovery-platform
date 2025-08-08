@@ -69,17 +69,17 @@ export function EnhancedDiscoveryCard({ place, index, onQuickView }: EnhancedDis
       initial="hidden"
       animate="visible"
       transition={{
-        duration: 0.5,
-        delay: index * 0.1,
+        duration: 0.3,
+        delay: index * 0.05,
         ease: 'easeOut'
       }}
-      whileHover={{ scale: 1.02 }}
+      whileHover={{ scale: 1.03 }}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
       className="group relative"
     >
       {/* Glass morphism card container */}
-      <div className="relative overflow-hidden rounded-2xl bg-white/80 backdrop-blur-xl border border-white/20 shadow-lg hover:shadow-2xl transition-all duration-300">
+      <div className="relative overflow-hidden rounded-2xl bg-white/80 backdrop-blur-xl border border-white/20 shadow-lg hover:shadow-2xl transition-all duration-200">
         {/* Gradient overlay for depth */}
         <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-pink-500/5 pointer-events-none" />
         
@@ -95,7 +95,7 @@ export function EnhancedDiscoveryCard({ place, index, onQuickView }: EnhancedDis
                   src={place.images[primaryImageIndex] || place.primary_image || '/placeholder.jpg'}
                   alt={place.name}
                   fill
-                  className={`object-cover transition-transform duration-[10s] ease-out ${
+                  className={`object-cover transition-transform duration-300 ease-out ${
                     isHovered ? 'scale-110' : 'scale-100'
                   }`}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -118,10 +118,11 @@ export function EnhancedDiscoveryCard({ place, index, onQuickView }: EnhancedDis
             {/* Action Buttons */}
             <div className="absolute top-4 right-4 flex gap-2">
               <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: 1.15 }}
+                whileTap={{ scale: 0.9 }}
+                transition={{ duration: 0.1 }}
                 onClick={handleFavorite}
-                className="p-2 bg-white/90 backdrop-blur-sm rounded-full shadow-md hover:bg-white transition-colors"
+                className="p-2 bg-white/90 backdrop-blur-sm rounded-full shadow-md hover:bg-white hover:shadow-lg transition-all duration-150"
                 aria-label="Add to favorites"
               >
                 <Heart 
@@ -130,19 +131,21 @@ export function EnhancedDiscoveryCard({ place, index, onQuickView }: EnhancedDis
                 />
               </motion.button>
               <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: 1.15 }}
+                whileTap={{ scale: 0.9 }}
+                transition={{ duration: 0.1 }}
                 onClick={handleShare}
-                className="p-2 bg-white/90 backdrop-blur-sm rounded-full shadow-md hover:bg-white transition-colors"
+                className="p-2 bg-white/90 backdrop-blur-sm rounded-full shadow-md hover:bg-white hover:shadow-lg transition-all duration-150"
                 aria-label="Share place"
               >
                 <Share2 size={16} className="text-neutral-700" />
               </motion.button>
               <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: 1.15 }}
+                whileTap={{ scale: 0.9 }}
+                transition={{ duration: 0.1 }}
                 onClick={handleQuickView}
-                className="p-2 bg-white/90 backdrop-blur-sm rounded-full shadow-md hover:bg-white transition-colors"
+                className="p-2 bg-white/90 backdrop-blur-sm rounded-full shadow-md hover:bg-white hover:shadow-lg transition-all duration-150"
                 aria-label="Quick view"
               >
                 <Eye size={16} className="text-neutral-700" />

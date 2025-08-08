@@ -65,8 +65,9 @@ export function MiniGallery({ images, onImageClick, activeIndex = 0 }: MiniGalle
           <motion.button
             key={index}
             onClick={() => handleImageClick(index)}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.08 }}
+            whileTap={{ scale: 0.92 }}
+            transition={{ duration: 0.15 }}
             className={`
               relative aspect-square rounded-lg overflow-hidden bg-neutral-100
               ring-2 transition-all duration-200
