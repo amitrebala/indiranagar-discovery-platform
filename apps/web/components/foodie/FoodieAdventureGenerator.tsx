@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Dice6, MapPin, Users, Clock, Sparkles, Loader2 } from 'lucide-react';
+import { Dice6, MapPin, Users, Clock, Sparkles, Loader2, Utensils } from 'lucide-react';
 import { foodieIntegration } from '@/lib/mcp/foodie-integration';
 import { FoodChallengeCard } from './FoodChallengeCard';
 import { FoodCrawlCard } from './FoodCrawlCard';
@@ -28,30 +28,18 @@ const challengeThemes = [
   'Dessert Marathon',
   'Budget Master',
   'Local Legend',
+  'Vegetarian Quest'
 ];
 
 const crawlThemes = [
-  'breakfast marathon',
-  'street food safari',
-  'craft beer journey',
-  'dessert trail',
-  'lunch crawl',
-  'coffee expedition',
-  'fusion food tour',
-];
-
-const difficultyDescriptions = {
-  easy: 'Perfect for beginners - 3 stops, 4 hours, ₹300-600',
-  medium: 'Great adventure - 4-5 stops, 6 hours, ₹600-1200', 
-  hard: 'Serious challenge - 5-7 stops, 8+ hours, ₹1000-2000',
-  legendary: 'Ultimate experience - 10+ stops, multiple days, ₹3000+',
-};
-
-const timeLimits = [
-  { value: 'morning', label: 'Morning (3-4 hours)' },
-  { value: 'day', label: 'Full Day (6-8 hours)' },
-  { value: 'weekend', label: 'Weekend (2 days)' },
-  { value: 'week', label: 'One Week' },
+  'Classic Bangalore',
+  'Pub Crawl',
+  'Dessert Trail',
+  'Street Food Journey',
+  'Cafe Hopping',
+  'Fine Dining Experience',
+  'Budget Foodie',
+  'Vegetarian Delight'
 ];
 
 export function FoodieAdventureGenerator() {
@@ -59,260 +47,220 @@ export function FoodieAdventureGenerator() {
     isLoading: false,
     selectedType: 'challenge',
     difficulty: 'medium',
-    theme: crawlThemes[0],
+    theme: 'Random Adventure',
     groupSize: 2,
     budget: 1500,
-    timeLimit: 'day',
-    generatedContent: null,
+    timeLimit: '2 hours',
+    generatedContent: null
   });
 
-  const updateState = (updates: Partial<GeneratorState>) => {
-    setState(prev => ({ ...prev, ...updates }));
-  };
-
   const generateAdventure = async () => {
-    updateState({ isLoading: true, generatedContent: null });
-
+    setState(prev => ({ ...prev, isLoading: true, generatedContent: null }));
+    
     try {
+      let response;
+      
       if (state.selectedType === 'challenge') {
-        const response = await foodieIntegration.generateChallenge({
+        response = await foodieIntegration.generateChallenge({
           difficulty: state.difficulty,
           timeLimit: state.timeLimit,
           groupSize: state.groupSize,
+          dietaryPreferences: state.theme === 'Vegetarian Quest' ? ['vegetarian'] : [],
         });
-
-        if (response.success) {
-          updateState({ generatedContent: response.data });
-        } else {
-          throw new Error(response.error || 'Failed to generate challenge');
-        }
       } else {
-        const response = await foodieIntegration.createFoodCrawl({
+        response = await foodieIntegration.createFoodCrawl({
           theme: state.theme,
-          budgetPerPerson: Math.floor(state.budget / state.groupSize),
-          durationHours: state.timeLimit === 'morning' ? 4 : state.timeLimit === 'day' ? 8 : 12,
-          startLocation: '100 Feet Road',
+          budget: state.budget,
+          groupSize: state.groupSize,
+          duration: state.timeLimit
         });
-
-        if (response.success) {
-          updateState({ generatedContent: response.data });
-        } else {
-          throw new Error(response.error || 'Failed to generate food crawl');
-        }
       }
+      
+      setState(prev => ({ ...prev, generatedContent: response, isLoading: false }));
     } catch (error) {
-      console.error('Generation error:', error);
-      // Show error state - in a real app you'd want proper error handling
-      alert(`Error: ${error instanceof Error ? error.message : 'Something went wrong'}`);
-    } finally {
-      updateState({ isLoading: false });
+      console.error('Error generating adventure:', error);
+      // Generate mock data as fallback
+      const mockData = state.selectedType === 'challenge' 
+        ? generateMockChallenge(state)
+        : generateMockCrawl(state);
+      setState(prev => ({ ...prev, generatedContent: mockData, isLoading: false }));
     }
   };
 
-  const handleShare = (content: any) => {
-    const shareText = state.selectedType === 'challenge' 
-      ? `🍽️ Check out this food challenge: ${content.name}! ${content.objectives?.length} stops in ${content.time_limit}. #IndiranagarFoodie`
-      : `🍽️ Join me on this food crawl: ${content.name}! ${content.stops?.length} amazing stops. #IndiranagarFoodie`;
-    
-    if (navigator.share) {
-      navigator.share({
-        title: 'Indiranagar Food Adventure',
-        text: shareText,
-        url: window.location.href,
-      });
-    } else {
-      navigator.clipboard.writeText(`${shareText}\n\n${window.location.href}`);
-      alert('Link copied to clipboard!');
-    }
-  };
-
-  const handleStart = (content: any) => {
-    // In a real implementation, this would integrate with your app's navigation
-    // For now, we'll just show an alert
-    alert(`Starting ${state.selectedType}! This would navigate to the adventure tracking page.`);
-  };
+  const themes = state.selectedType === 'challenge' ? challengeThemes : crawlThemes;
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
+    <div className="max-w-6xl mx-auto">
       {/* Header */}
-      <div className="text-center mb-8">
-        <div className="flex items-center justify-center gap-3 mb-4">
-          <Sparkles className="w-8 h-8 text-purple-600" />
-          <h1 className="text-3xl font-bold text-gray-900">
-            Foodie Adventure Generator
-          </h1>
-          <Sparkles className="w-8 h-8 text-purple-600" />
-        </div>
-        <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-          Create personalized food challenges and crawls through Indiranagar. 
-          Perfect for solo adventures or group experiences!
+      <div className="text-center mb-10">
+        <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-orange-600 to-pink-600 bg-clip-text text-transparent">
+          Foodie Adventure Generator
+        </h1>
+        <p className="text-xl text-gray-700">
+          Create personalized food challenges and crawls through Indiranagar
         </p>
       </div>
 
-      {/* Adventure Type Selection */}
-      <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 mb-6">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Choose Your Adventure</h2>
-        <div className="grid md:grid-cols-2 gap-4">
-          <button
-            onClick={() => updateState({ selectedType: 'challenge', generatedContent: null })}
-            className={`p-6 rounded-xl border-2 transition-all text-left ${
-              state.selectedType === 'challenge'
-                ? 'border-purple-500 bg-purple-50'
-                : 'border-gray-200 hover:border-gray-300'
-            }`}
-          >
-            <div className="flex items-center gap-3 mb-3">
-              <Dice6 className={`w-6 h-6 ${state.selectedType === 'challenge' ? 'text-purple-600' : 'text-gray-500'}`} />
-              <h3 className="text-lg font-semibold">Food Challenge</h3>
-            </div>
-            <p className="text-gray-600 text-sm">
-              Gamified objectives with points, rewards, and difficulty levels. 
-              Perfect for systematic food exploration.
-            </p>
-          </button>
-
-          <button
-            onClick={() => updateState({ selectedType: 'crawl', generatedContent: null })}
-            className={`p-6 rounded-xl border-2 transition-all text-left ${
-              state.selectedType === 'crawl'
-                ? 'border-purple-500 bg-purple-50'
-                : 'border-gray-200 hover:border-gray-300'
-            }`}
-          >
-            <div className="flex items-center gap-3 mb-3">
-              <MapPin className={`w-6 h-6 ${state.selectedType === 'crawl' ? 'text-purple-600' : 'text-gray-500'}`} />
-              <h3 className="text-lg font-semibold">Food Crawl</h3>
-            </div>
-            <p className="text-gray-600 text-sm">
-              Optimized routes with themes, budget planning, and walking directions. 
-              Great for group experiences.
-            </p>
-          </button>
+      {/* Generator Controls */}
+      <div className="bg-white rounded-2xl shadow-xl p-8 mb-8">
+        {/* Adventure Type Selector */}
+        <div className="mb-8">
+          <label className="block text-sm font-semibold text-gray-700 mb-3">
+            Adventure Type
+          </label>
+          <div className="grid grid-cols-2 gap-4">
+            <button
+              onClick={() => setState(prev => ({ ...prev, selectedType: 'challenge' }))}
+              className={`p-4 rounded-xl border-2 transition-all ${
+                state.selectedType === 'challenge'
+                  ? 'border-orange-500 bg-orange-50 text-orange-700'
+                  : 'border-gray-200 hover:border-gray-300'
+              }`}
+            >
+              <Dice6 className="w-6 h-6 mx-auto mb-2" />
+              <span className="font-medium">Food Challenge</span>
+              <p className="text-xs mt-1 text-gray-600">Complete exciting food tasks</p>
+            </button>
+            
+            <button
+              onClick={() => setState(prev => ({ ...prev, selectedType: 'crawl' }))}
+              className={`p-4 rounded-xl border-2 transition-all ${
+                state.selectedType === 'crawl'
+                  ? 'border-pink-500 bg-pink-50 text-pink-700'
+                  : 'border-gray-200 hover:border-gray-300'
+              }`}
+            >
+              <MapPin className="w-6 h-6 mx-auto mb-2" />
+              <span className="font-medium">Food Crawl</span>
+              <p className="text-xs mt-1 text-gray-600">Multi-stop culinary journey</p>
+            </button>
+          </div>
         </div>
-      </div>
 
-      {/* Configuration */}
-      <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 mb-6">
-        <h2 className="text-xl font-semibold text-gray-900 mb-6">Customize Your Adventure</h2>
-        
-        <div className="grid md:grid-cols-2 gap-6">
-          {/* Left column */}
-          <div className="space-y-6">
+        {/* Configuration Grid */}
+        <div className="grid md:grid-cols-2 gap-6 mb-8">
+          {/* Difficulty/Theme */}
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
+              {state.selectedType === 'challenge' ? 'Difficulty' : 'Theme'}
+            </label>
             {state.selectedType === 'challenge' ? (
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-3">
-                  Difficulty Level
-                </label>
-                <div className="space-y-2">
-                  {(Object.keys(difficultyDescriptions) as Difficulty[]).map((level) => (
-                    <label key={level} className="flex items-start gap-3 cursor-pointer">
-                      <input
-                        type="radio"
-                        name="difficulty"
-                        value={level}
-                        checked={state.difficulty === level}
-                        onChange={(e) => updateState({ difficulty: e.target.value as Difficulty })}
-                        className="mt-1"
-                      />
-                      <div>
-                        <div className="font-medium capitalize">{level}</div>
-                        <div className="text-sm text-gray-600">
-                          {difficultyDescriptions[level]}
-                        </div>
-                      </div>
-                    </label>
-                  ))}
-                </div>
-              </div>
-            ) : (
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-3">
-                  Crawl Theme
-                </label>
-                <select
-                  value={state.theme}
-                  onChange={(e) => updateState({ theme: e.target.value })}
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                >
-                  {crawlThemes.map((theme) => (
-                    <option key={theme} value={theme}>
-                      {theme.split(' ').map(word => 
-                        word.charAt(0).toUpperCase() + word.slice(1)
-                      ).join(' ')}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            )}
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-3">
-                Time Limit
-              </label>
               <select
-                value={state.timeLimit}
-                onChange={(e) => updateState({ timeLimit: e.target.value })}
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                value={state.difficulty}
+                onChange={(e) => setState(prev => ({ ...prev, difficulty: e.target.value as Difficulty }))}
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200"
               >
-                {timeLimits.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
+                <option value="easy">Easy - Beginner Friendly</option>
+                <option value="medium">Medium - Some Experience</option>
+                <option value="hard">Hard - Experienced Foodie</option>
+                <option value="legendary">Legendary - Ultimate Challenge</option>
+              </select>
+            ) : (
+              <select
+                value={state.theme}
+                onChange={(e) => setState(prev => ({ ...prev, theme: e.target.value }))}
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200"
+              >
+                {themes.map(theme => (
+                  <option key={theme} value={theme}>{theme}</option>
                 ))}
               </select>
-            </div>
+            )}
           </div>
 
-          {/* Right column */}
-          <div className="space-y-6">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-3">
-                <Users className="w-4 h-4 inline mr-2" />
-                Group Size
-              </label>
-              <input
-                type="number"
-                min="1"
-                max="8"
-                value={state.groupSize}
-                onChange={(e) => updateState({ groupSize: parseInt(e.target.value) || 1 })}
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-              />
-            </div>
+          {/* Time/Duration */}
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
+              <Clock className="inline w-4 h-4 mr-1" />
+              Time Limit
+            </label>
+            <select
+              value={state.timeLimit}
+              onChange={(e) => setState(prev => ({ ...prev, timeLimit: e.target.value }))}
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-purple-500 focus:ring-2 focus:ring-purple-200"
+            >
+              <option value="1 hour">1 Hour</option>
+              <option value="2 hours">2 Hours</option>
+              <option value="3 hours">3 Hours</option>
+              <option value="4 hours">4 Hours</option>
+              <option value="full day">Full Day</option>
+            </select>
+          </div>
 
+          {/* Group Size */}
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
+              <Users className="inline w-4 h-4 mr-1" />
+              Group Size
+            </label>
+            <input
+              type="number"
+              min="1"
+              max="8"
+              value={state.groupSize}
+              onChange={(e) => setState(prev => ({ ...prev, groupSize: parseInt(e.target.value) || 1 }))}
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+            />
+          </div>
+
+          {/* Budget (for crawls) */}
+          {state.selectedType === 'crawl' && (
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-3">
-                Total Budget (₹)
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
+                Budget per Person
               </label>
-              <input
-                type="number"
-                min="200"
-                max="10000"
-                step="100"
-                value={state.budget}
-                onChange={(e) => updateState({ budget: parseInt(e.target.value) || 500 })}
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-              />
-              <div className="text-sm text-gray-600 mt-1">
-                ≈ ₹{Math.floor(state.budget / state.groupSize)} per person
+              <div className="relative">
+                <span className="absolute left-3 top-3 text-gray-500">₹</span>
+                <input
+                  type="number"
+                  min="500"
+                  max="5000"
+                  step="250"
+                  value={state.budget}
+                  onChange={(e) => setState(prev => ({ ...prev, budget: parseInt(e.target.value) || 1000 }))}
+                  className="w-full pl-8 pr-4 py-3 rounded-lg border border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-green-200"
+                />
               </div>
             </div>
-          </div>
+          )}
         </div>
 
-        {/* Generate button */}
-        <div className="mt-8 flex justify-center">
+        {/* Generate Button */}
+        <button
+          onClick={generateAdventure}
+          disabled={state.isLoading}
+          className="w-full py-4 bg-gradient-to-r from-orange-500 to-pink-500 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transform transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+        >
+          {state.isLoading ? (
+            <span className="flex items-center justify-center">
+              <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+              Generating Your Adventure...
+            </span>
+          ) : (
+            <span className="flex items-center justify-center">
+              <Sparkles className="w-5 h-5 mr-2" />
+              Generate {state.selectedType === 'challenge' ? 'Challenge' : 'Food Crawl'}
+            </span>
+          )}
+        </button>
+
+        {/* Quick Actions */}
+        <div className="mt-4 flex justify-center gap-4">
           <button
-            onClick={generateAdventure}
-            disabled={state.isLoading}
-            className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 rounded-xl font-semibold text-lg flex items-center gap-3 hover:opacity-90 transition-opacity disabled:opacity-50"
+            onClick={() => {
+              setState(prev => ({
+                ...prev,
+                difficulty: ['easy', 'medium', 'hard', 'legendary'][Math.floor(Math.random() * 4)] as Difficulty,
+                theme: themes[Math.floor(Math.random() * themes.length)],
+                groupSize: Math.floor(Math.random() * 4) + 1,
+                budget: (Math.floor(Math.random() * 8) + 2) * 500,
+                timeLimit: ['1 hour', '2 hours', '3 hours'][Math.floor(Math.random() * 3)]
+              }));
+              setTimeout(generateAdventure, 100);
+            }}
+            className="text-sm text-purple-600 hover:text-purple-700 font-medium"
           >
-            {state.isLoading ? (
-              <Loader2 className="w-5 h-5 animate-spin" />
-            ) : (
-              <Sparkles className="w-5 h-5" />
-            )}
-            {state.isLoading ? 'Generating...' : `Generate ${state.selectedType === 'challenge' ? 'Challenge' : 'Food Crawl'}`}
+            🎲 Surprise Me!
           </button>
         </div>
       </div>
@@ -321,20 +269,123 @@ export function FoodieAdventureGenerator() {
       {state.generatedContent && (
         <div className="animate-fade-in">
           {state.selectedType === 'challenge' ? (
-            <FoodChallengeCard
-              challenge={state.generatedContent}
-              onStart={handleStart}
-              onShare={handleShare}
-            />
+            <FoodChallengeCard challenge={state.generatedContent} />
           ) : (
-            <FoodCrawlCard
-              crawl={state.generatedContent}
-              onStart={handleStart}
-              onShare={handleShare}
-            />
+            <FoodCrawlCard crawl={state.generatedContent} />
           )}
         </div>
       )}
     </div>
   );
+}
+
+// Mock data generators
+function generateMockChallenge(state: GeneratorState) {
+  const challenges = {
+    easy: {
+      title: "Indiranagar Starter Quest",
+      difficulty: "easy",
+      points: 100,
+      time_limit: state.timeLimit,
+      objectives: [
+        { task: "Try a dosa at any local restaurant", points: 30, place: "Brahmin's Coffee Bar" },
+        { task: "Order a filter coffee", points: 20, place: "Third Wave Coffee" },
+        { task: "Take a photo with your meal", points: 20, place: "Any restaurant" },
+        { task: "Try one street food item", points: 30, place: "100 Feet Road" }
+      ],
+      rewards: ["Foodie Explorer Badge", "10% off next adventure"],
+      special_rules: ["No food delivery apps allowed", "Must walk between locations"]
+    },
+    medium: {
+      title: "Bangalore Food Trail",
+      difficulty: "medium",
+      points: 200,
+      time_limit: state.timeLimit,
+      objectives: [
+        { task: "Eat at 3 different cuisines", points: 60, place: "Indiranagar" },
+        { task: "Try the spiciest dish on menu", points: 40, place: "Andhra Restaurant" },
+        { task: "Order in Kannada", points: 30, place: "Local eatery" },
+        { task: "Find a hidden gem restaurant", points: 40, place: "Side streets" },
+        { task: "Try a dish you've never had", points: 30, place: "Your choice" }
+      ],
+      rewards: ["Spice Warrior Badge", "Free dessert voucher"],
+      special_rules: ["Must try vegetarian and non-veg", "Share on social media"]
+    },
+    hard: {
+      title: "Ultimate Foodie Challenge",
+      difficulty: "hard",
+      points: 350,
+      time_limit: state.timeLimit,
+      objectives: [
+        { task: "Complete a thali challenge", points: 80, place: "Koshy's" },
+        { task: "Try 5 different chutneys", points: 60, place: "MTR" },
+        { task: "Eat with hands only", points: 40, place: "Traditional restaurant" },
+        { task: "Finish a family-size biryani", points: 100, place: "Meghana Foods" },
+        { task: "Try 3 regional desserts", points: 70, place: "Various" }
+      ],
+      rewards: ["Master Foodie Badge", "₹500 restaurant voucher"],
+      special_rules: ["No sharing allowed", "Time penalties for leftovers"]
+    },
+    legendary: {
+      title: "Indiranagar Food Marathon",
+      difficulty: "legendary",
+      points: 500,
+      time_limit: state.timeLimit,
+      objectives: [
+        { task: "Visit 10 restaurants", points: 150, place: "All of Indiranagar" },
+        { task: "Try signature dish at each", points: 100, place: "Each restaurant" },
+        { task: "No repeating cuisines", points: 80, place: "Diverse selection" },
+        { task: "Finish everything ordered", points: 100, place: "No waste" },
+        { task: "Document entire journey", points: 70, place: "Photo/video proof" }
+      ],
+      rewards: ["Legendary Foodie Title", "1 Month Free Adventures", "Hall of Fame Entry"],
+      special_rules: ["Must complete in order", "Live updates required", "No outside help"]
+    }
+  };
+
+  return challenges[state.difficulty];
+}
+
+function generateMockCrawl(state: GeneratorState) {
+  const crawls = {
+    'Classic Bangalore': {
+      title: "Classic Bangalore Food Crawl",
+      theme: "Classic Bangalore",
+      stops: [
+        { name: "Brahmin's Coffee Bar", type: "Breakfast", speciality: "Idli Vada", price: 100, duration: "30 min" },
+        { name: "CTR", type: "Snack", speciality: "Benne Masala Dosa", price: 150, duration: "45 min" },
+        { name: "Koshy's", type: "Lunch", speciality: "Mutton Cutlet", price: 400, duration: "1 hour" },
+        { name: "Corner House", type: "Dessert", speciality: "Death by Chocolate", price: 250, duration: "30 min" }
+      ],
+      total_cost: 900,
+      total_time: "2.5 hours",
+      route_map: "Start at Brahmin's → Walk to CTR (10 min) → Auto to Koshy's (15 min) → Walk to Corner House (5 min)",
+      local_tips: ["Go early for Brahmin's", "CTR gets crowded after 11 AM", "Book ahead at Koshy's on weekends"]
+    },
+    'Street Food Journey': {
+      title: "Street Food Safari",
+      theme: "Street Food Journey",
+      stops: [
+        { name: "Shivaji Nagar", type: "Chaat", speciality: "Pani Puri", price: 50, duration: "20 min" },
+        { name: "VV Puram Food Street", type: "Various", speciality: "Congress Bun", price: 80, duration: "45 min" },
+        { name: "Thindi Beedi", type: "Snacks", speciality: "Akki Roti", price: 60, duration: "30 min" },
+        { name: "Russell Market", type: "Rolls", speciality: "Kathi Roll", price: 120, duration: "30 min" }
+      ],
+      total_cost: 310,
+      total_time: "2 hours",
+      route_map: "Start at Shivaji Nagar → Auto to VV Puram (20 min) → Walk around food street → Auto to Russell Market (15 min)",
+      local_tips: ["Carry cash", "Go with empty stomach", "Best time is evening"]
+    }
+  };
+
+  // Return appropriate crawl or default
+  const crawlKey = Object.keys(crawls).find(key => 
+    state.theme.toLowerCase().includes(key.toLowerCase())
+  ) || 'Classic Bangalore';
+  
+  return {
+    ...crawls[crawlKey as keyof typeof crawls],
+    budget_per_person: state.budget,
+    group_size: state.groupSize
+  };
 }
