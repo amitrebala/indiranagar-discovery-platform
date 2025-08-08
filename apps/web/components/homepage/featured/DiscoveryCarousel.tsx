@@ -20,7 +20,7 @@ export function DiscoveryCarousel({
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isAutoRotating, setIsAutoRotating] = useState(true)
   const [isPaused, setIsPaused] = useState(false)
-  const intervalRef = useRef<NodeJS.Timeout>()
+  const intervalRef = useRef<NodeJS.Timeout | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   
   // Touch/swipe support
@@ -48,10 +48,12 @@ export function DiscoveryCarousel({
 
   // Auto-rotation logic
   useEffect(() => {
+    const nextSlide = () => {
+      setCurrentIndex((prev) => (prev + 1) % places.length)
+    }
+    
     if (isAutoRotating && !isPaused && !isDragging) {
-      intervalRef.current = setInterval(() => {
-        handleNext()
-      }, autoRotateInterval)
+      intervalRef.current = setInterval(nextSlide, autoRotateInterval)
     }
     
     return () => {
@@ -59,7 +61,7 @@ export function DiscoveryCarousel({
         clearInterval(intervalRef.current)
       }
     }
-  }, [currentIndex, isAutoRotating, isPaused, isDragging, autoRotateInterval])
+  }, [currentIndex, isAutoRotating, isPaused, isDragging, autoRotateInterval, places.length])
 
   const handleNext = () => {
     setCurrentIndex((prev) => (prev + 1) % places.length)

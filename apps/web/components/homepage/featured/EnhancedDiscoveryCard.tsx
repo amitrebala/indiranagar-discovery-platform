@@ -24,12 +24,7 @@ export function EnhancedDiscoveryCard({ place, index, onQuickView }: EnhancedDis
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        delay: index * 0.1,
-        ease: [0.25, 0.1, 0.25, 1]
-      }
+      y: 0
     }
   }
 
@@ -73,6 +68,11 @@ export function EnhancedDiscoveryCard({ place, index, onQuickView }: EnhancedDis
       variants={cardVariants}
       initial="hidden"
       animate="visible"
+      transition={{
+        duration: 0.5,
+        delay: index * 0.1,
+        ease: 'easeOut'
+      }}
       whileHover={{ scale: 1.02 }}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}

@@ -23,7 +23,7 @@ import type { EnhancedPlaceData } from '@/lib/types/enhanced-place'
 export function EnhancedFeaturedDiscoveries() {
   const { places: rawPlaces, isLoading, error, refetch } = useFeaturedPlaces()
   const { timeOfDay } = useTimeOfDay()
-  const { data: weather } = useWeather()
+  const { weather } = useWeather()
   const [viewMode, setViewMode] = useState<'grid' | 'carousel'>('grid')
   
   const {
@@ -109,15 +109,10 @@ export function EnhancedFeaturedDiscoveries() {
       <div className="absolute inset-0 -z-10">
         <GradientMesh 
           timeOfDay={timeOfDay} 
-          weather={weather?.condition || 'sunny'}
-          opacity={0.3}
+          weather={(weather?.condition === 'partly-cloudy' ? 'cloudy' : weather?.condition) || 'sunny'}
           enableParallax
         />
-        <FloatingOrbs 
-          count={3} 
-          sizes={['200px', '150px', '100px']}
-          opacity={0.2}
-        />
+        <FloatingOrbs className="opacity-20" />
         {/* Noise overlay for texture */}
         <div 
           className="absolute inset-0 opacity-[0.015]"
@@ -137,11 +132,11 @@ export function EnhancedFeaturedDiscoveries() {
         >
           <h2 className="mb-4">
             <GradientText
-              text="Featured Discoveries"
-              gradient="from-purple-600 via-pink-600 to-blue-600"
+              gradient="hero"
               className="text-4xl md:text-5xl font-bold"
-              animateOnHover
-            />
+            >
+              Featured Discoveries
+            </GradientText>
           </h2>
           <p className="text-lg text-neutral-700 dark:text-neutral-300 max-w-2xl mx-auto">
             Handpicked places that showcase the best of Indiranagar. Each location has been personally explored and curated for your discovery journey.

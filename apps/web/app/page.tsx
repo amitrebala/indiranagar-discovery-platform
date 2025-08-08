@@ -1,7 +1,7 @@
 import { DynamicHeroSection } from '@/components/homepage/hero/DynamicHeroSection'
 import { JourneySelectorWithRotation } from '@/components/homepage/journey/JourneySelectorWithRotation'
 import { AmitDashboard } from '@/components/homepage/dashboard/AmitDashboard'
-import { FeaturedPlaces } from '@/components/homepage/FeaturedPlaces'
+import { EnhancedFeaturedDiscoveries } from '@/components/homepage/featured/EnhancedFeaturedDiscoveries'
 
 export default function Home() {
   return (
@@ -27,7 +27,7 @@ export default function Home() {
       <AmitDashboard />
       
       {/* Featured Places - Enhanced showcase */}
-      <FeaturedPlaces />
+      <EnhancedFeaturedDiscoveries />
     </>
   )
 }
