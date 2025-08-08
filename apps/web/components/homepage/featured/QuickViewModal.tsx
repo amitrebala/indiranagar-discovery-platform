@@ -1,13 +1,12 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { 
   X, MapPin, Star, Clock, Users, Navigation, 
-  Heart, Share2, ChevronLeft, ChevronRight,
-  Calendar, DollarSign, Wifi, Car, Globe
+  Heart, Share2, Coffee, Utensils, Wine, 
+  ShoppingBag, Activity, Calendar, Wifi, Car, Globe
 } from 'lucide-react'
 import type { EnhancedPlaceData } from '@/lib/types/enhanced-place'
 
@@ -17,7 +16,6 @@ interface QuickViewModalProps {
 }
 
 export function QuickViewModal({ place, onClose }: QuickViewModalProps) {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [isFavorited, setIsFavorited] = useState(false)
   
   // Handle keyboard navigation
@@ -25,10 +23,6 @@ export function QuickViewModal({ place, onClose }: QuickViewModalProps) {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         onClose()
-      } else if (e.key === 'ArrowLeft') {
-        handlePrevImage()
-      } else if (e.key === 'ArrowRight') {
-        handleNextImage()
       }
     }
     
@@ -39,21 +33,7 @@ export function QuickViewModal({ place, onClose }: QuickViewModalProps) {
       window.removeEventListener('keydown', handleKeyDown)
       document.body.style.overflow = 'unset'
     }
-  }, [currentImageIndex])
-
-  const handleNextImage = () => {
-    if (place.images && place.images.length > 0) {
-      setCurrentImageIndex((prev) => (prev + 1) % place.images.length)
-    }
-  }
-
-  const handlePrevImage = () => {
-    if (place.images && place.images.length > 0) {
-      setCurrentImageIndex((prev) => 
-        (prev - 1 + place.images.length) % place.images.length
-      )
-    }
-  }
+  }, [])
 
   const handleShare = async () => {
     const url = `${window.location.origin}/places/${place.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`
@@ -105,63 +85,47 @@ export function QuickViewModal({ place, onClose }: QuickViewModalProps) {
           </button>
 
           <div className="flex flex-col lg:flex-row h-full">
-            {/* Image Gallery Section */}
-            <div className="relative lg:w-3/5 h-[40vh] lg:h-auto bg-neutral-100 dark:bg-neutral-800">
-              {place.images && place.images.length > 0 ? (
-                <>
-                  <Image
-                    src={place.images[currentImageIndex] || place.primary_image || '/placeholder.jpg'}
-                    alt={place.name}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 1024px) 100vw, 60vw"
-                    priority
-                  />
-                  
-                  {/* Image Navigation */}
-                  {place.images.length > 1 && (
-                    <>
-                      <button
-                        onClick={handlePrevImage}
-                        className="absolute left-4 top-1/2 -translate-y-1/2 p-2 bg-white/90 dark:bg-black/90 backdrop-blur-sm rounded-full shadow-lg hover:bg-white dark:hover:bg-black transition-all"
-                        aria-label="Previous image"
-                      >
-                        <ChevronLeft className="w-5 h-5 text-neutral-700 dark:text-neutral-300" />
-                      </button>
-                      
-                      <button
-                        onClick={handleNextImage}
-                        className="absolute right-4 top-1/2 -translate-y-1/2 p-2 bg-white/90 dark:bg-black/90 backdrop-blur-sm rounded-full shadow-lg hover:bg-white dark:hover:bg-black transition-all"
-                        aria-label="Next image"
-                      >
-                        <ChevronRight className="w-5 h-5 text-neutral-700 dark:text-neutral-300" />
-                      </button>
-                      
-                      {/* Image Indicators */}
-                      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-                        {place.images.map((_, index) => (
-                          <button
-                            key={index}
-                            onClick={() => setCurrentImageIndex(index)}
-                            className={`
-                              w-2 h-2 rounded-full transition-all
-                              ${index === currentImageIndex 
-                                ? 'bg-white w-8' 
-                                : 'bg-white/50 hover:bg-white/75'
-                              }
-                            `}
-                            aria-label={`Go to image ${index + 1}`}
-                          />
-                        ))}
-                      </div>
-                    </>
-                  )}
-                </>
-              ) : (
-                <div className="flex items-center justify-center h-full">
-                  <MapPin className="w-16 h-16 text-neutral-400" />
+            {/* Visual Design Section */}
+            <div className="relative lg:w-3/5 h-[40vh] lg:h-auto">
+              <div className={`w-full h-full flex items-center justify-center ${
+                place.category === 'Cafe' ? 'bg-gradient-to-br from-amber-400 via-orange-500 to-red-500' :
+                place.category === 'Restaurant' ? 'bg-gradient-to-br from-emerald-400 via-teal-500 to-cyan-600' :
+                place.category === 'Bar' ? 'bg-gradient-to-br from-purple-500 via-pink-500 to-rose-500' :
+                place.category === 'Shopping' ? 'bg-gradient-to-br from-blue-400 via-indigo-500 to-purple-600' :
+                place.category === 'Activity' ? 'bg-gradient-to-br from-yellow-400 via-red-500 to-pink-500' :
+                'bg-gradient-to-br from-slate-400 via-gray-500 to-zinc-600'
+              }`}>
+                {/* Pattern overlay */}
+                <div className="absolute inset-0 opacity-10">
+                  <div className="w-full h-full" style={{
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+                  }} />
                 </div>
-              )}
+                
+                {/* Large Category Icon */}
+                <div className="relative z-10">
+                  {place.category === 'Cafe' ? (
+                    <Coffee className="w-32 h-32 text-white/40" strokeWidth={1} />
+                  ) : place.category === 'Restaurant' ? (
+                    <Utensils className="w-32 h-32 text-white/40" strokeWidth={1} />
+                  ) : place.category === 'Bar' ? (
+                    <Wine className="w-32 h-32 text-white/40" strokeWidth={1} />
+                  ) : place.category === 'Shopping' ? (
+                    <ShoppingBag className="w-32 h-32 text-white/40" strokeWidth={1} />
+                  ) : place.category === 'Activity' ? (
+                    <Activity className="w-32 h-32 text-white/40" strokeWidth={1} />
+                  ) : (
+                    <MapPin className="w-32 h-32 text-white/40" strokeWidth={1} />
+                  )}
+                </div>
+                
+                {/* Category Label */}
+                <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
+                  <span className="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-white font-semibold">
+                    {place.category || 'Discovery'}
+                  </span>
+                </div>
+              </div>
             </div>
 
             {/* Content Section */}

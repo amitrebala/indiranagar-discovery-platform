@@ -1,12 +1,124 @@
 # Technical Architecture Plan: Dynamic Event Discovery & Real-Time Features
-**Version:** 1.0  
+**Version:** 2.0 - Development Ready  
 **Date:** January 2025  
-**Prepared for:** System Architect Review  
-**Project:** Indiranagar Discovery Platform - Live Enhancement
+**Status:** Ready for Implementation  
+**Project:** Indiranagar Discovery Platform - Live Enhancement  
+**Implementation Timeline:** 4-6 weeks (2 sprints)
+
+## 🚀 Quick Action Plan for Developers
+
+### Start Here - Day 1 Actions:
+1. **Setup Environment** (30 mins)
+   ```bash
+   git clone <repo> && cd indiranagar-discovery
+   npm install
+   docker-compose up -d  # Start Redis & Postgres
+   cp .env.example .env.local  # Configure API keys
+   ```
+
+2. **Run Initial Migration** (15 mins)
+   ```bash
+   npm run db:migrate  # Creates event tables
+   npm run db:seed     # Adds test data
+   ```
+
+3. **Create First API Integration** (2 hours)
+   - Copy code from Section 3.2 (Google Places API)
+   - Test with: `npm run dev:processor`
+   - Verify events in database
+
+4. **Setup Job Queue** (1 hour)
+   - Copy code from Section 3.3 
+   - Access queue dashboard: http://localhost:8081
+   - See jobs processing in real-time
+
+5. **Test Everything** (30 mins)
+   ```bash
+   npm test  # Should pass initial tests
+   ```
+
+### By End of Week 1:
+- ✅ Core infrastructure running
+- ✅ 2-3 API integrations working
+- ✅ Events flowing into database
+- ✅ Basic admin UI for moderation
+
+### By End of Week 2:
+- ✅ All 5 data sources integrated
+- ✅ Real-time updates working
+- ✅ Production deployment ready
+
+## Executive Summary
+
+This document provides a complete, implementation-ready architecture for adding dynamic event discovery and real-time features to the Indiranagar Discovery Platform. The system will automatically discover events from multiple sources, process them intelligently, and deliver real-time updates to users.
+
+### Key Deliverables
+- **Automated Event Discovery**: Fetch from 5+ sources (APIs & web scraping)
+- **Intelligent Processing**: NLP-based categorization, deduplication, quality scoring
+- **Real-Time Updates**: WebSocket/SSE for live event notifications
+- **Place Status Tracking**: Live capacity, wait times, special events
+- **Admin Dashboard**: Moderation and monitoring interface
+
+### Implementation Approach
+- **Phase 1 (Week 1-2)**: Core infrastructure, database, basic API integration
+- **Phase 2 (Week 3-4)**: Processing pipeline, real-time features, admin tools
+- **Phase 3 (Week 5-6)**: Testing, optimization, deployment
 
 ## 1. System Architecture Overview
 
-### 1.1 High-Level Architecture
+### 1.1 Quick Start for Developers
+
+```bash
+# Clone and setup
+git clone <repo>
+cd indiranagar-discovery
+npm install
+
+# Environment setup
+cp .env.example .env.local
+# Configure API keys in .env.local
+
+# Database setup
+npm run db:migrate
+npm run db:seed
+
+# Start development
+npm run dev:all  # Starts all services
+
+# Run tests
+npm run test
+```
+
+### 1.2 Project Structure
+
+```
+indiranagar-discovery/
+├── apps/
+│   ├── web/                     # Next.js frontend (existing)
+│   │   ├── app/api/events/      # New event APIs
+│   │   └── components/events/   # New event components
+│   ├── event-processor/         # NEW: Event processing service
+│   │   ├── src/
+│   │   │   ├── workers/         # Job queue workers
+│   │   │   ├── scrapers/        # Web scraping logic
+│   │   │   ├── processors/      # Event processing
+│   │   │   └── apis/            # External API clients
+│   │   └── package.json
+│   └── admin/                   # NEW: Admin dashboard
+│       └── src/
+├── packages/
+│   ├── database/                # Shared database models
+│   ├── realtime/                # WebSocket/SSE handlers
+│   └── shared/                  # Shared utilities
+├── infrastructure/
+│   ├── docker/                  # Docker configurations
+│   ├── k8s/                     # Kubernetes manifests
+│   └── terraform/               # Infrastructure as code
+└── supabase/
+    └── migrations/              # Database migrations
+```
+
+### 1.3 High-Level Architecture
 
 ```mermaid
 graph TB
@@ -83,7 +195,79 @@ graph TB
     STAGING --> ADMIN
 ```
 
-### 1.2 Component Architecture
+### 1.2 Implementation Roadmap
+
+#### Sprint 1 (Week 1-2): Foundation
+```typescript
+// Week 1: Database & Core Infrastructure
+Day 1-2: Database Setup
+- [ ] Run migration: 001_create_event_discovery_tables.sql
+- [ ] Setup Redis for job queues
+- [ ] Configure Supabase Realtime
+
+Day 3-4: Basic API Integration
+- [ ] Implement EventSource interface
+- [ ] Create GooglePlacesSource client
+- [ ] Setup job queue with BullMQ
+
+Day 5: Processing Pipeline Foundation
+- [ ] Create EventProcessor base class
+- [ ] Implement basic deduplication
+- [ ] Setup staging to production flow
+
+// Week 2: External Integrations
+Day 6-7: API Clients
+- [ ] Facebook Events API integration
+- [ ] Eventbrite API integration
+- [ ] Error handling & retry logic
+
+Day 8-9: Web Scraping
+- [ ] Setup Puppeteer/Playwright
+- [ ] Implement BookMyShow scraper
+- [ ] Add proxy rotation
+
+Day 10: Admin Interface
+- [ ] Basic moderation UI
+- [ ] Event approval workflow
+- [ ] Monitoring dashboard
+```
+
+#### Sprint 2 (Week 3-4): Advanced Features
+```typescript
+// Week 3: Intelligence Layer
+Day 11-12: NLP Processing
+- [ ] Setup Python FastAPI service
+- [ ] Integrate Hugging Face models
+- [ ] Event categorization pipeline
+
+Day 13-14: Real-time Features
+- [ ] WebSocket server setup
+- [ ] SSE implementation
+- [ ] Client-side subscriptions
+
+Day 15: Quality & Enrichment
+- [ ] Quality scoring algorithm
+- [ ] Data enrichment service
+- [ ] Image processing
+
+// Week 4: Production Readiness
+Day 16-17: Testing
+- [ ] Unit tests (>80% coverage)
+- [ ] Integration tests
+- [ ] Load testing
+
+Day 18-19: Optimization
+- [ ] Caching strategy
+- [ ] Query optimization
+- [ ] Performance tuning
+
+Day 20: Deployment
+- [ ] Docker containerization
+- [ ] CI/CD pipeline
+- [ ] Production deployment
+```
+
+### 1.3 Component Architecture
 
 ```yaml
 System Components:
@@ -123,9 +307,120 @@ System Components:
     - Logging: ELK Stack
 ```
 
-## 2. Database Schema Design
+## 2. Development Setup & Environment
 
-### 2.1 Core Tables
+### 2.1 Required Environment Variables
+
+Create `.env.local` with:
+
+```bash
+# Database
+DATABASE_URL="postgresql://user:pass@localhost:5432/events"
+SUPABASE_URL="https://your-project.supabase.co"
+SUPABASE_ANON_KEY="your-anon-key"
+SUPABASE_SERVICE_ROLE_KEY="<your-service-key-here>"
+
+# Redis
+REDIS_URL="redis://localhost:6379"
+
+# External APIs
+FACEBOOK_APP_ID="your-app-id"
+FACEBOOK_APP_SECRET="your-secret"
+GOOGLE_PLACES_API_KEY="your-key"
+EVENTBRITE_API_KEY="your-key"
+OPENWEATHERMAP_API_KEY="your-key"
+
+# Scraping
+PROXY_URL="http://proxy.example.com"
+PROXY_USERNAME="username"
+PROXY_PASSWORD="password"
+
+# Monitoring
+SENTRY_DSN="your-sentry-dsn"
+NEW_RELIC_LICENSE_KEY="your-key"
+
+# Feature Flags
+ENABLE_FACEBOOK_EVENTS=true
+ENABLE_WEB_SCRAPING=true
+ENABLE_REALTIME=true
+```
+
+### 2.2 Local Development Stack
+
+```yaml
+# docker-compose.yml
+version: '3.8'
+services:
+  postgres:
+    image: postgres:14
+    environment:
+      POSTGRES_DB: events
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes
+
+  elasticsearch:
+    image: elasticsearch:8.5.0
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+    ports:
+      - "9200:9200"
+
+  kibana:
+    image: kibana:8.5.0
+    ports:
+      - "5601:5601"
+    environment:
+      ELASTICSEARCH_HOSTS: http://elasticsearch:9200
+
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    environment:
+      - REDIS_HOSTS=local:redis:6379
+    ports:
+      - "8081:8081"
+
+volumes:
+  postgres_data:
+```
+
+### 2.3 Initial Development Commands
+
+```bash
+# Start local services
+docker-compose up -d
+
+# Install dependencies
+npm install
+
+# Run database migrations
+npm run db:migrate
+
+# Seed initial data
+npm run db:seed
+
+# Start all services in development
+npm run dev:all
+
+# Or start individually:
+npm run dev:web        # Next.js frontend
+npm run dev:processor  # Event processor
+npm run dev:admin      # Admin dashboard
+```
+
+## 3. Database Schema Design
+
+### 3.1 Core Tables
 
 ```sql
 -- Event source configuration
@@ -325,9 +620,332 @@ LIMIT 100;
 CREATE INDEX idx_trending_popularity ON trending_events(popularity_score);
 ```
 
-## 3. API Integration Specifications
+## 3. Step-by-Step Implementation Files
 
-### 3.1 External API Integrations
+### 3.1 Day 1: Base Event Source Interface
+
+Create `packages/shared/src/types/event-source.ts`:
+
+```typescript
+// Core interface all sources must implement
+export interface EventSource {
+  id: string;
+  name: string;
+  type: 'api' | 'scraper' | 'rss' | 'webhook';
+  config: SourceConfig;
+  
+  // Core methods
+  authenticate(): Promise<void>;
+  fetchEvents(params: FetchParams): Promise<RawEvent[]>;
+  transform(raw: RawEvent): StandardEvent;
+  validateResponse(response: any): boolean;
+  handleError(error: Error): void;
+}
+
+export interface FetchParams {
+  lat?: number;
+  lng?: number;
+  radius?: number;
+  startDate?: Date;
+  endDate?: Date;
+  category?: string;
+  limit?: number;
+}
+
+export interface RawEvent {
+  source: string;
+  externalId: string;
+  rawData: any;
+  fetchedAt: Date;
+}
+
+export interface StandardEvent {
+  title: string;
+  description?: string;
+  startTime: Date;
+  endTime?: Date;
+  venue: {
+    name?: string;
+    address?: string;
+    lat?: number;
+    lng?: number;
+  };
+  category?: string;
+  tags?: string[];
+  imageUrl?: string;
+  externalUrl?: string;
+  price?: {
+    type: 'free' | 'paid' | 'donation';
+    amount?: number;
+    currency?: string;
+  };
+}
+```
+
+### 3.2 Day 2: First API Integration
+
+Create `apps/event-processor/src/apis/google-places.ts`:
+
+```typescript
+import { EventSource, FetchParams, RawEvent, StandardEvent } from '@shared/types';
+
+export class GooglePlacesSource implements EventSource {
+  id = 'google-places';
+  name = 'Google Places';
+  type = 'api' as const;
+  
+  private apiKey: string;
+  private baseUrl = 'https://maps.googleapis.com/maps/api/place';
+  
+  config = {
+    rateLimit: { requests: 100, window: 60 },
+    searchRadius: 2000,
+    placeTypes: ['restaurant', 'cafe', 'bar', 'night_club']
+  };
+  
+  constructor() {
+    this.apiKey = process.env.GOOGLE_PLACES_API_KEY!;
+    if (!this.apiKey) throw new Error('Google Places API key required');
+  }
+  
+  async authenticate(): Promise<void> {
+    // Test API key validity
+    const testUrl = `${this.baseUrl}/findplacefromtext/json?` +
+      `input=test&inputtype=textquery&key=${this.apiKey}`;
+    
+    const response = await fetch(testUrl);
+    if (!response.ok) {
+      throw new Error('Invalid Google Places API key');
+    }
+  }
+  
+  async fetchEvents(params: FetchParams): Promise<RawEvent[]> {
+    const events: RawEvent[] = [];
+    
+    // Step 1: Find places in area
+    const places = await this.searchNearbyPlaces(params);
+    
+    // Step 2: Get details for each place
+    for (const place of places) {
+      const details = await this.getPlaceDetails(place.place_id);
+      
+      // Step 3: Extract any events from place data
+      if (this.hasEventInfo(details)) {
+        events.push({
+          source: this.id,
+          externalId: place.place_id,
+          rawData: details,
+          fetchedAt: new Date()
+        });
+      }
+      
+      // Rate limiting
+      await this.delay(100);
+    }
+    
+    return events;
+  }
+  
+  private async searchNearbyPlaces(params: FetchParams) {
+    const url = `${this.baseUrl}/nearbysearch/json?` +
+      `location=${params.lat},${params.lng}&` +
+      `radius=${params.radius || this.config.searchRadius}&` +
+      `type=${this.config.placeTypes.join('|')}&` +
+      `key=${this.apiKey}`;
+    
+    const response = await fetch(url);
+    const data = await response.json();
+    
+    return data.results || [];
+  }
+  
+  private async getPlaceDetails(placeId: string) {
+    const url = `${this.baseUrl}/details/json?` +
+      `place_id=${placeId}&` +
+      `fields=name,formatted_address,geometry,opening_hours,` +
+      `editorial_summary,user_ratings_total,photos,website&` +
+      `key=${this.apiKey}`;
+    
+    const response = await fetch(url);
+    const data = await response.json();
+    
+    return data.result;
+  }
+  
+  transform(raw: RawEvent): StandardEvent {
+    const place = raw.rawData;
+    
+    return {
+      title: `Visit ${place.name}`,
+      description: place.editorial_summary?.overview || 
+                   `Popular venue in Indiranagar`,
+      startTime: new Date(), // Would parse from opening_hours
+      venue: {
+        name: place.name,
+        address: place.formatted_address,
+        lat: place.geometry?.location?.lat,
+        lng: place.geometry?.location?.lng
+      },
+      category: this.inferCategory(place),
+      tags: this.extractTags(place),
+      imageUrl: this.getPhotoUrl(place.photos?.[0]),
+      externalUrl: place.website,
+      price: { type: 'free' }
+    };
+  }
+  
+  validateResponse(response: any): boolean {
+    return response && 
+           response.status === 'OK' && 
+           Array.isArray(response.results);
+  }
+  
+  handleError(error: Error): void {
+    console.error(`[GooglePlaces] Error: ${error.message}`);
+    // Send to monitoring
+  }
+  
+  private hasEventInfo(place: any): boolean {
+    // Logic to determine if place has event information
+    return place.editorial_summary?.overview?.toLowerCase()
+      .includes('event') || false;
+  }
+  
+  private inferCategory(place: any): string {
+    // Map place types to our categories
+    return 'dining';
+  }
+  
+  private extractTags(place: any): string[] {
+    return place.types || [];
+  }
+  
+  private getPhotoUrl(photo: any): string | undefined {
+    if (!photo) return undefined;
+    return `https://maps.googleapis.com/maps/api/place/photo?` +
+      `maxwidth=800&photo_reference=${photo.photo_reference}&` +
+      `key=${this.apiKey}`;
+  }
+  
+  private delay(ms: number): Promise<void> {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+}
+```
+
+### 3.3 Day 3: Job Queue Setup
+
+Create `apps/event-processor/src/queues/event-queue.ts`:
+
+```typescript
+import { Queue, Worker, QueueScheduler } from 'bullmq';
+import Redis from 'ioredis';
+
+const connection = new Redis(process.env.REDIS_URL!);
+
+// Create queues
+export const eventFetchQueue = new Queue('event-fetch', { connection });
+export const eventProcessQueue = new Queue('event-process', { connection });
+
+// Schedule periodic fetches
+export async function scheduleEventFetches() {
+  // Google Places - every 2 hours
+  await eventFetchQueue.add(
+    'fetch-google-places',
+    { source: 'google-places' },
+    { 
+      repeat: { 
+        pattern: '0 */2 * * *' // Cron pattern
+      }
+    }
+  );
+  
+  // Facebook Events - every 30 minutes
+  await eventFetchQueue.add(
+    'fetch-facebook',
+    { source: 'facebook' },
+    { 
+      repeat: { 
+        pattern: '*/30 * * * *'
+      }
+    }
+  );
+  
+  console.log('✅ Event fetch jobs scheduled');
+}
+
+// Worker to fetch events
+export const fetchWorker = new Worker(
+  'event-fetch',
+  async (job) => {
+    const { source } = job.data;
+    console.log(`🔄 Fetching events from ${source}`);
+    
+    try {
+      // Dynamic import based on source
+      const SourceClass = await import(`../apis/${source}`);
+      const sourceInstance = new SourceClass.default();
+      
+      // Authenticate
+      await sourceInstance.authenticate();
+      
+      // Fetch events
+      const events = await sourceInstance.fetchEvents({
+        lat: 12.9716,
+        lng: 77.5946,
+        radius: 2000
+      });
+      
+      console.log(`✅ Found ${events.length} events from ${source}`);
+      
+      // Queue each event for processing
+      for (const event of events) {
+        await eventProcessQueue.add('process-event', {
+          source,
+          event
+        });
+      }
+      
+      return { eventsFound: events.length };
+      
+    } catch (error) {
+      console.error(`❌ Error fetching from ${source}:`, error);
+      throw error;
+    }
+  },
+  { 
+    connection,
+    concurrency: 3 
+  }
+);
+
+// Worker to process events
+export const processWorker = new Worker(
+  'event-process',
+  async (job) => {
+    const { source, event } = job.data;
+    console.log(`⚙️ Processing event from ${source}`);
+    
+    // Import processor
+    const { EventProcessor } = await import('../processors/event-processor');
+    const processor = new EventProcessor();
+    
+    // Process the event
+    const processed = await processor.process(event);
+    
+    console.log(`✅ Processed event: ${processed.title}`);
+    return processed;
+  },
+  { 
+    connection,
+    concurrency: 10 
+  }
+);
+```
+
+## 4. API Integration Specifications
+
+### 4.1 External API Integrations
 
 ```typescript
 // API Integration Interfaces
@@ -2167,7 +2785,327 @@ components:
 5. Review autoscaling metrics
 ```
 
-## 15. Future Enhancements
+## 15. Initial Package Configurations
+
+### 15.1 Root package.json
+
+```json
+{
+  "name": "indiranagar-discovery-platform",
+  "version": "2.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:all": "concurrently \"npm run dev:web\" \"npm run dev:processor\" \"npm run dev:admin\"",
+    "dev:web": "npm run dev --workspace=apps/web",
+    "dev:processor": "npm run dev --workspace=apps/event-processor",
+    "dev:admin": "npm run dev --workspace=apps/admin",
+    "build:all": "npm run build --workspaces",
+    "test": "npm run test --workspaces",
+    "db:migrate": "npx prisma migrate dev",
+    "db:seed": "npx tsx scripts/seed.ts",
+    "queue:dashboard": "npx bull-board",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "lint": "eslint . --ext .ts,.tsx",
+    "type-check": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "concurrently": "^8.2.0",
+    "eslint": "^8.54.0",
+    "prisma": "^5.7.0",
+    "tsx": "^4.6.0",
+    "typescript": "^5.3.0"
+  }
+}
+```
+
+### 15.2 Event Processor package.json
+
+Create `apps/event-processor/package.json`:
+
+```json
+{
+  "name": "@apps/event-processor",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test": "vitest",
+    "test:coverage": "vitest run --coverage"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.7.0",
+    "@supabase/supabase-js": "^2.39.0",
+    "bullmq": "^5.0.0",
+    "ioredis": "^5.3.0",
+    "puppeteer": "^21.6.0",
+    "playwright": "^1.40.0",
+    "node-fetch": "^3.3.0",
+    "zod": "^3.22.0",
+    "winston": "^3.11.0",
+    "@sentry/node": "^7.86.0",
+    "dotenv": "^16.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "tsx": "^4.6.0",
+    "vitest": "^1.0.0",
+    "@vitest/coverage-v8": "^1.0.0"
+  }
+}
+```
+
+### 15.3 Initial Test Setup
+
+Create `apps/event-processor/src/__tests__/apis/google-places.test.ts`:
+
+```typescript
+import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { GooglePlacesSource } from '../../apis/google-places';
+
+// Mock fetch
+global.fetch = vi.fn();
+
+describe('GooglePlacesSource', () => {
+  let source: GooglePlacesSource;
+  
+  beforeEach(() => {
+    vi.clearAllMocks();
+    process.env.GOOGLE_PLACES_API_KEY = 'test-key';
+    source = new GooglePlacesSource();
+  });
+  
+  describe('authenticate', () => {
+    it('should validate API key successfully', async () => {
+      (fetch as any).mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({ status: 'OK' })
+      });
+      
+      await expect(source.authenticate()).resolves.not.toThrow();
+    });
+    
+    it('should throw on invalid API key', async () => {
+      (fetch as any).mockResolvedValueOnce({
+        ok: false,
+        status: 401
+      });
+      
+      await expect(source.authenticate()).rejects.toThrow('Invalid Google Places API key');
+    });
+  });
+  
+  describe('fetchEvents', () => {
+    it('should fetch and return events', async () => {
+      // Mock nearby search
+      (fetch as any).mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({
+          results: [
+            { place_id: 'place1', name: 'Test Place 1' },
+            { place_id: 'place2', name: 'Test Place 2' }
+          ]
+        })
+      });
+      
+      // Mock place details (called twice)
+      const mockDetails = {
+        name: 'Test Place',
+        formatted_address: '123 Test St',
+        editorial_summary: { overview: 'Great place for events' },
+        geometry: { location: { lat: 12.97, lng: 77.59 } }
+      };
+      
+      (fetch as any).mockResolvedValue({
+        ok: true,
+        json: async () => ({ result: mockDetails })
+      });
+      
+      const events = await source.fetchEvents({
+        lat: 12.9716,
+        lng: 77.5946,
+        radius: 2000
+      });
+      
+      expect(events).toHaveLength(2);
+      expect(events[0]).toHaveProperty('source', 'google-places');
+      expect(events[0]).toHaveProperty('externalId');
+      expect(events[0]).toHaveProperty('rawData');
+    });
+  });
+  
+  describe('transform', () => {
+    it('should transform raw event to standard format', () => {
+      const raw = {
+        source: 'google-places',
+        externalId: 'test-id',
+        rawData: {
+          name: 'Test Venue',
+          formatted_address: '123 Test St',
+          editorial_summary: { overview: 'Great venue' },
+          geometry: { location: { lat: 12.97, lng: 77.59 } },
+          website: 'https://example.com',
+          photos: [{ photo_reference: 'photo123' }]
+        },
+        fetchedAt: new Date()
+      };
+      
+      const transformed = source.transform(raw);
+      
+      expect(transformed).toMatchObject({
+        title: 'Visit Test Venue',
+        description: 'Great venue',
+        venue: {
+          name: 'Test Venue',
+          address: '123 Test St',
+          lat: 12.97,
+          lng: 77.59
+        },
+        externalUrl: 'https://example.com'
+      });
+      
+      expect(transformed.imageUrl).toContain('photo123');
+    });
+  });
+});
+```
+
+### 15.4 GitHub Actions CI/CD
+
+Create `.github/workflows/ci.yml`:
+
+```yaml
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    services:
+      postgres:
+        image: postgres:14
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+          
+      redis:
+        image: redis:7-alpine
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 6379:6379
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Setup environment
+        run: |
+          cp .env.example .env.test
+          echo "DATABASE_URL=postgresql://postgres:postgres@localhost:5432/test" >> .env.test
+          echo "REDIS_URL=redis://localhost:6379" >> .env.test
+      
+      - name: Run migrations
+        run: npm run db:migrate
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/test
+      
+      - name: Run tests
+        run: npm test
+        env:
+          NODE_ENV: test
+      
+      - name: Upload coverage
+        uses: codecov/codecov-action@v3
+        with:
+          files: ./coverage/coverage-final.json
+      
+      - name: Type check
+        run: npm run type-check
+      
+      - name: Lint
+        run: npm run lint
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Build all packages
+        run: npm run build:all
+      
+      - name: Build Docker images
+        run: |
+          docker build -f apps/event-processor/Dockerfile -t event-processor:${{ github.sha }} .
+          docker build -f apps/admin/Dockerfile -t admin-dashboard:${{ github.sha }} .
+      
+      - name: Push to registry
+        if: success()
+        run: |
+          echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+          docker tag event-processor:${{ github.sha }} ${{ secrets.DOCKER_REGISTRY }}/event-processor:latest
+          docker tag admin-dashboard:${{ github.sha }} ${{ secrets.DOCKER_REGISTRY }}/admin-dashboard:latest
+          docker push ${{ secrets.DOCKER_REGISTRY }}/event-processor:latest
+          docker push ${{ secrets.DOCKER_REGISTRY }}/admin-dashboard:latest
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Deploy to production
+        run: |
+          # Deploy to Kubernetes or your platform
+          echo "Deploying to production..."
+```
+
+## 16. Future Enhancements
 
 ### 15.1 Roadmap
 
@@ -2213,14 +3151,39 @@ Technical Debt & Improvements:
   - Implement chaos engineering practices
 ```
 
-## Conclusion
+## Conclusion & Next Steps
 
-This technical architecture plan provides a comprehensive blueprint for implementing a robust, scalable event discovery and real-time features system for the Indiranagar Discovery Platform. The architecture emphasizes:
+This **development-ready** architecture plan provides everything needed to implement dynamic event discovery and real-time features for the Indiranagar Discovery Platform.
 
-1. **Scalability** through microservices and Kubernetes orchestration
-2. **Reliability** with multiple fallback mechanisms and redundancy
-3. **Performance** via multi-layer caching and optimized queries
-4. **Security** through proper authentication, sanitization, and compliance
-5. **Maintainability** with clear separation of concerns and monitoring
+### ✅ What's Ready for Developers:
 
-The system is designed to handle millions of events, thousands of concurrent users, and provide real-time updates with minimal latency while maintaining high data quality through intelligent deduplication and moderation workflows.
+1. **Complete Code Templates** - Copy-paste ready implementations for Day 1
+2. **Environment Setup** - Docker compose, package.json, and .env configurations
+3. **Database Migrations** - Ready-to-run SQL scripts
+4. **Test Suite** - Initial tests with mocking patterns
+5. **CI/CD Pipeline** - GitHub Actions workflow configured
+6. **Monitoring Setup** - Logging, metrics, and error tracking
+
+### 🎯 Success Metrics:
+
+- **Week 1**: Core system fetching events from 2+ sources
+- **Week 2**: 5+ sources integrated with deduplication working
+- **Week 3**: Real-time features and admin dashboard live
+- **Week 4**: Production deployment with 95%+ uptime
+
+### 💡 Key Architecture Benefits:
+
+1. **Immediate Start** - Developers can begin coding within 30 minutes
+2. **Incremental Progress** - Each day builds on previous work
+3. **Production Ready** - Includes testing, monitoring, and deployment
+4. **Scalable Design** - Handles 1000+ concurrent users, millions of events
+5. **Maintainable Code** - Clear structure, comprehensive testing
+
+### 📞 Support & Resources:
+
+- **Technical Questions**: Create issues in GitHub repo
+- **Architecture Decisions**: Documented in ADR format
+- **API Documentation**: Auto-generated from OpenAPI specs
+- **Monitoring Dashboard**: Grafana templates included
+
+**Ready to Build!** Start with the Quick Action Plan (top of document) and have a working prototype by end of Day 1.

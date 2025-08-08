@@ -42,10 +42,10 @@ export function DiscoveryFilters({ currentFilter, onFilterChange, placeCounts }:
             transition={{ duration: 0.1 }}
             className={`
               relative inline-flex items-center gap-2 px-4 py-2 rounded-full
-              transition-all duration-150 font-medium text-sm
+              transition-all duration-150 font-medium text-sm border
               ${isActive 
-                ? 'bg-primary text-white shadow-lg shadow-primary/30' 
-                : 'bg-white/80 backdrop-blur-sm text-neutral-700 hover:bg-white border border-neutral-200'
+                ? 'bg-primary text-white shadow-lg shadow-primary/30 border-primary' 
+                : 'bg-white/80 backdrop-blur-sm text-neutral-700 hover:bg-white border-neutral-200'
               }
             `}
           >
@@ -56,10 +56,10 @@ export function DiscoveryFilters({ currentFilter, onFilterChange, placeCounts }:
             {count > 0 && (
               <span className={`
                 inline-flex items-center justify-center min-w-[20px] h-5 px-1 
-                rounded-full text-xs font-semibold
+                rounded-full text-xs font-bold
                 ${isActive 
-                  ? 'bg-white/20 text-white' 
-                  : 'bg-neutral-100 text-neutral-600'
+                  ? 'bg-white text-primary' 
+                  : 'bg-primary/10 text-primary'
                 }
               `}>
                 {count}
