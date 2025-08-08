@@ -1,5 +1,23 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+export async function GET() {
+  return NextResponse.json({
+    success: true,
+    message: 'Foodie Adventure Challenge API is ready. Use POST to generate challenges.',
+    endpoints: {
+      POST: {
+        description: 'Generate a food challenge',
+        parameters: {
+          difficulty: 'easy | medium | hard | legendary',
+          time_limit: 'string (optional)',
+          group_size: 'number (optional)',
+          dietary_preferences: 'array (optional)'
+        }
+      }
+    }
+  });
+}
+
 export async function POST(request: NextRequest) {
   try {
     const params = await request.json();

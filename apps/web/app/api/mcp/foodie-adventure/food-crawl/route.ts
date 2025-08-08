@@ -1,5 +1,25 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+export async function GET() {
+  return NextResponse.json({
+    success: true,
+    message: 'Foodie Adventure Food Crawl API is ready. Use POST to create food crawls.',
+    endpoints: {
+      POST: {
+        description: 'Create a themed food crawl',
+        parameters: {
+          theme: 'string',
+          budget: 'number (optional)',
+          budget_per_person: 'number (optional)',
+          duration: 'string (optional)',
+          group_size: 'number (optional)',
+          start_location: 'string (optional)'
+        }
+      }
+    }
+  });
+}
+
 export async function POST(request: NextRequest) {
   try {
     const params = await request.json();
