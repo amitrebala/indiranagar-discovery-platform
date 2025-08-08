@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
-import { headers } from 'next/headers';
 
 // This is a Vercel Cron Job that runs automatically
 // Configure in vercel.json: "crons": [{"path": "/api/cron/fetch-events", "schedule": "0 */6 * * *"}]
@@ -64,7 +63,7 @@ export async function GET(request: NextRequest) {
   try {
     // Verify this is a valid cron request (in production)
     if (process.env.NODE_ENV === 'production') {
-      const authHeader = headers().get('authorization');
+      const authHeader = request.headers.get('authorization');
       if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
         return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
       }
@@ -100,18 +99,23 @@ export async function GET(request: NextRequest) {
       }
     }
 
-    // Log fetch history
-    await supabase
-      .from('fetch_history')
-      .insert({
-        source_id: 'google-places',
-        started_at: new Date().toISOString(),
-        completed_at: new Date().toISOString(),
-        status: 'success',
-        events_found: googleEvents.length,
-        events_processed: newEventsCount,
-        execution_time_ms: Date.now()
-      });
+    // Log fetch history (if table exists)
+    try {
+      await supabase
+        .from('fetch_history')
+        .insert({
+          source_id: 'google-places',
+          started_at: new Date().toISOString(),
+          completed_at: new Date().toISOString(),
+          status: 'success',
+          events_found: googleEvents.length,
+          events_processed: newEventsCount,
+          execution_time_ms: Date.now()
+        });
+    } catch (error) {
+      // Table might not exist yet, ignore
+      console.log('Fetch history table not available');
+    }
 
     console.log(`✅ Fetch completed. Found ${googleEvents.length} events, added ${newEventsCount} new`);
 
