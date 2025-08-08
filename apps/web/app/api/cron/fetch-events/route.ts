@@ -2,7 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
 
 // This is a Vercel Cron Job that runs automatically
-// Configure in vercel.json: "crons": [{"path": "/api/cron/fetch-events", "schedule": "0 */6 * * *"}]
+// Configure in vercel.json: "crons": [{"path": "/api/cron/fetch-events", "schedule": "0 2 * * *"}]
+// Runs daily at 2 AM UTC (compatible with Vercel Hobby plan)
 
 // Simple Google Places fetcher (no external dependencies needed)
 async function fetchGooglePlacesEvents() {

@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
       );
     }
     
-    const token = await AdminAuth.generateToken();
+    const token = await AdminAuth.generateToken('admin');
     
     // Create response with cookie
     const response = NextResponse.json({ success: true });
