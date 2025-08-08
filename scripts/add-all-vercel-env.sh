@@ -28,6 +28,10 @@ echo "true" | vercel env add NEXT_PUBLIC_ENABLE_PWA_FEATURES production
 echo "Adding image optimization settings..."
 echo "false" | vercel env add NEXT_PUBLIC_AUTO_SAVE_IMAGES production
 
+# Google Places API
+echo "Adding Google Places API key..."
+vercel env add NEXT_PUBLIC_GOOGLE_PLACES_API_KEY production < /dev/null
+
 echo ""
 echo "✅ All environment variables added!"
 echo ""

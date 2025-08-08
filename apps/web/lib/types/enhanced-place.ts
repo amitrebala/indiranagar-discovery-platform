@@ -20,3 +20,25 @@ export interface EnhancedPlaceData extends Place {
     distance: string
   }[]
 }
+
+export interface EnhancedPlace extends EnhancedPlaceData {
+  // Google Places enrichment
+  google_place_id?: string
+  rating?: number
+  user_ratings_total?: number
+  price_level?: number
+  opening_hours?: string[]
+  business_status?: string
+  editorial_summary?: string
+  google_types?: string[]
+  google_photos?: {
+    url: string
+    attribution: string
+  }[]
+  google_reviews?: {
+    author: string
+    rating: number
+    text: string
+    time: string
+  }[]
+}
