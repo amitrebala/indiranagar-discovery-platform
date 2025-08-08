@@ -43,14 +43,20 @@ export class FoodieAdventureIntegration {
 
   async createFoodCrawl(params: {
     theme: string;
+    budget?: number;
     budgetPerPerson?: number;
+    duration?: string;
     durationHours?: number;
+    groupSize?: number;
     startLocation?: string;
   }): Promise<FoodieMCPResponse> {
     return this.callAPI('/api/food-crawl', {
       theme: params.theme,
+      budget: params.budget,
       budget_per_person: params.budgetPerPerson,
+      duration: params.duration,
       duration_hours: params.durationHours,
+      group_size: params.groupSize,
       start_location: params.startLocation,
     });
   }
