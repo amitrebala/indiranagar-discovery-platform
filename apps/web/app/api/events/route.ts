@@ -131,21 +131,7 @@ export async function GET(request: NextRequest) {
     // Fallback to community events if no discovered events
     let communityQuery = supabase
       .from('community_events')
-      .select(`
-        id,
-        title,
-        description,
-        category,
-        start_time,
-        end_time,
-        location_name as venue_name,
-        location_address as venue_address,
-        location_latitude as latitude,
-        location_longitude as longitude,
-        cost_type,
-        status,
-        created_at
-      `)
+      .select('*')
       .eq('status', 'published')
       .order('start_time', { ascending: true })
       .range(offset, offset + limit - 1);
@@ -158,12 +144,24 @@ export async function GET(request: NextRequest) {
     
     if (!communityError && communityEvents && communityEvents.length > 0) {
       // Transform community events to match discovered events format
-      const transformedEvents = communityEvents.map(event => ({
-        ...event,
+      const transformedEvents = communityEvents.map((event: any) => ({
+        id: event.id,
         external_id: `community_${event.id}`,
+        title: event.title,
+        description: event.description,
+        category: event.category,
+        start_time: event.start_time,
+        end_time: event.end_time,
+        venue_name: event.location_name,
+        venue_address: event.location_address,
+        latitude: event.location_latitude,
+        longitude: event.location_longitude,
+        cost_type: event.cost_type,
         quality_score: 0.8,
-        moderation_status: 'approved',
+        moderation_status: 'approved' as const,
         is_active: true,
+        external_url: null,
+        created_at: event.created_at
       }));
       
       return NextResponse.json({ 
