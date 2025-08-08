@@ -1,3 +1,5 @@
+'use client';
+
 import { EventCalendar } from '@/components/events/EventCalendar';
 import { EventsGrid } from '@/components/events/EventsGrid';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';

@@ -1,6 +1,6 @@
 VERCEL DEPLOYMENT ERROR REPORT
 ==============================
-Generated: Fri Aug  8 11:38:09 IST 2025
+Generated: Fri Aug  8 12:29:28 IST 2025
 Project: simple-todo
 
 PARSED ERRORS:
@@ -10,42 +10,39 @@ PARSED ERRORS:
 BUILD OUTPUT (Last 200 lines):
 ------------------------------
       static/chunks/app/api/admin/questions/[id]/respond/route-5714729cf0712cbd.js
-  app/api/admin/questions/route (1.8 MiB)
-      static/chunks/maps-1478d08207d084ed.js
-      static/chunks/app/api/admin/questions/route-91762a3c24a66b02.js
   app/api/analytics/events/route (1.8 MiB)
       static/chunks/maps-1478d08207d084ed.js
       static/chunks/app/api/analytics/events/route-4e1014527d542a65.js
-  app/api/admin/questions/bulk-update/route (1.8 MiB)
-      static/chunks/maps-1478d08207d084ed.js
-      static/chunks/app/api/admin/questions/bulk-update/route-6571030011326e78.js
-  app/api/comments/[id]/like/route (1.8 MiB)
-      static/chunks/maps-1478d08207d084ed.js
-      static/chunks/app/api/comments/[id]/like/route-95c9e6c54a5d1528.js
   app/api/analytics/web-vitals/route (1.8 MiB)
       static/chunks/maps-1478d08207d084ed.js
       static/chunks/app/api/analytics/web-vitals/route-683afae5f4f68c7a.js
-  app/api/community-suggestions/route (1.8 MiB)
+  app/api/comments/[id]/like/route (1.8 MiB)
       static/chunks/maps-1478d08207d084ed.js
-      static/chunks/app/api/community-suggestions/route-5b67aa2704c8729b.js
-  app/api/comments/route (1.8 MiB)
-      static/chunks/maps-1478d08207d084ed.js
-      static/chunks/app/api/comments/route-16b74e8a13b4b7cf.js
+      static/chunks/app/api/comments/[id]/like/route-95c9e6c54a5d1528.js
   app/api/community-suggestions/[id]/vote/route (1.8 MiB)
       static/chunks/maps-1478d08207d084ed.js
       static/chunks/app/api/community-suggestions/[id]/vote/route-d904a66cea9393bc.js
-  app/api/events/route (1.8 MiB)
+  app/api/comments/route (1.8 MiB)
       static/chunks/maps-1478d08207d084ed.js
-      static/chunks/app/api/events/route-eb1704a639f672b8.js
-  app/api/health/route (1.8 MiB)
+      static/chunks/app/api/comments/route-16b74e8a13b4b7cf.js
+  app/api/community-suggestions/route (1.8 MiB)
       static/chunks/maps-1478d08207d084ed.js
-      static/chunks/app/api/health/route-63840673b69943ba.js
+      static/chunks/app/api/community-suggestions/route-5b67aa2704c8729b.js
+  app/api/cron/fetch-events/route (1.8 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/api/cron/fetch-events/route-054cfe4572ecab25.js
   app/api/events/[id]/rsvp/route (1.8 MiB)
       static/chunks/maps-1478d08207d084ed.js
       static/chunks/app/api/events/[id]/rsvp/route-3b21d956dc5a8482.js
   app/api/events/discovered/route (1.8 MiB)
       static/chunks/maps-1478d08207d084ed.js
       static/chunks/app/api/events/discovered/route-c34b0519e6913b79.js
+  app/api/health/route (1.8 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/api/health/route-63840673b69943ba.js
+  app/api/events/route (1.8 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/api/events/route-eb1704a639f672b8.js
   app/api/journeys/[slug]/route (1.8 MiB)
       static/chunks/maps-1478d08207d084ed.js
       static/chunks/app/api/journeys/[slug]/route-e02cf73cb5b25cc7.js
@@ -55,101 +52,101 @@ BUILD OUTPUT (Last 200 lines):
   app/api/places/[id]/images/route (1.8 MiB)
       static/chunks/maps-1478d08207d084ed.js
       static/chunks/app/api/places/[id]/images/route-c9c28a5bedf18de9.js
-  app/api/ratings/route (1.8 MiB)
-      static/chunks/maps-1478d08207d084ed.js
-      static/chunks/app/api/ratings/route-5d4e5f4aef7278f7.js
-  app/api/journeys/route (1.8 MiB)
-      static/chunks/maps-1478d08207d084ed.js
-      static/chunks/app/api/journeys/route-867e1236c56a8a81.js
-  app/api/places/route (1.8 MiB)
-      static/chunks/maps-1478d08207d084ed.js
-      static/chunks/app/api/places/route-3816179514471262.js
-  app/api/suggestions/route (1.8 MiB)
-      static/chunks/maps-1478d08207d084ed.js
-      static/chunks/app/api/suggestions/route-431dcc3844a9953c.js
   app/api/places/[id]/route (1.8 MiB)
       static/chunks/maps-1478d08207d084ed.js
       static/chunks/app/api/places/[id]/route-009355db67767afb.js
+  app/api/places/route (1.8 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/api/places/route-3816179514471262.js
+  app/api/journeys/route (1.8 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/api/journeys/route-867e1236c56a8a81.js
+  app/api/ratings/route (1.8 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/api/ratings/route-5d4e5f4aef7278f7.js
   app/api/recommendations/weather/route (1.8 MiB)
       static/chunks/maps-1478d08207d084ed.js
       static/chunks/app/api/recommendations/weather/route-b650dd8031ef6241.js
   app/api/weather/route (1.8 MiB)
       static/chunks/maps-1478d08207d084ed.js
       static/chunks/app/api/weather/route-0eb7131ba6d8da89.js
+  app/api/suggestions/route (1.8 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/api/suggestions/route-431dcc3844a9953c.js
+  app/not-found (1.8 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/not-found-9e9d58bdd088b65d.js
+  app/_not-found/page (1.8 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/_not-found/page-21e44ef7dc073d7d.js
   app/layout (1.92 MiB)
       static/css/4d26e9a37b015124.css
       static/css/deb257e4f20a93bb.css
       static/chunks/maps-1478d08207d084ed.js
-      static/chunks/app/layout-98fc1b1f96efc476.js
+      static/chunks/app/layout-b8c38ec02ff19beb.js
   app/error (1.81 MiB)
       static/chunks/maps-1478d08207d084ed.js
       static/chunks/app/error-1780e3ea85e62c49.js
-  app/not-found (1.8 MiB)
-      static/chunks/maps-1478d08207d084ed.js
-      static/chunks/app/not-found-9e9d58bdd088b65d.js
   app/analytics/page (1.82 MiB)
       static/chunks/maps-1478d08207d084ed.js
       static/chunks/app/analytics/page-03b567f06526aac1.js
   app/blog/[slug]/page (1.81 MiB)
       static/chunks/maps-1478d08207d084ed.js
       static/chunks/app/blog/[slug]/page-2327090a7df842aa.js
-  app/community/badges/page (1.8 MiB)
-      static/chunks/maps-1478d08207d084ed.js
-      static/chunks/app/community/badges/page-39e4b5bd02b97082.js
-  app/business/relationships/page (1.82 MiB)
-      static/chunks/maps-1478d08207d084ed.js
-      static/chunks/app/business/relationships/page-d0e25701dd16a47c.js
   app/blog/page (1.8 MiB)
       static/chunks/maps-1478d08207d084ed.js
       static/chunks/app/blog/page-062cacb5cafa09fb.js
-  app/events/submit/page (1.81 MiB)
-      static/chunks/maps-1478d08207d084ed.js
-      static/chunks/app/events/submit/page-bd47b406d26cf7d7.js
-  app/events/page (1.82 MiB)
-      static/chunks/maps-1478d08207d084ed.js
-      static/chunks/app/events/page-b08b140bdb6694b3.js
-  app/_not-found/page (1.8 MiB)
-      static/chunks/maps-1478d08207d084ed.js
-      static/chunks/app/_not-found/page-21e44ef7dc073d7d.js
   app/community/page (1.81 MiB)
       static/chunks/maps-1478d08207d084ed.js
       static/chunks/app/community/page-77f64c979eef7046.js
-  app/offline/page (1.81 MiB)
+  app/business/relationships/page (1.82 MiB)
       static/chunks/maps-1478d08207d084ed.js
-      static/chunks/app/offline/page-c873294e1de8a79e.js
-  app/page (1.86 MiB)
+      static/chunks/app/business/relationships/page-d0e25701dd16a47c.js
+  app/community/badges/page (1.8 MiB)
       static/chunks/maps-1478d08207d084ed.js
-      static/chunks/app/page-4c4432986a315e60.js
-  app/test-homepage/page (1.81 MiB)
+      static/chunks/app/community/badges/page-39e4b5bd02b97082.js
+  app/events/submit/page (1.81 MiB)
       static/chunks/maps-1478d08207d084ed.js
-      static/chunks/app/test-homepage/page-0212d855e62a0f5b.js
+      static/chunks/app/events/submit/page-bd47b406d26cf7d7.js
   app/journeys/[slug]/page (1.82 MiB)
       static/chunks/maps-1478d08207d084ed.js
       static/chunks/app/journeys/[slug]/page-9e729fda47432b7d.js
-  app/search/page (1.83 MiB)
-      static/chunks/maps-1478d08207d084ed.js
-      static/chunks/app/search/page-9b4bcd9d8cf54691.js
-  app/test-images/page (1.81 MiB)
-      static/chunks/maps-1478d08207d084ed.js
-      static/chunks/app/test-images/page-8fc90dcfc21903fe.js
   app/journeys/page (1.81 MiB)
       static/chunks/maps-1478d08207d084ed.js
       static/chunks/app/journeys/page-06d6fb65c5a10944.js
   app/map/page (1.8 MiB)
       static/chunks/maps-1478d08207d084ed.js
       static/chunks/app/map/page-a580b52bd515ce80.js
+  app/events/page (1.82 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/events/page-b08b140bdb6694b3.js
+  app/offline/page (1.81 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/offline/page-c873294e1de8a79e.js
+  app/page (1.86 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/page-4c4432986a315e60.js
+  app/search/page (1.83 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/search/page-9b4bcd9d8cf54691.js
+  app/test-homepage/page (1.81 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/test-homepage/page-0212d855e62a0f5b.js
+  app/test-images/page (1.81 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/test-images/page-8fc90dcfc21903fe.js
   app/suggest/page (1.81 MiB)
       static/chunks/maps-1478d08207d084ed.js
       static/chunks/app/suggest/page-c737c661243f5118.js
   app/about/page (1.84 MiB)
       static/chunks/maps-1478d08207d084ed.js
       static/chunks/app/about/page-ac0375ec6a7cd294.js
-  app/configuration/page (1.8 MiB)
-      static/chunks/maps-1478d08207d084ed.js
-      static/chunks/app/configuration/page-d27f016b55810661.js
   app/places/page (1.81 MiB)
       static/chunks/maps-1478d08207d084ed.js
       static/chunks/app/places/page-560da3ae5a63eae2.js
+  app/configuration/page (1.8 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/configuration/page-d27f016b55810661.js
   app/places/[slug]/not-found (1.8 MiB)
       static/chunks/maps-1478d08207d084ed.js
       static/chunks/app/places/[slug]/not-found-8fa0f4235f70499c.js
@@ -159,27 +156,24 @@ BUILD OUTPUT (Last 200 lines):
   app/admin/layout (1.8 MiB)
       static/chunks/maps-1478d08207d084ed.js
       static/chunks/app/admin/layout-9212133904d3cbb4.js
-  app/admin/places/[id]/page (1.8 MiB)
-      static/chunks/maps-1478d08207d084ed.js
-      static/chunks/app/admin/places/[id]/page-3168ca3d3596ff08.js
   app/admin/login/page (1.8 MiB)
       static/chunks/maps-1478d08207d084ed.js
       static/chunks/app/admin/login/page-27a1a914e0fb8256.js
-  app/admin/places/page (1.81 MiB)
+  app/admin/places/[id]/page (1.8 MiB)
       static/chunks/maps-1478d08207d084ed.js
-      static/chunks/app/admin/places/page-6bf688403160a700.js
-  app/admin/questions/enhanced/page (1.81 MiB)
-      static/chunks/maps-1478d08207d084ed.js
-      static/chunks/app/admin/questions/enhanced/page-7dfd7fd35109d60c.js
+      static/chunks/app/admin/places/[id]/page-3168ca3d3596ff08.js
   app/admin/places/new/page (1.8 MiB)
       static/chunks/maps-1478d08207d084ed.js
       static/chunks/app/admin/places/new/page-9062fed376e88cd9.js
+  app/admin/questions/enhanced/page (1.81 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/admin/questions/enhanced/page-7dfd7fd35109d60c.js
+  app/admin/places/page (1.81 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/admin/places/page-6bf688403160a700.js
   app/admin/suggestions/page (1.81 MiB)
       static/chunks/maps-1478d08207d084ed.js
       static/chunks/app/admin/suggestions/page-4fc154bc7621f502.js
-  app/admin/events/page (1.81 MiB)
-      static/chunks/maps-1478d08207d084ed.js
-      static/chunks/app/admin/events/page-3c0433cf2f1dd606.js
   app/admin/dashboard/page (1.81 MiB)
       static/chunks/maps-1478d08207d084ed.js
       static/chunks/app/admin/dashboard/page-dbfef7015c7a1e23.js
@@ -192,6 +186,12 @@ BUILD OUTPUT (Last 200 lines):
   app/admin/settings/page (1.81 MiB)
       static/chunks/maps-1478d08207d084ed.js
       static/chunks/app/admin/settings/page-ff38431aa76a4758.js
+  app/admin/events/layout (1.8 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/admin/events/layout-20ac7abc0be8267a.js
+  app/admin/events/page (1.81 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/admin/events/page-3c0433cf2f1dd606.js
   app/api/images/proxy/route (1.8 MiB)
       static/chunks/maps-1478d08207d084ed.js
       static/chunks/app/api/images/proxy/route-65bd9aaa8b1fa074.js
