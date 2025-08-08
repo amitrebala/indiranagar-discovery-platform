@@ -3,7 +3,7 @@
 import { useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { X, Home, Map, Building2, User, Users, Settings } from 'lucide-react'
+import { X, Home, Map, Building2, User, Users, Settings, Search } from 'lucide-react'
 import { useNavigationStore } from '@/stores/navigationStore'
 import { FocusManager } from '@/components/accessibility/FocusManager'
 
@@ -11,6 +11,7 @@ const navigationItems = [
   { href: '/', label: 'Home', icon: Home },
   { href: '/map', label: 'Map', icon: Map },
   { href: '/places', label: 'Places', icon: Building2 },
+  { href: '/discovery', label: 'Discovery', icon: Search },
   { href: '/community', label: 'Community', icon: Users },
   { href: '/about', label: 'About', icon: User },
   { href: '/configuration', label: 'Config', icon: Settings }
