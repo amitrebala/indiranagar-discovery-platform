@@ -1,35 +1,31 @@
-import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
+import { NextRequest } from 'next/server'
+import { createClient } from '@/lib/supabase/server'
 
-export class AdminAuth {
-  private static readonly ADMIN_PASSWORD_HASH = process.env.ADMIN_PASSWORD_HASH!;
-  private static readonly JWT_SECRET = process.env.JWT_SECRET!;
+export async function verifyAdminAuth(request: NextRequest): Promise<boolean> {
+  // For now, we'll implement a simple auth check
+  // In production, you'd want to verify against actual admin users
+  const supabase = await createClient()
   
-  static async verifyPassword(password: string): Promise<boolean> {
-    if (!this.ADMIN_PASSWORD_HASH) {
-      console.error('ADMIN_PASSWORD_HASH not set');
-      return false;
-    }
-    return await bcrypt.compare(password, this.ADMIN_PASSWORD_HASH);
+  const { data: { user } } = await supabase.auth.getUser()
+  
+  // You can add more sophisticated admin checks here
+  // For example, checking against an admin_users table or specific email domains
+  if (!user) {
+    return false
   }
   
-  static generateToken(): string {
-    return jwt.sign(
-      { 
-        role: 'admin', 
-        iat: Date.now(),
-        exp: Math.floor(Date.now() / 1000) + (24 * 60 * 60) // 24 hours
-      },
-      this.JWT_SECRET
-    );
+  // Example: Check if user email is in admin list (update with your admin emails)
+  const adminEmails = ['admin@indiranagar.com', 'admin@example.com']
+  if (adminEmails.includes(user.email || '')) {
+    return true
   }
   
-  static verifyToken(token: string): boolean {
-    try {
-      const decoded = jwt.verify(token, this.JWT_SECRET) as any;
-      return decoded.role === 'admin';
-    } catch (error) {
-      return false;
-    }
-  }
+  // Or check against a database table
+  const { data: adminUser } = await supabase
+    .from('admin_users')
+    .select('id')
+    .eq('user_id', user.id)
+    .single()
+  
+  return !!adminUser
 }
