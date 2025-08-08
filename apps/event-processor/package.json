@@ -1,0 +1,28 @@
+{
+  "name": "event-processor",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "bullmq": "^5.0.0",
+    "ioredis": "^5.3.2",
+    "@supabase/supabase-js": "^2.53.0",
+    "node-fetch": "^3.3.2",
+    "puppeteer": "^22.0.0",
+    "cheerio": "^1.0.0-rc.12",
+    "date-fns": "^4.1.0",
+    "zod": "^4.0.14",
+    "dotenv": "^17.2.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.9",
+    "tsx": "^4.20.3",
+    "typescript": "^5",
+    "vitest": "^3.2.4"
+  }
+}

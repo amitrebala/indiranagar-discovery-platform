@@ -1,213 +1,213 @@
 VERCEL DEPLOYMENT ERROR REPORT
 ==============================
-Generated: Wed Aug  6 04:31:51 IST 2025
+Generated: Fri Aug  8 11:38:09 IST 2025
 Project: simple-todo
 
 PARSED ERRORS:
 --------------
-Type error: Route "app/api/comments/[id]/like/route.ts" has an invalid "POST" export:
+  [cause]: TypeError: g.createContext is not a function
 
 BUILD OUTPUT (Last 200 lines):
 ------------------------------
+      static/chunks/app/api/admin/questions/[id]/respond/route-5714729cf0712cbd.js
+  app/api/admin/questions/route (1.8 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/api/admin/questions/route-91762a3c24a66b02.js
+  app/api/analytics/events/route (1.8 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/api/analytics/events/route-4e1014527d542a65.js
+  app/api/admin/questions/bulk-update/route (1.8 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/api/admin/questions/bulk-update/route-6571030011326e78.js
+  app/api/comments/[id]/like/route (1.8 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/api/comments/[id]/like/route-95c9e6c54a5d1528.js
+  app/api/analytics/web-vitals/route (1.8 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/api/analytics/web-vitals/route-683afae5f4f68c7a.js
+  app/api/community-suggestions/route (1.8 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/api/community-suggestions/route-5b67aa2704c8729b.js
+  app/api/comments/route (1.8 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/api/comments/route-16b74e8a13b4b7cf.js
+  app/api/community-suggestions/[id]/vote/route (1.8 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/api/community-suggestions/[id]/vote/route-d904a66cea9393bc.js
+  app/api/events/route (1.8 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/api/events/route-eb1704a639f672b8.js
+  app/api/health/route (1.8 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/api/health/route-63840673b69943ba.js
+  app/api/events/[id]/rsvp/route (1.8 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/api/events/[id]/rsvp/route-3b21d956dc5a8482.js
+  app/api/events/discovered/route (1.8 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/api/events/discovered/route-c34b0519e6913b79.js
+  app/api/journeys/[slug]/route (1.8 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/api/journeys/[slug]/route-e02cf73cb5b25cc7.js
+  app/api/places/[id]/companions/route (1.8 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/api/places/[id]/companions/route-a0f13ca08ac4c3bb.js
+  app/api/places/[id]/images/route (1.8 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/api/places/[id]/images/route-c9c28a5bedf18de9.js
+  app/api/ratings/route (1.8 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/api/ratings/route-5d4e5f4aef7278f7.js
+  app/api/journeys/route (1.8 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/api/journeys/route-867e1236c56a8a81.js
+  app/api/places/route (1.8 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/api/places/route-3816179514471262.js
+  app/api/suggestions/route (1.8 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/api/suggestions/route-431dcc3844a9953c.js
+  app/api/places/[id]/route (1.8 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/api/places/[id]/route-009355db67767afb.js
+  app/api/recommendations/weather/route (1.8 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/api/recommendations/weather/route-b650dd8031ef6241.js
+  app/api/weather/route (1.8 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/api/weather/route-0eb7131ba6d8da89.js
+  app/layout (1.92 MiB)
+      static/css/4d26e9a37b015124.css
+      static/css/deb257e4f20a93bb.css
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/layout-98fc1b1f96efc476.js
+  app/error (1.81 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/error-1780e3ea85e62c49.js
+  app/not-found (1.8 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/not-found-9e9d58bdd088b65d.js
+  app/analytics/page (1.82 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/analytics/page-03b567f06526aac1.js
+  app/blog/[slug]/page (1.81 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/blog/[slug]/page-2327090a7df842aa.js
+  app/community/badges/page (1.8 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/community/badges/page-39e4b5bd02b97082.js
+  app/business/relationships/page (1.82 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/business/relationships/page-d0e25701dd16a47c.js
+  app/blog/page (1.8 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/blog/page-062cacb5cafa09fb.js
+  app/events/submit/page (1.81 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/events/submit/page-bd47b406d26cf7d7.js
+  app/events/page (1.82 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/events/page-b08b140bdb6694b3.js
+  app/_not-found/page (1.8 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/_not-found/page-21e44ef7dc073d7d.js
+  app/community/page (1.81 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/community/page-77f64c979eef7046.js
+  app/offline/page (1.81 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/offline/page-c873294e1de8a79e.js
+  app/page (1.86 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/page-4c4432986a315e60.js
+  app/test-homepage/page (1.81 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/test-homepage/page-0212d855e62a0f5b.js
+  app/journeys/[slug]/page (1.82 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/journeys/[slug]/page-9e729fda47432b7d.js
+  app/search/page (1.83 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/search/page-9b4bcd9d8cf54691.js
+  app/test-images/page (1.81 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/test-images/page-8fc90dcfc21903fe.js
+  app/journeys/page (1.81 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/journeys/page-06d6fb65c5a10944.js
+  app/map/page (1.8 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/map/page-a580b52bd515ce80.js
+  app/suggest/page (1.81 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/suggest/page-c737c661243f5118.js
+  app/about/page (1.84 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/about/page-ac0375ec6a7cd294.js
+  app/configuration/page (1.8 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/configuration/page-d27f016b55810661.js
+  app/places/page (1.81 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/places/page-560da3ae5a63eae2.js
+  app/places/[slug]/not-found (1.8 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/places/[slug]/not-found-8fa0f4235f70499c.js
+  app/places/[slug]/page (1.85 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/places/[slug]/page-1ba92c882ce144c5.js
+  app/admin/layout (1.8 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/admin/layout-9212133904d3cbb4.js
+  app/admin/places/[id]/page (1.8 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/admin/places/[id]/page-3168ca3d3596ff08.js
+  app/admin/login/page (1.8 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/admin/login/page-27a1a914e0fb8256.js
+  app/admin/places/page (1.81 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/admin/places/page-6bf688403160a700.js
+  app/admin/questions/enhanced/page (1.81 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/admin/questions/enhanced/page-7dfd7fd35109d60c.js
+  app/admin/places/new/page (1.8 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/admin/places/new/page-9062fed376e88cd9.js
+  app/admin/suggestions/page (1.81 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/admin/suggestions/page-4fc154bc7621f502.js
+  app/admin/events/page (1.81 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/admin/events/page-3c0433cf2f1dd606.js
+  app/admin/dashboard/page (1.81 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/admin/dashboard/page-dbfef7015c7a1e23.js
+  app/admin/journeys/page (1.82 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/admin/journeys/page-06dc99784452540e.js
+  app/admin/analytics/page (1.81 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/admin/analytics/page-8be7290f2588a620.js
+  app/admin/settings/page (1.81 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/admin/settings/page-ff38431aa76a4758.js
+  app/api/images/proxy/route (1.8 MiB)
+      static/chunks/maps-1478d08207d084ed.js
+      static/chunks/app/api/images/proxy/route-65bd9aaa8b1fa074.js
 
-./components/map/PlaceMarker.tsx
-142:10  Warning: 'hoveredPlace' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+ ✓ Compiled successfully in 5.0s
+   Skipping validation of types
+   Skipping linting
+   Collecting page data ...
+[Error: Failed to collect configuration for /events] {
+  [cause]: TypeError: g.createContext is not a function
+      at 86876 (.next/server/app/events/page.js:1:42564)
+      at Function.c (.next/server/webpack-runtime.js:1:128)
+}
 
-./components/mobile/MobileJourneyInterface.tsx
-4:61  Warning: 'Camera' is defined but never used.  @typescript-eslint/no-unused-vars
-68:19  Warning: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
-68:40  Warning: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
-308:18  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
-
-./components/mobile/MobileOptimizedGallery.tsx
-5:40  Warning: 'Download' is defined but never used.  @typescript-eslint/no-unused-vars
-43:9  Warning: 'imageRefs' is assigned a value but never used.  @typescript-eslint/no-unused-vars
-
-./components/mobile/MobilePlaceCard.tsx
-3:10  Warning: 'useState' is defined but never used.  @typescript-eslint/no-unused-vars
-
-./components/places/AmitPlaceDetail.tsx
-75:27  Warning: 'placeName' is defined but never used.  @typescript-eslint/no-unused-vars
-411:70  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
-462:21  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
-
-./components/places/BusinessRelationships.tsx
-11:62  Warning: 'placeName' is defined but never used.  @typescript-eslint/no-unused-vars
-27:45  Warning: 'trustLevel' is defined but never used.  @typescript-eslint/no-unused-vars
-93:87  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
-94:85  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
-157:30  Warning: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
-157:79  Warning: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
-
-./components/places/CompanionActivities.tsx
-36:6  Warning: React Hook useEffect has a missing dependency: 'fetchCompanions'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
-59:9  Warning: 'formatDistance' is assigned a value but never used.  @typescript-eslint/no-unused-vars
-66:9  Warning: 'formatTime' is assigned a value but never used.  @typescript-eslint/no-unused-vars
-73:9  Warning: 'getCategoryEmoji' is assigned a value but never used.  @typescript-eslint/no-unused-vars
-
-./components/places/EnhancedCompanionActivityCard.tsx
-3:43  Warning: 'Sun' is defined but never used.  @typescript-eslint/no-unused-vars
-
-./components/places/EnhancedPlaceGallery.tsx
-73:10  Warning: 'showStories' is assigned a value but never used.  @typescript-eslint/no-unused-vars
-73:23  Warning: 'setShowStories' is assigned a value but never used.  @typescript-eslint/no-unused-vars
-86:46  Warning: 'index' is defined but never used.  @typescript-eslint/no-unused-vars
-116:33  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
-141:9  Warning: 'allImages' is assigned a value but never used.  @typescript-eslint/no-unused-vars
-177:9  Warning: 'openLightbox' is assigned a value but never used.  @typescript-eslint/no-unused-vars
-247:47  Warning: 'index' is defined but never used.  @typescript-eslint/no-unused-vars
-
-./components/places/MemoryPalaceStory.tsx
-142:68  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
-
-./components/places/PersonalReview.tsx
-11:50  Warning: 'placeName' is defined but never used.  @typescript-eslint/no-unused-vars
-47:72  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
-
-./components/places/PlaceCardEnhanced.tsx
-22:5  Warning: 'thumbnailUrl' is assigned a value but never used.  @typescript-eslint/no-unused-vars
-
-./components/places/PlaceCardWithCommunity.tsx
-29:9  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
-
-./components/places/PlacesHeader.tsx
-14:35  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
-
-./components/search/AmitSearchButton.tsx
-204:69  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
-206:24  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
-206:35  Warning: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
-206:43  Warning: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
-216:56  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
-
-./components/search/SearchFilters.tsx
-22:68  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-43:77  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-45:61  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-268:75  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-
-./components/search/SearchInterface.tsx
-56:9  Warning: The 'saveRecentSearch' function makes the dependencies of useMemo Hook (at line 74) change on every render. Move it inside the useMemo callback. Alternatively, wrap the definition of 'saveRecentSearch' in its own useCallback() Hook.  react-hooks/exhaustive-deps
-
-./components/search/SearchResults.tsx
-29:40  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-34:38  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-42:9  Warning: 'formatDistance' is assigned a value but never used.  @typescript-eslint/no-unused-vars
-50:9  Warning: 'getRelevanceColor' is assigned a value but never used.  @typescript-eslint/no-unused-vars
-117:3  Warning: 'viewMode' is defined but never used.  @typescript-eslint/no-unused-vars
-
-./components/search/SearchSuggestions.tsx
-3:30  Warning: 'Clock' is defined but never used.  @typescript-eslint/no-unused-vars
-
-./components/sharing/SocialShare.tsx
-4:37  Warning: 'Instagram' is defined but never used.  @typescript-eslint/no-unused-vars
-46:20  Warning: 'err' is defined but never used.  @typescript-eslint/no-unused-vars
-
-./components/ui/GradientMesh.tsx
-16:9  Warning: The 'enhancedGradients' object makes the dependencies of useEffect Hook (at line 142) change on every render. Move it inside the useEffect callback. Alternatively, wrap the initialization of 'enhancedGradients' in its own useMemo() Hook.  react-hooks/exhaustive-deps
-
-./components/ui/OptimizedImage.tsx
-45:5  Warning: 'networkCondition' is assigned a value but never used.  @typescript-eslint/no-unused-vars
-54:96  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-54:116  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-56:9  Warning: 'imageRef' is assigned a value but never used.  @typescript-eslint/no-unused-vars
-121:65  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-121:85  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-134:63  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-134:83  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-306:12  Warning: 'name' is defined but never used.  @typescript-eslint/no-unused-vars
-
-./components/ui/SkeletonLoaders.tsx
-3:24  Warning: 'Search' is defined but never used.  @typescript-eslint/no-unused-vars
-
-./components/weather/SeasonalHighlights.tsx
-17:56  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-103:9  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-108:36  Warning: 'season' is defined but never used.  @typescript-eslint/no-unused-vars
-222:89  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-
-./components/weather/WeatherAlerts.tsx
-76:9  Warning: 'getAlertIcon' is assigned a value but never used.  @typescript-eslint/no-unused-vars
-
-./lib/admin/auth.ts
-29:61  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-31:14  Warning: 'error' is defined but never used.  @typescript-eslint/no-unused-vars
-
-./lib/analytics/events.ts
-5:30  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-77:52  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-261:84  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-
-./lib/map/markers.ts
-62:51  Warning: 'hasPhoto' is assigned a value but never used.  @typescript-eslint/no-unused-vars
-183:62  Warning: 'bounds' is defined but never used.  @typescript-eslint/no-unused-vars
-183:71  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-
-./lib/preferences/PreferencesManager.ts
-125:44  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-179:38  Warning: 'event' is defined but never used.  @typescript-eslint/no-unused-vars
-
-./lib/search/natural-language.ts
-174:56  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-179:61  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-
-./lib/search/search-engine.ts
-178:9  Warning: 'totalTerms' is never reassigned. Use 'const' instead.  prefer-const
-206:57  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-
-./lib/services/companion-engine.ts
-84:16  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-85:5  Warning: 'preferences' is defined but never used.  @typescript-eslint/no-unused-vars
-85:19  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-139:37  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-139:50  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-156:42  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-156:55  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-202:16  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-203:21  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-236:16  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-237:21  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-
-./lib/services/distance-calculator.ts
-5:30  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-59:32  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-173:30  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-
-./lib/services/image-sources/strategies/generic-place.ts
-8:17  Warning: '_place' is defined but never used.  @typescript-eslint/no-unused-vars
-35:31  Warning: '_place' is defined but never used.  @typescript-eslint/no-unused-vars
-
-./lib/services/weather-recommendations.ts
-186:40  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-200:14  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-259:44  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-
-./lib/types/analytics.ts
-8:30  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-59:31  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-69:30  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-
-./lib/types/blog.ts
-68:19  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-142:26  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-147:28  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-
-./lib/types/journey.ts
-159:11  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-222:10  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-251:10  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-
-./lib/utils/accessibility.ts
-134:9  Warning: 'requiredRatio' is assigned a value but never used.  @typescript-eslint/no-unused-vars
-
-info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/app/api-reference/config/eslint#disabling-rules
-Failed to compile.
-
-app/api/comments/[id]/like/route.ts
-Type error: Route "app/api/comments/[id]/like/route.ts" has an invalid "POST" export:
-  Type "{ params: { id: string; }; }" is not a valid type for the function's second argument.
-
-Next.js build worker exited with code: 1 and signal: null
+> Build error occurred
+[Error: Failed to collect page data for /events] { type: 'Error' }
 Error: Command "npm run build" exited with 1
 
 ERROR CATEGORIES DETECTED:
