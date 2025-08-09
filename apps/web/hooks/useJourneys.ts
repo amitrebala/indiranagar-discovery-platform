@@ -39,28 +39,21 @@ export function useJourneys(options: UseJourneysOptions = {}): UseJourneysReturn
       setError(null)
 
       let query = supabase
-        .from('journey_experiences')
+        .from('journeys')
         .select(`
           *,
-          journey_stops (
+          journey_places (
             *,
             place:places (
               id,
               name,
-              display_name,
               description,
               coordinates,
               category,
               subcategory,
               price_level,
-              opening_hours,
-              images:place_images (
-                url,
-                caption,
-                is_primary
-              )
-            ),
-            activities:companion_activities (*)
+              opening_hours
+            )
           )
         `)
         .order('created_at', { ascending: false })
@@ -84,8 +77,29 @@ export function useJourneys(options: UseJourneysOptions = {}): UseJourneysReturn
 
       // Transform data to match JourneyExperience interface
       const transformedJourneys = (data || []).map(journey => ({
-        ...journey,
-        journey_stops: journey.journey_stops?.sort((a: any, b: any) => a.order - b.order) || []
+        id: journey.id,
+        name: journey.title,
+        slug: journey.title?.toLowerCase().replace(/\s+/g, '-'),
+        description: journey.description,
+        mood_category: journey.vibe_tags?.[0] || 'social',
+        duration_minutes: parseInt(journey.estimated_time?.replace(/[^0-9]/g, '') || '180'),
+        difficulty_level: 'easy',
+        weather_suitability: ['clear', 'cloudy'],
+        journey_stops: (journey.journey_places || [])
+          .sort((a: any, b: any) => a.order_index - b.order_index)
+          .map((stop: any) => ({
+            id: stop.id,
+            place_id: stop.place_id,
+            place: stop.place,
+            order: stop.order_index,
+            duration_minutes: 45,
+            activities: []
+          })),
+        tags: journey.vibe_tags || [],
+        gradient: journey.gradient,
+        icon: journey.icon,
+        created_at: journey.created_at,
+        updated_at: journey.updated_at
       }))
 
       // Apply weather filtering if needed
@@ -128,7 +142,7 @@ export function useJourneys(options: UseJourneysOptions = {}): UseJourneysReturn
   }
 }
 
-// Hook for single journey
+// Hook for single journey - not used anymore but kept for compatibility
 export function useJourney(slug: string) {
   const [journey, setJourney] = useState<JourneyExperience | null>(null)
   const [loading, setLoading] = useState(true)
@@ -143,43 +157,56 @@ export function useJourney(slug: string) {
         setError(null)
 
         const { data, error: fetchError } = await supabase
-          .from('journey_experiences')
+          .from('journeys')
           .select(`
             *,
-            journey_stops (
+            journey_places (
               *,
               place:places (
                 id,
                 name,
-                display_name,
                 description,
                 coordinates,
                 category,
                 subcategory,
                 price_level,
-                opening_hours,
-                images:place_images (
-                  url,
-                  caption,
-                  is_primary
-                )
-              ),
-              activities:companion_activities (*),
-              walking_directions (*),
-              photo_opportunities (*)
+                opening_hours
+              )
             )
           `)
-          .eq('slug', slug)
+          .eq('id', slug)
           .single()
 
         if (fetchError) throw fetchError
 
-        // Sort stops by order
-        if (data?.journey_stops) {
-          data.journey_stops.sort((a: any, b: any) => a.order - b.order)
-        }
+        // Transform to match expected format
+        const transformedJourney = data ? {
+          id: data.id,
+          name: data.title,
+          slug: data.title?.toLowerCase().replace(/\s+/g, '-'),
+          description: data.description,
+          mood_category: data.vibe_tags?.[0] || 'social',
+          duration_minutes: parseInt(data.estimated_time?.replace(/[^0-9]/g, '') || '180'),
+          difficulty_level: 'easy',
+          weather_suitability: ['clear', 'cloudy'],
+          journey_stops: (data.journey_places || [])
+            .sort((a: any, b: any) => a.order_index - b.order_index)
+            .map((stop: any) => ({
+              id: stop.id,
+              place_id: stop.place_id,
+              place: stop.place,
+              order: stop.order_index,
+              duration_minutes: 45,
+              activities: []
+            })),
+          tags: data.vibe_tags || [],
+          gradient: data.gradient,
+          icon: data.icon,
+          created_at: data.created_at,
+          updated_at: data.updated_at
+        } : null
 
-        setJourney(data)
+        setJourney(transformedJourney)
       } catch (err) {
         console.error('Error fetching journey:', err)
         setError(err instanceof Error ? err : new Error('Failed to fetch journey'))

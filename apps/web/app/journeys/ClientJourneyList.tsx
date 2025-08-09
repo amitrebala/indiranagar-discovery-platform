@@ -112,7 +112,8 @@ export default function ClientJourneyList() {
                 key={journey.id}
                 journey={journey}
                 onStart={() => {
-                  window.location.href = `/journeys/${journey.slug || journey.id}`
+                  // Use the journey ID for navigation
+                  window.location.href = `/journeys/${journey.id}`
                 }}
               />
             ))}
