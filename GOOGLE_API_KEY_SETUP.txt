@@ -1,0 +1,7 @@
+
+# Add this line to your apps/web/.env.local file:
+GOOGLE_PLACES_API_KEY=your_new_api_key_here
+
+# Test the new key:
+cd apps/web && npm run test:google-places
+
