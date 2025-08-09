@@ -139,10 +139,10 @@ export default function ConfigurationPage() {
               + Add New Place
             </Link>
             <Link 
-              href="/admin/journeys/new" 
+              href="/admin/journeys" 
               className="text-primary-600 hover:text-primary-700 font-medium text-sm"
             >
-              + Create Journey
+              Manage Journeys
             </Link>
             <Link 
               href="/admin/suggestions" 

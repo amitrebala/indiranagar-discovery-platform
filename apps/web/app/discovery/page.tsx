@@ -1,7 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { Search, Calendar, MapPin, Clock } from 'lucide-react'
+import Link from 'next/link'
+import { Search, Calendar, MapPin, Clock, Utensils, TrendingUp, Coffee, Users } from 'lucide-react'
 import { Container } from '@/components/layout/Container'
 import { EventsDiscoverySection } from '@/components/discovery/EventsDiscoverySection'
 import { PlacesDiscoverySection } from '@/components/discovery/PlacesDiscoverySection'
@@ -125,6 +126,53 @@ export default function DiscoveryPage() {
               <Clock className="w-8 h-8 text-green-200" />
             </div>
             <p className="text-green-100 text-sm mt-2">Auto-refresh enabled</p>
+          </div>
+        </div>
+
+        {/* Quick Discovery Links */}
+        <div className="bg-gray-50 rounded-xl p-6">
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Discovery</h3>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <Link 
+              href="/foodie-adventure"
+              className="flex items-center gap-3 p-3 bg-white rounded-lg hover:shadow-md transition-shadow"
+            >
+              <Utensils className="w-5 h-5 text-orange-500" />
+              <div>
+                <p className="font-medium text-sm">Foodie Adventure</p>
+                <p className="text-xs text-gray-500">Culinary journey</p>
+              </div>
+            </Link>
+            <Link 
+              href="/journeys"
+              className="flex items-center gap-3 p-3 bg-white rounded-lg hover:shadow-md transition-shadow"
+            >
+              <Coffee className="w-5 h-5 text-brown-500" />
+              <div>
+                <p className="font-medium text-sm">Curated Journeys</p>
+                <p className="text-xs text-gray-500">Themed walks</p>
+              </div>
+            </Link>
+            <Link 
+              href="/analytics"
+              className="flex items-center gap-3 p-3 bg-white rounded-lg hover:shadow-md transition-shadow"
+            >
+              <TrendingUp className="w-5 h-5 text-blue-500" />
+              <div>
+                <p className="font-medium text-sm">Analytics</p>
+                <p className="text-xs text-gray-500">Insights & trends</p>
+              </div>
+            </Link>
+            <Link 
+              href="/community"
+              className="flex items-center gap-3 p-3 bg-white rounded-lg hover:shadow-md transition-shadow"
+            >
+              <Users className="w-5 h-5 text-purple-500" />
+              <div>
+                <p className="font-medium text-sm">Community</p>
+                <p className="text-xs text-gray-500">Join discussion</p>
+              </div>
+            </Link>
           </div>
         </div>
 

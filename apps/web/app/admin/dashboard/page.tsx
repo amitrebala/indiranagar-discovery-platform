@@ -111,24 +111,24 @@ export default function AdminDashboardPage() {
               >
                 + Add Place
               </Link>
-              <a
-                href="/admin/journeys/new"
+              <Link
+                href="/admin/journeys"
                 className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700"
               >
-                📝 Create Journey
-              </a>
-              <a
+                📝 Manage Journeys
+              </Link>
+              <Link
                 href="/admin/settings"
                 className="inline-flex items-center justify-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
               >
                 ⚙️ Settings
-              </a>
-              <a
-                href="/admin/export"
+              </Link>
+              <Link
+                href="/admin/analytics"
                 className="inline-flex items-center justify-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
               >
-                📥 Export Data
-              </a>
+                📊 Analytics
+              </Link>
             </div>
           </div>
           

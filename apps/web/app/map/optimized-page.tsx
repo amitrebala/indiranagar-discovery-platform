@@ -87,7 +87,7 @@ function MapSearchBar({
   )
 }
 
-function MapContent() {
+export default function OptimizedMapPage() {
   const searchParams = useSearchParams()
   const journey = searchParams.get('journey')
   const [selectedPlace, setSelectedPlace] = useState<any>(null)
@@ -165,20 +165,5 @@ function MapContent() {
         )}
       </div>
     </div>
-  )
-}
-
-export default function OptimizedMapPage() {
-  return (
-    <Suspense fallback={
-      <div className="flex flex-col h-screen bg-gray-50">
-        <MapHeader />
-        <div className="flex-1 flex items-center justify-center">
-          <Loader2 className="w-8 h-8 animate-spin text-primary" />
-        </div>
-      </div>
-    }>
-      <MapContent />
-    </Suspense>
   )
 }

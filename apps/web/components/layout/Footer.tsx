@@ -65,17 +65,37 @@ export function Footer() {
             <div>
               <h4 className="font-semibold mb-4">Platform</h4>
               <ul className="space-y-2">
-                <li className="text-white/80 text-sm">
-                  100+ Personal Explorations
+                <li>
+                  <Link 
+                    href="/analytics" 
+                    className="text-white/80 hover:text-white transition-colors text-sm"
+                  >
+                    Platform Analytics
+                  </Link>
                 </li>
-                <li className="text-white/80 text-sm">
-                  Weather-Aware Recommendations
+                <li>
+                  <Link 
+                    href="/discovery" 
+                    className="text-white/80 hover:text-white transition-colors text-sm"
+                  >
+                    Discovery Hub
+                  </Link>
                 </li>
-                <li className="text-white/80 text-sm">
-                  Local Expertise & Insights
+                <li>
+                  <Link 
+                    href="/events" 
+                    className="text-white/80 hover:text-white transition-colors text-sm"
+                  >
+                    Upcoming Events
+                  </Link>
                 </li>
-                <li className="text-white/80 text-sm">
-                  Authentic Neighborhood Guide
+                <li>
+                  <Link 
+                    href="/blog" 
+                    className="text-white/80 hover:text-white transition-colors text-sm"
+                  >
+                    Blog & Insights
+                  </Link>
                 </li>
               </ul>
             </div>

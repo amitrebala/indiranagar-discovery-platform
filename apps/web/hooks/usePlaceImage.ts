@@ -127,7 +127,32 @@ export function usePlaceImage(place: Place): UsePlaceImageResult {
         return
       }
 
-      // 3. Try Google Places API first for real place photos
+      // 3. Check if place already has google_photo_reference
+      if ((place as any).google_photo_reference) {
+        const googlePhotoUrl = `/api/places/photo?photo_reference=${(place as any).google_photo_reference}&maxwidth=800`
+        
+        setImageUrl(googlePhotoUrl)
+        setAttribution({
+          source: 'Google Places',
+          author: 'Google',
+          url: undefined
+        })
+        
+        // Cache the Google Places image
+        setCachedImage(place.id, {
+          url: googlePhotoUrl,
+          attribution: {
+            source: 'Google Places',
+            author: 'Google',
+            url: undefined
+          }
+        })
+        
+        setStatus('success')
+        return
+      }
+      
+      // 4. Try Google Places API search if no direct reference
       try {
         const searchQuery = `${place.name} Indiranagar Bangalore`
         const response = await fetch('/api/places/search', {

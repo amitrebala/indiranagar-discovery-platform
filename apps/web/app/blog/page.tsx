@@ -300,12 +300,6 @@ export default function BlogPage() {
         <div className="mb-12">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-bold text-gray-900">Recent Posts</h2>
-            <Link
-              href="/blog/archive"
-              className="text-blue-600 hover:text-blue-700 font-medium"
-            >
-              View all posts →
-            </Link>
           </div>
           
           <Suspense fallback={<BlogGridSkeleton />}>

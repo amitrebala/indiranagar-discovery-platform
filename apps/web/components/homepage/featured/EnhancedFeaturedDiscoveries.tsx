@@ -52,7 +52,9 @@ export function EnhancedFeaturedDiscoveries() {
         
         return {
           ...place,
-          images: [], // No images needed for icon-based design
+          images: [], // Will be loaded by usePlaceImage hook
+          google_photo_reference: place.google_photo_reference, // Pass through Google photo reference
+          google_place_id: place.google_place_id, // Pass through Google place ID
           quick_tags: categoryTags.slice(0, 3),
           weather_suitable: {
             sunny: place.weather_suitability?.includes('sunny') ?? true,

@@ -108,6 +108,14 @@ export function DynamicHeroSection() {
                 >
                   <span className="text-white font-semibold text-lg">View Places</span>
                 </button>
+                
+                <button 
+                  className="relative px-8 py-4 rounded-2xl border-2 border-white/30 bg-white/10 backdrop-blur-md hover:bg-white/20 transition-all duration-300"
+                  onClick={() => router.push('/search')}
+                  {...magneticButton}
+                >
+                  <span className="text-white font-semibold text-lg">🔍 Search</span>
+                </button>
               </div>
             </motion.div>
             
