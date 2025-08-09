@@ -65,7 +65,9 @@ export function GooglePlacesGrid() {
       })
 
       if (!response.ok) {
-        throw new Error('Failed to fetch places')
+        const errorData = await response.json()
+        console.error('API Error:', errorData)
+        throw new Error(errorData.error || `Failed to fetch places (${response.status})`)
       }
 
       const data = await response.json()

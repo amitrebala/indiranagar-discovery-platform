@@ -10,7 +10,10 @@ const ALLOWED_ORIGINS = [
 ]
 
 function isOriginAllowed(origin: string | null): boolean {
-  if (!origin) return false
+  // Allow requests without origin in development (Next.js API routes)
+  if (!origin) {
+    return process.env.NODE_ENV === 'development'
+  }
   
   return ALLOWED_ORIGINS.some(allowed => {
     if (allowed.includes('*')) {

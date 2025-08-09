@@ -10,7 +10,11 @@ const ALLOWED_ORIGINS = [
 ]
 
 function isOriginAllowed(origin: string | null): boolean {
-  if (!origin) return false
+  // Allow requests without origin in development (Next.js API routes)
+  if (!origin) {
+    // In production, you might want to be stricter
+    return process.env.NODE_ENV === 'development'
+  }
   
   return ALLOWED_ORIGINS.some(allowed => {
     if (allowed.includes('*')) {
@@ -41,8 +45,9 @@ export async function POST(request: NextRequest) {
     // Validate origin
     const origin = request.headers.get('origin')
     if (!isOriginAllowed(origin)) {
+      console.error('Origin not allowed:', origin)
       return NextResponse.json(
-        { error: 'Unauthorized origin' },
+        { error: 'Unauthorized origin', origin },
         { status: 403 }
       )
     }
