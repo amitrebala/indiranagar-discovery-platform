@@ -234,13 +234,17 @@ function createEventFromPlace(place: any, details: PlaceDetails | null) {
 
 export async function POST(request: NextRequest) {
   try {
-    const apiKey = process.env.GOOGLE_PLACES_API_KEY;
+    // Use the public API key for server-side requests (without referer restrictions)
+    // For production, create a separate server-side API key without referer restrictions
+    const apiKey = process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY || process.env.GOOGLE_PLACES_API_KEY;
     if (!apiKey) {
       return NextResponse.json(
         { error: 'Google Places API key not configured' },
         { status: 500 }
       );
     }
+    
+    console.log('Using Google Places API key:', apiKey.substring(0, 10) + '...');
     
     const supabase = createRouteHandlerClient({ cookies });
     

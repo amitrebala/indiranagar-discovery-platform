@@ -94,9 +94,9 @@ export function usePlaceImage(place: Place): UsePlaceImageResult {
     setIsFromCache(false)
 
     try {
-      // 1. Check cache first
+      // 1. Check cache first - but skip if it's not a Google Places image
       const cached = getCachedImage(place.id)
-      if (cached) {
+      if (cached && cached.attribution?.source === 'Google Places') {
         setImageUrl(cached.url)
         setThumbnailUrl(cached.thumbnailUrl)
         setAttribution(cached.attribution)
