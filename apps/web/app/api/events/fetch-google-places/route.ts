@@ -234,9 +234,12 @@ function createEventFromPlace(place: any, details: PlaceDetails | null) {
 
 export async function POST(request: NextRequest) {
   try {
-    // Use the public API key for server-side requests (without referer restrictions)
-    // For production, create a separate server-side API key without referer restrictions
-    const apiKey = process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY || process.env.GOOGLE_PLACES_API_KEY;
+    // Use server-specific API key (without referer restrictions) 
+    // Falls back to other keys if not configured
+    const apiKey = process.env.GOOGLE_PLACES_SERVER_API_KEY || 
+                   process.env.GOOGLE_PLACES_API_KEY ||
+                   process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY;
+    
     if (!apiKey) {
       return NextResponse.json(
         { error: 'Google Places API key not configured' },

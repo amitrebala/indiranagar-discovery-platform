@@ -1,7 +1,7 @@
 'use client';
 
 import { DiscoveredEvent } from '@/lib/types/events';
-import { Calendar, MapPin, Clock, Tag, Users, DollarSign } from 'lucide-react';
+import { Calendar, MapPin, Clock, Tag, Users, DollarSign, ExternalLink, Ticket } from 'lucide-react';
 import { format, parseISO } from 'date-fns';
 import { OptimizedImage } from '@/components/ui/OptimizedImage';
 
@@ -136,6 +136,36 @@ export function EventCard({ event, onClick }: EventCardProps) {
         {event.rsvp_count && event.rsvp_count > 0 && (
           <div className="mt-3 pt-3 border-t text-sm text-gray-600">
             {event.rsvp_count} people interested
+          </div>
+        )}
+        
+        {/* External Links */}
+        {(event.external_url || event.ticket_url) && (
+          <div className="mt-3 pt-3 border-t flex gap-2">
+            {event.external_url && (
+              <a
+                href={event.external_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="flex items-center gap-1.5 px-3 py-1.5 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-md text-sm font-medium transition-colors"
+              >
+                <ExternalLink className="w-4 h-4" />
+                View Details
+              </a>
+            )}
+            {event.ticket_url && (
+              <a
+                href={event.ticket_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="flex items-center gap-1.5 px-3 py-1.5 bg-green-50 hover:bg-green-100 text-green-700 rounded-md text-sm font-medium transition-colors"
+              >
+                <Ticket className="w-4 h-4" />
+                Get Tickets
+              </a>
+            )}
           </div>
         )}
       </div>
