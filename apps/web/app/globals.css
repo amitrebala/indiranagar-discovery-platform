@@ -48,6 +48,33 @@
   --error-light: #f8d7da;
   --info: #0dcaf0;
   --info-light: #d1ecf1;
+}
+
+/* Dark mode variables */
+.dark {
+  --background: #0a0a0a;
+  --foreground: #e4e4e7;
+  --background-secondary: #18181b;
+  --background-tertiary: #27272a;
+  
+  --border: #3f3f46;
+  --border-light: #27272a;
+  --surface: #18181b;
+  --surface-hover: #27272a;
+  
+  --text-primary: #e4e4e7;
+  --text-secondary: #a1a1aa;
+  --text-tertiary: #71717a;
+  --text-inverse: #0a0a0a;
+  
+  --success: #22c55e;
+  --success-light: #14532d;
+  --warning: #eab308;
+  --warning-light: #713f12;
+  --error: #ef4444;
+  --error-light: #7f1d1d;
+  --info: #06b6d4;
+  --info-light: #164e63;
   
   /* Focus and interaction states */
   --focus-ring: #0d6efd;

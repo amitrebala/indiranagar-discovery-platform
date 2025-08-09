@@ -147,13 +147,16 @@ export function EventsDiscoverySection() {
           </p>
           <button
             onClick={() => {
-              fetch('/api/cron/fetch-events', { method: 'POST' })
-                .then(() => setTimeout(() => fetchEvents(), 2000))
+              fetch('/api/events/fetch-google-places?force=true', { method: 'POST' })
+                .then(() => {
+                  alert('Fetching events from Google Places... This may take a minute.');
+                  setTimeout(() => fetchEvents(), 5000);
+                })
                 .catch(console.error)
             }}
             className="px-6 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors"
           >
-            Trigger Event Discovery
+            Fetch Real Events from Google Places
           </button>
         </div>
       ) : (

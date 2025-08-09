@@ -2,6 +2,9 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import { Header } from "@/components/navigation/Header";
 import { MobileNav } from "@/components/navigation/MobileNav";
+import { ThemeProvider } from "@/contexts/ThemeContext";
+import { Breadcrumbs } from "@/components/navigation/Breadcrumbs";
+import { ServiceWorkerRegistration } from "@/components/ServiceWorkerRegistration";
 import "./globals.css";
 
 const inter = Inter({
@@ -42,13 +45,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} antialiased`}>
-        <Header />
-        <MobileNav />
-        <main className="min-h-screen">
-          {children}
-        </main>
+        <ThemeProvider>
+          <ServiceWorkerRegistration />
+          <Header />
+          <Breadcrumbs />
+          <MobileNav />
+          <main className="min-h-screen">
+            {children}
+          </main>
+        </ThemeProvider>
       </body>
     </html>
   );

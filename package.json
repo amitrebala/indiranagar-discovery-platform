@@ -24,7 +24,7 @@
     "test:performance:baseline": "cd apps/web && npm run test:performance",
     "validate:api-contracts": "node scripts/coordination.js validate",
     "validate:integration:enhanced-experience": "npm run coordinate:check && npm run test:terminal:enhanced-experience",
-    "validate:integration:community-social": "npm run coordinate:check && npm run test:terminal:community-social", 
+    "validate:integration:community-social": "npm run coordinate:check && npm run test:terminal:community-social",
     "validate:integration:content-business": "npm run coordinate:check && npm run test:terminal:content-business"
   },
   "devDependencies": {
@@ -34,5 +34,9 @@
     "@vitejs/plugin-react": "^4.7.0",
     "jsdom": "^26.1.0",
     "vitest": "^3.2.4"
+  },
+  "dependencies": {
+    "@radix-ui/react-dialog": "^1.1.14",
+    "@radix-ui/react-progress": "^1.1.7"
   }
 }

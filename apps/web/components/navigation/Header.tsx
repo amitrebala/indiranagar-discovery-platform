@@ -6,6 +6,9 @@ import { usePathname } from 'next/navigation'
 import { MapPin, Menu, Home, Map, Building2, User, Users, Settings, Search } from 'lucide-react'
 import { useNavigationStore } from '@/stores/navigationStore'
 import { Container } from '@/components/layout/Container'
+import { ThemeToggle } from '@/components/ui/ThemeToggle'
+import { ShareButton } from '@/components/ui/ShareButton'
+import { useKeyboardShortcuts } from '@/hooks/useKeyboardShortcuts'
 
 const navigationItems = [
   { href: '/', label: 'Home', icon: Home },
@@ -21,6 +24,7 @@ export function Header() {
   const pathname = usePathname()
   const { toggleMobileMenu, isMobileMenuOpen } = useNavigationStore()
   const [isScrolled, setIsScrolled] = useState(false)
+  useKeyboardShortcuts()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,8 +39,8 @@ export function Header() {
     <header 
       className={`sticky top-0 z-50 border-b transition-all duration-200 ${
         isScrolled 
-          ? 'bg-white/95 backdrop-blur-sm border-neutral-200 shadow-sm' 
-          : 'bg-white border-neutral-100'
+          ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm border-neutral-200 dark:border-gray-700 shadow-sm' 
+          : 'bg-white dark:bg-gray-900 border-neutral-100 dark:border-gray-800'
       }`}
     >
       <Container>
@@ -51,10 +55,10 @@ export function Header() {
               <MapPin className="w-5 h-5 text-primary-600" aria-hidden="true" />
             </div>
             <div className="hidden sm:block">
-              <h1 className="text-lg font-bold text-neutral-900">
+              <h1 className="text-lg font-bold text-neutral-900 dark:text-gray-100">
                 Indiranagar <span className="text-primary-600">with Amit</span>
               </h1>
-              <p className="text-xs text-neutral-600 -mt-1">
+              <p className="text-xs text-neutral-600 dark:text-gray-400 -mt-1">
                 186 personally visited places
               </p>
             </div>
@@ -85,6 +89,12 @@ export function Header() {
               )
             })}
           </nav>
+
+          {/* Action Buttons */}
+          <div className="hidden md:flex items-center gap-2">
+            <ShareButton variant="ghost" />
+            <ThemeToggle />
+          </div>
 
           {/* Mobile Menu Button */}
           <button

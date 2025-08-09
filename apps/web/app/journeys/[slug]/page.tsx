@@ -3,6 +3,11 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { ArrowLeft, Clock, MapPin, Navigation, Star } from 'lucide-react'
 import ResponsiveJourneyInterface from '@/components/journeys/ResponsiveJourneyInterface'
+import { JourneyNavigationUI } from '@/components/journeys/JourneyNavigationUI'
+import { JourneyProgressTracker } from '@/components/journeys/JourneyProgressTracker'
+import { JourneyWeatherCard } from '@/components/journeys/JourneyWeatherCard'
+import { JourneyPhotoSpots } from '@/components/journeys/JourneyPhotoSpots'
+import { JourneyShareButton } from '@/components/journeys/JourneyShareButton'
 import { JourneyExperience } from '@/lib/types/journey'
 
 interface JourneyPageProps {
@@ -233,9 +238,12 @@ function JourneyHeader({ journey }: { journey: JourneyExperience }) {
             </span>
           </div>
 
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            {journey.name}
-          </h1>
+          <div className="flex items-start justify-between gap-4 mb-4">
+            <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
+              {journey.name}
+            </h1>
+            <JourneyShareButton journey={journey} />
+          </div>
           
           <p className="text-gray-700 text-lg leading-relaxed mb-6">
             {journey.description}
@@ -320,18 +328,51 @@ export default async function JourneyPage({ params }: JourneyPageProps) {
     <div className="min-h-screen bg-gray-50">
       <JourneyHeader journey={journey} />
       
-      <div className="max-w-4xl mx-auto px-4 py-8">
-        <Suspense fallback={<JourneySkeleton />}>
-          <ResponsiveJourneyInterface 
-            journey={journey}
-            onStopComplete={(stopId) => {
-              console.log('Stop completed:', stopId)
-            }}
-            onJourneyComplete={() => {
-              console.log('Journey completed!')
-            }}
-          />
-        </Suspense>
+      <div className="max-w-6xl mx-auto px-4 py-8">
+        <div className="grid gap-6 lg:grid-cols-3">
+          {/* Main Journey Navigation - Left Column (2 cols on large screens) */}
+          <div className="lg:col-span-2 space-y-6">
+            <Suspense fallback={<JourneySkeleton />}>
+              <JourneyNavigationUI
+                journeyId={journey.id}
+                journeyName={journey.name}
+                stops={journey.journey_stops}
+                onComplete={() => {
+                  console.log('Journey completed!')
+                }}
+              />
+            </Suspense>
+
+            {/* Responsive Journey Interface for Map View */}
+            <Suspense fallback={<JourneySkeleton />}>
+              <ResponsiveJourneyInterface 
+                journey={journey}
+                onStopComplete={(stopId) => {
+                  console.log('Stop completed:', stopId)
+                }}
+                onJourneyComplete={() => {
+                  console.log('Journey completed!')
+                }}
+              />
+            </Suspense>
+          </div>
+
+          {/* Side Panel - Right Column */}
+          <div className="space-y-6">
+            {/* Progress Tracker */}
+            <JourneyProgressTracker
+              journeyId={journey.id}
+              journeyName={journey.name}
+              stops={journey.journey_stops}
+            />
+
+            {/* Weather Card */}
+            <JourneyWeatherCard journey={journey} />
+
+            {/* Photo Spots */}
+            <JourneyPhotoSpots stops={journey.journey_stops} />
+          </div>
+        </div>
 
         {/* Journey Tips */}
         <div className="mt-12 bg-white rounded-xl p-6 shadow-sm border border-gray-200">
