@@ -1,4 +1,4 @@
-import { googlePlacesService, NearbySearchResult, PlaceDetails } from './google-places'
+import { googlePlacesService, NearbySearchResult } from './google-places'
 import { createClient } from '@/lib/supabase/client'
 import type { Place } from '@/lib/validations'
 

@@ -1,7 +1,6 @@
 import { Redis } from '@upstash/redis';
 
-// Determine if we should use Upstash (cloud) or IORedis (local)
-const useUpstash = !!(process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN);
+// Redis client configuration
 
 export function getRedisClient() {
   // Always use Upstash for serverless compatibility

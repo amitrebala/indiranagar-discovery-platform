@@ -33,7 +33,7 @@ function LoginForm() {
 
       // Redirect to intended page
       router.push(from);
-    } catch (err) {
+    } catch (_err) {
       setError('Network error. Please try again.');
       setLoading(false);
     }

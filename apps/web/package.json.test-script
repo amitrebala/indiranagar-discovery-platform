@@ -1,2 +1,0 @@
-# Add this script to your package.json scripts section:
-"test:google-places": "tsx lib/google-places/test-api.ts"
