@@ -1,8 +1,9 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import { Container } from '@/components/layout/Container'
-import { MessageCircle, MapPin, ThumbsUp, Filter, Search } from 'lucide-react'
+import { MessageCircle, MapPin, ThumbsUp, Filter, Search, Award, Plus } from 'lucide-react'
 
 interface Suggestion {
   id: string
@@ -113,9 +114,32 @@ export default function CommunityPage() {
             <h1 className="text-4xl font-bold text-gray-900 mb-4">
               Community Hub
             </h1>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-6">
               Join the conversation about Indiranagar&apos;s best places. Share suggestions, ask questions, and help others discover amazing experiences.
             </p>
+            {/* Quick Actions */}
+            <div className="flex flex-wrap gap-3 justify-center">
+              <Link 
+                href="/suggest" 
+                className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
+              >
+                <Plus className="w-4 h-4" />
+                Suggest a New Place
+              </Link>
+              <Link 
+                href="/community/badges" 
+                className="inline-flex items-center gap-2 px-4 py-2 bg-secondary text-white rounded-lg hover:bg-secondary/90 transition-colors"
+              >
+                <Award className="w-4 h-4" />
+                Community Badges
+              </Link>
+              <Link 
+                href="/events" 
+                className="inline-flex items-center gap-2 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                View Events
+              </Link>
+            </div>
           </div>
 
           {/* Stats Cards */}
@@ -325,12 +349,18 @@ export default function CommunityPage() {
               Use the floating &quot;Has Amit Been Here?&quot; button to suggest places or ask questions directly!
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors font-medium">
+              <Link 
+                href="/suggest"
+                className="px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors font-medium text-center"
+              >
                 Suggest a Place
-              </button>
-              <button className="px-6 py-3 border border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-colors font-medium">
+              </Link>
+              <Link 
+                href="/places"
+                className="px-6 py-3 border border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-colors font-medium text-center"
+              >
                 Browse Places
-              </button>
+              </Link>
             </div>
           </div>
         </div>

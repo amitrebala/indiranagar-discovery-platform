@@ -5,6 +5,7 @@ import { MobileNav } from "@/components/navigation/MobileNav";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import { Breadcrumbs } from "@/components/navigation/Breadcrumbs";
 import { ServiceWorkerRegistration } from "@/components/ServiceWorkerRegistration";
+import { FABProvider } from "@/components/fab/FABProvider";
 import "./globals.css";
 
 const inter = Inter({
@@ -55,6 +56,7 @@ export default function RootLayout({
           <main className="min-h-screen">
             {children}
           </main>
+          <FABProvider />
         </ThemeProvider>
       </body>
     </html>

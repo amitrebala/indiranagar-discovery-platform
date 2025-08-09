@@ -6,6 +6,81 @@ import { APPROVED_PLACES_WHITELIST } from '@/data/approved-places-whitelist'
 // Only show places from approved whitelist
 const ALLOWED_PLACE_NAMES = APPROVED_PLACES_WHITELIST
 
+// Google Places API configuration
+const GOOGLE_PLACES_API_KEY = process.env.GOOGLE_PLACES_API_KEY || process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY
+
+// Helper function to fetch Google Place details including photos
+async function fetchGooglePlaceDetails(placeName: string, lat?: number, lng?: number) {
+  if (!GOOGLE_PLACES_API_KEY) return null
+  
+  try {
+    // First, search for the place near the given coordinates
+    const searchUrl = lat && lng 
+      ? `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=100&keyword=${encodeURIComponent(placeName)}&key=${GOOGLE_PLACES_API_KEY}`
+      : `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${encodeURIComponent(placeName + ' Indiranagar Bangalore')}&inputtype=textquery&fields=place_id,photos&key=${GOOGLE_PLACES_API_KEY}`
+    
+    const searchResponse = await fetch(searchUrl)
+    const searchData = await searchResponse.json()
+    
+    if (searchData.results && searchData.results.length > 0) {
+      const place = searchData.results[0]
+      if (place.photos && place.photos.length > 0) {
+        return {
+          google_photo_reference: place.photos[0].photo_reference,
+          google_place_id: place.place_id
+        }
+      }
+    } else if (searchData.candidates && searchData.candidates.length > 0) {
+      const candidate = searchData.candidates[0]
+      if (candidate.photos && candidate.photos.length > 0) {
+        return {
+          google_photo_reference: candidate.photos[0].photo_reference,
+          google_place_id: candidate.place_id
+        }
+      }
+    }
+    
+    return null
+  } catch (error) {
+    console.error(`Error fetching Google place details for ${placeName}:`, error)
+    return null
+  }
+}
+
+// Helper function to enrich places with Google Photos
+async function enrichPlacesWithGooglePhotos(places: any[]) {
+  // Only enrich if we have API key
+  if (!GOOGLE_PLACES_API_KEY) return places
+  
+  // Create promises for all places
+  const enrichmentPromises = places.map(async (place) => {
+    // Skip if place already has an image
+    if (place.primary_image) {
+      return place
+    }
+    
+    // Try to fetch Google Photos for this place
+    const googleData = await fetchGooglePlaceDetails(
+      place.name,
+      place.latitude,
+      place.longitude
+    )
+    
+    if (googleData) {
+      return {
+        ...place,
+        google_photo_reference: googleData.google_photo_reference,
+        google_place_id: googleData.google_place_id
+      }
+    }
+    
+    return place
+  })
+  
+  // Wait for all enrichments to complete
+  return Promise.all(enrichmentPromises)
+}
+
 // GET /api/places - List all places
 export async function GET(request: NextRequest) {
   try {
@@ -53,13 +128,16 @@ export async function GET(request: NextRequest) {
       )
     }
     
+    // Enrich places with Google Photos data if available
+    const enrichedData = await enrichPlacesWithGooglePhotos(data || [])
+    
     // For featured requests, return just the places array
     if (featured) {
-      return NextResponse.json(data)
+      return NextResponse.json(enrichedData)
     }
     
     return NextResponse.json({
-      places: data,
+      places: enrichedData,
       pagination: {
         limit,
         offset,

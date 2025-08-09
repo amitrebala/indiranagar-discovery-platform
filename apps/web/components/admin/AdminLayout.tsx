@@ -10,7 +10,9 @@ import {
   Home,
   Users,
   FileText,
-  Calendar
+  Calendar,
+  MessageSquare,
+  Lightbulb
 } from 'lucide-react'
 
 interface AdminLayoutProps {
@@ -21,12 +23,13 @@ export function AdminLayout({ children }: AdminLayoutProps) {
   const pathname = usePathname()
 
   const navigation = [
-    { name: 'Dashboard', href: '/admin', icon: Home },
+    { name: 'Dashboard', href: '/admin/dashboard', icon: Home },
     { name: 'Analytics', href: '/admin/analytics', icon: BarChart3 },
-    { name: 'Journey Builder', href: '/admin/journeys', icon: Map },
     { name: 'Places', href: '/admin/places', icon: FileText },
+    { name: 'Journeys', href: '/admin/journeys', icon: Map },
     { name: 'Events', href: '/admin/events', icon: Calendar },
-    { name: 'Community', href: '/admin/community', icon: Users },
+    { name: 'Suggestions', href: '/admin/suggestions', icon: Lightbulb },
+    { name: 'Questions', href: '/admin/questions/enhanced', icon: MessageSquare },
     { name: 'Settings', href: '/admin/settings', icon: Settings },
   ]
 
