@@ -1,0 +1,322 @@
+/* 
+ * Indiranagar Design System
+ * Typography and Layout that captures the neighborhood's essence
+ * Upscale but approachable, refined but warm
+ */
+
+/* ========================================
+   TYPOGRAPHY - The Indiranagar Voice
+   ======================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+:root {
+  /* Font Families - Mixing sophistication with approachability */
+  --font-headline: 'Crimson Text', 'Georgia', serif;  /* Like upscale restaurant menus */
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;  /* Clean, modern */
+  --font-accent: 'Space Mono', 'SF Mono', monospace;  /* Tech-savvy Indiranagar */
+  
+  /* Font Sizes - Generous like Indiranagar's wide streets */
+  --text-xs: 0.875rem;     /* 14px */
+  --text-sm: 0.9375rem;    /* 15px */
+  --text-base: 1.0625rem;  /* 17px - slightly larger for comfort */
+  --text-lg: 1.25rem;      /* 20px */
+  --text-xl: 1.5rem;       /* 24px */
+  --text-2xl: 2rem;        /* 32px */
+  --text-3xl: 2.75rem;     /* 44px */
+  --text-4xl: 3.5rem;      /* 56px */
+  --text-5xl: 4.5rem;      /* 72px */
+  
+  /* Line Heights - Breathing room like tree-lined streets */
+  --leading-tight: 1.2;
+  --leading-snug: 1.375;
+  --leading-normal: 1.6;
+  --leading-relaxed: 1.75;
+  --leading-loose: 2;
+  
+  /* Letter Spacing - Refined, not too tight */
+  --tracking-tighter: -0.03em;
+  --tracking-tight: -0.015em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.025em;
+  --tracking-wider: 0.05em;
+  
+  /* ========================================
+     COLORS - The Indiranagar Palette
+     ======================================== */
+  
+  /* Base Colors - Sophisticated neutrals */
+  --ink-black: #1a1a1a;      /* Not pure black - softer */
+  --charcoal: #2d2d2d;
+  --warm-grey: #6b6b6b;
+  --stone: #8b8680;
+  --mushroom: #a8a29e;
+  --pearl: #e5e5e5;
+  --cream: #f5f5f0;
+  --paper-white: #fafaf9;    /* Not pure white - warmer */
+  
+  /* Accent Colors - Vibrant but refined */
+  --coral-red: #ff6b6b;      /* Energy of 100 Feet Road */
+  --sage-green: #87a96b;     /* Trees of 12th Main */
+  --dusty-pink: #d4a5a5;     /* Boutique aesthetic */
+  --terracotta: #c65d00;     /* Old Bangalore warmth */
+  --teal-blue: #4ecdc4;      /* Modern cafe vibe */
+  --golden: #d4af37;         /* Premium feel */
+  
+  /* ========================================
+     SPACING - The Indiranagar Rhythm
+     ======================================== */
+  
+  --space-xs: 0.5rem;     /* 8px */
+  --space-sm: 0.75rem;    /* 12px */
+  --space-md: 1.25rem;    /* 20px */
+  --space-lg: 2rem;       /* 32px */
+  --space-xl: 3rem;       /* 48px */
+  --space-2xl: 4.5rem;    /* 72px */
+  --space-3xl: 6rem;      /* 96px */
+  
+  /* Content Width - Like walking down different streets */
+  --width-narrow: 45ch;    /* Blog posts - intimate like inner lanes */
+  --width-content: 65ch;   /* Main content - comfortable like 12th Main */
+  --width-wide: 85ch;      /* Wide sections - spacious like 100 Feet Road */
+  --width-full: 1440px;    /* Container max - generous but contained */
+  
+  /* Border Radius - Soft edges like weathered corners */
+  --radius-sm: 0.375rem;   /* 6px */
+  --radius-md: 0.5rem;     /* 8px */
+  --radius-lg: 0.75rem;    /* 12px */
+  --radius-xl: 1rem;       /* 16px */
+  --radius-2xl: 1.5rem;    /* 24px */
+  
+  /* Shadows - Subtle depth like afternoon shadows */
+  --shadow-xs: 0 1px 2px rgba(26, 26, 26, 0.04);
+  --shadow-sm: 0 2px 4px rgba(26, 26, 26, 0.06);
+  --shadow-md: 0 4px 8px rgba(26, 26, 26, 0.08);
+  --shadow-lg: 0 8px 16px rgba(26, 26, 26, 0.10);
+  --shadow-xl: 0 16px 32px rgba(26, 26, 26, 0.12);
+}
+
+/* ========================================
+   BASE TYPOGRAPHY STYLES
+   ======================================== */
+
+/* Headlines - Like boutique signage */
+h1, .h1 {
+  font-family: var(--font-headline);
+  font-weight: 400;
+  font-size: clamp(2.5rem, 4vw + 1rem, var(--text-5xl));
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--ink-black);
+}
+
+h2, .h2 {
+  font-family: var(--font-headline);
+  font-weight: 400;
+  font-size: clamp(2rem, 3vw + 0.5rem, var(--text-3xl));
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-tight);
+  color: var(--ink-black);
+}
+
+h3, .h3 {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: clamp(1.5rem, 2vw + 0.5rem, var(--text-2xl));
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-tight);
+  color: var(--charcoal);
+}
+
+/* Body Text - Comfortable reading */
+p, .body-text {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  color: var(--charcoal);
+  letter-spacing: -0.003em;
+}
+
+/* Lead Text - For important intros */
+.lead {
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+  color: var(--warm-grey);
+  font-weight: 400;
+}
+
+/* Small Text - Subtle details */
+.small {
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  color: var(--stone);
+}
+
+/* Accent Text - Special callouts */
+.accent {
+  font-family: var(--font-accent);
+  font-size: var(--text-sm);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--coral-red);
+}
+
+/* ========================================
+   LAYOUT PATTERNS
+   ======================================== */
+
+/* Container - Asymmetric padding like Indiranagar's layout */
+.container-indiranagar {
+  max-width: var(--width-full);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(1.5rem, 5vw, 4rem);
+  padding-right: clamp(1.5rem, 4vw, 3rem); /* Slightly less on right */
+}
+
+/* Content Width Variants */
+.content-narrow {
+  max-width: var(--width-narrow);
+}
+
+.content-regular {
+  max-width: var(--width-content);
+}
+
+.content-wide {
+  max-width: var(--width-wide);
+}
+
+/* Section Spacing - Generous breathing room */
+.section {
+  padding-top: clamp(var(--space-2xl), 8vw, var(--space-3xl));
+  padding-bottom: clamp(var(--space-2xl), 8vw, var(--space-3xl));
+}
+
+/* Stack Spacing - Varied rhythm */
+.stack > * + * {
+  margin-top: var(--space-lg);
+}
+
+.stack-sm > * + * {
+  margin-top: var(--space-md);
+}
+
+.stack-lg > * + * {
+  margin-top: var(--space-xl);
+}
+
+/* Grid Patterns - Mixed density like shops on a street */
+.grid-shops {
+  display: grid;
+  gap: var(--space-lg);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.grid-asymmetric {
+  display: grid;
+  gap: var(--space-lg);
+  grid-template-columns: 1fr 1.618fr; /* Golden ratio */
+}
+
+/* ========================================
+   COMPONENT STYLES
+   ======================================== */
+
+/* Cards - Like shop windows */
+.card-indiranagar {
+  background: var(--paper-white);
+  border: 1px solid var(--pearl);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+}
+
+.card-indiranagar:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--mushroom);
+}
+
+/* Buttons - Refined CTAs */
+.btn-indiranagar {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  letter-spacing: var(--tracking-wide);
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius-md);
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background: var(--coral-red);
+  color: white;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--ink-black);
+  border: 1.5px solid var(--mushroom);
+}
+
+/* Navigation - Clean and sophisticated */
+.nav-indiranagar {
+  font-family: var(--font-accent);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--warm-grey);
+}
+
+/* ========================================
+   RESPONSIVE ADJUSTMENTS
+   ======================================== */
+
+@media (max-width: 768px) {
+  :root {
+    --text-base: 1rem;  /* Slightly smaller on mobile */
+  }
+  
+  .grid-asymmetric {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ========================================
+   SPECIAL TOUCHES
+   ======================================== */
+
+/* Selection Color */
+::selection {
+  background: var(--coral-red);
+  color: white;
+}
+
+/* Focus States - Subtle but clear */
+:focus-visible {
+  outline: 2px solid var(--teal-blue);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* Custom Scrollbar - Refined */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--cream);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--mushroom);
+  border-radius: var(--radius-md);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--stone);
+}

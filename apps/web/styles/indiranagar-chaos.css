@@ -1,0 +1,424 @@
+/*
+ * INDIRANAGAR CHAOS DESIGN SYSTEM
+ * The beautiful collision of old and new
+ * Where nothing matches but everything works
+ */
+
+/* ============================================
+   THE COLLISION TYPOGRAPHY
+   Multiple eras existing simultaneously
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,900;1,400&family=Work+Sans:wght@300;400;600;800&family=Space+Grotesk:wght@300;700&family=Kalam:wght@400;700&family=Noto+Sans+Kannada:wght@400;700&display=swap');
+
+:root {
+  /* The Typography Stack - DELIBERATELY MISMATCHED */
+  --font-heritage: 'Playfair Display', 'Noto Serif Kannada', 'Georgia', serif;
+  --font-street: 'Work Sans', 'Noto Sans Kannada', system-ui, sans-serif;
+  --font-trendy: 'Space Grotesk', 'DM Sans', -apple-system, sans-serif;
+  --font-hand: 'Kalam', 'Caveat', 'Comic Sans MS', cursive;
+  --font-govt: 'Courier New', 'Noto Sans Kannada', monospace;
+  
+  /* The Indiranagar Color Chaos */
+  --heritage-brown: #8B4513;
+  --auto-yellow: #FFD700;
+  --tempo-black: #1a1a1a;
+  --filter-coffee: #6F4E37;
+  --metro-purple: #7B3F99;
+  --tree-green: #228B22;
+  --compound-wall: #F5E6D3;
+  --evening-orange: #FF8C42;
+  --craft-beer: #F28E1C;
+  --sari-magenta: #C71585;
+  
+  /* Chaos Spacing - Nothing uniform */
+  --space-tiny: 0.382rem;    /* Golden ratio */
+  --space-small: 0.618rem;   
+  --space-medium: 1rem;      
+  --space-large: 1.618rem;   
+  --space-huge: 2.618rem;    
+  --space-massive: 4.236rem; 
+  
+  /* Organic Offsets */
+  --offset-1: 0.7rem;
+  --offset-2: 1.3rem;
+  --offset-3: 0.4rem;
+  --offset-4: 2.1rem;
+  --offset-5: 0.9rem;
+}
+
+/* ============================================
+   THE COLLISION EFFECT
+   Typography that interrupts itself
+   ============================================ */
+
+.hero-indiranagar {
+  position: relative;
+  font-family: var(--font-heritage);
+  font-size: clamp(3rem, 8vw, 7rem);
+  line-height: 0.9;
+  color: var(--tempo-black);
+  
+  /* Kannada shadow layer */
+  &::before {
+    content: 'ಇಂದಿರಾನಗರ';
+    position: absolute;
+    font-family: 'Noto Sans Kannada';
+    font-size: 110%;
+    opacity: 0.08;
+    top: -0.15em;
+    left: 0.05em;
+    color: var(--metro-purple);
+    font-weight: 700;
+  }
+  
+  /* English + Kannada mix */
+  .word-break {
+    display: inline-block;
+    
+    &:nth-child(odd) {
+      font-family: var(--font-trendy);
+      transform: rotate(-1deg);
+      color: var(--evening-orange);
+    }
+    
+    &:nth-child(even) {
+      font-family: var(--font-heritage);
+      transform: rotate(0.5deg);
+    }
+  }
+}
+
+/* ============================================
+   THE ORGANIC LAYOUT
+   Grown, not designed
+   ============================================ */
+
+.chaos-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--space-medium);
+  
+  /* Elements that don't follow rules */
+  > * {
+    grid-column: span 4;
+    
+    &:nth-child(7n) { grid-column: span 5; }
+    &:nth-child(7n+1) { grid-column: span 3; }
+    &:nth-child(7n+2) { grid-column: span 4; }
+    &:nth-child(7n+3) { 
+      grid-column: span 7; 
+      margin-left: calc(-1 * var(--offset-2));
+    }
+    &:nth-child(7n+4) { grid-column: span 5; }
+    &:nth-child(7n+5) { 
+      grid-column: span 3;
+      margin-top: calc(-1 * var(--offset-3));
+    }
+    &:nth-child(7n+6) { grid-column: span 4; }
+  }
+}
+
+/* Different depths from the "road" */
+.street-depth {
+  > * {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    &:nth-child(odd) {
+      padding-left: var(--offset-1);
+      transform: translateZ(0);
+    }
+    
+    &:nth-child(even) {
+      padding-left: var(--offset-3);
+      transform: translateZ(-2px);
+    }
+    
+    &:nth-child(3n) {
+      padding-left: var(--offset-5);
+      transform: translateZ(-4px) rotate(-0.3deg);
+    }
+    
+    &:hover {
+      transform: translateZ(10px) scale(1.02);
+    }
+  }
+}
+
+/* ============================================
+   THE TIME LAYERS
+   Different eras visible simultaneously
+   ============================================ */
+
+/* Old Bangalore Layer */
+.text-heritage {
+  font-family: var(--font-heritage);
+  color: var(--heritage-brown);
+  text-shadow: 1px 1px 2px rgba(139, 69, 19, 0.1);
+  letter-spacing: 0.02em;
+}
+
+/* Government Office Aesthetic */
+.text-govt {
+  font-family: var(--font-govt);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--tempo-black);
+  background: var(--compound-wall);
+  padding: 0.2em 0.4em;
+  border: 1px solid var(--tempo-black);
+}
+
+/* Startup Bangalore */
+.text-startup {
+  font-family: var(--font-trendy);
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--metro-purple), var(--craft-beer));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Handwritten Notes */
+.text-hand {
+  font-family: var(--font-hand);
+  color: var(--filter-coffee);
+  transform: rotate(-2deg);
+  display: inline-block;
+}
+
+/* ============================================
+   THE BEAUTIFUL CHAOS
+   Organized disorder
+   ============================================ */
+
+/* Nothing aligns perfectly */
+.chaos-container {
+  max-width: 1427px; /* Not 1400, not 1440 */
+  padding-left: 4.7%;
+  padding-right: 3.3%;
+  margin: 0 auto;
+}
+
+/* Deliberately broken rhythm */
+.chaos-spacing {
+  > * + * {
+    margin-top: var(--space-large);
+    
+    &:nth-child(3n) {
+      margin-top: var(--space-huge);
+    }
+    
+    &:nth-child(5n) {
+      margin-top: var(--space-medium);
+    }
+    
+    &:nth-child(7n) {
+      margin-top: var(--space-massive);
+    }
+  }
+}
+
+/* ============================================
+   THE INTERRUPTIONS
+   Elements that break into each other
+   ============================================ */
+
+.overlap-card {
+  position: relative;
+  background: white;
+  padding: var(--space-large);
+  
+  /* Price tag overlapping corner */
+  .price-tag {
+    position: absolute;
+    top: -0.5rem;
+    right: 1rem;
+    background: var(--auto-yellow);
+    color: var(--tempo-black);
+    padding: 0.3rem 0.8rem;
+    font-family: var(--font-hand);
+    font-weight: 700;
+    transform: rotate(3deg);
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    
+    &::before {
+      content: '₹';
+    }
+  }
+  
+  /* "New" sticker */
+  .new-sticker {
+    position: absolute;
+    top: 1rem;
+    left: -0.8rem;
+    background: var(--sari-magenta);
+    color: white;
+    padding: 0.2rem 1rem;
+    font-family: var(--font-trendy);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transform: rotate(-5deg);
+  }
+}
+
+/* ============================================
+   THE STREET TEXTURES
+   ============================================ */
+
+/* Compound wall texture */
+.texture-wall {
+  background: 
+    repeating-linear-gradient(
+      90deg,
+      var(--compound-wall),
+      var(--compound-wall) 2px,
+      transparent 2px,
+      transparent 4px
+    ),
+    linear-gradient(180deg, 
+      rgba(245, 230, 211, 0.8), 
+      rgba(245, 230, 211, 0.6)
+    );
+}
+
+/* Auto-rickshaw meter animation */
+.meter-counter {
+  font-family: var(--font-govt);
+  font-variant-numeric: tabular-nums;
+  background: black;
+  color: var(--auto-yellow);
+  padding: 0.2em 0.5em;
+  border-radius: 0.2em;
+  display: inline-block;
+  
+  .digit {
+    display: inline-block;
+    animation: meter-tick 0.2s ease;
+  }
+}
+
+@keyframes meter-tick {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-0.2em); }
+  100% { transform: translateY(0); }
+}
+
+/* Tree shadows that move */
+.tree-shadow-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  opacity: 0.03;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M20,50 Q30,20 40,50 T60,50 Q70,20 80,50" stroke="black" fill="none" opacity="0.3"/></svg>');
+  background-size: 200px 200px;
+  animation: tree-sway 30s ease-in-out infinite;
+}
+
+@keyframes tree-sway {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(10px); }
+}
+
+/* ============================================
+   CULTURAL MARKERS
+   ============================================ */
+
+/* Bangalore time - everything is "ish" */
+.time-ish::after {
+  content: '-ish';
+  opacity: 0.6;
+  font-size: 0.8em;
+  font-style: italic;
+}
+
+/* Distance in auto-rickshaw terms */
+.distance-auto::after {
+  content: ' (₹' attr(data-fare) ' by auto)';
+  font-size: 0.9em;
+  color: var(--auto-yellow);
+  font-family: var(--font-hand);
+}
+
+/* Shop status */
+.shop-status {
+  &[data-status="chai-break"]::after {
+    content: ' (chai break)';
+    color: var(--filter-coffee);
+    font-family: var(--font-hand);
+  }
+  
+  &[data-status="owner-lunch"]::after {
+    content: ' (owner at lunch)';
+    color: var(--heritage-brown);
+    font-family: var(--font-hand);
+  }
+}
+
+/* ============================================
+   RESPONSIVE CHAOS
+   Different chaos at different sizes
+   ============================================ */
+
+@media (max-width: 768px) {
+  .chaos-grid {
+    /* Mobile becomes single column with random indents */
+    display: block;
+    
+    > * {
+      margin-left: calc(var(--offset-1) * (1 + 0.5 * sin(45deg)));
+      margin-bottom: var(--space-large);
+    }
+  }
+  
+  .hero-indiranagar {
+    /* Stack vertically on mobile */
+    .word-break {
+      display: block;
+      margin-left: var(--offset-3);
+    }
+  }
+}
+
+/* ============================================
+   THE FINISHING TOUCHES
+   ============================================ */
+
+/* Selection with auto-rickshaw yellow */
+::selection {
+  background: var(--auto-yellow);
+  color: var(--tempo-black);
+}
+
+/* Scrollbar like a narrow gully */
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--compound-wall);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--filter-coffee);
+  border-radius: 0;
+}
+
+/* Focus state like shop LED border */
+:focus-visible {
+  outline: 2px dashed var(--metro-purple);
+  outline-offset: 4px;
+}
+
+/* Print styles - like a restaurant bill */
+@media print {
+  body {
+    font-family: var(--font-govt);
+    background: white;
+    color: black;
+  }
+}

@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Calendar, MapPin, Clock, ExternalLink, Filter, RefreshCw } from 'lucide-react'
+import { Calendar, MapPin, Clock, ExternalLink, Filter, RefreshCw, Ticket } from 'lucide-react'
 
 interface DiscoveredEvent {
   id: string
@@ -15,6 +15,7 @@ interface DiscoveredEvent {
   latitude?: number
   longitude?: number
   external_url?: string
+  ticket_url?: string
   cost_type: 'free' | 'paid' | 'varies'
   quality_score: number
   moderation_status: 'pending' | 'approved' | 'rejected'
@@ -228,16 +229,31 @@ export function EventsDiscoverySection() {
                   </span>
                 </div>
 
-                {event.external_url && (
-                  <a
-                    href={event.external_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1 text-primary-600 hover:text-primary-700 text-sm font-medium"
-                  >
-                    Learn More
-                    <ExternalLink className="w-3 h-3" />
-                  </a>
+                {(event.external_url || event.ticket_url) && (
+                  <div className="flex gap-2">
+                    {event.external_url && (
+                      <a
+                        href={event.external_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1 px-2 py-1 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded text-sm font-medium transition-colors"
+                      >
+                        <ExternalLink className="w-3 h-3" />
+                        Details
+                      </a>
+                    )}
+                    {event.ticket_url && (
+                      <a
+                        href={event.ticket_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1 px-2 py-1 bg-green-50 hover:bg-green-100 text-green-700 rounded text-sm font-medium transition-colors"
+                      >
+                        <Ticket className="w-3 h-3" />
+                        Tickets
+                      </a>
+                    )}
+                  </div>
                 )}
               </div>
             </div>
