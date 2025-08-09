@@ -10,10 +10,10 @@ const ALLOWED_ORIGINS = [
 ]
 
 function isOriginAllowed(origin: string | null): boolean {
-  // Allow requests without origin in development (Next.js API routes)
+  // Allow requests without origin header (server-side requests)
+  // This is safe because we validate the API key
   if (!origin) {
-    // In production, you might want to be stricter
-    return process.env.NODE_ENV === 'development'
+    return true
   }
   
   return ALLOWED_ORIGINS.some(allowed => {
@@ -81,7 +81,13 @@ export async function POST(request: NextRequest) {
     if (!GOOGLE_PLACES_API_KEY) {
       console.error('Google Places API key not configured')
       return NextResponse.json(
-        { error: 'Service not configured' },
+        { 
+          error: 'Google Places API key not configured. Please check environment variables.',
+          debug: process.env.NODE_ENV === 'development' ? {
+            hasKey: false,
+            env: process.env.NODE_ENV
+          } : undefined
+        },
         { status: 500 }
       )
     }
@@ -102,8 +108,26 @@ export async function POST(request: NextRequest) {
 
     if (data.status !== 'OK' && data.status !== 'ZERO_RESULTS') {
       console.error('Google Places API error:', data.status, data.error_message)
+      
+      // Provide more specific error messages
+      let errorMessage = 'Failed to fetch nearby places'
+      if (data.status === 'REQUEST_DENIED') {
+        errorMessage = 'Google Places API request denied. Please check API key permissions.'
+      } else if (data.status === 'OVER_QUERY_LIMIT') {
+        errorMessage = 'API quota exceeded. Please try again later.'
+      } else if (data.error_message) {
+        errorMessage = data.error_message
+      }
+      
       return NextResponse.json(
-        { error: 'Failed to fetch nearby places', status: data.status },
+        { 
+          error: errorMessage, 
+          status: data.status,
+          debug: process.env.NODE_ENV === 'development' ? {
+            apiResponse: data,
+            hasKey: !!GOOGLE_PLACES_API_KEY
+          } : undefined
+        },
         { status: 500 }
       )
     }

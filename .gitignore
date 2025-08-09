@@ -65,6 +65,12 @@ next-env.d.ts
 
 # Scripts with secrets
 scripts/setup-github-secrets-from-env.sh.vercel/
+
+# Test files that may contain sensitive data
+**/test-*-api.js
+**/test-*-api.ts
+**/*-test-api.js
+**/*-test-api.ts
 .env
 .env.local
 .env.development.local

@@ -1,6 +1,7 @@
 @import "./map-styles.css";
 @import "../styles/amit-button.css";
 @import "../styles/indiranagar-design-system.css";
+@import "../styles/indiranagar-chaos.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
