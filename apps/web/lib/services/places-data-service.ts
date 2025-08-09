@@ -9,7 +9,6 @@ interface CacheEntry<T> {
 }
 
 interface PlaceSearchOptions {
-  bounds?: google.maps.LatLngBounds
   categories?: string[]
   keyword?: string
   openNow?: boolean
@@ -17,7 +16,18 @@ interface PlaceSearchOptions {
   maxResults?: number
 }
 
-interface EnhancedPlaceData extends Place {
+interface EnhancedPlaceData {
+  id: string
+  name: string
+  description?: string
+  latitude: number
+  longitude: number
+  address?: string
+  category?: string
+  rating?: number
+  phone?: string
+  website?: string
+  status: 'active' | 'inactive'
   google_place_id?: string
   is_open_now?: boolean
   current_opening_hours?: string
@@ -26,6 +36,8 @@ interface EnhancedPlaceData extends Place {
   price_level?: number
   popular_times?: any
   live_busyness?: number
+  created_at: string
+  updated_at: string
 }
 
 class PlacesDataService {
@@ -168,8 +180,18 @@ class PlacesDataService {
     // Add Supabase places first (they have richer custom data)
     for (const place of supabasePlaces) {
       const enhanced: EnhancedPlaceData = {
-        ...place,
-        photos: place.images?.map(img => img.url) || []
+        id: place.id,
+        name: place.name,
+        description: place.description,
+        latitude: place.latitude,
+        longitude: place.longitude,
+        address: place.category || undefined,
+        category: place.category || undefined,
+        rating: place.rating,
+        status: place.status || 'active',
+        created_at: place.created_at,
+        updated_at: place.updated_at,
+        photos: []
       }
       mergedMap.set(place.id, enhanced)
     }
@@ -195,7 +217,7 @@ class PlacesDataService {
         if (googlePlace.photos?.length) {
           existingPlace.photos = [
             ...(existingPlace.photos || []),
-            ...googlePlace.photos.slice(0, 3).map(p => `/api/places/photo?reference=${p.photo_reference}`)
+            ...googlePlace.photos.slice(0, 3).map(p => `/api/places/photo?photo_reference=${p.photo_reference}&maxwidth=800`)
           ]
         }
       } else {
@@ -215,7 +237,7 @@ class PlacesDataService {
           user_ratings_total: googlePlace.user_ratings_total,
           price_level: googlePlace.price_level,
           photos: googlePlace.photos?.slice(0, 3).map(p => 
-            `/api/places/photo?reference=${p.photo_reference}`
+            `/api/places/photo?photo_reference=${p.photo_reference}&maxwidth=800`
           ) || [],
           created_at: new Date().toISOString(),
           updated_at: new Date().toISOString()
@@ -297,7 +319,7 @@ class PlacesDataService {
           user_ratings_total: details.user_ratings_total,
           price_level: details.price_level,
           photos: details.photos?.slice(0, 5).map(p => 
-            `/api/places/photo?reference=${p.photo_reference}`
+            `/api/places/photo?photo_reference=${p.photo_reference}&maxwidth=800`
           ) || [],
           created_at: new Date().toISOString(),
           updated_at: new Date().toISOString()

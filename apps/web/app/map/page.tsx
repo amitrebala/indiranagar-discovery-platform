@@ -4,16 +4,16 @@ import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
 import { Loader2, MapPin } from 'lucide-react'
 
-// Dynamically import the map component to avoid SSR issues
-const InteractiveMap = dynamic(
-  () => import('@/components/map/InteractiveMap').then(mod => ({ default: mod.InteractiveMap })),
+// Dynamically import the enhanced map component to avoid SSR issues
+const EnhancedInteractiveMap = dynamic(
+  () => import('@/components/map/EnhancedInteractiveMap').then(mod => ({ default: mod.EnhancedInteractiveMap })),
   {
     ssr: false,
     loading: () => (
       <div className="w-full h-screen bg-neutral-50 flex items-center justify-center">
         <div className="text-center">
           <Loader2 className="w-8 h-8 animate-spin text-primary mx-auto mb-2" />
-          <p className="text-sm text-neutral-600">Loading interactive map...</p>
+          <p className="text-sm text-neutral-600">Loading Google Places map...</p>
         </div>
       </div>
     )
@@ -32,7 +32,7 @@ function MapPageHeader() {
             Indiranagar Discovery Map
           </h1>
           <p className="text-xs text-neutral-600">
-            Explore the neighborhood and discover amazing places
+            Search, filter & discover places with Google Places integration
           </p>
         </div>
       </div>
@@ -53,12 +53,12 @@ export default function MapPage() {
             <div className="w-full h-full bg-neutral-50 flex items-center justify-center">
               <div className="text-center">
                 <Loader2 className="w-8 h-8 animate-spin text-primary mx-auto mb-2" />
-                <p className="text-sm text-neutral-600">Preparing map experience...</p>
+                <p className="text-sm text-neutral-600">Preparing enhanced map with Google Places...</p>
               </div>
             </div>
           }
         >
-          <InteractiveMap className="w-full h-full" />
+          <EnhancedInteractiveMap className="w-full h-full" />
         </Suspense>
       </div>
     </div>
