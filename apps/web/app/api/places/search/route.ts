@@ -37,7 +37,7 @@ export async function POST(request: NextRequest) {
 
     if (!query) {
       return NextResponse.json(
-        { error: 'Search query is required' },
+        { error: 'Query is required' },
         { status: 400 }
       )
     }
@@ -74,12 +74,15 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    // Return the first candidate if found
+    const result = data.candidates && data.candidates.length > 0 ? data.candidates[0] : null
+
     // Log usage for monitoring
     const clientIp = request.headers.get('x-forwarded-for') || 'unknown'
-    console.log(`[Places Search] Origin: ${origin}, IP: ${clientIp}, Query: ${query}`)
+    console.log(`[Places Search] Origin: ${origin}, IP: ${clientIp}, Query: ${query}, Found: ${result ? result.name : 'none'}`)
 
     return NextResponse.json({
-      result: data.candidates && data.candidates.length > 0 ? data.candidates[0] : null,
+      result,
       status: data.status
     })
   } catch (error) {

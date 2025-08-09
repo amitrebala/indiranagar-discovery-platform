@@ -127,7 +127,50 @@ export function usePlaceImage(place: Place): UsePlaceImageResult {
         return
       }
 
-      // 3. Search external sources
+      // 3. Try Google Places API first for real place photos
+      try {
+        const searchQuery = `${place.name} Indiranagar Bangalore`
+        const response = await fetch('/api/places/search', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ 
+            query: searchQuery,
+            fields: ['place_id', 'name', 'photos']
+          })
+        })
+
+        if (response.ok) {
+          const data = await response.json()
+          if (data.result?.photos && data.result.photos.length > 0) {
+            const photo = data.result.photos[0]
+            const googlePhotoUrl = `/api/places/photo?photo_reference=${photo.photo_reference}&maxwidth=800`
+            
+            setImageUrl(googlePhotoUrl)
+            setAttribution({
+              source: 'Google Places',
+              author: 'Google',
+              url: undefined
+            })
+            
+            // Cache the Google Places image
+            setCachedImage(place.id, {
+              url: googlePhotoUrl,
+              attribution: {
+                source: 'Google Places',
+                author: 'Google',
+                url: undefined
+              }
+            })
+            
+            setStatus('success')
+            return
+          }
+        }
+      } catch (googleError) {
+        console.error('Google Places search error:', googleError)
+      }
+
+      // 4. Fall back to other external sources if Google Places doesn't have photos
       const manager = getImageSourceManager()
       const discovered = await manager.findImages(place.name, {
         place: place, // Pass the full place object with metadata
