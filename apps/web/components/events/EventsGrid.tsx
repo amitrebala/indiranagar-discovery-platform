@@ -22,15 +22,34 @@ export function EventsGrid({ category, limit = 20 }: EventsGridProps) {
   const fetchEvents = async () => {
     try {
       setLoading(true);
+      setError(null);
       const params = new URLSearchParams();
       if (category) params.append('category', category);
       params.append('limit', limit.toString());
       
-      const response = await fetch(`/api/events/discovered?${params}`);
+      // Use the same endpoint as the working discovery page
+      const response = await fetch(`/api/events?${params}`);
       if (!response.ok) throw new Error('Failed to fetch events');
       
       const data = await response.json();
-      setEvents(data.events || []);
+      
+      // Filter events based on category if needed
+      let eventsData = data.events || [];
+      if (category && category !== 'all') {
+        eventsData = eventsData.filter((event: DiscoveredEvent) => 
+          event.category === category && 
+          event.moderation_status === 'approved' && 
+          event.is_active
+        );
+      } else {
+        // Only show approved and active events
+        eventsData = eventsData.filter((event: DiscoveredEvent) => 
+          event.moderation_status === 'approved' && 
+          event.is_active
+        );
+      }
+      
+      setEvents(eventsData);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to load events');
       console.error('Error fetching events:', err);
