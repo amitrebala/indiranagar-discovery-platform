@@ -5,8 +5,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Star, MapPin, Clock, Users, Wifi, Heart, Share2, Eye, Coffee, Utensils, Wine, ShoppingBag, Activity, Store, TreePine, Music, Camera, Palette } from 'lucide-react'
-// import { MiniGallery } from './MiniGallery' // Removed - using icon-based design
 import { ActivityIndicator } from './ActivityIndicator'
+import { usePlaceImage } from '@/hooks/usePlaceImage'
 import type { EnhancedPlaceData } from '@/lib/types/enhanced-place'
 
 interface EnhancedDiscoveryCardProps {
@@ -18,7 +18,9 @@ interface EnhancedDiscoveryCardProps {
 export function EnhancedDiscoveryCard({ place, index, onQuickView }: EnhancedDiscoveryCardProps) {
   const [isHovered, setIsHovered] = useState(false)
   const [isFavorited, setIsFavorited] = useState(false)
-  // const [primaryImageIndex, setPrimaryImageIndex] = useState(0) // Not needed without images
+  
+  // Load Google Maps photo for this place
+  const { imageUrl, status: imageStatus, attribution, isFromCache } = usePlaceImage(place)
 
   const cardVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -83,49 +85,70 @@ export function EnhancedDiscoveryCard({ place, index, onQuickView }: EnhancedDis
         {/* Gradient overlay for depth */}
         <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-pink-500/5 pointer-events-none" />
         
-        {/* Visual Design Section with Category-based Gradient */}
+        {/* Visual Section with Google Maps Photo */}
         <Link 
           href={`/places/${place.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
           className="block relative aspect-[4/3] overflow-hidden"
         >
           <div className="relative w-full h-full">
-            {/* Category-based gradient background */}
-            <div className={`absolute inset-0 transition-transform duration-300 ease-out ${
-              isHovered ? 'scale-105' : 'scale-100'
-            } ${
-              place.category === 'Cafe' ? 'bg-gradient-to-br from-amber-400 via-orange-500 to-red-500' :
-              place.category === 'Restaurant' ? 'bg-gradient-to-br from-emerald-400 via-teal-500 to-cyan-600' :
-              place.category === 'Bar' ? 'bg-gradient-to-br from-purple-500 via-pink-500 to-rose-500' :
-              place.category === 'Shopping' ? 'bg-gradient-to-br from-blue-400 via-indigo-500 to-purple-600' :
-              place.category === 'Activity' ? 'bg-gradient-to-br from-yellow-400 via-red-500 to-pink-500' :
-              'bg-gradient-to-br from-slate-400 via-gray-500 to-zinc-600'
-            }`} />
+            {/* Photo or fallback */}
+            {imageUrl && imageStatus === 'success' ? (
+              <div className="relative w-full h-full">
+                <Image
+                  src={imageUrl}
+                  alt={place.name}
+                  fill
+                  className={`object-cover transition-transform duration-300 ease-out ${
+                    isHovered ? 'scale-105' : 'scale-100'
+                  }`}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  priority={index < 3} // Prioritize loading for first 3 cards
+                />
+                {/* Google attribution overlay if from Google Places */}
+                {attribution?.source === 'Google Places' && (
+                  <div className="absolute bottom-2 right-2 px-2 py-1 bg-black/70 rounded text-xs text-white/80">
+                    Google
+                  </div>
+                )}
+              </div>
+            ) : (
+              /* Fallback gradient while loading or if no image */
+              <div className={`absolute inset-0 transition-transform duration-300 ease-out ${
+                isHovered ? 'scale-105' : 'scale-100'
+              } ${
+                place.category === 'Cafe' ? 'bg-gradient-to-br from-amber-400 via-orange-500 to-red-500' :
+                place.category === 'Restaurant' ? 'bg-gradient-to-br from-emerald-400 via-teal-500 to-cyan-600' :
+                place.category === 'Bar' ? 'bg-gradient-to-br from-purple-500 via-pink-500 to-rose-500' :
+                place.category === 'Shopping' ? 'bg-gradient-to-br from-blue-400 via-indigo-500 to-purple-600' :
+                place.category === 'Activity' ? 'bg-gradient-to-br from-yellow-400 via-red-500 to-pink-500' :
+                'bg-gradient-to-br from-slate-400 via-gray-500 to-zinc-600'
+              }`}>
+                {/* Category Icon as fallback */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  {place.category === 'Cafe' ? (
+                    <Coffee className="w-20 h-20 text-white/30" strokeWidth={1} />
+                  ) : place.category === 'Restaurant' ? (
+                    <Utensils className="w-20 h-20 text-white/30" strokeWidth={1} />
+                  ) : place.category === 'Bar' ? (
+                    <Wine className="w-20 h-20 text-white/30" strokeWidth={1} />
+                  ) : place.category === 'Shopping' ? (
+                    <ShoppingBag className="w-20 h-20 text-white/30" strokeWidth={1} />
+                  ) : place.category === 'Activity' ? (
+                    <Activity className="w-20 h-20 text-white/30" strokeWidth={1} />
+                  ) : (
+                    <MapPin className="w-20 h-20 text-white/30" strokeWidth={1} />
+                  )}
+                </div>
+                {/* Loading indicator */}
+                {imageStatus === 'loading' && (
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-8 h-8 border-2 border-white/30 border-t-white animate-spin rounded-full" />
+                  </div>
+                )}
+              </div>
+            )}
             
-            {/* Pattern overlay for texture */}
-            <div className="absolute inset-0 opacity-10">
-              <div className="w-full h-full" style={{
-                backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-              }} />
-            </div>
-            
-            {/* Category Icon */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              {place.category === 'Cafe' ? (
-                <Coffee className="w-20 h-20 text-white/30" strokeWidth={1} />
-              ) : place.category === 'Restaurant' ? (
-                <Utensils className="w-20 h-20 text-white/30" strokeWidth={1} />
-              ) : place.category === 'Bar' ? (
-                <Wine className="w-20 h-20 text-white/30" strokeWidth={1} />
-              ) : place.category === 'Shopping' ? (
-                <ShoppingBag className="w-20 h-20 text-white/30" strokeWidth={1} />
-              ) : place.category === 'Activity' ? (
-                <Activity className="w-20 h-20 text-white/30" strokeWidth={1} />
-              ) : (
-                <MapPin className="w-20 h-20 text-white/30" strokeWidth={1} />
-              )}
-            </div>
-            
-            {/* Gradient overlay for depth */}
+            {/* Gradient overlay for readability */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
             
             {/* Activity Indicator */}
