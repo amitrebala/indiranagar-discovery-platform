@@ -252,7 +252,11 @@ export async function POST(request: NextRequest) {
     
     console.log('Using Google Places API key:', apiKey.substring(0, 10) + '...');
     
-    const supabase = createRouteHandlerClient({ cookies });
+    // Use service role key to bypass RLS
+    const supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.SUPABASE_SERVICE_ROLE_KEY!
+    );
     
     // Check if we've already fetched today (for rate limiting)
     const today = new Date().toISOString().split('T')[0];
@@ -332,7 +336,10 @@ export async function POST(request: NextRequest) {
           status: 'published',
           curator_endorsed: true,
           curator_rating: Math.floor(event.quality_score * 5),
-          is_recurring: false
+          is_recurring: false,
+          // Add external URLs if columns exist
+          ...(event.external_url && { external_url: event.external_url }),
+          ...(event.ticket_url && { ticket_url: event.ticket_url })
         };
         
         // Check for duplicates by title and start time

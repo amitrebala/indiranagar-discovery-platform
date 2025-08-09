@@ -160,7 +160,8 @@ export async function GET(request: NextRequest) {
         quality_score: 0.8,
         moderation_status: 'approved' as const,
         is_active: true,
-        external_url: null,
+        external_url: event.external_url || `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.location_name)}`,
+        ticket_url: event.ticket_url || null,
         created_at: event.created_at
       }));
       
