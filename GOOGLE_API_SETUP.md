@@ -34,10 +34,14 @@ To enable Google Places event fetching, you need to configure the API key proper
 1. Go to: https://vercel.com/dashboard
 2. Select your project: **simple-todo** or **amit-loves-indiranagar**
 3. Go to **Settings** → **Environment Variables**
-4. Add new variable:
+4. Add these variables:
    ```
-   Name: GOOGLE_PLACES_SERVER_API_KEY
-   Value: [Your new API key without restrictions]
+   Name: GOOGLE_PLACES_API_KEY
+   Value: [Your new API key without restrictions - for server-side]
+   Environment: ✅ Production ✅ Preview ✅ Development
+   
+   Name: NEXT_PUBLIC_GOOGLE_PLACES_API_KEY
+   Value: [Your domain-restricted API key - for client-side]
    Environment: ✅ Production ✅ Preview ✅ Development
    ```
 5. Click **"Save"**
@@ -92,11 +96,13 @@ Expected response:
 
 ## Current API Keys
 
-- **Public Key (with restrictions)**: `[YOUR_RESTRICTED_API_KEY]`
-  - Status: ❌ Has referer restrictions - won't work server-side
+- **Server Key (no restrictions)**: `GOOGLE_PLACES_API_KEY`
+  - Status: ✅ Configured - for backend API routes
+  - Value: AIzaSyDwKZQ-GYC-8JFB-0443dWjUEeLsjwqdU8
   
-- **Server Key (no restrictions)**: `[You need to create this]`
-  - Status: ⏳ Waiting for you to create in Google Cloud Console
+- **Client Key (domain restrictions)**: `NEXT_PUBLIC_GOOGLE_PLACES_API_KEY`
+  - Status: ✅ Configured - for frontend use
+  - Value: AIzaSyCrG7u9DCytwhRdNtiHxQADGaTrBVNFEsI
 
 ## Quick Test Commands
 
@@ -118,7 +124,7 @@ curl -X POST "https://amit-loves-indiranagar.vercel.app/api/events/populate-real
 ## Next Steps
 
 1. ✅ Create unrestricted server API key in Google Cloud Console
-2. ✅ Add `GOOGLE_PLACES_SERVER_API_KEY` to Vercel
+2. ✅ Add `GOOGLE_PLACES_API_KEY` and `NEXT_PUBLIC_GOOGLE_PLACES_API_KEY` to Vercel
 3. ✅ Redeploy the application
 4. ✅ Test the fetch-google-places endpoint
 5. ✅ Events will auto-fetch daily at 6 AM
