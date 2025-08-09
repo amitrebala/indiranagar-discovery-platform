@@ -1,7 +1,5 @@
 import { EnhancedPlace } from '@/lib/types/enhanced-place'
 
-const GOOGLE_PLACES_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY
-
 export interface PlaceDetails {
   place_id: string
   name: string
@@ -82,58 +80,30 @@ export interface AutocompleteResult {
 }
 
 class GooglePlacesService {
-  private apiKey: string
-  private baseUrl = 'https://places.googleapis.com/v1'
-  private legacyBaseUrl = 'https://maps.googleapis.com/maps/api/place'
-
-  constructor() {
-    if (!GOOGLE_PLACES_API_KEY) {
-      console.warn('Google Places API key not configured')
-    }
-    this.apiKey = GOOGLE_PLACES_API_KEY || ''
-  }
-
-  private isConfigured(): boolean {
-    return !!this.apiKey
-  }
+  // All API calls now go through secure server-side proxies
+  // No API key needed on client side
 
   /**
    * Get detailed information about a place
    */
   async getPlaceDetails(placeId: string): Promise<PlaceDetails | null> {
-    if (!this.isConfigured()) return null
-
     try {
-      const fields = [
-        'place_id',
-        'name',
-        'formatted_address',
-        'formatted_phone_number',
-        'international_phone_number',
-        'website',
-        'rating',
-        'user_ratings_total',
-        'price_level',
-        'opening_hours',
-        'photos',
-        'reviews',
-        'types',
-        'business_status',
-        'geometry',
-        'editorial_summary'
-      ].join(',')
+      // Use API route for better security
+      const response = await fetch('/api/places/details', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ placeId })
+      })
 
-      const url = `${this.legacyBaseUrl}/details/json?place_id=${placeId}&fields=${fields}&key=${this.apiKey}`
-      
-      const response = await fetch(url)
-      const data = await response.json()
-
-      if (data.status === 'OK' && data.result) {
-        return data.result as PlaceDetails
+      if (!response.ok) {
+        console.error('Place details API error:', response.status)
+        return null
       }
 
-      console.error('Place details error:', data.status)
-      return null
+      const data = await response.json()
+      return data.details || null
     } catch (error) {
       console.error('Error fetching place details:', error)
       return null
@@ -150,41 +120,29 @@ class GooglePlacesService {
     type?: string,
     keyword?: string
   ): Promise<NearbySearchResult[]> {
-    if (!this.isConfigured()) return []
-
     try {
-      let url = `${this.legacyBaseUrl}/nearbysearch/json?location=${lat},${lng}&radius=${radius}&key=${this.apiKey}`
-      
-      if (type) {
-        url += `&type=${type}`
-      }
-      
-      if (keyword) {
-        url += `&keyword=${encodeURIComponent(keyword)}`
+      // Use API route for better security
+      const response = await fetch('/api/places/nearby', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          lat,
+          lng,
+          radius,
+          type,
+          keyword
+        })
+      })
+
+      if (!response.ok) {
+        console.error('Nearby search API error:', response.status)
+        return []
       }
 
-      const response = await fetch(url)
       const data = await response.json()
-
-      if (data.status === 'OK' && data.results) {
-        // Calculate distances
-        const results = data.results.map((place: NearbySearchResult) => ({
-          ...place,
-          distance: this.calculateDistance(
-            lat,
-            lng,
-            place.geometry.location.lat,
-            place.geometry.location.lng
-          )
-        }))
-
-        // Sort by distance
-        return results.sort((a: NearbySearchResult, b: NearbySearchResult) => 
-          (a.distance || 0) - (b.distance || 0)
-        )
-      }
-
-      return []
+      return data.results || []
     } catch (error) {
       console.error('Error searching nearby places:', error)
       return []
@@ -200,33 +158,30 @@ class GooglePlacesService {
     location?: { lat: number; lng: number },
     radius?: number
   ): Promise<AutocompleteResult[]> {
-    if (!this.isConfigured() || !input) return []
+    if (!input) return []
 
     try {
-      let url = `${this.legacyBaseUrl}/autocomplete/json?input=${encodeURIComponent(input)}&key=${this.apiKey}`
-      
-      if (sessionToken) {
-        url += `&sessiontoken=${sessionToken}`
-      }
-      
-      if (location) {
-        url += `&location=${location.lat},${location.lng}`
-        if (radius) {
-          url += `&radius=${radius}`
-        }
+      // Use API route instead of direct call for better security
+      const response = await fetch('/api/places/autocomplete', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          input,
+          sessionToken,
+          location,
+          radius
+        })
+      })
+
+      if (!response.ok) {
+        console.error('Autocomplete API error:', response.status)
+        return []
       }
 
-      // Restrict to India for Indiranagar focus
-      url += '&components=country:in'
-
-      const response = await fetch(url)
       const data = await response.json()
-
-      if (data.status === 'OK' && data.predictions) {
-        return data.predictions as AutocompleteResult[]
-      }
-
-      return []
+      return data.predictions || []
     } catch (error) {
       console.error('Error getting autocomplete suggestions:', error)
       return []
@@ -235,42 +190,40 @@ class GooglePlacesService {
 
   /**
    * Get a photo URL from a photo reference
+   * Note: This still exposes the API key in the URL - consider creating a proxy endpoint
    */
   getPhotoUrl(photoReference: string, maxWidth: number = 400): string {
-    if (!this.isConfigured() || !photoReference) {
+    if (!photoReference) {
       return '/images/placeholder-place.jpg'
     }
 
-    return `${this.legacyBaseUrl}/photo?maxwidth=${maxWidth}&photo_reference=${photoReference}&key=${this.apiKey}`
+    // TODO: Create /api/places/photo proxy endpoint to hide API key
+    // For now, return placeholder
+    return '/images/placeholder-place.jpg'
   }
 
   /**
    * Find places by text query
    */
   async findPlaceFromText(query: string, fields?: string[]): Promise<PlaceDetails | null> {
-    if (!this.isConfigured() || !query) return null
+    if (!query) return null
 
     try {
-      const requestedFields = fields || [
-        'place_id',
-        'name',
-        'formatted_address',
-        'geometry',
-        'rating',
-        'opening_hours',
-        'photos'
-      ]
+      const response = await fetch('/api/places/search', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ query, fields })
+      })
 
-      const url = `${this.legacyBaseUrl}/findplacefromtext/json?input=${encodeURIComponent(query)}&inputtype=textquery&fields=${requestedFields.join(',')}&key=${this.apiKey}`
-
-      const response = await fetch(url)
-      const data = await response.json()
-
-      if (data.status === 'OK' && data.candidates && data.candidates.length > 0) {
-        return data.candidates[0] as PlaceDetails
+      if (!response.ok) {
+        console.error('Place search API error:', response.status)
+        return null
       }
 
-      return null
+      const data = await response.json()
+      return data.result || null
     } catch (error) {
       console.error('Error finding place from text:', error)
       return null
@@ -281,7 +234,6 @@ class GooglePlacesService {
    * Enrich existing place data with Google Places information
    */
   async enrichPlaceData(place: Partial<EnhancedPlace>): Promise<Partial<EnhancedPlace>> {
-    if (!this.isConfigured()) return place
 
     try {
       // Try to find the place using name and address
@@ -348,7 +300,6 @@ class GooglePlacesService {
     category: 'before' | 'after',
     placeType?: string
   ): Promise<NearbySearchResult[]> {
-    if (!this.isConfigured()) return []
 
     // Define search parameters based on category
     const searchParams = {

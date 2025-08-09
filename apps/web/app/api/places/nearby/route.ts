@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-const GOOGLE_PLACES_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY
+const GOOGLE_PLACES_API_KEY = process.env.GOOGLE_PLACES_API_KEY // Server-side only, no NEXT_PUBLIC prefix
 const ALLOWED_ORIGINS = [
   'http://localhost:3000',
   'https://amit-loves-indiranagar.vercel.app',

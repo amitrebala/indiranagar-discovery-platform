@@ -1,0 +1,3 @@
+apps/web/app/api/places/autocomplete/route.ts
+apps/web/app/api/places/details/route.ts
+apps/web/app/api/places/nearby/route.ts

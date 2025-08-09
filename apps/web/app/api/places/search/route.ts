@@ -31,15 +31,12 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Rate limiting check (implement with Redis in production)
-    const clientIp = request.headers.get('x-forwarded-for') || 'unknown'
-    
     // Parse request body
-    const { input, sessionToken, location, radius } = await request.json()
+    const { query, fields } = await request.json()
 
-    if (!input) {
+    if (!query) {
       return NextResponse.json(
-        { error: 'Input query is required' },
+        { error: 'Search query is required' },
         { status: 400 }
       )
     }
@@ -52,22 +49,17 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Build Google Places API URL
-    let url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${encodeURIComponent(input)}&key=${GOOGLE_PLACES_API_KEY}`
-    
-    if (sessionToken) {
-      url += `&sessiontoken=${sessionToken}`
-    }
-    
-    if (location) {
-      url += `&location=${location.lat},${location.lng}`
-      if (radius) {
-        url += `&radius=${radius}`
-      }
-    }
+    const requestedFields = fields || [
+      'place_id',
+      'name',
+      'formatted_address',
+      'geometry',
+      'rating',
+      'opening_hours',
+      'photos'
+    ]
 
-    // Restrict to India for Indiranagar focus
-    url += '&components=country:in'
+    const url = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${encodeURIComponent(query)}&inputtype=textquery&fields=${requestedFields.join(',')}&key=${GOOGLE_PLACES_API_KEY}`
 
     // Make request to Google Places API
     const response = await fetch(url)
@@ -76,20 +68,21 @@ export async function POST(request: NextRequest) {
     if (data.status !== 'OK' && data.status !== 'ZERO_RESULTS') {
       console.error('Google Places API error:', data.status, data.error_message)
       return NextResponse.json(
-        { error: 'Failed to fetch suggestions', status: data.status },
+        { error: 'Failed to search places', status: data.status },
         { status: 500 }
       )
     }
 
-    // Log usage for monitoring (implement proper analytics in production)
-    console.log(`[Places Autocomplete] Origin: ${origin}, IP: ${clientIp}, Results: ${data.predictions?.length || 0}`)
+    // Log usage for monitoring
+    const clientIp = request.headers.get('x-forwarded-for') || 'unknown'
+    console.log(`[Places Search] Origin: ${origin}, IP: ${clientIp}, Query: ${query}`)
 
     return NextResponse.json({
-      predictions: data.predictions || [],
+      result: data.candidates && data.candidates.length > 0 ? data.candidates[0] : null,
       status: data.status
     })
   } catch (error) {
-    console.error('Places autocomplete error:', error)
+    console.error('Places search error:', error)
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }

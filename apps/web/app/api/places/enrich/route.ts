@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { googlePlacesService } from '@/lib/services/google-places'
 import { createClient } from '@/lib/supabase/server'
+
+const GOOGLE_PLACES_API_KEY = process.env.GOOGLE_PLACES_API_KEY
 
 export async function POST(request: NextRequest) {
   try {
