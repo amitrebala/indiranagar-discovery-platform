@@ -67,6 +67,12 @@ export function GooglePlacesGrid() {
       if (!response.ok) {
         const errorData = await response.json()
         console.error('API Error:', errorData)
+        
+        // If it's a Google API issue, show a helpful message
+        if (errorData.status === 'REQUEST_DENIED') {
+          throw new Error('Google Places API is not available. This feature requires API configuration.')
+        }
+        
         throw new Error(errorData.error || `Failed to fetch places (${response.status})`)
       }
 
@@ -156,7 +162,13 @@ export function GooglePlacesGrid() {
   if (error) {
     return (
       <div className="text-center py-12">
-        <p className="text-red-600">Error loading places: {error}</p>
+        <div className="max-w-md mx-auto p-6 bg-red-50 border border-red-200 rounded-lg">
+          <p className="text-red-800 font-medium mb-2">Unable to load Google Places</p>
+          <p className="text-red-600 text-sm">{error}</p>
+          <p className="text-gray-600 text-xs mt-3">
+            Please try again later or browse Amit's verified places in the first tab.
+          </p>
+        </div>
       </div>
     )
   }

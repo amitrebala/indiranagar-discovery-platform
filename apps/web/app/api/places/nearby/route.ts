@@ -147,10 +147,17 @@ export async function POST(request: NextRequest) {
     const clientIp = request.headers.get('x-forwarded-for') || 'unknown'
     console.log(`[Places Nearby] Origin: ${origin}, IP: ${clientIp}, Results: ${results.length}`)
 
-    return NextResponse.json({
+    const jsonResponse = NextResponse.json({
       results,
       status: data.status
     })
+    
+    // Add CORS headers for production
+    jsonResponse.headers.set('Access-Control-Allow-Origin', origin || '*')
+    jsonResponse.headers.set('Access-Control-Allow-Methods', 'POST, OPTIONS')
+    jsonResponse.headers.set('Access-Control-Allow-Headers', 'Content-Type')
+    
+    return jsonResponse
   } catch (error) {
     console.error('Places nearby error:', error)
     return NextResponse.json(
@@ -158,6 +165,17 @@ export async function POST(request: NextRequest) {
       { status: 500 }
     )
   }
+}
+
+export async function OPTIONS(request: NextRequest) {
+  const origin = request.headers.get('origin')
+  const response = new NextResponse(null, { status: 200 })
+  
+  response.headers.set('Access-Control-Allow-Origin', origin || '*')
+  response.headers.set('Access-Control-Allow-Methods', 'POST, OPTIONS')
+  response.headers.set('Access-Control-Allow-Headers', 'Content-Type')
+  
+  return response
 }
 
 export async function GET() {

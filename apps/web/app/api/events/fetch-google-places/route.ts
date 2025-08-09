@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
-import { cookies } from 'next/headers';
+import { createClient } from '@supabase/supabase-js';
 
 // Google Places categories that typically have events
 const EVENT_PLACE_TYPES = [
@@ -206,6 +205,9 @@ function createEventFromPlace(place: any, details: PlaceDetails | null) {
     description += `\n⭐ Highly rated (${place.rating}/5 from ${place.user_ratings_total || 0} reviews)`;
   }
   
+  // Generate Google Maps URL if no website available
+  const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.name)}&query_id=${place.place_id}`;
+  
   const events = eventTimes.map((time, index) => ({
     external_id: `${place.place_id}_${index}_${new Date().toISOString().split('T')[0]}`,
     title: `${titlePrefix} ${place.name}`,
@@ -217,7 +219,8 @@ function createEventFromPlace(place: any, details: PlaceDetails | null) {
     venue_address: details?.result.formatted_address || place.vicinity,
     latitude: place.geometry.location.lat,
     longitude: place.geometry.location.lng,
-    external_url: details?.result.website || null,
+    external_url: details?.result.website || googleMapsUrl,
+    ticket_url: details?.result.website ? null : googleMapsUrl,
     cost_type: place.price_level ? (place.price_level <= 1 ? 'free' : 'paid') : 'varies' as any,
     quality_score: Math.min(0.95, (place.rating || 3) / 5 + (place.user_ratings_total ? 0.1 : 0)),
     source: 'google_places',
@@ -303,26 +306,47 @@ export async function POST(request: NextRequest) {
       }
     }
     
-    // Save discovered events to database
+    // Transform and save events to community_events table
     let savedCount = 0;
     for (const event of discoveredEvents) {
       try {
-        // Check for duplicates
+        // Transform for community_events table
+        const communityEvent = {
+          title: event.title,
+          description: event.description,
+          category: event.category === 'dining' ? 'food_festival' :
+                   event.category === 'nightlife' ? 'meetup' :
+                   event.category === 'cultural' ? 'cultural_event' :
+                   event.category === 'entertainment' ? 'cultural_event' :
+                   'meetup',
+          start_time: event.start_time,
+          end_time: event.end_time,
+          location_name: event.venue_name,
+          location_address: event.venue_address,
+          location_latitude: event.latitude,
+          location_longitude: event.longitude,
+          venue_type: event.category === 'nightlife' ? 'indoor' : 'hybrid',
+          organizer_name: event.organizer_name,
+          organizer_email: `info@${event.venue_name.toLowerCase().replace(/[^a-z]/g, '')}.com`,
+          cost_type: event.cost_type,
+          status: 'published',
+          curator_endorsed: true,
+          curator_rating: Math.floor(event.quality_score * 5),
+          is_recurring: false
+        };
+        
+        // Check for duplicates by title and start time
         const { data: existing } = await supabase
-          .from('discovered_events')
+          .from('community_events')
           .select('id')
-          .eq('external_id', event.external_id)
+          .eq('title', communityEvent.title)
+          .eq('start_time', communityEvent.start_time)
           .single();
         
         if (!existing) {
           const { error } = await supabase
-            .from('discovered_events')
-            .insert({
-              ...event,
-              moderation_status: 'approved', // Auto-approve Google Places
-              is_active: true,
-              created_at: new Date().toISOString()
-            });
+            .from('community_events')
+            .insert(communityEvent);
           
           if (!error) savedCount++;
         }
