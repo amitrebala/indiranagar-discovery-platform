@@ -87,8 +87,8 @@ Add these to Vercel Dashboard → Settings → Environment Variables:
 
 ```bash
 # Google Places API (for future use)
-GOOGLE_PLACES_API_KEY=AIzaSyBMfM9WL9zZfpGEeA4vCgUvx47Jgl0qGbc
-NEXT_PUBLIC_GOOGLE_PLACES_API_KEY=AIzaSyBMfM9WL9zZfpGEeA4vCgUvx47Jgl0qGbc
+GOOGLE_PLACES_API_KEY=[YOUR_SERVER_API_KEY]
+NEXT_PUBLIC_GOOGLE_PLACES_API_KEY=[YOUR_CLIENT_API_KEY]
 
 # Supabase (should already exist)
 NEXT_PUBLIC_SUPABASE_URL=(your-supabase-url-here)

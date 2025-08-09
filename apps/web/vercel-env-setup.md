@@ -8,14 +8,14 @@ For the Google Places integration to work properly in production, the following 
 
 1. **Server-side API Key** (for backend API routes):
    ```
-   GOOGLE_PLACES_API_KEY=AIzaSyBMfM9WL9zZfpGEeA4vCgUvx47Jgl0qGbc
+   GOOGLE_PLACES_API_KEY=[YOUR_SERVER_API_KEY]
    ```
    - **Restrictions**: None (unrestricted for server-side use)
    - **Usage**: API routes (`/api/places/nearby`, `/api/places/search`, etc.)
 
 2. **Client-side API Key** (for frontend use):
    ```
-   NEXT_PUBLIC_GOOGLE_PLACES_API_KEY=AIzaSyDvJkwQo53h3dm607apLC0l75sw6ax01QI
+   NEXT_PUBLIC_GOOGLE_PLACES_API_KEY=[YOUR_CLIENT_API_KEY]
    ```
    - **Restrictions**: Domain-restricted to your Vercel domains
    - **Usage**: Client-side Google Places integration (if any)

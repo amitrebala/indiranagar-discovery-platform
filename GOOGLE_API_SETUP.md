@@ -92,7 +92,7 @@ Expected response:
 
 ## Current API Keys
 
-- **Public Key (with restrictions)**: `AIzaSyBMfM9WL9zZfpGEeA4vCgUvx47Jgl0qGbc`
+- **Public Key (with restrictions)**: `[YOUR_RESTRICTED_API_KEY]`
   - Status: ❌ Has referer restrictions - won't work server-side
   
 - **Server Key (no restrictions)**: `[You need to create this]`

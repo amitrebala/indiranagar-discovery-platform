@@ -7,7 +7,7 @@
 ### 1. Check Google Cloud Console
 - Go to https://console.cloud.google.com/
 - Navigate to **APIs & Services** → **Credentials**
-- Verify the key `AIzaSyDvJkwQo53h3dm607apLC0l75sw6ax01QI` exists and is active
+- Verify your API key exists and is active (check your .env.local file)
 
 ### 2. Enable Required APIs
 Go to **APIs & Services** → **Library** and ensure these are enabled:
